@@ -1,0 +1,29 @@
+project:
+  type: book
+
+book:
+  title: "MA32009"
+  author: "Philip Murray"
+  date: "12/22/2023"
+
+  chapters:
+    - index.qmd
+    - part: "Discrete time"
+      chapters: 
+        - MA32009-SinglePopDiscreteTimea.qmd
+        - DiscreteModels2d.qmd
+    - part: "Continuous time"
+      chapters:
+        - SinglePopODEMOdels.qmd
+        - ContinuousTimeTwoSepcies.qmd  
+      
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+
