@@ -5,6 +5,8 @@ book:
   title: "MA32009"
   author: "Philip Murray"
   date: "12/22/2023"
+  repo-url: https://github.com/dundeemath/MA32009/
+  downloads: pdf
 
   chapters:
     - index.qmd

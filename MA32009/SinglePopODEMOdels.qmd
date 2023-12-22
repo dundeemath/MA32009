@@ -1,5 +1,5 @@
 ---
-title: "Continuous time, single species population dynamics"
+title: "Single species population dynamics"
 format: html
 ---
 

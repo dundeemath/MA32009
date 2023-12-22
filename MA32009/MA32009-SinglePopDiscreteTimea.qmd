@@ -1,5 +1,5 @@
 ---
-title: "Single species population dynamics in discrete time"
+title: "Single species population dynamics"
 format:
   html:
     code-fold: true

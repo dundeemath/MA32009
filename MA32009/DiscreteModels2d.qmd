@@ -1,5 +1,5 @@
 ---
-title: "Discrete Time Two Pop"
+title: "Multi species population dynamics"
 format:
   html:
     code-fold: true
