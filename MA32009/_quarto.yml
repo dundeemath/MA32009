@@ -18,14 +18,17 @@ book:
       chapters:
         - SinglePopODEMOdels.qmd
         - ContinuousTimeTwoSepcies.qmd  
+        - enzymekinetics.qmd
       
 bibliography: references.bib
 
 format:
   html:
     theme: cosmo
+    code-fold: true
   pdf:
     documentclass: scrreprt
+    echo: false
 
 
 

@@ -1,0 +1,766 @@
+---
+title: "Enzyme kinetics"
+format: html
+---
+
+Biochemical kinetics concern the concentration of chemical substances in biological systems. In this section we neglect spatial variation in concentrations, effectively assuming  chemical reactions occur in environments that are "well-mixed".
+
+
+## The law of mass action
+We denote the $i^{th}$ chemical species using the notation $C_i$. The concentration of molecule type $C_i$ is denoted $[C_i]$ and represents the number of molecules of $C_i$ per unit volume. 
+
+
+
+Suppose $C_1,..C_M$ undergo the reaction
+
+$$
+\lambda_1C_1+\lambda_2 C_2+...+\lambda_m C_M \xrightleftharpoons[k_{b}]{k_{f}} 
+ \gamma_1 C_1+\gamma_2 C_2 + ... \gamma_M C_M.
+$$
+
+the law of mass action states that the forward reaction proceeds at rate
+
+$$
+k_f[C_1]^\lambda_1 [C_2]^\lambda_2 ..[C_M]^\lambda_M
+$$
+
+whilst the backward reaction proceeds at rate
+
+$$
+k_b[C_1]^\gamma_1[C_2]^\gamma_2 ..[C_M]^\gamma_M
+$$
+
+where $k_f$ and $k_b$ are dimensional rate constants.
+
+**Example**
+Suppose A and B react to produce C. Hence
+$$
+A+B\xrightarrow{k}  C.
+$$
+
+The law of mass action states that the rate of the reaction is 
+
+$$
+k[A][B].
+$$
+
+Using the reaction rates, we write down ordinary differential equations that describe how concentrations of a given molecule will change in time. Hence
+
+$$
+\frac{d[C]}{dt}=k[A][B].
+$$ 
+
+
+
+
+Consider the reversible reaction
+$$
+A+B  \xrightleftharpoons[k_{-}]{k_{+}}  C.
+$$
+Define dependent variables, identify reaction rates and derive ordinary differential equations that describe how concentrations evolved in time.
+
+The dependent variables are:
+$$ [A](t), \ \ [B](t), \ \ [C](t) $$.
+
+Applying the law of mass action yields the reaction rates: 
+
+$$ k_+[A][B] \ \ \textrm{and} \ \ k_-[C]$$.
+
+The ODEs are
+
+$$
+\begin{align}
+\frac{d[A]}{dt}&=-k_+[A][B]+k_-[C], \nonumber\\
+\frac{d[B]}{dt}&=-k_+[A][B]+k_-[C], \nonumber\\
+\frac{d[C]}{dt}&=k_+[A][B]-k_-[C]. \nonumber
+\end{align}
+$$
+
+For a given set of initial conditions, 
+$$
+[A](t=0)=[A]_0, \ \ \ [B](t=0)=[B]_0, \ \ \ [C](t=0)=[C]_0,
+$$
+the ODEs can be solved and hence the concentrations of the different molecules described as time evolves.
+
+
+### Example
+The previous example have had stochiometric constants all set to unity (i.e. all reactions involved a molecules of one species interaction with one from another). Consider the reaction in which one molecule of species A with $m$ of species B giving rise to $n$ molecules of species B and $p$ molecules of species C, i.e.
+$$
+A+mB \xrightarrow{k_1} nB + pC.
+%X \underset{k_2}{\stackrel{k_1}{\rightleftharpoons}} Y
+$$
+
+
+The law of mass action says that the rate of the forward reaction is
+$$
+k_1[A][B]^m.
+$$
+ 
+ 
+The governing ODEs are 
+$$
+\begin{align}
+\frac{d[A]}{dt}&=-k_1[A][B]^m, \nonumber\\
+\frac{d[B]}{dt}&=(n-m)k_1[A][B]^m, \nonumber\\
+\frac{d[C]}{dt}&=pk_1[A][B]^m.  \nonumber
+\end{align}
+$$
+
+
+
+Consider the reversible reaction
+$$
+A+A  \xrightleftharpoons[k_{-}]{k_{+}}  B.
+$$
+Define dependent variables, identify reaction rates and derive ordinary differential equations that describe how concentrations evolved in time.
+
+
+The reaction rates are 
+$$
+k_+[A]^2
+$$
+and
+$$
+k_- [B].
+$$
+The ODEs are
+$$
+\begin{align}
+\frac{d[A]}{dt}&=-2k_+[A]^2+2k_- [B] , \nonumber\\
+\frac{d[B]}{dt}&=k_+[A]^2-k_- [B], 
+\end{align}
+$$
+
+### Enzyme kinetics
+Biochemical reactions are often regulated by enzymes (substances that convert a substrate into another substrate). Consider a chemical reaction in which substrate, $S$, reacts with an enzyme, $E$, to form a complex, $C$. Suppose the complex can either undergo the reverse reaction or  go on to form a product, $P$, with the release of the enzyme, i.e.
+$$
+S+E  \xrightleftharpoons[k_{-1}]{k_{1}}  C \xrightarrow{k_2} P+E .
+$$
+
+### Deriving the model equations
+
+
+For notational convenience we let lower case letter denote concentrations, i.e. 
+
+$$
+s(t)=[S](t),  \ \ c(t)=[C](t) , \\ e(t)=[E](t), \\ p(t)=[P](t).
+$$
+
+Demonstrate by applying the law of mass action that the above enzyme kinetic scheme can be described by the system of ODES
+ 
+$$
+\begin{align}
+\frac{d s}{dt} &= -k_1 se + k_{-1}c, \nonumber \\
+\frac{d e}{dt} &= -k_1 se + k_{-1}c +k_2 c,  \nonumber\\
+\frac{d c}{dt} &= k_1 se - k_{-1}c-k_2c, \nonumber \\
+\frac{d p}{dt} &= k_2 c.
+\label{MMenten4Var}
+\end{align}
+$$ {#eq-mmenten4var}
+ 
+
+We consider initial conditions such that at $t=0$ the reaction has not yet started, i.e. there is no product or complex formed
+$$
+s(0)=s_0, \ \ e(0)=e_0, \ \ c(0)=0, \ \ p(0)=0,
+$$
+where $s_0$ and $e_0$ represent the initial concentrations of substrate and enzyme, respectively.
+
+
+### Reducing the dimensions of the model
+
+
+
+Whilst there are four dependent variables in the problem ($s(t)$, $c(t)$, $e(t)$ and $p(t)$), the description of the problem can be simplified by noting that the variable $p(t)$ does not couple back to the other variables, i.e. if we can solve the system for $s(t)$, $e(t)$ and $c(t)$ then $c(t)$ can be expressed as a function of time and
+ 
+$$
+p(t)=k_2\int c(t) dt + C_1.
+$$
+ 
+
+
+Furthermore, there is a conserved quantity in the system. Note that 
+ 
+$$
+\frac{d e}{dt}+\frac{d c}{dt}=0,
+$$
+ 
+which reflects the fact that enzyme exists either in free form or bound to the product.
+Integrating yields
+ 
+$$
+c(t)+e(t)=C_2.
+$$
+ 
+Evaluating at $t=0$, 
+ 
+$$
+e_0=C_2.
+$$
+ 
+Hence
+ 
+$$
+c(t)+e(t)=e_0
+$$
+ 
+and the variable $e(t)$ can be replaced by
+ 
+$$
+ e(t)=e_0-c(t)
+$$
+ 
+
+
+Given 
+$$
+ e(t)=e_0-c(t),
+$$
+substitute in 
+$$
+\begin{align}
+\frac{d s}{dt} &= -k_1 se + k_{-1}c, \nonumber \\
+\frac{d c}{dt} &= k_1 se - k_{-1}c-k_2c, \nonumber \\
+\end{align}
+$$
+Hence
+$$
+\begin{align}
+\frac{d s}{dt} &= -k_1 s(e_0-c) + k_{-1}c, \nonumber \\
+\frac{d c}{dt} &= k_1 s(e_0-c)) - (k_{-1}+k_2)c, \nonumber \\
+\end{align}
+$$
+
+### The quasi-steady state approximation (QSSA)
+A usual approach to these equations is to assume that the timescale of complex dynamics is very fast compared to that of substrate dynamics.
+
+
+To make the QSSA we assume that one of the variables (in this case $c$), is in equilibrium
+
+$$
+dc/dt \sim 0.
+$$ 
+
+In which case the second equation yields
+ 
+$$
+c=\frac{e_0s(t)}{s(t)+K_m}, 
+$$
+ 
+where
+ 
+$$
+ K_m=\frac{k_{-1}+k_2}{k_1},
+$$
+ 
+is known as the Michaelis constant.
+ 
+
+Demonstrate that upon using the QSSA, the governing ODE for $s(t)$ is given by
+ 
+$$
+\frac{ds}{dt} = -\frac{k_2e_0s}{s+K_m}.
+$$
+ 
+
+Consider
+$$
+\begin{align}
+\frac{d s}{dt} &= -k_1 s(e_0-c) + k_{-1}c, \nonumber \\
+\end{align}
+$$
+By QSSA
+$$
+-k_1 s(e_0-c) + k_{-1}c=-k_2c=-k_2\frac{e_0s(t)}{s(t)+K_m},
+$$
+Hence
+$$
+\begin{align}
+\frac{d s}{dt} &= -k_2\frac{e_0s(t)}{s(t)+K_m}, \nonumber \\
+\end{align}
+$$
+Note this could be achieved by direct substitution for $c(t)$.
+
+
+
+## Enzyme kinetics: the Michaelis-Menten quasi-steady state approximation (QSSA)
+
+### Nondimensionalisation
+
+Demonstrate that nondimensionalisation using
+$$
+\tau=k_1 e_0 t, \ \ \ u=\frac{s}{s_0}, \ \ \ v=\frac{c}{e_0},
+$$
+yields the ODEs
+$$
+\begin{align}
+\frac{d u}{d\tau} &= -u+(u+K-\lambda)v, \nonumber \\
+\epsilon \frac{d v}{d\tau} &= u-(u+K)v, \nonumber \\
+\end{align}
+$$ {#eq-mmenten2varnondim}
+
+where
+$$
+\lambda=\frac{k_2}{k_1 s_0}, \ \ \ K=\frac{k_{-1}+k_2}{k_1 s_0}, \ \ \ \epsilon=\frac{e_0}{s_0}. 
+$$
+
+
+
+
+### Asymptotic expansions: the outer solution}
+We consider the (often realised) case where the amount of enzyme in the system is small compared with the amount of substrate, i.e.
+$$
+\epsilon \ll 1.
+$$
+The presence of the small parameter $\epsilon$ allows us to use perturbation theory to calculate approximate solutions to @mmenten2varnondim. However, 
+the problem is singular owing to the $\epsilon dv/dt$ term.
+ 
+ 
+**A proposed  outer solution **
+
+We propose an outer solution of the form
+
+$$
+\begin{align}
+u(\tau;\epsilon)=u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ... = \sum_{n=0}^{\infty}u_n(\tau)\epsilon^n, \nonumber \\
+v(\tau;\epsilon)=v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ... = \sum_{n=0}^{\infty}v_n(\tau)\epsilon^n.  \nonumber  
+\end{align}
+$$
+
+Substituting the expansions in @mmenten2varnondim yields
+
+$$
+\begin{align}
+\frac{du_0}{d\tau} + \epsilon \frac{du_1}{d\tau} + \epsilon^2\frac{du_2}{d\tau} + ... = -(u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...)+  \nonumber \\ (u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...+ K-\lambda)(v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ...).  \nonumber 
+\end{align}
+$$
+
+
+Gathering terms as coefficients of the different powers of $\epsilon$ yields
+
+$$
+\begin{align}
+\frac{du_0}{d\tau} + \epsilon \frac{du_1}{d\tau} + ... = -u_0(\tau)+ (u_0(\tau)+ K-\lambda)v_0  +\epsilon (-u_1(\tau) + u_1v_0+v_1u_0+v_1(K-\lambda)) + O(\epsilon^2), \nonumber
+\end{align}
+$$
+
+where terms of order $\epsilon^2$ have been neglected.
+ 
+
+Considering the $v$ equation yields
+
+$$
+\begin{align}
+\epsilon(\frac{dv_0}{d\tau} + \epsilon \frac{dv_1}{d\tau} + \epsilon^2\frac{dv_2}{d\tau} + ..) = u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...  \nonumber \\ -(u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...+ K) (v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ...).  \nonumber 
+\end{align}
+$$
+
+Gathering terms as coefficients of the different powers of $\epsilon$ yields
+
+$$
+\begin{align}
+\epsilon\frac{dv_0}{d\tau} + \epsilon^2 \frac{dv_1}{d\tau} + ... = u_0(\tau)-   u_0(\tau)v_0(\tau) -v_0 K  \nonumber \\ +\epsilon (u_1(\tau) - u_0v_1 - u_1v_0 - Kv_1) + O(\epsilon^2).  \nonumber 
+\end{align}
+$$
+
+
+At $O(1)$ 
+
+$$
+\begin{align}
+\frac{du_0}{d\tau} = -u_0+ (u_0+ K-\lambda)v_0  \nonumber \\ 
+ 0= u_0 - u_0 v_0 -v_0K.    \nonumber
+\end{align}
+$$
+
+
+
+Solving the algebraic equation yields
+
+$$
+v_0=\frac{u_0}{u_0+K},
+$$
+
+and substituting in the $u_0$ equation yields
+
+$$
+\frac{du_0}{d\tau} = -u_0+ (u_0+ K-\lambda)\frac{u_0}{u_0+K} = -\frac{\lambda u_0}{u_0+K}.
+$$
+
+Integrating yields
+
+
+$$
+u_0+K\ln u_0=-\lambda \tau +A,
+$$
+
+
+where $A$ is an integration constant.
+
+
+When posing a solution as an expansion, a necessary question to ask is when the expansion is a valid? On the outer scale we have shown that
+$$
+v_0=\frac{u_0}{u_0+K}.
+$$
+
+
+Note that the expression
+
+$$
+v_0=\frac{u_0}{u_0+K}
+$$
+
+does not satisfy the initial condition $v(0)=0$. As $u_0(0)=1$, we find that at $\tau=0$
+
+$$
+v_0=\frac{1}{1+K} \neq 0.
+$$
+
+Hence the proposed expansion is not valid at least near $\tau=0$.
+
+
+### Asymptotic expansions: the inner solution
+
+This issue can be rectified by proposing a different scaling for time and recalculating a series solution in the new coordinate system. 
+
+
+We proceed by making the change of variable
+$$
+\sigma=\frac{\tau}{\epsilon}.
+$$
+
+Note that  $\sigma=1$ corresponds to $\tau=\epsilon$. Hence the proposed rescaling of time will give rise to what is called  the inner solution to the problem (close to $t=0$).
+
+To distinguish inner and outer solutions we relabel dependent variables such that
+
+$$
+\begin{align}
+u(\tau;\epsilon)=U(\sigma;\epsilon),  \nonumber \\ 
+v(\tau;\epsilon)=V(\sigma;\epsilon). \nonumber 
+\end{align}
+$$
+
+}
+
+
+Note that
+$$
+\frac{d}{d\tau}=\frac{1}{\epsilon}\frac{d}{d\sigma}.
+$$
+Hence upon changing variables 
+$$
+\begin{align}
+\frac{1}{\epsilon}\frac{d U}{d\sigma} &= -\epsilon U+ \epsilon (U+K-\lambda)V, \nonumber \\
+\frac{1}{\epsilon}\ \epsilon \frac{d V}{d\sigma} &= U-(U+K)V.  
+\end{align}
+$$
+Tidying yields the requested form.
+
+
+We seek  series solutions to equations \eqref{LongTimeUV} of the form
+
+$$
+\begin{align}
+U(\sigma;\epsilon)&=U_0(\sigma) + \epsilon U_1(\sigma) + \epsilon^2 U_2(\sigma) + ... = \sum_{n=0}^{\infty}U_n(\sigma)\epsilon^n, \nonumber \\
+V(\sigma;\epsilon)&=V_0(\sigma) + \epsilon V_1(\sigma) + \epsilon^2 V_2(\sigma) + ... = \sum_{n=0}^{\infty}V_n(\sigma)\epsilon^n. \nonumber  
+\end{align}
+$$
+
+
+Substitution yields
+$$
+\begin{align}
+\frac{dU_0}{d\sigma}+ \epsilon\frac{dU_1}{d\sigma}+ ..... &= \epsilon\left( U_0+\epsilon U_1 + ... + (U_0+\epsilon U_1+ +K-\lambda)(V_0+\epsilon V_1+...)\right) \\
+\frac{dV_0}{d\sigma}+ \epsilon\frac{dV_1}{d\sigma}+ ..... &= (U_0+\epsilon U_1+...)-(U_0+\epsilon U_1+...+K)(V_0+\epsilon V_1+...).
+\end{align}
+$$
+
+Hence at leading order
+$$
+\begin{align}
+\frac{dU_0}{d\sigma}&=0  \nonumber\\
+\frac{dV_0}{d\sigma}&=U_0-(U_0+K)V_0.
+\end{align}
+$$
+
+Given the initial condition $U(0)=1$ we obtain that the inner solution is 
+
+$$
+U(\sigma)=1.
+$$
+
+Substituting in the second equation gives
+ 
+$$
+ \frac{dV_0}{d\sigma}=1-(1+K)V_0.
+$$
+
+Given $V_0(0)=0$ we obtain
+
+$$
+V_0=\frac{1-e^{-(1+K)\sigma}}{1+K}.
+$$
+
+
+### Asymptotic expansions: matching the inner and outer solutions
+
+Inner and outer solutions are matched by taking limits 
+$$
+\lim_{\tau \rightarrow 0}(u_0(\tau),v_0(\tau))=\lim_{\sigma \rightarrow \infty}(U_0(\sigma),V_0(\sigma)).
+$$
+
+
+Note that
+
+$$
+\lim_{\sigma\rightarrow \infty} V_0(\sigma)= \lim_{\sigma\rightarrow \infty}  \frac{1-e^{-(1+K)\sigma}}{1+K} = \frac{1}{1+K},
+$$
+
+and 
+
+$$
+\lim_{\tau\rightarrow 0}(v_0(\tau)) =\lim_{\tau\rightarrow 0}\frac{u_0}{u_0+K} =  \frac{1}{1+K}. 
+$$
+
+Hence the $v$ variables are already matching in the appropriate limit.
+
+Similarly
+
+$$
+\lim_{\sigma\rightarrow \infty} U_0(\sigma)= 1,
+$$
+
+hence we require that
+
+$$
+\lim_{\tau \rightarrow 0} u_0(\tau)= 1.
+$$
+
+Hence for 
+
+$$
+ (u_0+K\ln u_0=-\lambda \tau +A)
+$$
+
+to hold as $\tau \rightarrow 0$ implies $A=1$.
+
+
+ 
+## The Brusselator
+The Brusselator is an abstract model that can be used to demonstrate oscillations in (bio)-chemical systems. Consider a chemical reaction  where five chemical species, A, B, D, X and Y, react according to the scheme
+$$
+\begin{align}
+A&\xrightarrow{k_{1}} X,  \nonumber \\
+B+X&\xrightarrow{k_{2}} Y+D, \nonumber\\
+2X+Y&\xrightarrow{k_{3}} 3X, \nonumber\\
+X&\xrightarrow{k_{4}} E. 
+\end{align}
+$$
+
+Assuming that the concentration of A and B ($[A]$ and $[B]$, respectively) are in vast excess (i.e. the amount that A and B get depleted by the reactions is negligible compared with the total amount of A and B present), their concentration are treated as constants. Furthermore, as D and E are  products but not reactants (they only appear on the right-hand side of reactions) we do not concern ourselves with their dynamics.  
+
+### Deriving model equations
+
+To make the steps leading to ODEs obvious, it is useful to rewrite the reaction scheme in the form
+$$
+ \begin{align}
+A&\xrightarrow{k_{1}} X,  \nonumber \\
+B+X&\xrightarrow{k_{2}} Y+D, \nonumber\\
+X+X+Y&\xrightarrow{k_{3}} X+X+X, \nonumber\\
+X&\xrightarrow{k_{4}} E. 
+\end{align}
+$$
+
+ Applying the law of mass action yields that the four reactions occur at rates: 
+
+* $k_1[A]$,
+*  $k_2[B][X]$, 
+* $k_3[X]^2[Y]$, 
+*  $k_4[X]$.
+
+
+  
+The total time derivative of $[X]$ is obtained by visiting each X in the reaction scheme once and adding the corresponding reaction rate to the right-hand side of the ODE, i.e.
+
+$$  
+ \begin{align}
+ \frac{d[X]}{dt} &= \overbrace{k_1[A]}^{R1-lhs} - \overbrace{k_2[B][X]}^{R2-lhs} -  \overbrace{k_3[X]^2[Y]}^{R3-lhs} - \overbrace{k_3[X]^2[Y]}^{R3-lhs} + \overbrace{k_3[X]^2[Y]}^{R3-rhs}+ \overbrace{k_3[X]^2[Y]}^{R3-rhs}+ \overbrace{k_3[X]^2[Y]}^{R3-rhs} -\overbrace{k_4[X]}^{R4-lhs}, \nonumber \\
+ 		&= k_1[A] - k_2[B][X] + k_3[X]^2[Y]   -k_4[X]. 
+ \end{align}
+ $$
+  
+Similarly for species Y we obtain that the total rate of change in time is
+$$ 
+ \begin{align}
+  \frac{d[Y]}{dt}=k_2[B][X]-k_3[X]^2[Y].
+ \end{align}
+$$
+
+### Nondimensionalisation
+ Upon making the change of variables
+\begin{align}
+x=\sqrt{\frac{k_3}{k_4}}[X], \ \ \ \ \ y=\sqrt{\frac{k_3}{k_4}}[Y], \ \ \textrm{and} \ \ \tau=k_4 t, 
+\end{align}
+yields
+\begin{align}
+\frac{d x}{d \tau} &= a-bx+x^2y-x = f(x,y), \\
+\frac{d y}{d \tau} &= bx-x^2y = g(x,y), 
+\label{BrussNondim}
+\end{align}
+ 
+where 
+$$
+a=[A]\frac{k_1}{k_4}\sqrt{\frac{k_3}{k_4}} \ \ \ \textrm{and} \ \ \ b= [B]\frac{k_2}{k_4}.
+$$
+
+### vSteady states and linear stability analysis
+
+Seeking steady states $(x^*,y^*)$ of equations \eqref{BrussNondim} such that 
+$$
+f(x^*,y^*)=g(x^*,y^*)=0
+$$
+ yields
+
+$$
+(x^*,y^*)=(a,\frac{b}{a}).
+$$
+
+#### Linear stability analysis
+
+
+The Jacobian matrix is
+ 
+$$
+A=\left(\begin{array}{rr}
+\frac{\partial f}{\partial x}&\frac{\partial f}{\partial y} \\ \frac{\partial g}{\partial x }&\frac{\partial g}{\partial y} \end{array}\right) = \left(\begin{array}{rr}
+-b+2xy-1&x^2\\ b-2xy &-x^2\end{array}\right).
+$$
+
+ 
+ 
+Evaluating the Jacobian at $(a,b/a)$ yields
+ 
+$$
+A=
+ \left(\begin{array}{rr}
+b-1&a^2\\ -b &-a^2\end{array}\right). 
+$$
+ 
+The determinant of the Jacobian is
+ 
+$$
+\det{A}=-(b-1)a^2+a^2b=a^2>0,
+$$
+  
+Hence $(a,b/a)$ is not a saddle. The trace of the Jacobian is
+$$
+\tr{A}=b-1-a^2.
+$$ 
+  
+Hence if $b>1+a^2$ the trace is positive and, referring to Figure \ref{TDplane}, the steady state is  linearly unstable. Otherwise, the steady state is linearly stable.
+
+In Figure \ref{BrussNondimFig} we use Maple to numerically solve  equations \eqref{BrussNondim} for the two cases and plot the solutions in the phase plane. Note that when the steady state is unstable, the numerical solution indicates that the system has limit cycle solutions. A valid question to ask is whether one can prove that this is the case.
+
+
+\begin{figure}
+\centering
+\subfigure[]{\includegraphics[scale=0.3]{BrusselatorOsc.eps}}
+\subfigure[]{\includegraphics[scale=0.3]{BrusselatorStable.eps}}
+\caption{Solutions of the Brusselator equations in the oscillatory (a) and stable (b) regimes. Parameter values are: (a) $a=1.5$, $b=1.15(a^2+1)$, (a) $a=1.5$, $b=0.95(a^2+1)$. Initial conditions: $x(0)=1.05$, $y(0)=1.05$.}
+\label{BrussNondimFig}
+\end{figure}
+
+#### Applying the Poincaire-Bendixson theorem
+Recall  that the Poincaire-Bendixson theorem can be used to prove the existence of limit cycle solutions in a case where a bounding set encloses a single unstable steady state. 
+Hence given the case of the Brusselator with $b>a^2+1$, the identification of a bounding set will allow application of  the Poincaire-Bendixson theorem and hence prove the existence of limit cycle solutions.
+
+
+We begin by defining the nullclines of the system. The $x$ nullcline is given by
+ 
+$$
+y=\frac{1+b}{x}-\frac{a}{x^2}.
+$$
+
+ \examplequestion{
+ Demonstrate that  in the positive quadrant, this nullcline has a  single root at $a/(1+b)$, tends to 0 as $x\rightarrow \infty$ and has a maximum at $x=2a/(1+b)$. 
+ }
+ 
+ \stwriting{
+ 
+The $y$ nullclines are given by
+ 
+$$
+y=\frac{b}{x} \ \ \ \textrm{and} \ \ \ x=0.
+$$
+ 
+In Figure \ref{BrussNullclines} we plot the the oscillatory solution together with the nullclines. Note that the nullclines separate the phase plane into regions of constant sign. %Note that the $x$ nullcline  separates the phase plane into regions where $dx/dt>0$ and $dx/dt<0$. Similarly, the  $y$ nullcline separates the phase plane into regions where $dy/dt>0$ and $dy/dt<0$. Note that signs for $dx/dt$ can be determined by considering behaviour of the function $f$ as one moves away from the nullcline where, by definition, $f=0$. Consider some point that sits on the x nullcline. While keeping the $x$ value fixed, increase $y$ so the point moves vertically in the phase plane. This implies that $f$ has increased because the only term to change is $x^2y$. Hence $f$ increases upon increasing $y$ and therefore $dx/dt$ is positive for all points above the $x$ nullcline. Alternatively, note that in the Jacobian matrix we have calculated that $\partial f/\partial y$ is positive.
+ 
+\begin{figure}
+\centering
+\subfigure[]{\includegraphics[scale=0.3]{BrusselatorOscNullcline.eps}}
+\caption{Solutions of the Brusselator equations in the oscillatory regime together with nullclines ($x$ -magenta, $y$-black). Other details as in Figure \ref{BrussNondimFig}. }
+\label{BrussNullclines}
+\end{figure}
+}
+ \textit{\large \flushleft  A confined set}
+\stwriting{
+
+To define a confined set, we construct the closed loop ABCDEA in phase space  (see Figure \ref{BrusselatorBoundingRegion}) where the points A, B, C, D and E are defined as follows. Let the points A and B be two points on the $x$ axis with coordinates $(\delta,0)$ and $(a/(1+b),0)$, respectively. We choose $\delta>a$. The outward normal to the line segment AB is $\mathbf{n}=[0,-1]$. To show that the trajectories point inwards along AB, we compute
+ 
+$$
+\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = -\frac{dy}{dt}.
+$$
+ 
+As the line segment AB sits below the $y$ nullcline, $dy/dt>0$ in this region. Hence
+ 
+$$
+\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = -\frac{dy}{dt}<0.
+$$
+ 
+Hence trajectories point inwards on the line segment AB.
+ 
+Let $C$ represent the point $(a/(1+b)),b(1+b)/a)$. The normal vector to the line segment BC is $\mathbf{n}=[-1,0]$. As BC lies to the left of the $x$ nullcline, in a  region where $dx/dt>0$, then
+ 
+$$
+\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = -\frac{dx}{dt}<0.
+$$
+ 
+Hence trajectories point inwards on the line segment BC.
+ 
+
+Demonstrate that trajectories are inward pointing on the  line segment CD where D has coordinates $(k,b(1+b)/a)$ with $k>a$}
+
+ The normal to this line segment is [0,1]. As CD lies in a region of the phase plane where $dy/dt<0$,
+ 
+$$
+\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = \frac{dy}{dt}<0.
+$$
+ 
+Hence trajectories point inwards on the line segment CD.
+
+ 
+Let E be a point that sits on the $x$ nullcline at some position $(\delta,(\delta(1+b)-a)/(\delta^2))$ such that DE is a straight line with  outwardly pointing normal vector  $[1,1]$. Along DE
+ 
+$$
+\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] =   a-bx+x^2y-x + bx-x^2y = a-x<0
+$$
+ 
+for $x>a$. As $k>a$, $x>a$ for all points on DE, hence trajectories point inwards on DE. Finally, consider the line segment EA which has normal vector $\mathbf{n}=[1,0]$. As $dx/dt<0$ along EA 
+ 
+$$
+\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] =  \frac{dx}{dt} <0.
+$$
+ 
+Hence at all points on the closed loop ABCDEA trajectories point inwards (see Figure \ref{BrusselatorBoundingRegion}). Hence ABDCEA is a confined set and the Poincaire-Bendixson theorem states that the system exhibits limit cycle solutions when the steady state is unstable. This is precisely the behaviour that we see numerically in Figure \ref{BrussNondimFig}. Note that the parameter $\delta$ can be determined explicitly by finding the intersection between the $x$ nullcline and the line segment DE.
+
+
+
+
+
+\begin{figure}
+\centering
+\subfigure[]{\includegraphics[scale=0.3]{BrusselatorBoundingRegion.eps}}
+\caption{The confined set (ABCDE) for the Brussellator model is depicted by the solid cyan line. In this example we choose $k=2a$. Other details as in Figure \ref{BrussNullclines}.}
+\label{BrusselatorBoundingRegion}
+\end{figure}
+
+
