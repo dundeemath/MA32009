@@ -279,6 +279,71 @@ The population dynamics are approximately independent of parasite population.
 
 -->
 
+### Numerical solution
+```{python}
+#| label: fig-plotNicolsonBailey
+#| fig-cap: "A plot of the Nicholson Bailey model solution."
+import numpy as np
+import matplotlib.pyplot as plt
+
+T=100
+
+t = np.arange(0, T, 1)
+N = np.zeros_like(t,dtype=float)
+
+
+def rhs(x,par):
+  N=x[0]
+  P=x[1]
+
+  R_0=par[0]
+  C=par[1]
+  a=par[2]
+  g=np.zeros_like(x,dtype=float)
+  r=par
+
+  f=np.exp(-a*P)
+
+  g[0]=R_0*N*f
+  g[1]=C*N*(1-f)
+ 
+  return g
+
+def SolveSingleDiff(t,rhs,N_0,par):
+  N = np.zeros_like(t,dtype=float)
+  P=  np.zeros_like(t,dtype=float) 
+  N[0]=N_0[0]
+  P[0]=N_0[1]
+
+  for i in t:
+    if i>0:
+
+      rhs_eval=rhs([N[i-1],P[i-1]],par)
+      N[i]=rhs_eval[0]
+      P[i]=rhs_eval[1] 
+
+  return N,P
+
+R_0=1.5
+C=3.7
+a=1.7
+
+N_0=[1.5, 0.1]
+N,P=SolveSingleDiff(t,rhs,N_0,[R_0,C,a])
+
+
+fig, ax = plt.subplots(1,2)
+ax[0].plot(t, N)
+plt.xlabel('$t$')
+plt.ylabel('$N_t$')
+ax[1].plot(t, P)
+plt.xlabel('$t$')
+plt.ylabel('$P_t$')
+plt.show()
+```
+
+
+
 ###  Fixed points 
 
 The fixed points satisfy

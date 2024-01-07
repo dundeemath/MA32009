@@ -10,7 +10,7 @@ jupyter: python3
 
 
 
-Let us firstly consider models of a single population defined at discrete times.  Discrete (rather than continuous) time is used in population models where, for example, there are strong annual trends in the underlying animal behaviour (e.g. fish eggs hatching at a fixed time in the year), there are not overlapping generations and the population size at the next time step can be written as a function of the current population size. 
+Let us firstly consider models of a single population defined at discrete times. Discrete (rather than continuous) time is used in population models where, for example, there are strong annual trends in the underlying animal behaviour (e.g. fish eggs hatching at a fixed time in the year), there are not overlapping generations and the population size at the next time step can be written as a function of the current population size. 
 
 ##  A general model for a single population in discrete time
 
@@ -83,17 +83,18 @@ N_0=3.0
 r=0.5
 r_2=1.5
 
-def rhs(x,r):
+def rhs(x,par):
+  r=par
   f=r*x
   return f
 
-def SolveSingleDiff(t,rhs,N_0,r):
+def SolveSingleDiff(t,rhs,N_0,par):
   N = np.zeros_like(t,dtype=float)
   N[0]=N_0
 
   for i in t:
     if i>0:
-      N[i]=rhs(N[i-1],r) 
+      N[i]=rhs(N[i-1],par) 
   return N
 
 N=SolveSingleDiff(t,rhs,N_0,r)
@@ -155,7 +156,7 @@ Below we  consider the Ricker model which was initially used to study Canadian s
 
 ###  Model development
 
-One way to capture a decreased growth rate at high densities,  is to assume that the per capita growth rate is an exponentially decreasing function of population density, i.e. 
+One way to capture a decreased growth rate at high densities, is to assume that the per capita growth rate is an exponentially decreasing function of population density, i.e. 
 $$
 f(N_t)=e^{r(1-\frac{N_t}{K})},
 $$
@@ -210,26 +211,17 @@ N_1 = np.zeros_like(t,dtype=float)
 N_2 = np.zeros_like(t,dtype=float)
 N_3 = np.zeros_like(t,dtype=float)
 
-def rhs(x,r,K):
-  
+def rhs(x,par):
+  r=par[0]
+  K=par[1]
   f=x*np.exp(r*(1-x/K))
   return f
 
 
-def SolveSingleDiff(t,rhs,N_0,r,K):
-  N = np.zeros_like(t,dtype=float)
-  N[0]=N_0
 
-  for i in t:
-    if i>0:
-      N[i]=rhs(N[i-1],r,K) 
-  return N
-
-
-
-N_1=SolveSingleDiff(t,rhs,N_0,r_1,K)
-N_2=SolveSingleDiff(t,rhs,N_0,r_2,K)
-N_3=SolveSingleDiff(t,rhs,N_0,r_3,K)
+N_1=SolveSingleDiff(t,rhs,N_0,[r_1,K])
+N_2=SolveSingleDiff(t,rhs,N_0,[r_2,K])
+N_3=SolveSingleDiff(t,rhs,N_0,[r_3,K])
 
 
 fig, ax = plt.subplots(1,3)
@@ -354,7 +346,7 @@ def rhs(x,r):
   f=r*x+1
   return f
 
-def SolveSingleDiff(t,rhs,N_0,r):
+def SolveSingleDiffAndCobweb(t,rhs,N_0,r):
   N = np.zeros_like(t,dtype=float)
   N[0]=N_0
 
@@ -379,7 +371,7 @@ def SolveSingleDiff(t,rhs,N_0,r):
       CobwebSol[2*i+1,1]=rhs_temp
   return N, CobwebSol
 
-N,CobwebSol=SolveSingleDiff(t,rhs,N_0,r)
+N,CobwebSol=SolveSingleDiffAndCobweb(t,rhs,N_0,r)
 
 N_plot=np.linspace(N_min,N_max,100)
 H_N_plot=rhs(N_plot,r)
@@ -462,32 +454,7 @@ def rhs(x,r):
   f=r*x
   return f
 
-def SolveSingleDiff(t,rhs,N_0,r):
-  N = np.zeros_like(t,dtype=float)
-  N[0]=N_0
-
-
-  num_time_steps=t.shape[0]
-
-  CobwebSol=np.zeros((2*num_time_steps,2))
-  CobwebSol[0,0]=N_0
-  CobwebSol[0,1]=rhs(N_0,r)
-  CobwebSol[1,0]=CobwebSol[0,1]
-  CobwebSol[1,1]=CobwebSol[0,1]
-
-  for i in t:
-    if i>0:
-      N[i]=rhs(N[i-1],r) 
-
-      sol_temp=N[i-1]
-      rhs_temp=rhs(sol_temp,r)
-      CobwebSol[2*i,0]=sol_temp
-      CobwebSol[2*i,1]=rhs_temp
-      CobwebSol[2*i+1,0]=rhs_temp
-      CobwebSol[2*i+1,1]=rhs_temp
-  return N, CobwebSol
-
-N,CobwebSol=SolveSingleDiff(t,rhs,N_0,r)
+N,CobwebSol=SolveSingleDiffAndCobweb(t,rhs,N_0,r)
 
 N_plot=np.linspace(0,N_max,100)
 H_N_plot=rhs(N_plot,r)
@@ -515,17 +482,27 @@ For bifurcation diagram:
 * In this case the value of the fixed point is independent of $r$ but the the linear stability changes at $r=1$. This is a bifurcation.
 * Use annotation to represent qualitative solution behaviour.
 
-
-
 ## A nonlinear model of population dynamics in discrete time
 
 
 Consider a model of population growth given by
-
 $$
 N_{t+1}=\frac{\gamma N_t}{1+N_t^2},
 $$ {#eq-denslimgrowtheqn}
 where $\gamma\in \Re^+$ is the linear growth rate. 
+
+### The per capita growth rate
+
+
+Note that the per capita growth rate is described by the function
+$$
+f(N_{t})=\frac{\gamma}{1+N_t^2}.
+$$
+Hence at large populations the per capita growth rate tends to zero whilst for small populations it tends to $\gamma$. Hence so long as $\gamma>1$ we will have net growth for small populations and net removal for large populations.
+The net growth rate is given by
+$$
+H(N_{t})=\frac{\gamma N_t}{1+N_t^2}.
+$$
 
 
 
@@ -552,15 +529,6 @@ def rhs(x,r):
   f=r*x/(1+x**2)
   return f
 
-def SolveSingleDiff(t,rhs,N_0,r):
-  N = np.zeros_like(t,dtype=float)
-  N[0]=N_0
-
-  for i in t:
-    if i>0:
-      N[i]=rhs(N[i-1],r) 
-  return N
-
 N_1=SolveSingleDiff(t,rhs,N_0,gam_1)
 N_2=SolveSingleDiff(t,rhs,N_0,gam_2)
 N_3=SolveSingleDiff(t,rhs,N_0,gam_3)
@@ -581,7 +549,7 @@ plt.show()
 
 
 ###  Fixed points
-The fixed points satisfy the algebraic equation
+The fixed points of @eq-denslimgrowtheqn satisfy the algebraic equation
 $$
 N^*=\frac{\gamma N^*}{1+{N^*}^2}
 $$
@@ -591,31 +559,12 @@ N^* = 0  \ \ \ \ \textrm{and} \ \ \ \ N^*=\sqrt{\gamma-1}.
 $$
 
 
-
-Sketch a graph of $H(N_t)$ against $N_t$ in the cases $\gamma<1$ and $\gamma>1$.
-
-Note that the per capita growth rate is described by the function
-$$
-f(N_{t})=\frac{\gamma}{1+N_t^2}.
-$$
-Hence at large populations the per capita growth rate tends to zero whilst for small populations it tends to $\gamma$. Hence so long as $\gamma>1$ we will have net growth for small populations and net removal for large populations.
-The net growth rate is given by
-$$
-H(N_{t})=\frac{\gamma N_t}{1+N_t^2}.
-$$
-
-
-### Parameter restrictions for biological validity
+#### Parameter restrictions for biological validity
 
 
 If $\gamma<1$, there is only one biologically relevant fixed point. 
 If $\gamma >1$ there are two fixed-points, $N^*=0$ and $N^*=\sqrt{\gamma-1}$. Hence the value of the model parameter $\gamma$ qualitatively affects the behaviour and number of solutions.
 
-
-Sketch a graph of $N^*$ against $\gamma$.
-
-Roots: 0
-TP:  
 
 ### Linear stability analysis
 
@@ -638,14 +587,14 @@ When $\gamma > 1$ the second fixed point becomes biologically relevant and the f
 #### $N^*=\sqrt{\gamma-1}$
 The stability of the second fixed point, $N^*=\sqrt{\gamma-1}$, is determined by 
 
-<!--
+
 $$
 \begin{align}
-H'(\sqrt{\gamma-1})&= \frac{\gamma}{1+\gamma-1} + \frac{-2 \gamma (\gamma-1)}{(1+(\gamma-1))^2}, 
+H'(\sqrt{\gamma-1})&= \frac{\gamma}{1+\gamma-1} + \frac{-2 \gamma (\gamma-1)}{(1+(\gamma-1))^2}, \\
 &= \frac{2}{\gamma}-1.
 \end{align}
 $$
--->
+
 
 Hence if $N^*$ were monotonically unstable,
 
@@ -681,13 +630,10 @@ Hence $\gamma>2$.
 Hence the linear stability of the fixed point $N^*=\sqrt{\gamma-1}$ depends on whether $\gamma$ lies in the range $[0,1]$, $[1,2 ]$ or $[2,\infty]$.
 
 
-Let's  annotate the diagram in the previous figure with the info. obtained from the linear stability analysis. 
-Hence the interval $[0,\infty]$ can be divided into distinct subintervals within which the linear stability of $N^*$ is conserved.  The boundaries  of subintervals are bifurcation values where a the stability of the fixed point changes.
-
-
 ### Cobweb diagrams
 
 In @fig-densmodelcobweb cobweb diagrams illustrate  model behaviour in the three different parameter regimes. Note that the cobweb diagrams can be sketched by hand, given an accurate enough sketch of the right-hand side function $H(N_t)$. Note also that the cobweb diagrams are consistent with the linear stability analysis but that the linear approximation is only valid close to the equilibrium point. 
+
 
 ```{python}
 #| label: fig-densmodelcobweb
@@ -713,35 +659,10 @@ def rhs(x,r):
   f=r*x/(1+x**2)
   return f
 
-def SolveSingleDiff(t,rhs,N_0,r):
-  N = np.zeros_like(t,dtype=float)
-  N[0]=N_0
-
-
-  num_time_steps=t.shape[0]
-
-  CobwebSol=np.zeros((2*num_time_steps,2))
-  CobwebSol[0,0]=N_0
-  CobwebSol[0,1]=rhs(N_0,r)
-  CobwebSol[1,0]=CobwebSol[0,1]
-  CobwebSol[1,1]=CobwebSol[0,1]
-
-  for i in t:
-    if i>0:
-      N[i]=rhs(N[i-1],r) 
-
-      sol_temp=N[i-1]
-      rhs_temp=rhs(sol_temp,r)
-      CobwebSol[2*i,0]=sol_temp
-      CobwebSol[2*i,1]=rhs_temp
-      CobwebSol[2*i+1,0]=rhs_temp
-      CobwebSol[2*i+1,1]=rhs_temp
-  return N, CobwebSol
-
-N1,CobwebSol1=SolveSingleDiff(t,rhs,N_0,r_1)
-N2,CobwebSol2=SolveSingleDiff(t,rhs,N_0,r_2)
-N3,CobwebSol3=SolveSingleDiff(t,rhs,N_0,r_3)
-N4,CobwebSol4=SolveSingleDiff(t,rhs,N_0,r_4)
+N1,CobwebSol1=SolveSingleDiffAndCobweb(t,rhs,N_0,r_1)
+N2,CobwebSol2=SolveSingleDiffAndCobweb(t,rhs,N_0,r_2)
+N3,CobwebSol3=SolveSingleDiffAndCobweb(t,rhs,N_0,r_3)
+N4,CobwebSol4=SolveSingleDiffAndCobweb(t,rhs,N_0,r_4)
 
 N_plot=np.linspace(0,N_max,100)
 H_N_plot1=rhs(N_plot,r_1)
@@ -784,6 +705,11 @@ plt.show()
 
 Bifurcations at the critical values $\gamma=1$ and $\gamma=2$ are highlighted in the bifurcation diagram presented in @fig-densmodelbfc. Note that the bifurcation diagram allows classification of the different model behaviours in a single plot without explicitly calculating the solution to the model. 
 
+
+### Symbolic computation
+
+
+We can use symbolic calculators to aid many of computations performed above. Below is an example using the Python library sympi.
 ```{python}
 #| label: fig-densmodelbfc
 #| fig-cap: "A bifiurcation diagram."
@@ -804,10 +730,63 @@ ax.plot(gam_plot,N_star_1)
 ax.plot(gam_plot2,N_star_2)
 
 
-plt.xlabel('$gamma$')
+plt.xlabel('$\gamma$')
 plt.ylabel('$N^*$')
 plt.show()
 ```
+
+
+
+Many of the calculations can be aided by using a symbolic calculator.
+
+
+```{python}
+#| label: code-calc1
+#| fig-cap: "Symbolic calculations"
+#| code-fold: True
+#| caption: none
+
+
+import numpy as np
+import sympy as sp
+
+# Define variables and constants
+gamma=sp.symbols("gamma",real=True,nonnegative=True)
+N = sp.symbols("N",real=True,nonnegative=True)
+
+# Define H
+H=gamma*N/(1+N**2)
+
+# Solve the FP equation
+fp=sp.solve(H-N,N,dict=True)
+
+print("The FPs are:")
+print(fp)
+
+# Compute H prime
+H_p=H.diff(N)
+
+
+print("The derivative of H is:")
+print(sp.simplify(H_p))
+
+
+# Evaluate derivative
+
+print("The derivative evaluated at FP 1 is:")
+sol1=fp[0][N]
+H_p_eval_0=sp.simplify(H_p.subs(N,sol1))
+
+print(H_p_eval_0)
+
+print("The derivative evaluated at FP 2 is:")
+sol2=fp[2][N]
+H_p_eval_2=H_p.subs(N,sol2)
+
+print(sp.simplify(H_p_eval_2))
+
+```
+
 
 
 ## An application - how much harvesting can a population sustain?
@@ -842,22 +821,17 @@ h_1=0.1
 h_2=1.0
 h_3=3.0
 
-def rhs(x,r,h):
+def rhs(x,par):
+  r=par[0]
+  h=par[1]
   f=r*x/(1+x**2)-h*x
   return f
 
-def SolveSingleDiff(t,rhs,N_0,r,h):
-  N = np.zeros_like(t,dtype=float)
-  N[0]=N_0
 
-  for i in t:
-    if i>0:
-      N[i]=rhs(N[i-1],r,h) 
-  return N
 
-N_1=SolveSingleDiff(t,rhs,N_0,gam,h_1)
-N_2=SolveSingleDiff(t,rhs,N_0,gam,h_2)
-N_3=SolveSingleDiff(t,rhs,N_0,gam,h_3)
+N_1=SolveSingleDiff(t,rhs,N_0,[gam,h_1])
+N_2=SolveSingleDiff(t,rhs,N_0,[gam,h_2])
+N_3=SolveSingleDiff(t,rhs,N_0,[gam,h_3])
 
 
 fig, ax = plt.subplots(1,3)
@@ -883,14 +857,17 @@ The fixed points of the system satisfy
 $$
 N^*=\frac{\gamma N^*}{1+{N^*}^2} - h N^*.
 $$
+
 Hence the fixed points are 
 $$
 N^*=0
 $$ 
+
 and 
 $$
 N^*=\sqrt{\frac{\gamma}{1+h}-1}.
 $$
+
 Note that harvesting lowers the population size of the non-zero fixed point (when it exists).
 
 
@@ -900,10 +877,11 @@ Requiring
 $$
 N^* >0
 $$
+
 implies
 $$
-\frac{\gamma}{1+h}-1>0
-$$.
+\frac{\gamma}{1+h}-1>0.
+$$
 
 
 ### Linear stability
@@ -911,13 +889,13 @@ The linear stability is determined by
 $$
 H'(N_t)=\frac{\gamma }{1+{N_t}^2} - \frac{2\gamma N_t^2 }{(1+{N_t}^2)^2} - h.
 $$
+
 At $N^*=0$ we obtain
 $$
 H'(0)=\gamma-h.
 $$
-Hence if $\gamma>1+h$, $N^*=0$ is unstable. 
 
-Note that this is the condition that determines whether  the non-zero fixed point exists or not. 
+Hence if $\gamma>1+h$, $N^*=0$ is unstable.  Note that this is the condition that determines whether  the non-zero fixed point exists or not. 
 
 At 
 $$
@@ -927,12 +905,14 @@ $$
 $$
 H'\left(\sqrt{\frac{\gamma}{1+h}-1}\right)=\frac{\gamma }{1+\frac{\gamma}{1+h}-1} - \frac{2\gamma \frac{\gamma}{1+h}-1 }{(1+\frac{\gamma}{1+h}-1)^2} - h.
 $$
+
 Hence linear stability is a function of two parameters $\gamma$ and $h$. 
  
 We can show that  
 $$
 H'(N^*) = h^2\frac{2}{\gamma} + h\frac{2}{\gamma}(2-\gamma) + \frac{2}{\gamma}-1,
 $${#harvestingH_prime}
+
 and hence that when $h=0$ we retrieve the stability condition from the previous model.
  
 
@@ -970,10 +950,10 @@ $$
 $$
 
 The contour at $H'(N^*)=-1$ can be represented by
-$
 $$
  h^2\frac{2}{\gamma} + h\frac{2}{\gamma}(2-\gamma) + \frac{2}{\gamma}-1 = -1,
 $$
+
 Solving for $\gamma$ yields
 $$
 \gamma=\frac{(1+h)^2}{h}.
@@ -1004,42 +984,21 @@ r=5.0
 
 N_max=4.0
 
-def rhs(x,r,h):
+def rhs(x,par):
+  r=par[0]
+  h=par[1]
   f=r*x/(1+x**2)-h*x
   return f
 
-def SolveSingleDiff(t,rhs,N_0,r,h):
-  N = np.zeros_like(t,dtype=float)
-  N[0]=N_0
 
-  num_time_steps=t.shape[0]
-
-  CobwebSol=np.zeros((2*num_time_steps,2))
-  CobwebSol[0,0]=N_0
-  CobwebSol[0,1]=rhs(N_0,r,h)
-  CobwebSol[1,0]=CobwebSol[0,1]
-  CobwebSol[1,1]=CobwebSol[0,1]
-
-  for i in t:
-    if i>0:
-      N[i]=rhs(N[i-1],r,h) 
-
-      sol_temp=N[i-1]
-      rhs_temp=rhs(sol_temp,r,h)
-      CobwebSol[2*i,0]=sol_temp
-      CobwebSol[2*i,1]=rhs_temp
-      CobwebSol[2*i+1,0]=rhs_temp
-      CobwebSol[2*i+1,1]=rhs_temp
-  return N, CobwebSol
-
-N1,CobwebSol1=SolveSingleDiff(t,rhs,N_0,r,h_1)
-N2,CobwebSol2=SolveSingleDiff(t,rhs,N_0,r,h_2)
-N3,CobwebSol3=SolveSingleDiff(t,rhs,N_0,r,h_3)
+N1,CobwebSol1=SolveSingleDiffAndCobweb(t,rhs,N_0,[r,h_1])
+N2,CobwebSol2=SolveSingleDiffAndCobweb(t,rhs,N_0,[r,h_2])
+N3,CobwebSol3=SolveSingleDiffAndCobweb(t,rhs,N_0,[r,h_3])
 
 N_plot=np.linspace(0,N_max,100)
-H_N_plot1=rhs(N_plot,r,h_1)
-H_N_plot2=rhs(N_plot,r,h_2)
-H_N_plot3=rhs(N_plot,r,h_3)
+H_N_plot1=rhs(N_plot,[r,h_1])
+H_N_plot2=rhs(N_plot,[r,h_2])
+H_N_plot3=rhs(N_plot,[r,h_3])
 
 fig, ax = plt.subplots(1,3)
 
@@ -1058,13 +1017,69 @@ ax[2].plot(CobwebSol3[0,0], CobwebSol3[0,1],'*')
 ax[2].plot([0, N_max], [0, N_max])
 ax[2].plot(N_plot, H_N_plot3)
 
-
-
 plt.xlabel('$N_t$')
 plt.ylabel('$N_{t+1}$')
 plt.show()
 ```
+
+
 We can construct a cobweb diagram for the case  $(h,\gamma)=(3,5)$. 
+
+
+
+Many of the above calculations can be aided using a symbolic calculator:
+```{python}
+#| label: code-calc1harvesting
+#| fig-cap: "Symbolic calculations"
+#| code-fold: True
+#| caption: none
+
+
+import numpy as np
+import sympy as sp
+
+
+
+# Define variables and constants
+h=sp.symbols("h",real=True,nonnegative=True)
+gamma=sp.symbols("gamma",real=True,nonnegative=True)
+N = sp.symbols("N",real=True,nonnegative=True)
+
+# Define H
+H=gamma*N/(1+N**2)-h*N
+
+# Solve the FP equation
+fp=sp.solve(H-N,N,dict=True)
+
+print("The FPs are:")
+print(fp[0])
+print(fp[1])
+print(fp[2])
+
+# Compute H prime
+H_p=H.diff(N)
+
+
+print("The derivative of H is:")
+print(sp.simplify(H_p))
+
+
+# Evaluate derivative
+
+print("The derivative evaluated at FP 0 is:")
+sol1=fp[0][N]
+H_p_eval_0=sp.simplify(H_p.subs(N,sol1))
+
+print(H_p_eval_0)
+
+print("The derivative evaluated at FP 2 is:")
+sol2=fp[2][N]
+H_p_eval_2=H_p.subs(N,sol2)
+
+print(sp.simplify(H_p_eval_2))
+
+```
+
 
 ## A note on the modelling of real-world fish stocks
 You can find  reports on fish stocks (measurements and modelling work) from the International Council for the Exploration of the Sea at the link http://www.ices.dk/Pages/default.aspx.  Here's a link to the data for Atlantic salmon https://tinyurl.com/ya8sh72j. Note that although the models we have worked on are not detailed enough to accurately model real fish population dynamics, many of the  principles we have covered arise in the cutting edge models.
@@ -1128,43 +1143,22 @@ h=0.1
 
 N_max=20.0
 
-def rhs(x,r,h):
+def rhs(x,par):
+  r=par[0]
+  h=par[1]
   f=r*x/(1+x**2)-h*x
   return f
 
-def SolveSingleDiff(t,rhs,N_0,r,h):
-  N = np.zeros_like(t,dtype=float)
-  N[0]=N_0
 
 
-  num_time_steps=t.shape[0]
-
-  CobwebSol=np.zeros((2*num_time_steps,2))
-  CobwebSol[0,0]=N_0
-  CobwebSol[0,1]=rhs(N_0,r,h)
-  CobwebSol[1,0]=CobwebSol[0,1]
-  CobwebSol[1,1]=CobwebSol[0,1]
-
-  for i in t:
-    if i>0:
-      N[i]=rhs(N[i-1],r,h) 
-
-      sol_temp=N[i-1]
-      rhs_temp=rhs(sol_temp,r,h)
-      CobwebSol[2*i,0]=sol_temp
-      CobwebSol[2*i,1]=rhs_temp
-      CobwebSol[2*i+1,0]=rhs_temp
-      CobwebSol[2*i+1,1]=rhs_temp
-  return N, CobwebSol
-
-N1,CobwebSol1=SolveSingleDiff(t,rhs,N_0,r_1,h)
-N2,CobwebSol2=SolveSingleDiff(t,rhs,N_0,r_2,h)
-N3,CobwebSol3=SolveSingleDiff(t,rhs,N_0,r_3,h)
+N1,CobwebSol1=SolveSingleDiffAndCobweb(t,rhs,N_0,[r_1,h])
+N2,CobwebSol2=SolveSingleDiffAndCobweb(t,rhs,N_0,[r_2,h])
+N3,CobwebSol3=SolveSingleDiffAndCobweb(t,rhs,N_0,[r_3,h])
 
 N_plot=np.linspace(0,N_max,100)
-H_N_plot1=rhs(N_plot,r_1,h)
-H_N_plot2=rhs(N_plot,r_2,h)
-H_N_plot3=rhs(N_plot,r_3,h)
+H_N_plot1=rhs(N_plot,[r_1,h])
+H_N_plot2=rhs(N_plot,[r_2,h])
+H_N_plot3=rhs(N_plot,[r_3,h])
 
 fig, ax = plt.subplots(3,2)
 

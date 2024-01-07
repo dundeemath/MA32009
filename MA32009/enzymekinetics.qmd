@@ -10,7 +10,6 @@ Biochemical kinetics concern the concentration of chemical substances in biologi
 We denote the $i^{th}$ chemical species using the notation $C_i$. The concentration of molecule type $C_i$ is denoted $[C_i]$ and represents the number of molecules of $C_i$ per unit volume. 
 
 
-
 Suppose $C_1,..C_M$ undergo the reaction
 
 $$
@@ -32,7 +31,8 @@ $$
 
 where $k_f$ and $k_b$ are dimensional rate constants.
 
-**Example**
+::: {.callout-note }
+
 Suppose A and B react to produce C. Hence
 $$
 A+B\xrightarrow{k}  C.
@@ -49,9 +49,10 @@ Using the reaction rates, we write down ordinary differential equations that des
 $$
 \frac{d[C]}{dt}=k[A][B].
 $$ 
+:::
 
 
-
+::: {.callout-note }
 
 Consider the reversible reaction
 $$
@@ -81,7 +82,7 @@ $$
 [A](t=0)=[A]_0, \ \ \ [B](t=0)=[B]_0, \ \ \ [C](t=0)=[C]_0,
 $$
 the ODEs can be solved and hence the concentrations of the different molecules described as time evolves.
-
+:::
 
 ### Example
 The previous example have had stochiometric constants all set to unity (i.e. all reactions involved a molecules of one species interaction with one from another). Consider the reaction in which one molecule of species A with $m$ of species B giving rise to $n$ molecules of species B and $p$ molecules of species C, i.e.
@@ -107,6 +108,7 @@ $$
 $$
 
 
+::: {.callout-note }
 
 Consider the reversible reaction
 $$
@@ -130,8 +132,8 @@ $$
 \frac{d[B]}{dt}&=k_+[A]^2-k_- [B], 
 \end{align}
 $$
-
-### Enzyme kinetics
+:::
+## Enzyme kinetics
 Biochemical reactions are often regulated by enzymes (substances that convert a substrate into another substrate). Consider a chemical reaction in which substrate, $S$, reacts with an enzyme, $E$, to form a complex, $C$. Suppose the complex can either undergo the reverse reaction or  go on to form a product, $P$, with the release of the enzyme, i.e.
 $$
 S+E  \xrightleftharpoons[k_{-1}]{k_{1}}  C \xrightarrow{k_2} P+E .
@@ -146,7 +148,9 @@ $$
 s(t)=[S](t),  \ \ c(t)=[C](t) , \\ e(t)=[E](t), \\ p(t)=[P](t).
 $$
 
-Demonstrate by applying the law of mass action that the above enzyme kinetic scheme can be described by the system of ODES
+Applying the law of mass action 
+the above enzyme kinetic scheme can be described 
+by the system of ODES
  
 $$
 \begin{align}
@@ -226,7 +230,7 @@ Hence
 $$
 \begin{align}
 \frac{d s}{dt} &= -k_1 s(e_0-c) + k_{-1}c, \nonumber \\
-\frac{d c}{dt} &= k_1 s(e_0-c)) - (k_{-1}+k_2)c, \nonumber \\
+\frac{d c}{dt} &= k_1 s(e_0-c) - (k_{-1}+k_2)c, \nonumber \\
 \end{align}
 $$
 
@@ -254,15 +258,7 @@ $$
  
 is known as the Michaelis constant.
  
-
-Demonstrate that upon using the QSSA, the governing ODE for $s(t)$ is given by
- 
-$$
-\frac{ds}{dt} = -\frac{k_2e_0s}{s+K_m}.
-$$
- 
-
-Consider
+Now consider
 $$
 \begin{align}
 \frac{d s}{dt} &= -k_1 s(e_0-c) + k_{-1}c, \nonumber \\
@@ -282,11 +278,11 @@ Note this could be achieved by direct substitution for $c(t)$.
 
 
 
-## Enzyme kinetics: the Michaelis-Menten quasi-steady state approximation (QSSA)
+### Enzyme kinetics: the Michaelis-Menten quasi-steady state approximation (QSSA)
 
-### Nondimensionalisation
+#### Nondimensionalisation
 
-Demonstrate that nondimensionalisation using
+ Nondimensionalisation using
 $$
 \tau=k_1 e_0 t, \ \ \ u=\frac{s}{s_0}, \ \ \ v=\frac{c}{e_0},
 $$
@@ -306,17 +302,15 @@ $$
 
 
 
-### Asymptotic expansions: the outer solution}
+#### Asymptotic expansions: the outer solution
 We consider the (often realised) case where the amount of enzyme in the system is small compared with the amount of substrate, i.e.
 $$
 \epsilon \ll 1.
 $$
-The presence of the small parameter $\epsilon$ allows us to use perturbation theory to calculate approximate solutions to @mmenten2varnondim. However, 
+The presence of the small parameter $\epsilon$ allows us to use perturbation theory to calculate approximate solutions to @eq-mmenten2varnondim. However, 
 the problem is singular owing to the $\epsilon dv/dt$ term.
  
  
-**A proposed  outer solution **
-
 We propose an outer solution of the form
 
 $$
@@ -326,7 +320,7 @@ v(\tau;\epsilon)=v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ... = \
 \end{align}
 $$
 
-Substituting the expansions in @mmenten2varnondim yields
+Substituting the expansions in @eq-mmenten2varnondim yields
 
 $$
 \begin{align}
@@ -418,7 +412,7 @@ $$
 Hence the proposed expansion is not valid at least near $\tau=0$.
 
 
-### Asymptotic expansions: the inner solution
+#### Asymptotic expansions: the inner solution
 
 This issue can be rectified by proposing a different scaling for time and recalculating a series solution in the new coordinate system. 
 
@@ -439,8 +433,6 @@ v(\tau;\epsilon)=V(\sigma;\epsilon). \nonumber
 \end{align}
 $$
 
-}
-
 
 Note that
 $$
@@ -453,10 +445,16 @@ $$
 \frac{1}{\epsilon}\ \epsilon \frac{d V}{d\sigma} &= U-(U+K)V.  
 \end{align}
 $$
-Tidying yields the requested form.
 
+Upon tidying
+$$
+\begin{align}
+\frac{d U}{d\sigma} &= -\epsilon U+ \epsilon (U+K-\lambda)V, \nonumber \\
+\frac{d V}{d\sigma} &= U-(U+K)V.  
+\end{align}
+$$ {#eq-longtimeuv}
 
-We seek  series solutions to equations \eqref{LongTimeUV} of the form
+We seek series solutions to @eq-longtimeuv of the form
 
 $$
 \begin{align}
@@ -501,7 +499,7 @@ V_0=\frac{1-e^{-(1+K)\sigma}}{1+K}.
 $$
 
 
-### Asymptotic expansions: matching the inner and outer solutions
+#### Asymptotic expansions: matching the inner and outer solutions
 
 Inner and outer solutions are matched by taking limits 
 $$
@@ -570,7 +568,7 @@ X&\xrightarrow{k_{4}} E.
 \end{align}
 $$
 
- Applying the law of mass action yields that the four reactions occur at rates: 
+Applying the law of mass action yields that the four reactions occur at rates: 
 
 * $k_1[A]$,
 *  $k_2[B][X]$, 
@@ -596,35 +594,39 @@ $$
 $$
 
 ### Nondimensionalisation
- Upon making the change of variables
+Upon making the change of variables
+$$
 \begin{align}
 x=\sqrt{\frac{k_3}{k_4}}[X], \ \ \ \ \ y=\sqrt{\frac{k_3}{k_4}}[Y], \ \ \textrm{and} \ \ \tau=k_4 t, 
 \end{align}
+$$
 yields
+$$
 \begin{align}
 \frac{d x}{d \tau} &= a-bx+x^2y-x = f(x,y), \\
 \frac{d y}{d \tau} &= bx-x^2y = g(x,y), 
-\label{BrussNondim}
 \end{align}
+$$ {#eq-brussnondim}
+
  
 where 
 $$
 a=[A]\frac{k_1}{k_4}\sqrt{\frac{k_3}{k_4}} \ \ \ \textrm{and} \ \ \ b= [B]\frac{k_2}{k_4}.
 $$
 
-### vSteady states and linear stability analysis
+### Steady states analysis
 
-Seeking steady states $(x^*,y^*)$ of equations \eqref{BrussNondim} such that 
+Seeking steady states $(x^*,y^*)$ of equations @eq-brussnondim such that 
 $$
 f(x^*,y^*)=g(x^*,y^*)=0
 $$
- yields
+yields
 
 $$
 (x^*,y^*)=(a,\frac{b}{a}).
 $$
 
-#### Linear stability analysis
+### Linear stability analysis
 
 
 The Jacobian matrix is
@@ -653,12 +655,12 @@ $$
   
 Hence $(a,b/a)$ is not a saddle. The trace of the Jacobian is
 $$
-\tr{A}=b-1-a^2.
+\mathrm{tr} A=b-1-a^2.
 $$ 
   
 Hence if $b>1+a^2$ the trace is positive and, referring to Figure \ref{TDplane}, the steady state is  linearly unstable. Otherwise, the steady state is linearly stable.
 
-In Figure \ref{BrussNondimFig} we use Maple to numerically solve  equations \eqref{BrussNondim} for the two cases and plot the solutions in the phase plane. Note that when the steady state is unstable, the numerical solution indicates that the system has limit cycle solutions. A valid question to ask is whether one can prove that this is the case.
+In Figure \ref{BrussNondimFig} we use Maple to numerically solve @eq-brussnondim for the two cases and plot the solutions in the phase plane. Note that when the steady state is unstable, the numerical solution indicates that the system has limit cycle solutions. A valid question to ask is whether one can prove that this is the case.
 
 
 \begin{figure}
@@ -669,7 +671,7 @@ In Figure \ref{BrussNondimFig} we use Maple to numerically solve  equations \eqr
 \label{BrussNondimFig}
 \end{figure}
 
-#### Applying the Poincaire-Bendixson theorem
+### Applying the Poincaire-Bendixson theorem
 Recall  that the Poincaire-Bendixson theorem can be used to prove the existence of limit cycle solutions in a case where a bounding set encloses a single unstable steady state. 
 Hence given the case of the Brusselator with $b>a^2+1$, the identification of a bounding set will allow application of  the Poincaire-Bendixson theorem and hence prove the existence of limit cycle solutions.
 
@@ -680,17 +682,14 @@ $$
 y=\frac{1+b}{x}-\frac{a}{x^2}.
 $$
 
- \examplequestion{
- Demonstrate that  in the positive quadrant, this nullcline has a  single root at $a/(1+b)$, tends to 0 as $x\rightarrow \infty$ and has a maximum at $x=2a/(1+b)$. 
- }
- 
- \stwriting{
  
 The $y$ nullclines are given by
  
 $$
 y=\frac{b}{x} \ \ \ \textrm{and} \ \ \ x=0.
 $$
+
+In the positive quadrant, this nullcline has a  single root at $a/(1+b)$, tends to 0 as $x\rightarrow \infty$ and has a maximum at $x=2a/(1+b)$.
  
 In Figure \ref{BrussNullclines} we plot the the oscillatory solution together with the nullclines. Note that the nullclines separate the phase plane into regions of constant sign. %Note that the $x$ nullcline  separates the phase plane into regions where $dx/dt>0$ and $dx/dt<0$. Similarly, the  $y$ nullcline separates the phase plane into regions where $dy/dt>0$ and $dy/dt<0$. Note that signs for $dx/dt$ can be determined by considering behaviour of the function $f$ as one moves away from the nullcline where, by definition, $f=0$. Consider some point that sits on the x nullcline. While keeping the $x$ value fixed, increase $y$ so the point moves vertically in the phase plane. This implies that $f$ has increased because the only term to change is $x^2y$. Hence $f$ increases upon increasing $y$ and therefore $dx/dt$ is positive for all points above the $x$ nullcline. Alternatively, note that in the Jacobian matrix we have calculated that $\partial f/\partial y$ is positive.
  
@@ -700,9 +699,9 @@ In Figure \ref{BrussNullclines} we plot the the oscillatory solution together wi
 \caption{Solutions of the Brusselator equations in the oscillatory regime together with nullclines ($x$ -magenta, $y$-black). Other details as in Figure \ref{BrussNondimFig}. }
 \label{BrussNullclines}
 \end{figure}
-}
- \textit{\large \flushleft  A confined set}
-\stwriting{
+
+
+####  A confined set
 
 To define a confined set, we construct the closed loop ABCDEA in phase space  (see Figure \ref{BrusselatorBoundingRegion}) where the points A, B, C, D and E are defined as follows. Let the points A and B be two points on the $x$ axis with coordinates $(\delta,0)$ and $(a/(1+b),0)$, respectively. We choose $\delta>a$. The outward normal to the line segment AB is $\mathbf{n}=[0,-1]$. To show that the trajectories point inwards along AB, we compute
  
@@ -718,7 +717,12 @@ $$
  
 Hence trajectories point inwards on the line segment AB.
  
-Let $C$ represent the point $(a/(1+b)),b(1+b)/a)$. The normal vector to the line segment BC is $\mathbf{n}=[-1,0]$. As BC lies to the left of the $x$ nullcline, in a  region where $dx/dt>0$, then
+Let $C$ represent the point 
+$$
+(a/(1+b),b(1+b)/a).
+$$
+
+The normal vector to the line segment BC is $\mathbf{n}=[-1,0]$. As BC lies to the left of the $x$ nullcline, in a  region where $dx/dt>0$, then
  
 $$
 \mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = -\frac{dx}{dt}<0.
@@ -726,25 +730,34 @@ $$
  
 Hence trajectories point inwards on the line segment BC.
  
+Consider the  line segment CD where D has coordinates 
+$$
+(k,b(1+b)/a),
+$$
+ with $k>a$
 
-Demonstrate that trajectories are inward pointing on the  line segment CD where D has coordinates $(k,b(1+b)/a)$ with $k>a$}
-
- The normal to this line segment is [0,1]. As CD lies in a region of the phase plane where $dy/dt<0$,
+The normal to this line segment is [0,1]. As CD lies in a region of the phase plane where $dy/dt<0$,
  
 $$
 \mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = \frac{dy}{dt}<0.
 $$
- 
-Hence trajectories point inwards on the line segment CD.
+ Hence trajectories point inwards on the line segment CD.
 
  
-Let E be a point that sits on the $x$ nullcline at some position $(\delta,(\delta(1+b)-a)/(\delta^2))$ such that DE is a straight line with  outwardly pointing normal vector  $[1,1]$. Along DE
+Let E be a point that sits on the $x$ nullcline at some position 
+$$
+(\delta,(\delta(1+b)-a)/(\delta^2)),
+$$ 
+such that DE is a straight line with  outwardly pointing normal vector  $[1,1]$. Along DE
  
 $$
 \mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] =   a-bx+x^2y-x + bx-x^2y = a-x<0
 $$
  
-for $x>a$. As $k>a$, $x>a$ for all points on DE, hence trajectories point inwards on DE. Finally, consider the line segment EA which has normal vector $\mathbf{n}=[1,0]$. As $dx/dt<0$ along EA 
+for $x>a$. As $k>a$, $x>a$ for all points on DE, hence trajectories point inwards on DE. 
+
+
+Finally, consider the line segment EA which has normal vector $\mathbf{n}=[1,0]$. As $dx/dt<0$ along EA 
  
 $$
 \mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] =  \frac{dx}{dt} <0.
