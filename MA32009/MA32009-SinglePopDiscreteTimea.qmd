@@ -173,12 +173,12 @@ Note that the model is nonlinear and does not have an explicit solution.
 ### Computational solutions
 
 
-After directly computing numerical solutions of the Ricker model for different values of the parameter $r$, the data in @plotricker were obtained. 
+After directly computing numerical solutions of the Ricker model for different values of the parameter $r$, the data in @fig-plotricker were obtained. 
 
 Note that model behaviour changes drastically as the parameter $r$ varies. For instance, 
 
 * when $r=0.5$ (@fig-plotricker (a)), the solution monotonically approaches the value $2$, 
-*\item* when $r=1.5$  (@fig-plotricker (b)) it approaches two in an oscillatory manner; and
+* when $r=1.5$  (@fig-plotricker (b)) it approaches two in an oscillatory manner; and
 * when $r=2.5$ (@fig-plotricker (c)) it oscillates around two.
 
 
@@ -315,7 +315,7 @@ The cobweb diagram is created as follows:
 
 
 
-Plotting cobweb diagrams in the vicinity of a fixed point $N^*$  for different values of $H'(N^*)$  allows us to see graphically how the derivative of the right-hand side affects linear stability of a fixed point (see Figure \ref{LinearStabilityDemo}). In particular, 
+Plotting cobweb diagrams in the vicinity of a fixed point $N^*$  for different values of $H'(N^*)$  allows us to see graphically how the derivative of the right-hand side affects linear stability of a fixed point (see @fig-cobwebstepbystep). In particular, 
 
 * when  $H'(N^*)>1$, the fixed point is monotonically unstable;
 * when  $0<H'(N^*)<1$, the fixed point is monotonically stable;
@@ -403,8 +403,6 @@ plt.show()
 
 ### Bifurcation diagrams
 A bifurcation is a qualitative change in solution behaviour (either a change in the number of fixed points or their stability). A bifurcation diagram is a compact means of describing bifurcations as a function of model parameters. Usually, the fixed point value of the population (i.e. $N^*$) is plotted against a model parameter of interest. From this diagram one can immediately see how the number of fixed points and their stability changes as a given parameter increases.
-
-
 
 
 ### Perform a qualitative analysis on the Matlhusian model 
@@ -911,7 +909,7 @@ Hence linear stability is a function of two parameters $\gamma$ and $h$.
 We can show that  
 $$
 H'(N^*) = h^2\frac{2}{\gamma} + h\frac{2}{\gamma}(2-\gamma) + \frac{2}{\gamma}-1,
-$${#harvestingH_prime}
+$${#eq-arvestingH_prime}
 
 and hence that when $h=0$ we retrieve the stability condition from the previous model.
  
@@ -959,8 +957,8 @@ $$
 \gamma=\frac{(1+h)^2}{h}.
 $$
 
-In Figure @fig-plotdensmodelharveststab we plot the contours of the hypersurface  $H'(N^*)$ at the critical values of $-1$, $0$ and 1. Note that the points in parameter space used to generate the simulation results in Figure \ref{HarvestingTimeSeries} are $(h,\gamma)=(0.1,5)$ $(h,\gamma)=(1,5)$ and $(h,\gamma)=(3,5)$. 
-Cobweb diagrams in different regions of parameter space are presented in Figure \ref{HarvestingCobweb}.
+In Figure @fig-plotdensmodelharveststab we plot the contours of the hypersurface  $H'(N^*)$ at the critical values of $-1$, $0$ and 1. Note that the points in parameter space used to generate the simulation results in @fig-plotdensmodelharvest are $(h,\gamma)=(0.1,5)$ $(h,\gamma)=(1,5)$ and $(h,\gamma)=(3,5)$. 
+Cobweb diagrams in different regions of parameter space are presented in @fig-densharvestingmodelcobweb.
 The plot in @fig-plotdensmodelharveststab can be used to explain why the model transfers from a stable fixed point, through oscillatory fixed point and back to a stable fixed point as the harvesting rate increases from 0.1, to $1$ and then 5? 
 
 
@@ -1081,9 +1079,6 @@ print(sp.simplify(H_p_eval_2))
 ```
 
 
-## A note on the modelling of real-world fish stocks
-You can find  reports on fish stocks (measurements and modelling work) from the International Council for the Exploration of the Sea at the link http://www.ices.dk/Pages/default.aspx.  Here's a link to the data for Atlantic salmon https://tinyurl.com/ya8sh72j. Note that although the models we have worked on are not detailed enough to accurately model real fish population dynamics, many of the  principles we have covered arise in the cutting edge models.
-
 
 ## Oscillations
 
@@ -1195,4 +1190,9 @@ $$
 $$
  
 
+
+
+
+## A note on the modelling of real-world fish stocks
+You can find  reports on fish stocks (measurements and modelling work) from the International Council for the Exploration of the Sea at the [link](http://www.ices.dk/Pages/default.aspx).  Here's a link to the data for [Atlantic salmon](https://tinyurl.com/ya8sh72j). Note that although the models we have worked on are not detailed enough to accurately model real fish population dynamics, many of the  principles we have covered arise in the cutting edge models.
 

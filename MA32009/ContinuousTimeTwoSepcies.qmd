@@ -128,16 +128,10 @@ $$
 $$
 
 
-Whilst a complete classification of the linear stability of a steady state can be obtained by explicitly calculating the eigenvalues, in many cases it is sufficient to deduce whether or not a steady state is stable or unstable. This can be achieved by calculating the determinant and trace of the Jacobian matrix ($\det(A)$ and  $\mathrm{tr}(A)$, respectively) and referring to Figure \ref{TDplane}. 
+Whilst a complete classification of the linear stability of a steady state can be obtained by explicitly calculating the eigenvalues, in many cases it is sufficient to deduce whether or not a steady state is stable or unstable. This can be achieved by calculating the determinant and trace of the Jacobian matrix ($\det(A)$ and  $\mathrm{tr}(A)$, respectively) and referring to @fig-tdplane. 
 
-<!--\begin{figure}
-\centering
-\includegraphics[scale=0.5]{TDplane.eps} 
-\caption{Classifying linear stability in the trace-determinant plane.}
-\label{TDplane}
-\end{figure}
--->
 
+![Stability in the trace detemrinant plane.](TDPlane.png){#fig-tdplane}
 
 The  different cases can be categorised as follows:
 
@@ -153,7 +147,7 @@ There is one positive and one negative real eigenvalue. Hence the steady state i
         - If  $\mathrm{tr}(A)^2>4 \det(A)$, it is an stable node.
         - If  $\mathrm{tr}(A)^2<4 \det(A)$, it is an stable spiral.
 
-These different cases can be distinguished in the trace-determinant plane plotted in Figure \ref{TDplane}.
+These different cases can be distinguished in the trace-determinant plane plotted in @fig-tdplane.
 
 Note that it can be shown rigorously  that the linear stability of the nonlinear system is equivalent to that of the linearised system in all cases except when the steady state is a centre. In this case, nonlinear stability analysis is required to determine the stability of the nonlinear system.
 
@@ -411,7 +405,7 @@ Therefore the steady state at (1,1) is a centre.
 
 ### Solutions in the phase plane
 
-See Figure @fig-lv-numsol-phplane for solution trajectories plotted in the phase plane using different initial conditions. Note the expected saddle like behaviour when trajectories that are close to the origin. Furthermore, note that the different initial conditions result in distinct closed loops and that the inner-most loop, i.e. that closest to the steady-state (1,1), behaves like a centre, as expected given the linear stability analysis.
+See @fig-lv-numsol-phplane for solution trajectories plotted in the phase plane using different initial conditions. Note the expected saddle like behaviour when trajectories that are close to the origin. Furthermore, note that the different initial conditions result in distinct closed loops and that the inner-most loop, i.e. that closest to the steady-state (1,1), behaves like a centre, as expected given the linear stability analysis.
  However, far from the steady-state the solution trajectory deviates from the linearised model. 
   
 
@@ -484,7 +478,7 @@ $$
 \ln p - p =  \alpha (n-\ln n) + H,
 $$
 
-where $H$ is a conserved quantity that this is determined by the initial conditions. As the equations take conservative form, the Lotka-Voltera model is said to be structurally unstable, as a small perturbation to the solution at a given point in the oscillatory cycle can result in large changes elsewhere in the cycle. For example, suppose the outermost limit cycle in Figure @fig-lv-numsol-phplane is perturbed by a small amount at the point (1,0.1) onto its nearest limit cycle. Later in the cycle these two trajectories deviate by a large amount.
+where $H$ is a conserved quantity that this is determined by the initial conditions. As the equations take conservative form, the Lotka-Voltera model is said to be structurally unstable, as a small perturbation to the solution at a given point in the oscillatory cycle can result in large changes elsewhere in the cycle. For example, suppose the outermost limit cycle in @fig-lv-numsol-phplane is perturbed by a small amount at the point (1,0.1) onto its nearest limit cycle. Later in the cycle these two trajectories deviate by a large amount.
 
 
 
@@ -636,7 +630,7 @@ $$
 \det{A}=\rho  (a_{21}-1)\ \ \ \textrm{and} \ \ \ \mathrm{tr}{A}=-1+\rho(1-a_{21}).
 $$
 
-Hence if $a_{21}<1$, $\det{A}<0$ and (1,0) is a saddle point and thus unstable (see Figure \ref{TDplane}).
+Hence if $a_{21}<1$, $\det{A}<0$ and (1,0) is a saddle point and thus unstable (see @fig-tdplane).
  
  If  $a_{21}>1$,  $\det{A}>0$ and $\mathrm{tr}{A}<0$. Hence  (1,0) is a stable node. 
   
@@ -703,7 +697,7 @@ $$
 Hence the coexistence steady state is a saddle.
 
 ### Phase portrait
-See Figure @fig-comp-numsol-phplane for phase portraits of three of the four cases that we have considered. It is expected that you can sketch phase portraits. Key details to consider are the steady states and their linear stability. You should also sketch the nullclines and depict the sign of the derivatives in the phase plane on either side of the nullclines. You should also sketch one or more sample trajectories.
+See @fig-comp-numsol-phplane for phase portraits of three of the four cases that we have considered. It is expected that you can sketch phase portraits. Key details to consider are the steady states and their linear stability. You should also sketch the nullclines and depict the sign of the derivatives in the phase plane on either side of the nullclines. You should also sketch one or more sample trajectories.
 
 ```{python}
 #| label: fig-compete-numsol
@@ -839,7 +833,7 @@ The model therefore has four qualitatively different behaviours that are describ
 Consider the case where $a_{21}>1$. This represents the case of Population 1 strongly competing with Population 2.
 
 *  If $a_{12}>1$,  Population 2 also strongly competes with Population 1. In this case, there are four biologically relevant steady states, two of which are stable (1,0) and (0,1). The coexistence steady state is a saddle and thus unstable. 
-The model is bistable and the initial conditions determine whether solutions end up at (1,0) or (0,1) (see Figure \ref{CompetitionPhasePlanes} (c)). 
+The model is bistable and the initial conditions determine whether solutions end up at (1,0) or (0,1) (see @fig-comp-numsol-phplane). 
 The biological interpretation of this solution is that one species will always win and completely outcompete the other. Even if the two populations are equal ($K_1=K_2$ and $a_{21}=a_{12}>1$), one species will always win and the other will become extinct.
 * If $a_{12}<1$, Population 2 weakly competes with Population 1. There is no coexistence steady state and the only stable steady state is (1,0). Hence Population 1 always wins and Population 2 always becomes extinct.
 

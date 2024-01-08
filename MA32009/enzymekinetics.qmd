@@ -1,5 +1,5 @@
 ---
-title: "Enzyme kinetics"
+title: "Biochemical kinetics"
 format: html
 ---
 
@@ -658,9 +658,51 @@ $$
 \mathrm{tr} A=b-1-a^2.
 $$ 
   
-Hence if $b>1+a^2$ the trace is positive and, referring to Figure \ref{TDplane}, the steady state is  linearly unstable. Otherwise, the steady state is linearly stable.
+Hence if $b>1+a^2$ the trace is positive and, referring to @fig-tdplane, the steady state is  linearly unstable. Otherwise, the steady state is linearly stable.
 
-In Figure \ref{BrussNondimFig} we use Maple to numerically solve @eq-brussnondim for the two cases and plot the solutions in the phase plane. Note that when the steady state is unstable, the numerical solution indicates that the system has limit cycle solutions. A valid question to ask is whether one can prove that this is the case.
+In @fig-bruss-numsol we numerically solve @eq-brussnondim in the case of oscillatory solutions. Note that when the steady state is unstable, the numerical solution indicates that the system has limit cycle solutions. A valid question to ask is whether one can prove that this is the case.
+
+
+
+```{python}
+#| label: fig-bruss-numsol
+#| fig-cap: "Numerical solutions of the Brusselator model"
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy
+from scipy.integrate import odeint
+
+
+a=1.0
+b=3.2
+
+def rhs_bruss_model(z,t):
+  rhs=np.zeros_like(z)
+  x=z[0]
+  y=z[1]
+  dx_dt=a-b*x+x**2*y-x
+  dy_dt=b*x-x**2*y
+  rhs[0]=dx_dt
+  rhs[1]=dy_dt
+  return rhs
+
+t = np.linspace(0, 50, 1000)
+
+init_cond=[0.5,0.5]
+sol1 = odeint(rhs_bruss_model, init_cond,t)
+
+
+x=sol1[:,0]
+y=sol1[:,1]
+
+plt.plot(t, x, 'b',t,y,'r')
+
+plt.legend(['$x$','$y$'],loc='best')
+plt.xlabel('t')
+plt.grid()
+plt.show()
+```  
+
 
 
 \begin{figure}
@@ -690,20 +732,94 @@ y=\frac{b}{x} \ \ \ \textrm{and} \ \ \ x=0.
 $$
 
 In the positive quadrant, this nullcline has a  single root at $a/(1+b)$, tends to 0 as $x\rightarrow \infty$ and has a maximum at $x=2a/(1+b)$.
- 
-In Figure \ref{BrussNullclines} we plot the the oscillatory solution together with the nullclines. Note that the nullclines separate the phase plane into regions of constant sign. %Note that the $x$ nullcline  separates the phase plane into regions where $dx/dt>0$ and $dx/dt<0$. Similarly, the  $y$ nullcline separates the phase plane into regions where $dy/dt>0$ and $dy/dt<0$. Note that signs for $dx/dt$ can be determined by considering behaviour of the function $f$ as one moves away from the nullcline where, by definition, $f=0$. Consider some point that sits on the x nullcline. While keeping the $x$ value fixed, increase $y$ so the point moves vertically in the phase plane. This implies that $f$ has increased because the only term to change is $x^2y$. Hence $f$ increases upon increasing $y$ and therefore $dx/dt$ is positive for all points above the $x$ nullcline. Alternatively, note that in the Jacobian matrix we have calculated that $\partial f/\partial y$ is positive.
- 
-\begin{figure}
-\centering
-\subfigure[]{\includegraphics[scale=0.3]{BrusselatorOscNullcline.eps}}
-\caption{Solutions of the Brusselator equations in the oscillatory regime together with nullclines ($x$ -magenta, $y$-black). Other details as in Figure \ref{BrussNondimFig}. }
-\label{BrussNullclines}
-\end{figure}
 
+```{python}
+#| label: fig-bruss-numsol-phplane
+#| fig-cap: "Numerical solution of the Brusselator."
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy
+from scipy.integrate import odeint
+
+
+
+x_vec=np.linspace(0.01,6,100)
+
+def ComputeCompetitionSol(a,b,x_vec):
+    t = np.linspace(0, 10, 1000)
+
+    init_cond1=[0.75,0.75]
+    init_cond2=[4.55,4.15]
+    init_cond3=[2.5,0.5]
+
+    ss=[a,b/a]
+
+    alpha=2.0
+    sol1 = odeint(rhs_bruss_model, init_cond1,t)
+    sol2 = odeint(rhs_bruss_model, init_cond2,t)
+    sol3 = odeint(rhs_bruss_model, init_cond3,t)
+
+
+
+  
+    x_ncline=(1+b)/x_vec-a/x_vec**2
+    y_ncline_1_a=[0,0]    
+    y_ncline_1_b=[0,5]   
+    y_ncline_2_x=b/x_vec
+
+    return sol1,sol2,sol3,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x
+
+a=1.0
+b=3.2
+sol1,sol2,sol3,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x=ComputeCompetitionSol(a,b,x_vec)
+
+
+
+fig, ax = plt.subplots(1,2)
+ax[0].plot(x_vec,x_ncline,'k--')
+ax[0].plot(y_ncline_1_a,y_ncline_1_b,'k--')
+ax[0].plot(x_vec,y_ncline_2_x,'r--')
+
+ax[0].plot(sol1[:,0],sol1[:,1],sol2[:,0],sol2[:,1],sol3[:,0],sol3[:,1])
+ax[0].plot(ss[0],ss[1],'k*')
+plt.xlabel('$x$')
+plt.ylabel('$y$')
+
+ax[0].set_xlim([-0.05,6])
+ax[0].set_ylim([-0.005,6])
+
+
+a=4.0
+b=3.2
+
+sol1,sol2,sol3,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x=ComputeCompetitionSol(a,b,x_vec)
+
+ax[1].plot(x_vec,x_ncline,'k--')
+ax[1].plot(y_ncline_1_a,y_ncline_1_b,'k--')
+ax[1].plot(x_vec,y_ncline_2_x,'r--')
+
+ax[1].plot(sol1[:,0],sol1[:,1],sol2[:,0],sol2[:,1],sol3[:,0],sol3[:,1])
+ax[1].plot(ss[0],ss[1],'k*')
+plt.xlabel('$x$')
+plt.ylabel('$y$')
+
+ax[1].set_xlim([-0.05,6])
+ax[1].set_ylim([-0.005,6])
+sol1,sol2,sol3,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x=ComputeCompetitionSol(a,b,x_vec)
+
+
+plt.grid()
+plt.show()
+```  
+ 
+In @fig-bruss-numsol-phplane we plot the the oscillatory solution together with the nullclines. Note that the nullclines separate the phase plane into regions of constant sign. Note that the $x$ nullcline  separates the phase plane into regions where $dx/dt>0$ and $dx/dt<0$. Similarly, the  $y$ nullcline separates the phase plane into regions where $dy/dt>0$ and $dy/dt<0$.
+
+ Note that signs for $dx/dt$ can be determined by considering behaviour of the function $f$ as one moves away from the nullcline where, by definition, $f=0$. Consider some point that sits on the x nullcline. While keeping the $x$ value fixed, increase $y$ so the point moves vertically in the phase plane. This implies that $f$ has increased because the only term to change is $x^2y$. Hence $f$ increases upon increasing $y$ and therefore $dx/dt$ is positive for all points above the $x$ nullcline. Alternatively, note that in the Jacobian matrix we have calculated that $\partial f/\partial y$ is positive.
+ 
 
 ####  A confined set
 
-To define a confined set, we construct the closed loop ABCDEA in phase space  (see Figure \ref{BrusselatorBoundingRegion}) where the points A, B, C, D and E are defined as follows. Let the points A and B be two points on the $x$ axis with coordinates $(\delta,0)$ and $(a/(1+b),0)$, respectively. We choose $\delta>a$. The outward normal to the line segment AB is $\mathbf{n}=[0,-1]$. To show that the trajectories point inwards along AB, we compute
+To define a confined set, we construct the closed loop ABCDEA in phase space  (see @fig-bruss-numsol-phplane-confinedset) where the points A, B, C, D and E are defined as follows. Let the points A and B be two points on the $x$ axis with coordinates $(\delta,0)$ and $(a/(1+b),0)$, respectively. We choose $\delta>a$. The outward normal to the line segment AB is $\mathbf{n}=[0,-1]$. To show that the trajectories point inwards along AB, we compute
  
 $$
 \mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = -\frac{dy}{dt}.
@@ -762,18 +878,81 @@ Finally, consider the line segment EA which has normal vector $\mathbf{n}=[1,0]$
 $$
 \mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] =  \frac{dx}{dt} <0.
 $$
- 
-Hence at all points on the closed loop ABCDEA trajectories point inwards (see Figure \ref{BrusselatorBoundingRegion}). Hence ABDCEA is a confined set and the Poincaire-Bendixson theorem states that the system exhibits limit cycle solutions when the steady state is unstable. This is precisely the behaviour that we see numerically in Figure \ref{BrussNondimFig}. Note that the parameter $\delta$ can be determined explicitly by finding the intersection between the $x$ nullcline and the line segment DE.
+
+```{python}
+#| label: fig-bruss-numsol-phplane-confinedset
+#| fig-cap: "Numerical solution of the Brusselator."
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy
+from scipy.integrate import odeint
 
 
 
+x_vec=np.linspace(0.01,6,100)
+
+def ComputeCompetitionSol(a,b,x_vec):
+    t = np.linspace(0, 10, 1000)
+
+    init_cond1=[0.75,0.75]
+    init_cond2=[4.55,4.15]
+    init_cond3=[2.5,0.5]
+
+    ss=[a,b/a]
+
+    alpha=2.0
+    sol1 = odeint(rhs_bruss_model, init_cond1,t)
+    
 
 
-\begin{figure}
-\centering
-\subfigure[]{\includegraphics[scale=0.3]{BrusselatorBoundingRegion.eps}}
-\caption{The confined set (ABCDE) for the Brussellator model is depicted by the solid cyan line. In this example we choose $k=2a$. Other details as in Figure \ref{BrussNullclines}.}
-\label{BrusselatorBoundingRegion}
-\end{figure}
+  
+    x_ncline=(1+b)/x_vec-a/x_vec**2
+    y_ncline_1_a=[0,0]    
+    y_ncline_1_b=[0,5]   
+    y_ncline_2_x=b/x_vec
 
+    return sol1,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x
+
+a=1.0
+b=3.2
+sol1,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x=ComputeCompetitionSol(a,b,x_vec)
+
+
+k=2*a
+delta=5.5
+
+A=[delta,0]
+B=[1/(1+b),0]
+C=[a/(1+b),b*(1+b)/a]
+D=[k,b*(1+b)/a]
+E=[delta,(delta*(1+b)-a)/delta**2]
+
+
+fig, ax = plt.subplots()
+ax.plot(x_vec,x_ncline,'k--')
+ax.plot(y_ncline_1_a,y_ncline_1_b,'k--')
+ax.plot(x_vec,y_ncline_2_x,'r--')
+
+ax.plot(sol1[:,0],sol1[:,1])
+ax.plot(ss[0],ss[1],'k*')
+ax.plot([A[0], B[0]],[A[1], B[1]],'m--')
+ax.plot([B[0], C[0]],[B[1], C[1]],'m--')
+ax.plot([C[0], D[0]],[C[1], D[1]],'m--')
+ax.plot([D[0], E[0]],[D[1], E[1]],'m--')
+ax.plot([E[0], A[0]],[E[1], A[1]],'m--')
+
+plt.xlabel('$x$')
+plt.ylabel('$y$')
+
+ax.set_xlim([-0.05,6])
+ax.set_ylim([-0.5,20])
+
+
+plt.grid()
+plt.show()
+```   
+
+
+
+Hence at all points on the closed loop ABCDEA trajectories point inwards (see @fig-bruss-numsol-phplane-confinedset). Hence ABDCEA is a confined set and the Poincaire-Bendixson theorem states that the system exhibits limit cycle solutions when the steady state is unstable. This is precisely the behaviour that we see numerically in Figure @fig-bruss-numsol-phplane. 
 

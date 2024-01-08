@@ -59,7 +59,7 @@ $$ {#eq-gensinglespecodeagain}
 where $f$ is the per capita growth rate and $H$ is the net growth rate.
 
 ### Numerical solution
-Although an equation of the form @eq-gensinglespecodeagain may not be explicitly integrable, so long as the right-hand side is sufficiently well behaved, we can numerically integrate the problem (e.g. using packages such as Python 's odeint). Such a technique provides a numerical approximation to the exact solution, given specific values of model parameters and initial conditions (i.e. we can graph solutions). 
+Although an equation of the form @eq-gensinglespecodeagain may not be explicitly integrable, so long as the right-hand side is sufficiently well behaved, we can numerically integrate the problem (e.g. using packages such as Python's odeint). Such a technique provides a numerical approximation to the exact solution, given specific values of model parameters and initial conditions (i.e. we can graph solutions). 
 
 ### Nondimensionalisation
 We nondimensionalise a model  by  changing from  variables that have dimensions (both dependent and independent) to variables that are dimensionless.
@@ -201,7 +201,6 @@ where $\eta$ is some initial perturbation about the steady-state.
 
 #### A condition for linear stability
 When $H'(N^*)>0$ the perturbation grows exponentially fast and the steady-state is unstable.
-\bigskip\\
  When $H'(N^*)<0$ the perturbation decays exponentially fast and the steady-state is stable.
 
 
@@ -250,8 +249,49 @@ Questions to ask of such a model are: what type of biologically realistic soluti
 
 
 #### Numerical solutions
- In Figure \ref{LogisticODENt} we present numerical solutions of equation   using different initial conditions. Note the limiting behaviour of solutions as $t\rightarrow \infty$. In Figure \ref{LogisticODENt} it is clear that even though some solutions are initialised at $N_0=0.1$, much closer to $N^*=0$ than $N^*=K$, they tend to the limit $N=K$. 
+ In @fig-logisticgrowthmodel we present numerical solutions of equation   using different initial conditions. Note the limiting behaviour of solutions as $t\rightarrow \infty$. In @fig-logisticgrowthmodel it is clear that even though some solutions are initialised at $N_0=0.1$, much closer to $N^*=0$ than $N^*=K$, they tend to the limit $N=K$. 
  Why do solutions not tend to $N^*=0$?
+
+```{python}
+#| label: fig-logisticgrowthmodel
+#| fig-cap: "RHS of spr. budworm model"
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy
+from scipy.integrate import odeint
+
+N_max=1.1
+N_0=0.1
+K=12
+r_1=0.22
+r_2=0.42
+r_3=0.72
+
+T=20
+n_0=1.5
+n_vec=np.linspace(0,N_max,100)
+
+def rhslogistic_model(x,t,r,K):
+
+  rhs=r*x*(1-x/K)
+  return rhs
+
+t=np.linspace(0,T,100)
+
+sol1=odeint(rhslogistic_model,n_0,t,args=(r_1,K))
+sol2=odeint(rhslogistic_model,n_0,t,args=(r_2,K))
+sol3=odeint(rhslogistic_model,n_0,t,args=(r_3,K))
+
+fig, ax = plt.subplots(1)
+
+ax.plot(t, sol1,t, sol2,t, sol3)
+plt.xlabel('$t$')
+plt.ylabel('$N$')
+plt.grid(True)
+plt.legend(['r='+str(r_1),'r='+str(r_2),'r='+str(r_3)])
+plt.show()
+```
+
 
 
 #### Dimensional analysis and nondimensionalisation
@@ -321,7 +361,7 @@ H'(n^*)= -1
 $$
 hence $n^*=1$ is linearly stable. 
 
-Note that the linear stability analysis can explain the observations regarding the numeric solutions presented in Figure \ref{LogisticODENt}.
+Note that the linear stability analysis can explain the observations regarding the numeric solutions presented in @fig-logisticgrowthmodel.
 
 ### Graphical analysis
 
@@ -383,7 +423,7 @@ Note that in almost all the models that we will consider the above method is not
 
 
 ## The spruce budworm model
-The spruce budworm is a destructive and widely distributed forest defoliator in North America. Massive outbreaks occur periodically and can destroy large quantities of valuable spruce and fir. To understand the outbreak behaviour and develop and management strategies, a series of mathematical models have been developed, beginning with Ludwig et al. (1978). The goal of the models is to explain the qualitative pattern of sudden outbreaks and then a sudden collapse.
+The spruce budworm is a destructive and widely distributed forest defoliator in North America. Massive outbreaks occur periodically and can destroy large quantities of valuable spruce and fir. To understand the outbreak behaviour and develop and management strategies, a series of mathematical models have been developed, beginning with @ludwig1978qualitative. The goal of the models is to explain the qualitative pattern of sudden outbreaks and then a sudden collapse.
 
 ### Model development
 Letting $N(t)$ represent the population size at time $t$, it is assumed that budworm exhibits  logistic growth and is subject to  predation at rate $p(N)$.
@@ -971,3 +1011,4 @@ $$
 T<\frac{\pi}{2}
 $$
 
+## References

@@ -10,7 +10,7 @@ jupyter: python3
 
 
 # Multiple species in discrete time
-In this section we generalise the previous approach by considering the population dynamics of two interacting populations.
+In this chapter we generalise the previous approach by considering the population dynamics of two interacting populations.
 
 ## A general model of two interacting species in discrete time
 
@@ -73,7 +73,7 @@ $$
 \frac{\partial f}{\partial N}&\frac{\partial f}{\partial P} \\ \frac{\partial g}{\partial N }&\frac{\partial g}{\partial P} \end{array}\right)_{(N^*,P^*)} \left(\begin{array}{c} \hat{N}_{t} \\ \hat{P}_{t}\end{array}\right).
 $$ {#eq-discretetimesecondorderdiff}
 
-Note the appearance  of the Jacobian matrix 
+Note the appearance of the Jacobian matrix 
 $$
 A= \left(\begin{array}{rr}
 \frac{\partial f}{\partial N}&\frac{\partial f}{\partial P} \\ \frac{\partial g}{\partial N }&\frac{\partial g}{\partial P} \end{array}\right)_{(N^*,P^*)} \left(\begin{array}{c} \hat{N}_{t} \\ \hat{P}_{t}\end{array}\right).
@@ -143,7 +143,10 @@ The Jury conditions state that  $|\lambda_i |<1 \forall \ \  i$ if, and only if,
 * $b<1$,
 * $1+a+b>0$,
 * *$1-a+b>0$.
-See Figure \ref{JuryConditions} for schematic diagram.
+See @fig-juryconditions for schematic diagram.
+
+
+![Jury conditions](JuryConditions2D.png){#fig-juryconditions}
 
 
 ### Proof of the Jury conditions
@@ -482,7 +485,8 @@ Hence
 $$
 \ln R_0 > 1-\frac{1}{R_0}.
 $$
-Hence the fixed point is unstable if $R_0>1$. %Note that the general conditions for stability are known as the Jury conditions.
+Hence the fixed point is unstable if $R_0>1$. 
+
 
 
 

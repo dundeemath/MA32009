@@ -255,7 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="multiple-species-in-discrete-time" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Multiple species in discrete time</h1>
-<p>In this section we generalise the previous approach by considering the population dynamics of two interacting populations.</p>
+<p>In this chapter we generalise the previous approach by considering the population dynamics of two interacting populations.</p>
 <section id="a-general-model-of-two-interacting-species-in-discrete-time" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="a-general-model-of-two-interacting-species-in-discrete-time"><span class="header-section-number">3.1</span> A general model of two interacting species in discrete time</h2>
 <p>Let <span class="math inline">\(N_t\)</span> and <span class="math inline">\(P_t\)</span> represent population densities at time <span class="math inline">\(t\)</span> where <span class="math inline">\(t\)</span> is a discrete variable.</p>
@@ -352,7 +352,13 @@ $$
 <p>Consider the characteristic equation <span class="math display">\[
 P(\lambda)=\lambda^2 + a \lambda +b=0,
 \]</span> where <span class="math inline">\(a,b \in \Re\)</span>. Note that <span class="math inline">\(a=-tr{A}\)</span> and <span class="math inline">\(b=\det{A}\)</span>.</p>
-<p>The Jury conditions state that <span class="math inline">\(|\lambda_i |&lt;1 \forall \ \  i\)</span> if, and only if, * <span class="math inline">\(b&lt;1\)</span>, * <span class="math inline">\(1+a+b&gt;0\)</span>, * *<span class="math inline">\(1-a+b&gt;0\)</span>. See Figure <span class="math inline">\(\ref{JuryConditions}\)</span> for schematic diagram.</p>
+<p>The Jury conditions state that <span class="math inline">\(|\lambda_i |&lt;1 \forall \ \  i\)</span> if, and only if, * <span class="math inline">\(b&lt;1\)</span>, * <span class="math inline">\(1+a+b&gt;0\)</span>, * *<span class="math inline">\(1-a+b&gt;0\)</span>. See <a href="#fig-juryconditions">Figure&nbsp;<span>3.1</span></a> for schematic diagram.</p>
+<div id="fig-juryconditions" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="JuryConditions2D.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.1: Jury conditions</figcaption>
+</figure>
+</div>
 </section>
 <section id="proof-of-the-jury-conditions" class="level3" data-number="3.2.5">
 <h3 data-number="3.2.5" class="anchored" data-anchor-id="proof-of-the-jury-conditions"><span class="header-section-number">3.2.5</span> Proof of the Jury conditions</h3>
@@ -522,7 +528,7 @@ The population dynamics are approximately independent of parasite population.
 <div id="fig-plotnicolsonbailey" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="DiscreteModels2d_files/figure-html/fig-plotnicolsonbailey-output-1.png" width="575" height="443" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.1: A plot of the Nicholson Bailey model solution.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;3.2: A plot of the Nicholson Bailey model solution.</figcaption>
 </figure>
 </div>
 </div>
@@ -613,7 +619,7 @@ f_1'=\frac{1}{R_0}  \ \ \textrm{and} \ \ f_2'=\frac{1}{R_0^2},
 f_1'&gt;f_2'  \ \ \forall \ R_0&gt;1.
 \]</span> Hence <span class="math display">\[
 \ln R_0 &gt; 1-\frac{1}{R_0}.
-\]</span> Hence the fixed point is unstable if <span class="math inline">\(R_0&gt;1\)</span>. %Note that the general conditions for stability are known as the Jury conditions.</p>
+\]</span> Hence the fixed point is unstable if <span class="math inline">\(R_0&gt;1\)</span>.</p>
 
 
 </section>

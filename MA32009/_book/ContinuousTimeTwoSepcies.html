@@ -370,14 +370,13 @@ A=\left(\begin{array}{rr}
 <p><span class="math display">\[
 \lambda = \frac{\mathrm{tr}{A}\pm \sqrt{\mathrm{tr}{A}^2-4\det{A}}}{2}.
 \]</span></p>
-<p>Whilst a complete classification of the linear stability of a steady state can be obtained by explicitly calculating the eigenvalues, in many cases it is sufficient to deduce whether or not a steady state is stable or unstable. This can be achieved by calculating the determinant and trace of the Jacobian matrix (<span class="math inline">\(\det(A)\)</span> and <span class="math inline">\(\mathrm{tr}(A)\)</span>, respectively) and referring to Figure <span class="math inline">\(\ref{TDplane}\)</span>.</p>
-<!--\begin{figure}
-\centering
-\includegraphics[scale=0.5]{TDplane.eps} 
-\caption{Classifying linear stability in the trace-determinant plane.}
-\label{TDplane}
-\end{figure}
--->
+<p>Whilst a complete classification of the linear stability of a steady state can be obtained by explicitly calculating the eigenvalues, in many cases it is sufficient to deduce whether or not a steady state is stable or unstable. This can be achieved by calculating the determinant and trace of the Jacobian matrix (<span class="math inline">\(\det(A)\)</span> and <span class="math inline">\(\mathrm{tr}(A)\)</span>, respectively) and referring to <a href="#fig-tdplane">Figure&nbsp;<span>4.1</span></a>.</p>
+<div id="fig-tdplane" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="TDPlane.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;4.1: Stability in the trace detemrinant plane.</figcaption>
+</figure>
+</div>
 <p>The different cases can be categorised as follows:</p>
 <ul>
 <li><p><span class="math inline">\(\det(A)&lt;0\)</span> There is one positive and one negative real eigenvalue. Hence the steady state is a saddle which is unstable.</p></li>
@@ -395,7 +394,7 @@ A=\left(\begin{array}{rr}
 </ul></li>
 </ul></li>
 </ul>
-<p>These different cases can be distinguished in the trace-determinant plane plotted in Figure <span class="math inline">\(\ref{TDplane}\)</span>.</p>
+<p>These different cases can be distinguished in the trace-determinant plane plotted in <a href="#fig-tdplane">Figure&nbsp;<span>4.1</span></a>.</p>
 <p>Note that it can be shown rigorously that the linear stability of the nonlinear system is equivalent to that of the linearised system in all cases except when the steady state is a centre. In this case, nonlinear stability analysis is required to determine the stability of the nonlinear system.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -611,7 +610,7 @@ n=\frac{N}{\tilde{N}}, \ \ \ \ p=\frac{P}{\tilde{P}}  \ \ \textrm{and} \ \ \tau=
 <div id="fig-lv-numsol" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ContinuousTimeTwoSepcies_files/figure-html/fig-lv-numsol-output-1.png" width="571" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.1: Numerical solution of Lotka-Volterra model</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;4.2: Numerical solution of Lotka-Volterra model</figcaption>
 </figure>
 </div>
 </div>
@@ -652,7 +651,7 @@ A=\left(\begin{array}{rr} 0&amp;-1 \\ \alpha &amp;0 \end{array}\right),
 </section>
 <section id="solutions-in-the-phase-plane" class="level3" data-number="4.2.5">
 <h3 data-number="4.2.5" class="anchored" data-anchor-id="solutions-in-the-phase-plane"><span class="header-section-number">4.2.5</span> Solutions in the phase plane</h3>
-<p>See Figure <a href="#fig-lv-numsol-phplane">Figure&nbsp;<span>4.2</span></a> for solution trajectories plotted in the phase plane using different initial conditions. Note the expected saddle like behaviour when trajectories that are close to the origin. Furthermore, note that the different initial conditions result in distinct closed loops and that the inner-most loop, i.e.&nbsp;that closest to the steady-state (1,1), behaves like a centre, as expected given the linear stability analysis. However, far from the steady-state the solution trajectory deviates from the linearised model.</p>
+<p>See <a href="#fig-lv-numsol-phplane">Figure&nbsp;<span>4.3</span></a> for solution trajectories plotted in the phase plane using different initial conditions. Note the expected saddle like behaviour when trajectories that are close to the origin. Furthermore, note that the different initial conditions result in distinct closed loops and that the inner-most loop, i.e.&nbsp;that closest to the steady-state (1,1), behaves like a centre, as expected given the linear stability analysis. However, far from the steady-state the solution trajectory deviates from the linearised model.</p>
 <div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
@@ -704,7 +703,7 @@ A=\left(\begin{array}{rr} 0&amp;-1 \\ \alpha &amp;0 \end{array}\right),
 <div id="fig-lv-numsol-phplane" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ContinuousTimeTwoSepcies_files/figure-html/fig-lv-numsol-phplane-output-1.png" width="576" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.2: Numerical solution of Lotka-Volterra model</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;4.3: Numerical solution of Lotka-Volterra model</figcaption>
 </figure>
 </div>
 </div>
@@ -724,7 +723,7 @@ A=\left(\begin{array}{rr} 0&amp;-1 \\ \alpha &amp;0 \end{array}\right),
 <p><span class="math display">\[
 \ln p - p =  \alpha (n-\ln n) + H,
 \]</span></p>
-<p>where <span class="math inline">\(H\)</span> is a conserved quantity that this is determined by the initial conditions. As the equations take conservative form, the Lotka-Voltera model is said to be structurally unstable, as a small perturbation to the solution at a given point in the oscillatory cycle can result in large changes elsewhere in the cycle. For example, suppose the outermost limit cycle in Figure <a href="#fig-lv-numsol-phplane">Figure&nbsp;<span>4.2</span></a> is perturbed by a small amount at the point (1,0.1) onto its nearest limit cycle. Later in the cycle these two trajectories deviate by a large amount.</p>
+<p>where <span class="math inline">\(H\)</span> is a conserved quantity that this is determined by the initial conditions. As the equations take conservative form, the Lotka-Voltera model is said to be structurally unstable, as a small perturbation to the solution at a given point in the oscillatory cycle can result in large changes elsewhere in the cycle. For example, suppose the outermost limit cycle in <a href="#fig-lv-numsol-phplane">Figure&nbsp;<span>4.3</span></a> is perturbed by a small amount at the point (1,0.1) onto its nearest limit cycle. Later in the cycle these two trajectories deviate by a large amount.</p>
 </section>
 </section>
 <section id="competition" class="level2" data-number="4.3">
@@ -819,7 +818,7 @@ A=\left(\begin{array}{rr}
 <p><span class="math display">\[
 \det{A}=\rho  (a_{21}-1)\ \ \ \textrm{and} \ \ \ \mathrm{tr}{A}=-1+\rho(1-a_{21}).
 \]</span></p>
-<p>Hence if <span class="math inline">\(a_{21}&lt;1\)</span>, <span class="math inline">\(\det{A}&lt;0\)</span> and (1,0) is a saddle point and thus unstable (see Figure <span class="math inline">\(\ref{TDplane}\)</span>).</p>
+<p>Hence if <span class="math inline">\(a_{21}&lt;1\)</span>, <span class="math inline">\(\det{A}&lt;0\)</span> and (1,0) is a saddle point and thus unstable (see <a href="#fig-tdplane">Figure&nbsp;<span>4.1</span></a>).</p>
 <p>If <span class="math inline">\(a_{21}&gt;1\)</span>, <span class="math inline">\(\det{A}&gt;0\)</span> and <span class="math inline">\(\mathrm{tr}{A}&lt;0\)</span>. Hence (1,0) is a stable node.</p>
 <p>Hence the parameter <span class="math inline">\(a_{21}\)</span>, which describes how strongly Population 1 inhibits the growth rate of Population 2, determines whether or not the steady state representing extinction of Population 2 but not Population 1 is stable or not.</p>
 <p>At (0,1)</p>
@@ -861,7 +860,7 @@ a_{12}-1  &amp; -a_{12}(1-a_{12})\\ -\rho a_{21}(1-a_{21}) &amp;\rho(a_{21}-1)\e
 </section>
 <section id="phase-portrait" class="level3" data-number="4.3.5">
 <h3 data-number="4.3.5" class="anchored" data-anchor-id="phase-portrait"><span class="header-section-number">4.3.5</span> Phase portrait</h3>
-<p>See Figure <a href="#fig-comp-numsol-phplane">Figure&nbsp;<span>4.4</span></a> for phase portraits of three of the four cases that we have considered. It is expected that you can sketch phase portraits. Key details to consider are the steady states and their linear stability. You should also sketch the nullclines and depict the sign of the derivatives in the phase plane on either side of the nullclines. You should also sketch one or more sample trajectories.</p>
+<p>See <a href="#fig-comp-numsol-phplane">Figure&nbsp;<span>4.5</span></a> for phase portraits of three of the four cases that we have considered. It is expected that you can sketch phase portraits. Key details to consider are the steady states and their linear stability. You should also sketch the nullclines and depict the sign of the derivatives in the phase plane on either side of the nullclines. You should also sketch one or more sample trajectories.</p>
 <div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
@@ -904,7 +903,7 @@ a_{12}-1  &amp; -a_{12}(1-a_{12})\\ -\rho a_{21}(1-a_{21}) &amp;\rho(a_{21}-1)\e
 <div id="fig-compete-numsol" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ContinuousTimeTwoSepcies_files/figure-html/fig-compete-numsol-output-1.png" width="588" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.3: Numerical solutions of competition model</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;4.4: Numerical solutions of competition model</figcaption>
 </figure>
 </div>
 </div>
@@ -998,7 +997,7 @@ a_{12}-1  &amp; -a_{12}(1-a_{12})\\ -\rho a_{21}(1-a_{21}) &amp;\rho(a_{21}-1)\e
 <div id="fig-comp-numsol-phplane" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="ContinuousTimeTwoSepcies_files/figure-html/fig-comp-numsol-phplane-output-1.png" width="581" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.4: Numerical solution of the competition model</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;4.5: Numerical solution of the competition model</figcaption>
 </figure>
 </div>
 </div>
@@ -1008,7 +1007,7 @@ a_{12}-1  &amp; -a_{12}(1-a_{12})\\ -\rho a_{21}(1-a_{21}) &amp;\rho(a_{21}-1)\e
 <h3 data-number="4.3.6" class="anchored" data-anchor-id="insight"><span class="header-section-number">4.3.6</span> Insight</h3>
 <p>The model therefore has four qualitatively different behaviours that are described as follows: Consider the case where <span class="math inline">\(a_{21}&gt;1\)</span>. This represents the case of Population 1 strongly competing with Population 2.</p>
 <ul>
-<li>If <span class="math inline">\(a_{12}&gt;1\)</span>, Population 2 also strongly competes with Population 1. In this case, there are four biologically relevant steady states, two of which are stable (1,0) and (0,1). The coexistence steady state is a saddle and thus unstable. The model is bistable and the initial conditions determine whether solutions end up at (1,0) or (0,1) (see Figure <span class="math inline">\(\ref{CompetitionPhasePlanes}\)</span> (c)). The biological interpretation of this solution is that one species will always win and completely outcompete the other. Even if the two populations are equal (<span class="math inline">\(K_1=K_2\)</span> and <span class="math inline">\(a_{21}=a_{12}&gt;1\)</span>), one species will always win and the other will become extinct.</li>
+<li>If <span class="math inline">\(a_{12}&gt;1\)</span>, Population 2 also strongly competes with Population 1. In this case, there are four biologically relevant steady states, two of which are stable (1,0) and (0,1). The coexistence steady state is a saddle and thus unstable. The model is bistable and the initial conditions determine whether solutions end up at (1,0) or (0,1) (see <a href="#fig-comp-numsol-phplane">Figure&nbsp;<span>4.5</span></a>). The biological interpretation of this solution is that one species will always win and completely outcompete the other. Even if the two populations are equal (<span class="math inline">\(K_1=K_2\)</span> and <span class="math inline">\(a_{21}=a_{12}&gt;1\)</span>), one species will always win and the other will become extinct.</li>
 <li>If <span class="math inline">\(a_{12}&lt;1\)</span>, Population 2 weakly competes with Population 1. There is no coexistence steady state and the only stable steady state is (1,0). Hence Population 1 always wins and Population 2 always becomes extinct.</li>
 </ul>
 <p>Now consider the case where <span class="math inline">\(a_{21}&lt;1\)</span>. This represents the case of Population 1 weakly competing with Population 2.</p>
@@ -1051,7 +1050,7 @@ n_2=0, \ \ \ n_2=1+a_{21}n_1.
 </section>
 <section id="linear-stability-2" class="level3" data-number="4.4.4">
 <h3 data-number="4.4.4" class="anchored" data-anchor-id="linear-stability-2"><span class="header-section-number">4.4.4</span> Linear stability</h3>
-<p>Using a similar analysis to the competition model, it can be shown that the steady states (0,0), (1,0) and (0,1) are unstable. When <span class="math inline">\(a_{12}a_{21}&lt;1\)</span> there is a stable coexistence steady state. See <a href="#fig-sym-numsol-phplane">Figure&nbsp;<span>4.5</span></a>.</p>
+<p>Using a similar analysis to the competition model, it can be shown that the steady states (0,0), (1,0) and (0,1) are unstable. When <span class="math inline">\(a_{12}a_{21}&lt;1\)</span> there is a stable coexistence steady state. See <a href="#fig-sym-numsol-phplane">Figure&nbsp;<span>4.6</span></a>.</p>
 <div class="cell" data-execution_count="5">
 <details>
 <summary>Code</summary>
@@ -1147,17 +1146,11 @@ n_2=0, \ \ \ n_2=1+a_{21}n_1.
 <span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
 <span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>/Users/pmurray/anaconda3/lib/python3.11/site-packages/scipy/integrate/_odepack_py.py:248: ODEintWarning:
-
-Excess work done on this call (perhaps wrong Dfun type). Run with full_output = 1 to get quantitative information.
-</code></pre>
-</div>
 <div class="cell-output cell-output-display">
 <div id="fig-sym-numsol-phplane" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="ContinuousTimeTwoSepcies_files/figure-html/fig-sym-numsol-phplane-output-2.png" width="571" height="434" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.5: Numerical solution of the symbiosis model</figcaption>
+<p><img src="ContinuousTimeTwoSepcies_files/figure-html/fig-sym-numsol-phplane-output-1.png" width="571" height="434" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;4.6: Numerical solution of the symbiosis model</figcaption>
 </figure>
 </div>
 </div>

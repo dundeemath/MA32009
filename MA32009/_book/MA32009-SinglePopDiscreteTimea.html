@@ -240,8 +240,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#linear-stability-1" id="toc-linear-stability-1" class="nav-link" data-scroll-target="#linear-stability-1"><span class="header-section-number">1.6.3</span> Linear stability</a></li>
   <li><a href="#stability-boundaries-in-the-hgamma-plane" id="toc-stability-boundaries-in-the-hgamma-plane" class="nav-link" data-scroll-target="#stability-boundaries-in-the-hgamma-plane"><span class="header-section-number">1.6.4</span> Stability boundaries in the <span class="math inline">\(h\gamma\)</span> plane</a></li>
   </ul></li>
-  <li><a href="#a-note-on-the-modelling-of-real-world-fish-stocks" id="toc-a-note-on-the-modelling-of-real-world-fish-stocks" class="nav-link" data-scroll-target="#a-note-on-the-modelling-of-real-world-fish-stocks"><span class="header-section-number">1.7</span> A note on the modelling of real-world fish stocks</a></li>
-  <li><a href="#oscillations" id="toc-oscillations" class="nav-link" data-scroll-target="#oscillations"><span class="header-section-number">1.8</span> Oscillations</a></li>
+  <li><a href="#oscillations" id="toc-oscillations" class="nav-link" data-scroll-target="#oscillations"><span class="header-section-number">1.7</span> Oscillations</a></li>
+  <li><a href="#a-note-on-the-modelling-of-real-world-fish-stocks" id="toc-a-note-on-the-modelling-of-real-world-fish-stocks" class="nav-link" data-scroll-target="#a-note-on-the-modelling-of-real-world-fish-stocks"><span class="header-section-number">1.8</span> A note on the modelling of real-world fish stocks</a></li>
   </ul>
 </nav>
     </div>
@@ -384,11 +384,11 @@ N_{t+1}=N_te^{r(1-\frac{N_t}{K})}.
 </section>
 <section id="computational-solutions" class="level3" data-number="1.3.2">
 <h3 data-number="1.3.2" class="anchored" data-anchor-id="computational-solutions"><span class="header-section-number">1.3.2</span> Computational solutions</h3>
-<p>After directly computing numerical solutions of the Ricker model for different values of the parameter <span class="math inline">\(r\)</span>, the data in <span class="citation" data-cites="plotricker">(<a href="#ref-plotricker" role="doc-biblioref"><strong>plotricker?</strong></a>)</span> were obtained.</p>
+<p>After directly computing numerical solutions of the Ricker model for different values of the parameter <span class="math inline">\(r\)</span>, the data in <a href="#fig-plotricker">Figure&nbsp;<span>1.2</span></a> were obtained.</p>
 <p>Note that model behaviour changes drastically as the parameter <span class="math inline">\(r\)</span> varies. For instance,</p>
 <ul>
-<li>when <span class="math inline">\(r=0.5\)</span> (<a href="#fig-plotricker">Figure&nbsp;<span>1.2</span></a> (a)), the solution monotonically approaches the value <span class="math inline">\(2\)</span>, *
-when <span class="math inline">\(r=1.5\)</span> (<a href="#fig-plotricker">Figure&nbsp;<span>1.2</span></a> (b)) it approaches two in an oscillatory manner; and</li>
+<li>when <span class="math inline">\(r=0.5\)</span> (<a href="#fig-plotricker">Figure&nbsp;<span>1.2</span></a> (a)), the solution monotonically approaches the value <span class="math inline">\(2\)</span>,</li>
+<li>when <span class="math inline">\(r=1.5\)</span> (<a href="#fig-plotricker">Figure&nbsp;<span>1.2</span></a> (b)) it approaches two in an oscillatory manner; and</li>
 <li>when <span class="math inline">\(r=2.5\)</span> (<a href="#fig-plotricker">Figure&nbsp;<span>1.2</span></a> (c)) it oscillates around two.</li>
 </ul>
 <p>The above numerical results raise the following questions:</p>
@@ -504,7 +504,7 @@ N^*= H(N^*),
 <li>Plot a horizontal line between <span class="math inline">\((N_0, H(N_0))\)</span> and <span class="math inline">\((H(N_0),H(N_0))\)</span>. Note <span class="math inline">\(N_1=H(N_0)\)</span>.</li>
 <li>Plot a vertical line between <span class="math inline">\((N_1,N_1)\)</span> and <span class="math inline">\((N_1,H(N_1))\)</span>. *Repeat steps 6 and 7.</li>
 </ul>
-<p>Plotting cobweb diagrams in the vicinity of a fixed point <span class="math inline">\(N^*\)</span> for different values of <span class="math inline">\(H'(N^*)\)</span> allows us to see graphically how the derivative of the right-hand side affects linear stability of a fixed point (see Figure <span class="math inline">\(\ref{LinearStabilityDemo}\)</span>). In particular,</p>
+<p>Plotting cobweb diagrams in the vicinity of a fixed point <span class="math inline">\(N^*\)</span> for different values of <span class="math inline">\(H'(N^*)\)</span> allows us to see graphically how the derivative of the right-hand side affects linear stability of a fixed point (see <a href="#fig-cobwebstepbystep">Figure&nbsp;<span>1.3</span></a>). In particular,</p>
 <ul>
 <li>when <span class="math inline">\(H'(N^*)&gt;1\)</span>, the fixed point is monotonically unstable;</li>
 <li>when <span class="math inline">\(0&lt;H'(N^*)&lt;1\)</span>, the fixed point is monotonically stable;</li>
@@ -1056,9 +1056,9 @@ H'\left(\sqrt{\frac{\gamma}{1+h}-1}\right)=\frac{\gamma }{1+\frac{\gamma}{1+h}-1
 \]</span></p>
 <p>Hence linear stability is a function of two parameters <span class="math inline">\(\gamma\)</span> and <span class="math inline">\(h\)</span>.</p>
 <p>We can show that<br>
-<span class="math display">\[
+<span id="eq-arvestingH_prime"><span class="math display">\[
 H'(N^*) = h^2\frac{2}{\gamma} + h\frac{2}{\gamma}(2-\gamma) + \frac{2}{\gamma}-1,
-\]</span>{#harvestingH_prime}</p>
+\tag{1.7}\]</span></span></p>
 <p>and hence that when <span class="math inline">\(h=0\)</span> we retrieve the stability condition from the previous model.</p>
 <div class="cell" data-execution_count="10">
 <details>
@@ -1103,7 +1103,7 @@ h^2\frac{2}{\gamma} + h\frac{2}{\gamma}(2-\gamma) + \frac{2}{\gamma}-1 = -1,
 <p>Solving for <span class="math inline">\(\gamma\)</span> yields <span class="math display">\[
 \gamma=\frac{(1+h)^2}{h}.
 \]</span></p>
-<p>In Figure <a href="#fig-plotdensmodelharveststab">Figure&nbsp;<span>1.9</span></a> we plot the contours of the hypersurface <span class="math inline">\(H'(N^*)\)</span> at the critical values of <span class="math inline">\(-1\)</span>, <span class="math inline">\(0\)</span> and 1. Note that the points in parameter space used to generate the simulation results in Figure <span class="math inline">\(\ref{HarvestingTimeSeries}\)</span> are <span class="math inline">\((h,\gamma)=(0.1,5)\)</span> <span class="math inline">\((h,\gamma)=(1,5)\)</span> and <span class="math inline">\((h,\gamma)=(3,5)\)</span>. Cobweb diagrams in different regions of parameter space are presented in Figure <span class="math inline">\(\ref{HarvestingCobweb}\)</span>. The plot in <a href="#fig-plotdensmodelharveststab">Figure&nbsp;<span>1.9</span></a> can be used to explain why the model transfers from a stable fixed point, through oscillatory fixed point and back to a stable fixed point as the harvesting rate increases from 0.1, to <span class="math inline">\(1\)</span> and then 5?</p>
+<p>In Figure <a href="#fig-plotdensmodelharveststab">Figure&nbsp;<span>1.9</span></a> we plot the contours of the hypersurface <span class="math inline">\(H'(N^*)\)</span> at the critical values of <span class="math inline">\(-1\)</span>, <span class="math inline">\(0\)</span> and 1. Note that the points in parameter space used to generate the simulation results in <a href="#fig-plotdensmodelharvest">Figure&nbsp;<span>1.8</span></a> are <span class="math inline">\((h,\gamma)=(0.1,5)\)</span> <span class="math inline">\((h,\gamma)=(1,5)\)</span> and <span class="math inline">\((h,\gamma)=(3,5)\)</span>. Cobweb diagrams in different regions of parameter space are presented in <a href="#fig-densharvestingmodelcobweb">Figure&nbsp;<span>1.10</span></a>. The plot in <a href="#fig-plotdensmodelharveststab">Figure&nbsp;<span>1.9</span></a> can be used to explain why the model transfers from a stable fixed point, through oscillatory fixed point and back to a stable fixed point as the harvesting rate increases from 0.1, to <span class="math inline">\(1\)</span> and then 5?</p>
 <div class="cell" data-execution_count="11">
 <details>
 <summary>Code</summary>
@@ -1233,23 +1233,19 @@ The derivative evaluated at FP 2 is:
 </div>
 </section>
 </section>
-<section id="a-note-on-the-modelling-of-real-world-fish-stocks" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="a-note-on-the-modelling-of-real-world-fish-stocks"><span class="header-section-number">1.7</span> A note on the modelling of real-world fish stocks</h2>
-<p>You can find reports on fish stocks (measurements and modelling work) from the International Council for the Exploration of the Sea at the link http://www.ices.dk/Pages/default.aspx. Here’s a link to the data for Atlantic salmon https://tinyurl.com/ya8sh72j. Note that although the models we have worked on are not detailed enough to accurately model real fish population dynamics, many of the principles we have covered arise in the cutting edge models.</p>
-</section>
-<section id="oscillations" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="oscillations"><span class="header-section-number">1.8</span> Oscillations</h2>
+<section id="oscillations" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="oscillations"><span class="header-section-number">1.7</span> Oscillations</h2>
 <p>Linear stability analysis describes the evolution of small perturbations close to a fixed point. But far from a fixed point the nonlinear terms that were dropped in a Taylor expansion are no longer negligible. In particular, in the case where <span class="math inline">\(H'(N^*)&lt;-1\)</span>, it can be the case that regions of parameter space in which a fixed point is oscillatory unstable can give rise to periodic and chaotic solutions.<br>
 ### Defining a periodic solution Consider the general form <span id="eq-genformagain"><span class="math display">\[
 N_{t+1}=H(N_t)
-\tag{1.7}\]</span></span> A solution to <a href="#eq-genformagain">Equation&nbsp;<span>1.7</span></a> isdefined to be periodic with period <span class="math inline">\(T\)</span> if</p>
+\tag{1.8}\]</span></span> A solution to <a href="#eq-genformagain">Equation&nbsp;<span>1.8</span></a> isdefined to be periodic with period <span class="math inline">\(T\)</span> if</p>
 <p><span class="math display">\[
 \begin{aligned}
 N_{t+T}&amp;=N_t \ \  \forall t,
 N_{t+\tau}&amp;\neq N_t  \ \ \forall t, \  \ \ \tau&lt;T.
 \end{aligned}
 \]</span></p>
-<p>Period 2 solutions can be identified by looking for solutions that repeat after two iterations. Suppose <span class="math inline">\(\bar{N}\)</span> is a period 2 solution of <a href="#eq-genformagain">Equation&nbsp;<span>1.7</span></a> and let <span class="math inline">\(\bar{N}=N_1\)</span>. Then <span class="math display">\[
+<p>Period 2 solutions can be identified by looking for solutions that repeat after two iterations. Suppose <span class="math inline">\(\bar{N}\)</span> is a period 2 solution of <a href="#eq-genformagain">Equation&nbsp;<span>1.8</span></a> and let <span class="math inline">\(\bar{N}=N_1\)</span>. Then <span class="math display">\[
 N_{2}=H(\bar{N}).
 \]</span> However, <span class="math display">\[
 N_{3}=H(N_2)=H(H(\bar{N}))
@@ -1334,6 +1330,10 @@ N_{t+2}=H^2(N_t)=g(N_t).
 <p>Exercise: identify an equation satisfied by period 2 solutions of the logistic map <span class="math display">\[
 N_{t+1}=rN_1(1-N_t).
 \]</span></p>
+</section>
+<section id="a-note-on-the-modelling-of-real-world-fish-stocks" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="a-note-on-the-modelling-of-real-world-fish-stocks"><span class="header-section-number">1.8</span> A note on the modelling of real-world fish stocks</h2>
+<p>You can find reports on fish stocks (measurements and modelling work) from the International Council for the Exploration of the Sea at the <a href="http://www.ices.dk/Pages/default.aspx">link</a>. Here’s a link to the data for <a href="https://tinyurl.com/ya8sh72j">Atlantic salmon</a>. Note that although the models we have worked on are not detailed enough to accurately model real fish population dynamics, many of the principles we have covered arise in the cutting edge models.</p>
 
 
 </section>
