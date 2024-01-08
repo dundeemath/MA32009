@@ -19,6 +19,10 @@ book:
         - SinglePopODEMOdels.qmd
         - ContinuousTimeTwoSepcies.qmd  
         - enzymekinetics.qmd
+
+    - part: "Appendices"
+      chapters:
+        - PythonAppendix.qmd    
       
 bibliography: references.bib
 

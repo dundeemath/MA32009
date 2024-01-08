@@ -954,40 +954,44 @@ y=\frac{b}{x} \ \ \ \textrm{and} \ \ \ x=0.
 <p>Note that signs for <span class="math inline">\(dx/dt\)</span> can be determined by considering behaviour of the function <span class="math inline">\(f\)</span> as one moves away from the nullcline where, by definition, <span class="math inline">\(f=0\)</span>. Consider some point that sits on the x nullcline. While keeping the <span class="math inline">\(x\)</span> value fixed, increase <span class="math inline">\(y\)</span> so the point moves vertically in the phase plane. This implies that <span class="math inline">\(f\)</span> has increased because the only term to change is <span class="math inline">\(x^2y\)</span>. Hence <span class="math inline">\(f\)</span> increases upon increasing <span class="math inline">\(y\)</span> and therefore <span class="math inline">\(dx/dt\)</span> is positive for all points above the <span class="math inline">\(x\)</span> nullcline. Alternatively, note that in the Jacobian matrix we have calculated that <span class="math inline">\(\partial f/\partial y\)</span> is positive.</p>
 <section id="a-confined-set" class="level4" data-number="5.3.5.1">
 <h4 data-number="5.3.5.1" class="anchored" data-anchor-id="a-confined-set"><span class="header-section-number">5.3.5.1</span> A confined set</h4>
-<p>To define a confined set, we construct the closed loop ABCDEA in phase space (see <a href="#fig-bruss-numsol-phplane-confinedset">Figure&nbsp;<span>5.4</span></a>) where the points A, B, C, D and E are defined as follows. Let the points A and B be two points on the <span class="math inline">\(x\)</span> axis with coordinates <span class="math inline">\((\delta,0)\)</span> and <span class="math inline">\((a/(1+b),0)\)</span>, respectively. We choose <span class="math inline">\(\delta&gt;a\)</span>. The outward normal to the line segment AB is <span class="math inline">\(\mathbf{n}=[0,-1]\)</span>. To show that the trajectories point inwards along AB, we compute</p>
+<p>To define a confined set, we construct the closed loop ABCDEA in phase space (see <a href="#fig-bruss-numsol-phplane-confinedset">Figure&nbsp;<span>5.4</span></a>) where the points A, B, C, D and E are defined as follows. Let the points A and B be two points on the <span class="math inline">\(x\)</span> axis with coordinates <span class="math display">\[
+(\delta,0)
+\]</span> and <span class="math display">\[
+\left(\frac{a}{1+b},0\right).
+\]</span> respectively. We choose <span class="math inline">\(\delta&gt;a\)</span>. The outward normal to the line segment AB is <span class="math inline">\(\mathbf{n}=[0,-1]\)</span>. To show that the trajectories point inwards along AB, we compute</p>
 <p><span class="math display">\[
-\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = -\frac{dy}{dt}.
+\mathbf{n}.\left[\frac{dx}{dt},\frac{dy}{dt}\right] = -\frac{dy}{dt}.
 \]</span></p>
 <p>As the line segment AB sits below the <span class="math inline">\(y\)</span> nullcline, <span class="math inline">\(dy/dt&gt;0\)</span> in this region. Hence</p>
 <p><span class="math display">\[
-\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = -\frac{dy}{dt}&lt;0.
+\mathbf{n}.\left[\frac{dx}{dt},\frac{dy}{dt}\right] = -\frac{dy}{dt}&lt;0.
 \]</span></p>
 <p>Hence trajectories point inwards on the line segment AB.</p>
 <p>Let <span class="math inline">\(C\)</span> represent the point <span class="math display">\[
-(a/(1+b),b(1+b)/a).
+\left(\frac{a}{1+b},b\frac{1+b}{a}\right).
 \]</span></p>
 <p>The normal vector to the line segment BC is <span class="math inline">\(\mathbf{n}=[-1,0]\)</span>. As BC lies to the left of the <span class="math inline">\(x\)</span> nullcline, in a region where <span class="math inline">\(dx/dt&gt;0\)</span>, then</p>
 <p><span class="math display">\[
-\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = -\frac{dx}{dt}&lt;0.
+\mathbf{n}.\left[\frac{dx}{dt},\frac{dy}{dt}\right] = -\frac{dx}{dt}&lt;0.
 \]</span></p>
 <p>Hence trajectories point inwards on the line segment BC.</p>
 <p>Consider the line segment CD where D has coordinates <span class="math display">\[
-(k,b(1+b)/a),
+\left(k,b\frac{1+b}{a}\right),
 \]</span> with <span class="math inline">\(k&gt;a\)</span></p>
 <p>The normal to this line segment is [0,1]. As CD lies in a region of the phase plane where <span class="math inline">\(dy/dt&lt;0\)</span>,</p>
 <p><span class="math display">\[
-\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = \frac{dy}{dt}&lt;0.
+\mathbf{n}.\left[\frac{dx}{dt},\frac{dy}{dt}\right] = \frac{dy}{dt}&lt;0.
 \]</span> Hence trajectories point inwards on the line segment CD.</p>
 <p>Let E be a point that sits on the <span class="math inline">\(x\)</span> nullcline at some position <span class="math display">\[
-(\delta,(\delta(1+b)-a)/(\delta^2)),
+\left(\delta,\frac{\delta(1+b)-a}{\delta^2}\right),
 \]</span> such that DE is a straight line with outwardly pointing normal vector <span class="math inline">\([1,1]\)</span>. Along DE</p>
 <p><span class="math display">\[
-\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] =   a-bx+x^2y-x + bx-x^2y = a-x&lt;0
+\mathbf{n}.\left[\frac{dx}{dt},\frac{dy}{dt}\right] =   a-bx+x^2y-x + bx-x^2y = a-x&lt;0
 \]</span></p>
 <p>for <span class="math inline">\(x&gt;a\)</span>. As <span class="math inline">\(k&gt;a\)</span>, <span class="math inline">\(x&gt;a\)</span> for all points on DE, hence trajectories point inwards on DE.</p>
 <p>Finally, consider the line segment EA which has normal vector <span class="math inline">\(\mathbf{n}=[1,0]\)</span>. As <span class="math inline">\(dx/dt&lt;0\)</span> along EA</p>
 <p><span class="math display">\[
-\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] =  \frac{dx}{dt} &lt;0.
+\mathbf{n}.\left[\frac{dx}{dt},\frac{dy}{dt}\right] =  \frac{dx}{dt} &lt;0.
 \]</span></p>
 <div class="cell" data-execution_count="4">
 <details>

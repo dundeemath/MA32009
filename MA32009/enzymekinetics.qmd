@@ -887,55 +887,63 @@ In @fig-bruss-numsol-phplane we plot the the oscillatory solution together with 
 
 ####  A confined set
 
-To define a confined set, we construct the closed loop ABCDEA in phase space  (see @fig-bruss-numsol-phplane-confinedset) where the points A, B, C, D and E are defined as follows. Let the points A and B be two points on the $x$ axis with coordinates $(\delta,0)$ and $(a/(1+b),0)$, respectively. We choose $\delta>a$. The outward normal to the line segment AB is $\mathbf{n}=[0,-1]$. To show that the trajectories point inwards along AB, we compute
+To define a confined set, we construct the closed loop ABCDEA in phase space  (see @fig-bruss-numsol-phplane-confinedset) where the points A, B, C, D and E are defined as follows. Let the points A and B be two points on the $x$ axis with coordinates 
+$$
+(\delta,0)
+$$ 
+and 
+$$
+\left(\frac{a}{1+b},0\right).
+$$
+ respectively. We choose $\delta>a$. The outward normal to the line segment AB is $\mathbf{n}=[0,-1]$. To show that the trajectories point inwards along AB, we compute
  
 $$
-\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = -\frac{dy}{dt}.
+\mathbf{n}.\left[\frac{dx}{dt},\frac{dy}{dt}\right] = -\frac{dy}{dt}.
 $$
  
 As the line segment AB sits below the $y$ nullcline, $dy/dt>0$ in this region. Hence
  
 $$
-\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = -\frac{dy}{dt}<0.
+\mathbf{n}.\left[\frac{dx}{dt},\frac{dy}{dt}\right] = -\frac{dy}{dt}<0.
 $$
  
 Hence trajectories point inwards on the line segment AB.
  
 Let $C$ represent the point 
 $$
-(a/(1+b),b(1+b)/a).
+\left(\frac{a}{1+b},b\frac{1+b}{a}\right).
 $$
 
 The normal vector to the line segment BC is $\mathbf{n}=[-1,0]$. As BC lies to the left of the $x$ nullcline, in a  region where $dx/dt>0$, then
  
 $$
-\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = -\frac{dx}{dt}<0.
+\mathbf{n}.\left[\frac{dx}{dt},\frac{dy}{dt}\right] = -\frac{dx}{dt}<0.
 $$
  
 Hence trajectories point inwards on the line segment BC.
  
 Consider the  line segment CD where D has coordinates 
 $$
-(k,b(1+b)/a),
+\left(k,b\frac{1+b}{a}\right),
 $$
  with $k>a$
 
 The normal to this line segment is [0,1]. As CD lies in a region of the phase plane where $dy/dt<0$,
  
 $$
-\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = \frac{dy}{dt}<0.
+\mathbf{n}.\left[\frac{dx}{dt},\frac{dy}{dt}\right] = \frac{dy}{dt}<0.
 $$
  Hence trajectories point inwards on the line segment CD.
 
  
 Let E be a point that sits on the $x$ nullcline at some position 
 $$
-(\delta,(\delta(1+b)-a)/(\delta^2)),
+\left(\delta,\frac{\delta(1+b)-a}{\delta^2}\right),
 $$ 
 such that DE is a straight line with  outwardly pointing normal vector  $[1,1]$. Along DE
  
 $$
-\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] =   a-bx+x^2y-x + bx-x^2y = a-x<0
+\mathbf{n}.\left[\frac{dx}{dt},\frac{dy}{dt}\right] =   a-bx+x^2y-x + bx-x^2y = a-x<0
 $$
  
 for $x>a$. As $k>a$, $x>a$ for all points on DE, hence trajectories point inwards on DE. 
@@ -944,7 +952,7 @@ for $x>a$. As $k>a$, $x>a$ for all points on DE, hence trajectories point inward
 Finally, consider the line segment EA which has normal vector $\mathbf{n}=[1,0]$. As $dx/dt<0$ along EA 
  
 $$
-\mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] =  \frac{dx}{dt} <0.
+\mathbf{n}.\left[\frac{dx}{dt},\frac{dy}{dt}\right] =  \frac{dx}{dt} <0.
 $$
 
 ```{python}

@@ -1,0 +1,26 @@
+---
+title: "Python"
+format: html
+---
+
+## Symbolic calculations
+
+Symbolic calculations ahve been performed using the Python library [Sympy](https://docs.sympy.org/latest/index.html).
+
+This library comes with [tutorials](https://docs.sympy.org/latest/tutorials/index.html#tutorials).
+
+You are encouraged to familiarise yourself with the syntax by working through some of the tutorial examples provided at the links above.
+
+## Numerical solution of difference equations
+
+Difference equations have been solved using a for loop. Routinse have been written to solve either single or coupled system of difference equaitons.
+
+
+## Numerical integration of ODEs
+
+Throughout the notes systems of ODEs have been integrated using the [Scipy](https://scipython.com) function [odeint](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.odeint.html).
+
+
+
+
+
