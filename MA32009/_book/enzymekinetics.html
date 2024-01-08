@@ -307,11 +307,11 @@ A+B  \xrightleftharpoons[k_{-}]{k_{+}}  C.
 <p><span class="math display">\[ k_+[A][B] \ \ \textrm{and} \ \ k_-[C]\]</span>.</p>
 <p>The ODEs are</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{d[A]}{dt}&amp;=-k_+[A][B]+k_-[C], \nonumber\\
 \frac{d[B]}{dt}&amp;=-k_+[A][B]+k_-[C], \nonumber\\
 \frac{d[C]}{dt}&amp;=k_+[A][B]-k_-[C]. \nonumber
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>For a given set of initial conditions, <span class="math display">\[
 [A](t=0)=[A]_0, \ \ \ [B](t=0)=[B]_0, \ \ \ [C](t=0)=[C]_0,
@@ -328,11 +328,11 @@ A+mB \xrightarrow{k_1} nB + pC.
 k_1[A][B]^m.
 \]</span></p>
 <p>The governing ODEs are <span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{d[A]}{dt}&amp;=-k_1[A][B]^m, \nonumber\\
 \frac{d[B]}{dt}&amp;=(n-m)k_1[A][B]^m, \nonumber\\
 \frac{d[C]}{dt}&amp;=pk_1[A][B]^m.  \nonumber
-\end{align}
+\end{aligned}
 \]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -352,10 +352,10 @@ k_+[A]^2
 \]</span> and <span class="math display">\[
 k_- [B].
 \]</span> The ODEs are <span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{d[A]}{dt}&amp;=-2k_+[A]^2+2k_- [B] , \nonumber\\
 \frac{d[B]}{dt}&amp;=k_+[A]^2-k_- [B],
-\end{align}
+\end{aligned}
 \]</span></p>
 </div>
 </div>
@@ -374,13 +374,13 @@ s(t)=[S](t),  \ \ c(t)=[C](t) , \\ e(t)=[E](t), \\ p(t)=[P](t).
 \]</span></p>
 <p>Applying the law of mass action the above enzyme kinetic scheme can be described by the system of ODES</p>
 <p><span id="eq-mmenten4var"><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{d s}{dt} &amp;= -k_1 se + k_{-1}c, \nonumber \\
 \frac{d e}{dt} &amp;= -k_1 se + k_{-1}c +k_2 c,  \nonumber\\
 \frac{d c}{dt} &amp;= k_1 se - k_{-1}c-k_2c, \nonumber \\
 \frac{d p}{dt} &amp;= k_2 c.
 \label{MMenten4Var}
-\end{align}
+\end{aligned}
 \tag{5.1}\]</span></span></p>
 <p>We consider initial conditions such that at <span class="math inline">\(t=0\)</span> the reaction has not yet started, i.e.&nbsp;there is no product or complex formed <span class="math display">\[
 s(0)=s_0, \ \ e(0)=e_0, \ \ c(0)=0, \ \ p(0)=0,
@@ -415,15 +415,15 @@ e(t)=e_0-c(t)
 <p>Given <span class="math display">\[
 e(t)=e_0-c(t),
 \]</span> substitute in <span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{d s}{dt} &amp;= -k_1 se + k_{-1}c, \nonumber \\
 \frac{d c}{dt} &amp;= k_1 se - k_{-1}c-k_2c, \nonumber \\
-\end{align}
+\end{aligned}
 \]</span> Hence <span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{d s}{dt} &amp;= -k_1 s(e_0-c) + k_{-1}c, \nonumber \\
 \frac{d c}{dt} &amp;= k_1 s(e_0-c) - (k_{-1}+k_2)c, \nonumber \\
-\end{align}
+\end{aligned}
 \]</span></p>
 </section>
 <section id="the-quasi-steady-state-approximation-qssa" class="level3" data-number="5.2.3">
@@ -443,15 +443,15 @@ K_m=\frac{k_{-1}+k_2}{k_1},
 \]</span></p>
 <p>is known as the Michaelis constant.</p>
 <p>Now consider <span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{d s}{dt} &amp;= -k_1 s(e_0-c) + k_{-1}c, \nonumber \\
-\end{align}
+\end{aligned}
 \]</span> By QSSA <span class="math display">\[
 -k_1 s(e_0-c) + k_{-1}c=-k_2c=-k_2\frac{e_0s(t)}{s(t)+K_m},
 \]</span> Hence <span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{d s}{dt} &amp;= -k_2\frac{e_0s(t)}{s(t)+K_m}, \nonumber \\
-\end{align}
+\end{aligned}
 \]</span> Note this could be achieved by direct substitution for <span class="math inline">\(c(t)\)</span>.</p>
 </section>
 <section id="enzyme-kinetics-the-michaelis-menten-quasi-steady-state-approximation-qssa" class="level3" data-number="5.2.4">
@@ -461,10 +461,10 @@ K_m=\frac{k_{-1}+k_2}{k_1},
 <p>Nondimensionalisation using <span class="math display">\[
 \tau=k_1 e_0 t, \ \ \ u=\frac{s}{s_0}, \ \ \ v=\frac{c}{e_0},
 \]</span> yields the ODEs <span id="eq-mmenten2varnondim"><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{d u}{d\tau} &amp;= -u+(u+K-\lambda)v, \nonumber \\
 \epsilon \frac{d v}{d\tau} &amp;= u-(u+K)v, \nonumber \\
-\end{align}
+\end{aligned}
 \tag{5.2}\]</span></span></p>
 <p>where <span class="math display">\[
 \lambda=\frac{k_2}{k_1 s_0}, \ \ \ K=\frac{k_{-1}+k_2}{k_1 s_0}, \ \ \ \epsilon=\frac{e_0}{s_0}.
@@ -474,45 +474,45 @@ K_m=\frac{k_{-1}+k_2}{k_1},
 <h4 data-number="5.2.4.2" class="anchored" data-anchor-id="asymptotic-expansions-the-outer-solution"><span class="header-section-number">5.2.4.2</span> Asymptotic expansions: the outer solution</h4>
 <p>We consider the (often realised) case where the amount of enzyme in the system is small compared with the amount of substrate, i.e. <span class="math display">\[
 \epsilon \ll 1.
-\]</span> The presence of the small parameter <span class="math inline">\(\epsilon\)</span> allows us to use perturbation theory to calculate approximate solutions to <a href="#eq-mmenten2varnondim">Equation&nbsp;<span>5.2</span></a>. However, the problem is singular owing to the <span class="math inline">\(\epsilon dv/dt\)</span> term.</p>
+\]</span> The presence of the small parameter <span class="math inline">\(\epsilon\)</span> allows us to use perturbation theory to calculate approximate solutions to <a href="#eq-mmenten2varnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-mmenten2varnondim</span></a>. However, the problem is singular owing to the <span class="math inline">\(\epsilon dv/dt\)</span> term.</p>
 <p>We propose an outer solution of the form</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 u(\tau;\epsilon)=u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ... = \sum_{n=0}^{\infty}u_n(\tau)\epsilon^n, \nonumber \\
 v(\tau;\epsilon)=v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ... = \sum_{n=0}^{\infty}v_n(\tau)\epsilon^n.  \nonumber  
-\end{align}
+\end{aligned}
 \]</span></p>
-<p>Substituting the expansions in <a href="#eq-mmenten2varnondim">Equation&nbsp;<span>5.2</span></a> yields</p>
+<p>Substituting the expansions in <a href="#eq-mmenten2varnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-mmenten2varnondim</span></a> yields</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{du_0}{d\tau} + \epsilon \frac{du_1}{d\tau} + \epsilon^2\frac{du_2}{d\tau} + ... = -(u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...)+  \nonumber \\ (u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...+ K-\lambda)(v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ...).  \nonumber
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>Gathering terms as coefficients of the different powers of <span class="math inline">\(\epsilon\)</span> yields</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{du_0}{d\tau} + \epsilon \frac{du_1}{d\tau} + ... = -u_0(\tau)+ (u_0(\tau)+ K-\lambda)v_0  +\epsilon (-u_1(\tau) + u_1v_0+v_1u_0+v_1(K-\lambda)) + O(\epsilon^2), \nonumber
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>where terms of order <span class="math inline">\(\epsilon^2\)</span> have been neglected.</p>
 <p>Considering the <span class="math inline">\(v\)</span> equation yields</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \epsilon(\frac{dv_0}{d\tau} + \epsilon \frac{dv_1}{d\tau} + \epsilon^2\frac{dv_2}{d\tau} + ..) = u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...  \nonumber \\ -(u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...+ K) (v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ...).  \nonumber
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>Gathering terms as coefficients of the different powers of <span class="math inline">\(\epsilon\)</span> yields</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \epsilon\frac{dv_0}{d\tau} + \epsilon^2 \frac{dv_1}{d\tau} + ... = u_0(\tau)-   u_0(\tau)v_0(\tau) -v_0 K  \nonumber \\ +\epsilon (u_1(\tau) - u_0v_1 - u_1v_0 - Kv_1) + O(\epsilon^2).  \nonumber
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>At <span class="math inline">\(O(1)\)</span></p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{du_0}{d\tau} = -u_0+ (u_0+ K-\lambda)v_0  \nonumber \\
 0= u_0 - u_0 v_0 -v_0K.    \nonumber
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>Solving the algebraic equation yields</p>
 <p><span class="math display">\[
@@ -549,43 +549,43 @@ v_0=\frac{1}{1+K} \neq 0.
 <p>Note that <span class="math inline">\(\sigma=1\)</span> corresponds to <span class="math inline">\(\tau=\epsilon\)</span>. Hence the proposed rescaling of time will give rise to what is called the inner solution to the problem (close to <span class="math inline">\(t=0\)</span>).</p>
 <p>To distinguish inner and outer solutions we relabel dependent variables such that</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 u(\tau;\epsilon)=U(\sigma;\epsilon),  \nonumber \\
 v(\tau;\epsilon)=V(\sigma;\epsilon). \nonumber
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>Note that <span class="math display">\[
 \frac{d}{d\tau}=\frac{1}{\epsilon}\frac{d}{d\sigma}.
 \]</span> Hence upon changing variables <span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{1}{\epsilon}\frac{d U}{d\sigma} &amp;= -\epsilon U+ \epsilon (U+K-\lambda)V, \nonumber \\
 \frac{1}{\epsilon}\ \epsilon \frac{d V}{d\sigma} &amp;= U-(U+K)V.  
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>Upon tidying <span id="eq-longtimeuv"><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{d U}{d\sigma} &amp;= -\epsilon U+ \epsilon (U+K-\lambda)V, \nonumber \\
 \frac{d V}{d\sigma} &amp;= U-(U+K)V.  
-\end{align}
+\end{aligned}
 \tag{5.3}\]</span></span></p>
-<p>We seek series solutions to <a href="#eq-longtimeuv">Equation&nbsp;<span>5.3</span></a> of the form</p>
+<p>We seek series solutions to <a href="#eq-longtimeuv">Equation&nbsp;<span class="quarto-unresolved-ref">eq-longtimeuv</span></a> of the form</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 U(\sigma;\epsilon)&amp;=U_0(\sigma) + \epsilon U_1(\sigma) + \epsilon^2 U_2(\sigma) + ... = \sum_{n=0}^{\infty}U_n(\sigma)\epsilon^n, \nonumber \\
 V(\sigma;\epsilon)&amp;=V_0(\sigma) + \epsilon V_1(\sigma) + \epsilon^2 V_2(\sigma) + ... = \sum_{n=0}^{\infty}V_n(\sigma)\epsilon^n. \nonumber  
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>Substitution yields <span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{dU_0}{d\sigma}+ \epsilon\frac{dU_1}{d\sigma}+ ..... &amp;= \epsilon\left( U_0+\epsilon U_1 + ... + (U_0+\epsilon U_1+ +K-\lambda)(V_0+\epsilon V_1+...)\right) \\
 \frac{dV_0}{d\sigma}+ \epsilon\frac{dV_1}{d\sigma}+ ..... &amp;= (U_0+\epsilon U_1+...)-(U_0+\epsilon U_1+...+K)(V_0+\epsilon V_1+...).
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>Hence at leading order <span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{dU_0}{d\sigma}&amp;=0  \nonumber\\
 \frac{dV_0}{d\sigma}&amp;=U_0-(U_0+K)V_0.
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>Given the initial condition <span class="math inline">\(U(0)=1\)</span> we obtain that the inner solution is</p>
 <p><span class="math display">\[
@@ -633,23 +633,23 @@ V_0=\frac{1-e^{-(1+K)\sigma}}{1+K}.
 <section id="the-brusselator" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="the-brusselator"><span class="header-section-number">5.3</span> The Brusselator</h2>
 <p>The Brusselator is an abstract model that can be used to demonstrate oscillations in (bio)-chemical systems. Consider a chemical reaction where five chemical species, A, B, D, X and Y, react according to the scheme <span class="math display">\[
-\begin{align}
+\begin{aligned}
 A&amp;\xrightarrow{k_{1}} X,  \nonumber \\
 B+X&amp;\xrightarrow{k_{2}} Y+D, \nonumber\\
 2X+Y&amp;\xrightarrow{k_{3}} 3X, \nonumber\\
 X&amp;\xrightarrow{k_{4}} E.
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>Assuming that the concentration of A and B (<span class="math inline">\([A]\)</span> and <span class="math inline">\([B]\)</span>, respectively) are in vast excess (i.e.&nbsp;the amount that A and B get depleted by the reactions is negligible compared with the total amount of A and B present), their concentration are treated as constants. Furthermore, as D and E are products but not reactants (they only appear on the right-hand side of reactions) we do not concern ourselves with their dynamics.</p>
 <section id="deriving-model-equations" class="level3" data-number="5.3.1">
 <h3 data-number="5.3.1" class="anchored" data-anchor-id="deriving-model-equations"><span class="header-section-number">5.3.1</span> Deriving model equations</h3>
 <p>To make the steps leading to ODEs obvious, it is useful to rewrite the reaction scheme in the form <span class="math display">\[
-\begin{align}
+\begin{aligned}
 A&amp;\xrightarrow{k_{1}} X,  \nonumber \\
 B+X&amp;\xrightarrow{k_{2}} Y+D, \nonumber\\
 X+X+Y&amp;\xrightarrow{k_{3}} X+X+X, \nonumber\\
 X&amp;\xrightarrow{k_{4}} E.
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>Applying the law of mass action yields that the four reactions occur at rates:</p>
 <ul>
@@ -660,25 +660,25 @@ X&amp;\xrightarrow{k_{4}} E.
 </ul>
 <p>The total time derivative of <span class="math inline">\([X]\)</span> is obtained by visiting each X in the reaction scheme once and adding the corresponding reaction rate to the right-hand side of the ODE, i.e.</p>
 <p><span class="math display">\[  
-\begin{align}
+\begin{aligned}
 \frac{d[X]}{dt} &amp;= \overbrace{k_1[A]}^{R1-lhs} - \overbrace{k_2[B][X]}^{R2-lhs} -  \overbrace{k_3[X]^2[Y]}^{R3-lhs} - \overbrace{k_3[X]^2[Y]}^{R3-lhs} + \overbrace{k_3[X]^2[Y]}^{R3-rhs}+ \overbrace{k_3[X]^2[Y]}^{R3-rhs}+ \overbrace{k_3[X]^2[Y]}^{R3-rhs} -\overbrace{k_4[X]}^{R4-lhs}, \nonumber \\
         &amp;= k_1[A] - k_2[B][X] + k_3[X]^2[Y]   -k_4[X].
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>Similarly for species Y we obtain that the total rate of change in time is <span class="math display">\[
-\begin{align}
+\begin{aligned}
   \frac{d[Y]}{dt}=k_2[B][X]-k_3[X]^2[Y].
-\end{align}
+\end{aligned}
 \]</span></p>
 </section>
 <section id="nondimensionalisation-1" class="level3" data-number="5.3.2">
 <h3 data-number="5.3.2" class="anchored" data-anchor-id="nondimensionalisation-1"><span class="header-section-number">5.3.2</span> Nondimensionalisation</h3>
 <p>Upon making the change of variables <span class="math display">\[
-\begin{align}
+\begin{aligned}
 x=\sqrt{\frac{k_3}{k_4}}[X], \ \ \ \ \ y=\sqrt{\frac{k_3}{k_4}}[Y], \ \ \textrm{and} \ \ \tau=k_4 t,
-\end{align}
+\end{aligned}
 \]</span> yields <span id="eq-brussnondim"><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \frac{d x}{d \tau} &amp;= a-bx+x^2y-x = f(x,y), \\
 \frac{d y}{d \tau} &amp;= bx-x^2y = g(x,y),
 \end{align}
@@ -689,7 +689,7 @@ a=[A]\frac{k_1}{k_4}\sqrt{\frac{k_3}{k_4}} \ \ \ \textrm{and} \ \ \ b= [B]\frac{
 </section>
 <section id="steady-states-analysis" class="level3" data-number="5.3.3">
 <h3 data-number="5.3.3" class="anchored" data-anchor-id="steady-states-analysis"><span class="header-section-number">5.3.3</span> Steady states analysis</h3>
-<p>Seeking steady states <span class="math inline">\((x^*,y^*)\)</span> of equations <a href="#eq-brussnondim">Equation&nbsp;<span>5.4</span></a> such that <span class="math display">\[
+<p>Seeking steady states <span class="math inline">\((x^*,y^*)\)</span> of equations <a href="#eq-brussnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-brussnondim</span></a> such that <span class="math display">\[
 f(x^*,y^*)=g(x^*,y^*)=0
 \]</span> yields</p>
 <p><span class="math display">\[
@@ -717,8 +717,8 @@ b-1&amp;a^2\\ -b &amp;-a^2\end{array}\right).
 <p>Hence <span class="math inline">\((a,b/a)\)</span> is not a saddle. The trace of the Jacobian is <span class="math display">\[
 \mathrm{tr} A=b-1-a^2.
 \]</span></p>
-<p>Hence if <span class="math inline">\(b&gt;1+a^2\)</span> the trace is positive and, referring to <a href="ContinuousTimeTwoSepcies.html#fig-tdplane">Figure&nbsp;<span>4.1</span></a>, the steady state is linearly unstable. Otherwise, the steady state is linearly stable.</p>
-<p>In <a href="#fig-bruss-numsol">Figure&nbsp;<span>5.1</span></a> we numerically solve <a href="#eq-brussnondim">Equation&nbsp;<span>5.4</span></a> in the case of oscillatory solutions. Note that when the steady state is unstable, the numerical solution indicates that the system has limit cycle solutions. A valid question to ask is whether one can prove that this is the case.</p>
+<p>Hence if <span class="math inline">\(b&gt;1+a^2\)</span> the trace is positive and, referring to <a href="#fig-tdplane">Figure&nbsp;<span class="quarto-unresolved-ref">fig-tdplane</span></a>, the steady state is linearly unstable. Otherwise, the steady state is linearly stable.</p>
+<p>In <a href="#fig-bruss-numsol">Figure&nbsp;<span class="quarto-unresolved-ref">fig-bruss-numsol</span></a> we numerically solve <a href="#eq-brussnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-brussnondim</span></a> in the case of oscillatory solutions. Note that when the steady state is unstable, the numerical solution indicates that the system has limit cycle solutions. A valid question to ask is whether one can prove that this is the case.</p>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
@@ -866,11 +866,11 @@ y=\frac{b}{x} \ \ \ \textrm{and} \ \ \ x=0.
 </div>
 </div>
 </div>
-<p>In <a href="#fig-bruss-numsol-phplane">Figure&nbsp;<span>5.2</span></a> we plot the the oscillatory solution together with the nullclines. Note that the nullclines separate the phase plane into regions of constant sign. Note that the <span class="math inline">\(x\)</span> nullcline separates the phase plane into regions where <span class="math inline">\(dx/dt&gt;0\)</span> and <span class="math inline">\(dx/dt&lt;0\)</span>. Similarly, the <span class="math inline">\(y\)</span> nullcline separates the phase plane into regions where <span class="math inline">\(dy/dt&gt;0\)</span> and <span class="math inline">\(dy/dt&lt;0\)</span>.</p>
+<p>In <a href="#fig-bruss-numsol-phplane">Figure&nbsp;<span class="quarto-unresolved-ref">fig-bruss-numsol-phplane</span></a> we plot the the oscillatory solution together with the nullclines. Note that the nullclines separate the phase plane into regions of constant sign. Note that the <span class="math inline">\(x\)</span> nullcline separates the phase plane into regions where <span class="math inline">\(dx/dt&gt;0\)</span> and <span class="math inline">\(dx/dt&lt;0\)</span>. Similarly, the <span class="math inline">\(y\)</span> nullcline separates the phase plane into regions where <span class="math inline">\(dy/dt&gt;0\)</span> and <span class="math inline">\(dy/dt&lt;0\)</span>.</p>
 <p>Note that signs for <span class="math inline">\(dx/dt\)</span> can be determined by considering behaviour of the function <span class="math inline">\(f\)</span> as one moves away from the nullcline where, by definition, <span class="math inline">\(f=0\)</span>. Consider some point that sits on the x nullcline. While keeping the <span class="math inline">\(x\)</span> value fixed, increase <span class="math inline">\(y\)</span> so the point moves vertically in the phase plane. This implies that <span class="math inline">\(f\)</span> has increased because the only term to change is <span class="math inline">\(x^2y\)</span>. Hence <span class="math inline">\(f\)</span> increases upon increasing <span class="math inline">\(y\)</span> and therefore <span class="math inline">\(dx/dt\)</span> is positive for all points above the <span class="math inline">\(x\)</span> nullcline. Alternatively, note that in the Jacobian matrix we have calculated that <span class="math inline">\(\partial f/\partial y\)</span> is positive.</p>
 <section id="a-confined-set" class="level4" data-number="5.3.5.1">
 <h4 data-number="5.3.5.1" class="anchored" data-anchor-id="a-confined-set"><span class="header-section-number">5.3.5.1</span> A confined set</h4>
-<p>To define a confined set, we construct the closed loop ABCDEA in phase space (see <a href="#fig-bruss-numsol-phplane-confinedset">Figure&nbsp;<span>5.3</span></a>) where the points A, B, C, D and E are defined as follows. Let the points A and B be two points on the <span class="math inline">\(x\)</span> axis with coordinates <span class="math inline">\((\delta,0)\)</span> and <span class="math inline">\((a/(1+b),0)\)</span>, respectively. We choose <span class="math inline">\(\delta&gt;a\)</span>. The outward normal to the line segment AB is <span class="math inline">\(\mathbf{n}=[0,-1]\)</span>. To show that the trajectories point inwards along AB, we compute</p>
+<p>To define a confined set, we construct the closed loop ABCDEA in phase space (see <a href="#fig-bruss-numsol-phplane-confinedset">Figure&nbsp;<span class="quarto-unresolved-ref">fig-bruss-numsol-phplane-confinedset</span></a>) where the points A, B, C, D and E are defined as follows. Let the points A and B be two points on the <span class="math inline">\(x\)</span> axis with coordinates <span class="math inline">\((\delta,0)\)</span> and <span class="math inline">\((a/(1+b),0)\)</span>, respectively. We choose <span class="math inline">\(\delta&gt;a\)</span>. The outward normal to the line segment AB is <span class="math inline">\(\mathbf{n}=[0,-1]\)</span>. To show that the trajectories point inwards along AB, we compute</p>
 <p><span class="math display">\[
 \mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = -\frac{dy}{dt}.
 \]</span></p>
@@ -986,7 +986,7 @@ y=\frac{b}{x} \ \ \ \textrm{and} \ \ \ x=0.
 </div>
 </div>
 </div>
-<p>Hence at all points on the closed loop ABCDEA trajectories point inwards (see <a href="#fig-bruss-numsol-phplane-confinedset">Figure&nbsp;<span>5.3</span></a>). Hence ABDCEA is a confined set and the Poincaire-Bendixson theorem states that the system exhibits limit cycle solutions when the steady state is unstable. This is precisely the behaviour that we see numerically in Figure <a href="#fig-bruss-numsol-phplane">Figure&nbsp;<span>5.2</span></a>.</p>
+<p>Hence at all points on the closed loop ABCDEA trajectories point inwards (see <a href="#fig-bruss-numsol-phplane-confinedset">Figure&nbsp;<span class="quarto-unresolved-ref">fig-bruss-numsol-phplane-confinedset</span></a>). Hence ABDCEA is a confined set and the Poincaire-Bendixson theorem states that the system exhibits limit cycle solutions when the steady state is unstable. This is precisely the behaviour that we see numerically in Figure <a href="#fig-bruss-numsol-phplane">Figure&nbsp;<span class="quarto-unresolved-ref">fig-bruss-numsol-phplane</span></a>.</p>
 
 
 </section>

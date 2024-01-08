@@ -70,11 +70,11 @@ $$ k_+[A][B] \ \ \textrm{and} \ \ k_-[C]$$.
 The ODEs are
 
 $$
-\begin{align}
+\begin{aligned}
 \frac{d[A]}{dt}&=-k_+[A][B]+k_-[C], \nonumber\\
 \frac{d[B]}{dt}&=-k_+[A][B]+k_-[C], \nonumber\\
 \frac{d[C]}{dt}&=k_+[A][B]-k_-[C]. \nonumber
-\end{align}
+\end{aligned}
 $$
 
 For a given set of initial conditions, 
@@ -100,11 +100,11 @@ $$
  
 The governing ODEs are 
 $$
-\begin{align}
+\begin{aligned}
 \frac{d[A]}{dt}&=-k_1[A][B]^m, \nonumber\\
 \frac{d[B]}{dt}&=(n-m)k_1[A][B]^m, \nonumber\\
 \frac{d[C]}{dt}&=pk_1[A][B]^m.  \nonumber
-\end{align}
+\end{aligned}
 $$
 
 
@@ -127,10 +127,10 @@ k_- [B].
 $$
 The ODEs are
 $$
-\begin{align}
+\begin{aligned}
 \frac{d[A]}{dt}&=-2k_+[A]^2+2k_- [B] , \nonumber\\
 \frac{d[B]}{dt}&=k_+[A]^2-k_- [B], 
-\end{align}
+\end{aligned}
 $$
 :::
 ## Enzyme kinetics
@@ -153,13 +153,13 @@ the above enzyme kinetic scheme can be described
 by the system of ODES
  
 $$
-\begin{align}
+\begin{aligned}
 \frac{d s}{dt} &= -k_1 se + k_{-1}c, \nonumber \\
 \frac{d e}{dt} &= -k_1 se + k_{-1}c +k_2 c,  \nonumber\\
 \frac{d c}{dt} &= k_1 se - k_{-1}c-k_2c, \nonumber \\
 \frac{d p}{dt} &= k_2 c.
 \label{MMenten4Var}
-\end{align}
+\end{aligned}
 $$ {#eq-mmenten4var}
  
 
@@ -221,17 +221,17 @@ $$
 $$
 substitute in 
 $$
-\begin{align}
+\begin{aligned}
 \frac{d s}{dt} &= -k_1 se + k_{-1}c, \nonumber \\
 \frac{d c}{dt} &= k_1 se - k_{-1}c-k_2c, \nonumber \\
-\end{align}
+\end{aligned}
 $$
 Hence
 $$
-\begin{align}
+\begin{aligned}
 \frac{d s}{dt} &= -k_1 s(e_0-c) + k_{-1}c, \nonumber \\
 \frac{d c}{dt} &= k_1 s(e_0-c) - (k_{-1}+k_2)c, \nonumber \\
-\end{align}
+\end{aligned}
 $$
 
 ### The quasi-steady state approximation (QSSA)
@@ -260,9 +260,9 @@ is known as the Michaelis constant.
  
 Now consider
 $$
-\begin{align}
+\begin{aligned}
 \frac{d s}{dt} &= -k_1 s(e_0-c) + k_{-1}c, \nonumber \\
-\end{align}
+\end{aligned}
 $$
 By QSSA
 $$
@@ -270,9 +270,9 @@ $$
 $$
 Hence
 $$
-\begin{align}
+\begin{aligned}
 \frac{d s}{dt} &= -k_2\frac{e_0s(t)}{s(t)+K_m}, \nonumber \\
-\end{align}
+\end{aligned}
 $$
 Note this could be achieved by direct substitution for $c(t)$.
 
@@ -288,10 +288,10 @@ $$
 $$
 yields the ODEs
 $$
-\begin{align}
+\begin{aligned}
 \frac{d u}{d\tau} &= -u+(u+K-\lambda)v, \nonumber \\
 \epsilon \frac{d v}{d\tau} &= u-(u+K)v, \nonumber \\
-\end{align}
+\end{aligned}
 $$ {#eq-mmenten2varnondim}
 
 where
@@ -314,27 +314,27 @@ the problem is singular owing to the $\epsilon dv/dt$ term.
 We propose an outer solution of the form
 
 $$
-\begin{align}
+\begin{aligned}
 u(\tau;\epsilon)=u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ... = \sum_{n=0}^{\infty}u_n(\tau)\epsilon^n, \nonumber \\
 v(\tau;\epsilon)=v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ... = \sum_{n=0}^{\infty}v_n(\tau)\epsilon^n.  \nonumber  
-\end{align}
+\end{aligned}
 $$
 
 Substituting the expansions in @eq-mmenten2varnondim yields
 
 $$
-\begin{align}
+\begin{aligned}
 \frac{du_0}{d\tau} + \epsilon \frac{du_1}{d\tau} + \epsilon^2\frac{du_2}{d\tau} + ... = -(u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...)+  \nonumber \\ (u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...+ K-\lambda)(v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ...).  \nonumber 
-\end{align}
+\end{aligned}
 $$
 
 
 Gathering terms as coefficients of the different powers of $\epsilon$ yields
 
 $$
-\begin{align}
+\begin{aligned}
 \frac{du_0}{d\tau} + \epsilon \frac{du_1}{d\tau} + ... = -u_0(\tau)+ (u_0(\tau)+ K-\lambda)v_0  +\epsilon (-u_1(\tau) + u_1v_0+v_1u_0+v_1(K-\lambda)) + O(\epsilon^2), \nonumber
-\end{align}
+\end{aligned}
 $$
 
 where terms of order $\epsilon^2$ have been neglected.
@@ -343,27 +343,27 @@ where terms of order $\epsilon^2$ have been neglected.
 Considering the $v$ equation yields
 
 $$
-\begin{align}
+\begin{aligned}
 \epsilon(\frac{dv_0}{d\tau} + \epsilon \frac{dv_1}{d\tau} + \epsilon^2\frac{dv_2}{d\tau} + ..) = u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...  \nonumber \\ -(u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...+ K) (v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ...).  \nonumber 
-\end{align}
+\end{aligned}
 $$
 
 Gathering terms as coefficients of the different powers of $\epsilon$ yields
 
 $$
-\begin{align}
+\begin{aligned}
 \epsilon\frac{dv_0}{d\tau} + \epsilon^2 \frac{dv_1}{d\tau} + ... = u_0(\tau)-   u_0(\tau)v_0(\tau) -v_0 K  \nonumber \\ +\epsilon (u_1(\tau) - u_0v_1 - u_1v_0 - Kv_1) + O(\epsilon^2).  \nonumber 
-\end{align}
+\end{aligned}
 $$
 
 
 At $O(1)$ 
 
 $$
-\begin{align}
+\begin{aligned}
 \frac{du_0}{d\tau} = -u_0+ (u_0+ K-\lambda)v_0  \nonumber \\ 
  0= u_0 - u_0 v_0 -v_0K.    \nonumber
-\end{align}
+\end{aligned}
 $$
 
 
@@ -427,10 +427,10 @@ Note that  $\sigma=1$ corresponds to $\tau=\epsilon$. Hence the proposed rescali
 To distinguish inner and outer solutions we relabel dependent variables such that
 
 $$
-\begin{align}
+\begin{aligned}
 u(\tau;\epsilon)=U(\sigma;\epsilon),  \nonumber \\ 
 v(\tau;\epsilon)=V(\sigma;\epsilon). \nonumber 
-\end{align}
+\end{aligned}
 $$
 
 
@@ -440,44 +440,44 @@ $$
 $$
 Hence upon changing variables 
 $$
-\begin{align}
+\begin{aligned}
 \frac{1}{\epsilon}\frac{d U}{d\sigma} &= -\epsilon U+ \epsilon (U+K-\lambda)V, \nonumber \\
 \frac{1}{\epsilon}\ \epsilon \frac{d V}{d\sigma} &= U-(U+K)V.  
-\end{align}
+\end{aligned}
 $$
 
 Upon tidying
 $$
-\begin{align}
+\begin{aligned}
 \frac{d U}{d\sigma} &= -\epsilon U+ \epsilon (U+K-\lambda)V, \nonumber \\
 \frac{d V}{d\sigma} &= U-(U+K)V.  
-\end{align}
+\end{aligned}
 $$ {#eq-longtimeuv}
 
 We seek series solutions to @eq-longtimeuv of the form
 
 $$
-\begin{align}
+\begin{aligned}
 U(\sigma;\epsilon)&=U_0(\sigma) + \epsilon U_1(\sigma) + \epsilon^2 U_2(\sigma) + ... = \sum_{n=0}^{\infty}U_n(\sigma)\epsilon^n, \nonumber \\
 V(\sigma;\epsilon)&=V_0(\sigma) + \epsilon V_1(\sigma) + \epsilon^2 V_2(\sigma) + ... = \sum_{n=0}^{\infty}V_n(\sigma)\epsilon^n. \nonumber  
-\end{align}
+\end{aligned}
 $$
 
 
 Substitution yields
 $$
-\begin{align}
+\begin{aligned}
 \frac{dU_0}{d\sigma}+ \epsilon\frac{dU_1}{d\sigma}+ ..... &= \epsilon\left( U_0+\epsilon U_1 + ... + (U_0+\epsilon U_1+ +K-\lambda)(V_0+\epsilon V_1+...)\right) \\
 \frac{dV_0}{d\sigma}+ \epsilon\frac{dV_1}{d\sigma}+ ..... &= (U_0+\epsilon U_1+...)-(U_0+\epsilon U_1+...+K)(V_0+\epsilon V_1+...).
-\end{align}
+\end{aligned}
 $$
 
 Hence at leading order
 $$
-\begin{align}
+\begin{aligned}
 \frac{dU_0}{d\sigma}&=0  \nonumber\\
 \frac{dV_0}{d\sigma}&=U_0-(U_0+K)V_0.
-\end{align}
+\end{aligned}
 $$
 
 Given the initial condition $U(0)=1$ we obtain that the inner solution is 
@@ -546,12 +546,12 @@ to hold as $\tau \rightarrow 0$ implies $A=1$.
 ## The Brusselator
 The Brusselator is an abstract model that can be used to demonstrate oscillations in (bio)-chemical systems. Consider a chemical reaction  where five chemical species, A, B, D, X and Y, react according to the scheme
 $$
-\begin{align}
+\begin{aligned}
 A&\xrightarrow{k_{1}} X,  \nonumber \\
 B+X&\xrightarrow{k_{2}} Y+D, \nonumber\\
 2X+Y&\xrightarrow{k_{3}} 3X, \nonumber\\
 X&\xrightarrow{k_{4}} E. 
-\end{align}
+\end{aligned}
 $$
 
 Assuming that the concentration of A and B ($[A]$ and $[B]$, respectively) are in vast excess (i.e. the amount that A and B get depleted by the reactions is negligible compared with the total amount of A and B present), their concentration are treated as constants. Furthermore, as D and E are  products but not reactants (they only appear on the right-hand side of reactions) we do not concern ourselves with their dynamics.  
@@ -560,12 +560,12 @@ Assuming that the concentration of A and B ($[A]$ and $[B]$, respectively) are i
 
 To make the steps leading to ODEs obvious, it is useful to rewrite the reaction scheme in the form
 $$
- \begin{align}
+ \begin{aligned}
 A&\xrightarrow{k_{1}} X,  \nonumber \\
 B+X&\xrightarrow{k_{2}} Y+D, \nonumber\\
 X+X+Y&\xrightarrow{k_{3}} X+X+X, \nonumber\\
 X&\xrightarrow{k_{4}} E. 
-\end{align}
+\end{aligned}
 $$
 
 Applying the law of mass action yields that the four reactions occur at rates: 
@@ -580,29 +580,29 @@ Applying the law of mass action yields that the four reactions occur at rates:
 The total time derivative of $[X]$ is obtained by visiting each X in the reaction scheme once and adding the corresponding reaction rate to the right-hand side of the ODE, i.e.
 
 $$  
- \begin{align}
+ \begin{aligned}
  \frac{d[X]}{dt} &= \overbrace{k_1[A]}^{R1-lhs} - \overbrace{k_2[B][X]}^{R2-lhs} -  \overbrace{k_3[X]^2[Y]}^{R3-lhs} - \overbrace{k_3[X]^2[Y]}^{R3-lhs} + \overbrace{k_3[X]^2[Y]}^{R3-rhs}+ \overbrace{k_3[X]^2[Y]}^{R3-rhs}+ \overbrace{k_3[X]^2[Y]}^{R3-rhs} -\overbrace{k_4[X]}^{R4-lhs}, \nonumber \\
  		&= k_1[A] - k_2[B][X] + k_3[X]^2[Y]   -k_4[X]. 
- \end{align}
+ \end{aligned}
  $$
   
 Similarly for species Y we obtain that the total rate of change in time is
 $$ 
- \begin{align}
+ \begin{aligned}
   \frac{d[Y]}{dt}=k_2[B][X]-k_3[X]^2[Y].
- \end{align}
+ \end{aligned}
 $$
 
 ### Nondimensionalisation
 Upon making the change of variables
 $$
-\begin{align}
+\begin{aligned}
 x=\sqrt{\frac{k_3}{k_4}}[X], \ \ \ \ \ y=\sqrt{\frac{k_3}{k_4}}[Y], \ \ \textrm{and} \ \ \tau=k_4 t, 
-\end{align}
+\end{aligned}
 $$
 yields
 $$
-\begin{align}
+\begin{aligned}
 \frac{d x}{d \tau} &= a-bx+x^2y-x = f(x,y), \\
 \frac{d y}{d \tau} &= bx-x^2y = g(x,y), 
 \end{align}

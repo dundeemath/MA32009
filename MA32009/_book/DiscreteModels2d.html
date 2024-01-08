@@ -192,7 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./enzymekinetics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Enzyme kinetics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Biochemical kinetics</span></span></a>
   </div>
 </li>
       </ul>
@@ -271,7 +271,7 @@ P_{t+1}=g(N_t,P_t).
 <h2 data-number="3.2" class="anchored" data-anchor-id="general-techniques-for-analysing-coupled-first-order-difference-equations"><span class="header-section-number">3.2</span> General techniques for analysing coupled first order difference equations</h2>
 <section id="fixed-points" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="fixed-points"><span class="header-section-number">3.2.1</span> Fixed points</h3>
-<p>The fixed points of <a href="#eq-discretetimetwovar">Equation&nbsp;<span>3.3</span></a> <span class="math inline">\((N^*,P^*)\)</span> satisfy <span class="math display">\[
+<p>The fixed points of <a href="#eq-discretetimetwovar">Equation&nbsp;<span class="quarto-unresolved-ref">eq-discretetimetwovar</span></a> <span class="math inline">\((N^*,P^*)\)</span> satisfy <span class="math display">\[
 \begin{aligned}
 N^*=g(N^*,P^*) \nonumber \\
 P^*=f(N^*,P^*).
@@ -301,7 +301,7 @@ Thus the only fixed point is (0,0).
 N_t&amp;=N^*+\hat{N}_{t},   \nonumber\\
 P_t&amp;=P^*+\hat{P}_{t}.  \nonumber
 \end{aligned}
-\]</span> After substitution in <a href="#eq-discretetimetwovar">Equation&nbsp;<span>3.3</span></a> and making Taylor expansions about <span class="math inline">\((N^*,P^*)\)</span> we obtain at leading order</p>
+\]</span> After substitution in <a href="#eq-discretetimetwovar">Equation&nbsp;<span class="quarto-unresolved-ref">eq-discretetimetwovar</span></a> and making Taylor expansions about <span class="math inline">\((N^*,P^*)\)</span> we obtain at leading order</p>
 <p><span id="eq-discretetimesecondorderdiff"><span class="math display">\[
 \left(\begin{array}{c}
 \hat{N}_{t+1} \\ \hat{P}_{t+1}\end{array}\right) = \left(\begin{array}{rr}
@@ -320,7 +320,7 @@ A= \left(\begin{array}{rr}
 <p><span class="math display">\[
 \mathbf{w}_{t+1}=A\mathbf{w}_{t}
 \]</span> By solving this linear system we can investigate whether small perturbation about the fixed point grow or decay in magnitude as time evolves and hence determine the linear stability of the fixed point.</p>
-<p>The solution of <a href="#eq-discretetimesecondorderdiff">Equation&nbsp;<span>3.2</span></a> takes the form <span class="math display">\[
+<p>The solution of <a href="#eq-discretetimesecondorderdiff">Equation&nbsp;<span class="quarto-unresolved-ref">eq-discretetimesecondorderdiff</span></a> takes the form <span class="math display">\[
 \mathbf{w}_t=\sum_{i=1}^2 C_i \lambda_i^t\mathbf{c}_i,
 \]</span> where the <span class="math inline">\(C_i\)</span>’s are constants determined by initial conditions and the <span class="math inline">\(\lambda_i\)</span>’s and <span class="math inline">\(\mathbf{c}_i\)</span>’s are the eigenvalues and eigenvectors of A, respectively. From this form we can see that if the magnitude of all eigenvalues is less than one, i.e. <span class="math display">\[
 |\lambda_i|&lt;1, \ \ \ \ \ \forall i,
@@ -352,7 +352,7 @@ $$
 <p>Consider the characteristic equation <span class="math display">\[
 P(\lambda)=\lambda^2 + a \lambda +b=0,
 \]</span> where <span class="math inline">\(a,b \in \Re\)</span>. Note that <span class="math inline">\(a=-tr{A}\)</span> and <span class="math inline">\(b=\det{A}\)</span>.</p>
-<p>The Jury conditions state that <span class="math inline">\(|\lambda_i |&lt;1 \forall \ \  i\)</span> if, and only if, * <span class="math inline">\(b&lt;1\)</span>, * <span class="math inline">\(1+a+b&gt;0\)</span>, * *<span class="math inline">\(1-a+b&gt;0\)</span>. See <a href="#fig-juryconditions">Figure&nbsp;<span>3.1</span></a> for schematic diagram.</p>
+<p>The Jury conditions state that <span class="math inline">\(|\lambda_i |&lt;1 \forall \ \  i\)</span> if, and only if, * <span class="math inline">\(b&lt;1\)</span>, * <span class="math inline">\(1+a+b&gt;0\)</span>, * *<span class="math inline">\(1-a+b&gt;0\)</span>. See <a href="#fig-juryconditions">Figure&nbsp;<span class="quarto-unresolved-ref">fig-juryconditions</span></a> for schematic diagram.</p>
 <div id="fig-juryconditions" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="JuryConditions2D.png" class="img-fluid figure-img"></p>
