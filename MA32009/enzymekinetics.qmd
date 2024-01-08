@@ -14,7 +14,7 @@ Suppose $C_1,..C_M$ undergo the reaction
 
 $$
 \lambda_1C_1+\lambda_2 C_2+...+\lambda_m C_M \xrightleftharpoons[k_{b}]{k_{f}} 
- \gamma_1 C_1+\gamma_2 C_2 + ... \gamma_M C_M.
+\gamma_1 C_1+\gamma_2 C_2 + ... \gamma_M C_M.
 $$
 
 the law of mass action states that the forward reaction proceeds at rate
@@ -158,7 +158,6 @@ $$
 \frac{d e}{dt} &= -k_1 se + k_{-1}c +k_2 c,  \nonumber\\
 \frac{d c}{dt} &= k_1 se - k_{-1}c-k_2c, \nonumber \\
 \frac{d p}{dt} &= k_2 c.
-\label{MMenten4Var}
 \end{aligned}
 $$ {#eq-mmenten4var}
  
@@ -168,6 +167,85 @@ $$
 s(0)=s_0, \ \ e(0)=e_0, \ \ c(0)=0, \ \ p(0)=0,
 $$
 where $s_0$ and $e_0$ represent the initial concentrations of substrate and enzyme, respectively.
+
+### Numerical solutions
+
+In @fig-mm-numsol we plot numerical solutions of @eq-mmenten4var. For this solution we have chosen initial conditions such that
+$$
+\frac{e_0}{s_0}\ll 1.
+$$
+Note that the dynamics of $c$ and $e$ have sharp transitions whilst those of $s$ and $p$ do not.
+
+```{python}
+#| label: fig-mm-numsol
+#| fig-cap: "Numerical solutions of the Michaelis Menten model"
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy
+from scipy.integrate import odeint
+
+
+k_1=1.0
+k_2=0.4
+k_m_1=2.0
+s_0=10.0
+e_0=0.5
+p_0=0
+c_0=0
+
+def rhs_bruss_model(z,t):
+  rhs=np.zeros_like(z)
+  s=z[0]
+  e=z[1]
+  c=z[2]
+  p=z[3]
+
+  ds_dt= -k_1*s*e + k_m_1*c
+  de_dt= -k_1*s*e + k_m_1*c + k_2*c
+  dc_dt= k_1*s*e  - k_m_1*c - k_2*c
+  dp_dt= k_2*c
+
+  rhs[0]=ds_dt
+  rhs[1]=de_dt
+  rhs[2]=dc_dt
+  rhs[3]=dp_dt
+  return rhs
+
+t = np.linspace(0, 100, 1000)
+
+init_cond=[s_0,e_0,c_0,p_0]
+sol1 = odeint(rhs_bruss_model, init_cond,t)
+
+
+s=sol1[:,0]
+e=sol1[:,1]
+c=sol1[:,2]
+p=sol1[:,3]
+
+
+fig, ax=plt.subplots(2,2)
+ax[0,0].plot(t, s, 'b')
+ax[0,0].set_xlabel('$t$')
+ax[0,0].set_ylabel('$s$')
+
+ax[0,1].plot(t,c,'r',t,e,'k')
+ax[0,1].set_xlabel('$t$')
+ax[0,1].legend(['$c$','$e$'])
+
+ax[1,0].plot(t,p,'r')
+ax[1,0].set_xlabel('$t$')
+ax[1,0].set_ylabel('$p$')
+
+ax[1,1].plot( s, c,'r')
+ax[1,1].set_xlim([0,1.25*s_0])
+ax[1,1].set_xlabel('$s$')
+ax[1,1].set_ylabel('$c$')
+
+
+plt.grid()
+plt.show()
+```  
+
 
 
 ### Reducing the dimensions of the model
@@ -605,7 +683,7 @@ $$
 \begin{aligned}
 \frac{d x}{d \tau} &= a-bx+x^2y-x = f(x,y), \\
 \frac{d y}{d \tau} &= bx-x^2y = g(x,y), 
-\end{align}
+\end{aligned}
 $$ {#eq-brussnondim}
 
  
@@ -638,7 +716,6 @@ A=\left(\begin{array}{rr}
 $$
 
  
- 
 Evaluating the Jacobian at $(a,b/a)$ yields
  
 $$
@@ -661,7 +738,6 @@ $$
 Hence if $b>1+a^2$ the trace is positive and, referring to @fig-tdplane, the steady state is  linearly unstable. Otherwise, the steady state is linearly stable.
 
 In @fig-bruss-numsol we numerically solve @eq-brussnondim in the case of oscillatory solutions. Note that when the steady state is unstable, the numerical solution indicates that the system has limit cycle solutions. A valid question to ask is whether one can prove that this is the case.
-
 
 
 ```{python}
@@ -704,16 +780,8 @@ plt.show()
 ```  
 
 
-
-\begin{figure}
-\centering
-\subfigure[]{\includegraphics[scale=0.3]{BrusselatorOsc.eps}}
-\subfigure[]{\includegraphics[scale=0.3]{BrusselatorStable.eps}}
-\caption{Solutions of the Brusselator equations in the oscillatory (a) and stable (b) regimes. Parameter values are: (a) $a=1.5$, $b=1.15(a^2+1)$, (a) $a=1.5$, $b=0.95(a^2+1)$. Initial conditions: $x(0)=1.05$, $y(0)=1.05$.}
-\label{BrussNondimFig}
-\end{figure}
-
 ### Applying the Poincaire-Bendixson theorem
+
 Recall  that the Poincaire-Bendixson theorem can be used to prove the existence of limit cycle solutions in a case where a bounding set encloses a single unstable steady state. 
 Hence given the case of the Brusselator with $b>a^2+1$, the identification of a bounding set will allow application of  the Poincaire-Bendixson theorem and hence prove the existence of limit cycle solutions.
 

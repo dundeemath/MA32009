@@ -1,8 +1,6 @@
 # Preface {.unnumbered}
 
 
-
-
 Welcome to MA42002 Mathematical Biology I.
 
 My name is Philip Murray and I am the module lead.
@@ -28,5 +26,16 @@ Mathematical models in Biology @edelstein2005mathematical
 I have provided Python codes for most of the figures in the notes (you can unfold code section by clicking `Code'). Note that the Python code does not appear in the pdf.
 
  Many of you have taken the Introduction to Programming module at Level 2 and have therefore some experience using Python. I strongly encourage you to use the provided codes as a tool to play around with numerical solutions of the various models that we will be working on. The codes should run as standalone Python codes.
+
+ I have also provided some examples of how to use Python as a symbolic calculator. This uses a Python library called *sympy* and is quite similar to Maple. 
+
+## Assessment
+ 
+* Final exam (80 \%)
+
+* 2 class tests (8.5 \% each), Week 6 and 10
+
+* 3 quizes (1 \% each), Week 2,4 and 8
+
 
 ## References

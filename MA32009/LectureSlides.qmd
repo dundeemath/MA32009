@@ -1,0 +1,77 @@
+---
+title: "Lecture slides"
+author: "Philip Murray"
+format: beamer
+---
+
+# Lecture 1 
+
+## A general model
+
+Consider the first order difference equation
+$$
+N_{t+1}=N_tf(N_t)=H(N_t),
+$$ {#eq-GeneralPopulationModel}
+where $f(N_t)$ is a function that defines the per capita growth rate. The function $H(N_t)$ describes the total (net) growth rate. 
+
+
+## The Malthusian model
+
+## The Ricker model 
+
+$$
+N_{t+1}=N_te^{r(1-\frac{N_t}{K})}.
+$$
+
+
+```{python}
+#| label: fig-plotricker
+#| fig-cap: "A plot of numerical solutions of the Ricker model. (a)r=0.5. (b) r=1.5. (c) r=2.5."
+import numpy as np
+import matplotlib.pyplot as plt
+
+r_1=0.5
+r_2=1.5
+r_3=2.5
+K=2.0
+
+T=20
+t = np.arange(0, T, 1)
+N_1 = np.zeros_like(t,dtype=float)
+N_2 = np.zeros_like(t,dtype=float)
+N_3 = np.zeros_like(t,dtype=float)
+
+def rhs(x,par):
+  r=par[0]
+  K=par[1]
+  f=x*np.exp(r*(1-x/K))
+  return f
+
+def SolveSingleDiff(t,rhs,N_0,par):
+  N = np.zeros_like(t,dtype=float)
+  N[0]=N_0
+
+  for i in t:
+    if i>0:
+      N[i]=rhs(N[i-1],par) 
+  return N  
+
+N_0=2.2
+
+N_1=SolveSingleDiff(t,rhs,N_0,[r_1,K])
+N_2=SolveSingleDiff(t,rhs,N_0,[r_2,K])
+N_3=SolveSingleDiff(t,rhs,N_0,[r_3,K])
+
+
+fig, ax = plt.subplots(1,3)
+ax[0].plot(t, N_1)
+plt.xlabel('$t$')
+plt.ylabel('$N_t$')
+ax[1].plot(t, N_2)
+plt.xlabel('$t$')
+plt.ylabel('$N_t$')
+ax[2].plot(t, N_3)
+plt.xlabel('$t$')
+plt.ylabel('$N_t$')
+plt.show()
+```

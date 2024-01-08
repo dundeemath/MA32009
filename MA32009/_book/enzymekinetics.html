@@ -213,9 +213,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#enzyme-kinetics" id="toc-enzyme-kinetics" class="nav-link" data-scroll-target="#enzyme-kinetics"><span class="header-section-number">5.2</span> Enzyme kinetics</a>
   <ul class="collapse">
   <li><a href="#deriving-the-model-equations" id="toc-deriving-the-model-equations" class="nav-link" data-scroll-target="#deriving-the-model-equations"><span class="header-section-number">5.2.1</span> Deriving the model equations</a></li>
-  <li><a href="#reducing-the-dimensions-of-the-model" id="toc-reducing-the-dimensions-of-the-model" class="nav-link" data-scroll-target="#reducing-the-dimensions-of-the-model"><span class="header-section-number">5.2.2</span> Reducing the dimensions of the model</a></li>
-  <li><a href="#the-quasi-steady-state-approximation-qssa" id="toc-the-quasi-steady-state-approximation-qssa" class="nav-link" data-scroll-target="#the-quasi-steady-state-approximation-qssa"><span class="header-section-number">5.2.3</span> The quasi-steady state approximation (QSSA)</a></li>
-  <li><a href="#enzyme-kinetics-the-michaelis-menten-quasi-steady-state-approximation-qssa" id="toc-enzyme-kinetics-the-michaelis-menten-quasi-steady-state-approximation-qssa" class="nav-link" data-scroll-target="#enzyme-kinetics-the-michaelis-menten-quasi-steady-state-approximation-qssa"><span class="header-section-number">5.2.4</span> Enzyme kinetics: the Michaelis-Menten quasi-steady state approximation (QSSA)</a></li>
+  <li><a href="#numerical-solutions" id="toc-numerical-solutions" class="nav-link" data-scroll-target="#numerical-solutions"><span class="header-section-number">5.2.2</span> Numerical solutions</a></li>
+  <li><a href="#reducing-the-dimensions-of-the-model" id="toc-reducing-the-dimensions-of-the-model" class="nav-link" data-scroll-target="#reducing-the-dimensions-of-the-model"><span class="header-section-number">5.2.3</span> Reducing the dimensions of the model</a></li>
+  <li><a href="#the-quasi-steady-state-approximation-qssa" id="toc-the-quasi-steady-state-approximation-qssa" class="nav-link" data-scroll-target="#the-quasi-steady-state-approximation-qssa"><span class="header-section-number">5.2.4</span> The quasi-steady state approximation (QSSA)</a></li>
+  <li><a href="#enzyme-kinetics-the-michaelis-menten-quasi-steady-state-approximation-qssa" id="toc-enzyme-kinetics-the-michaelis-menten-quasi-steady-state-approximation-qssa" class="nav-link" data-scroll-target="#enzyme-kinetics-the-michaelis-menten-quasi-steady-state-approximation-qssa"><span class="header-section-number">5.2.5</span> Enzyme kinetics: the Michaelis-Menten quasi-steady state approximation (QSSA)</a></li>
   </ul></li>
   <li><a href="#the-brusselator" id="toc-the-brusselator" class="nav-link" data-scroll-target="#the-brusselator"><span class="header-section-number">5.3</span> The Brusselator</a>
   <ul class="collapse">
@@ -379,15 +380,98 @@ s(t)=[S](t),  \ \ c(t)=[C](t) , \\ e(t)=[E](t), \\ p(t)=[P](t).
 \frac{d e}{dt} &amp;= -k_1 se + k_{-1}c +k_2 c,  \nonumber\\
 \frac{d c}{dt} &amp;= k_1 se - k_{-1}c-k_2c, \nonumber \\
 \frac{d p}{dt} &amp;= k_2 c.
-\label{MMenten4Var}
 \end{aligned}
 \tag{5.1}\]</span></span></p>
 <p>We consider initial conditions such that at <span class="math inline">\(t=0\)</span> the reaction has not yet started, i.e.&nbsp;there is no product or complex formed <span class="math display">\[
 s(0)=s_0, \ \ e(0)=e_0, \ \ c(0)=0, \ \ p(0)=0,
 \]</span> where <span class="math inline">\(s_0\)</span> and <span class="math inline">\(e_0\)</span> represent the initial concentrations of substrate and enzyme, respectively.</p>
 </section>
-<section id="reducing-the-dimensions-of-the-model" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="reducing-the-dimensions-of-the-model"><span class="header-section-number">5.2.2</span> Reducing the dimensions of the model</h3>
+<section id="numerical-solutions" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="numerical-solutions"><span class="header-section-number">5.2.2</span> Numerical solutions</h3>
+<p>In <a href="#fig-mm-numsol">Figure&nbsp;<span>5.1</span></a> we plot numerical solutions of <a href="#eq-mmenten4var">Equation&nbsp;<span>5.1</span></a>. For this solution we have chosen initial conditions such that <span class="math display">\[
+\frac{e_0}{s_0}\ll 1.
+\]</span> Note that the dynamics of <span class="math inline">\(c\)</span> and <span class="math inline">\(e\)</span> have sharp transitions whilst those of <span class="math inline">\(s\)</span> and <span class="math inline">\(p\)</span> do not.</p>
+<div class="cell" data-execution_count="1">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>k_1<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>k_2<span class="op">=</span><span class="fl">0.4</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>k_m_1<span class="op">=</span><span class="fl">2.0</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>s_0<span class="op">=</span><span class="fl">10.0</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>e_0<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>p_0<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>c_0<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhs_bruss_model(z,t):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  rhs<span class="op">=</span>np.zeros_like(z)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  s<span class="op">=</span>z[<span class="dv">0</span>]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  e<span class="op">=</span>z[<span class="dv">1</span>]</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  c<span class="op">=</span>z[<span class="dv">2</span>]</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  p<span class="op">=</span>z[<span class="dv">3</span>]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  ds_dt<span class="op">=</span> <span class="op">-</span>k_1<span class="op">*</span>s<span class="op">*</span>e <span class="op">+</span> k_m_1<span class="op">*</span>c</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  de_dt<span class="op">=</span> <span class="op">-</span>k_1<span class="op">*</span>s<span class="op">*</span>e <span class="op">+</span> k_m_1<span class="op">*</span>c <span class="op">+</span> k_2<span class="op">*</span>c</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  dc_dt<span class="op">=</span> k_1<span class="op">*</span>s<span class="op">*</span>e  <span class="op">-</span> k_m_1<span class="op">*</span>c <span class="op">-</span> k_2<span class="op">*</span>c</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  dp_dt<span class="op">=</span> k_2<span class="op">*</span>c</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  rhs[<span class="dv">0</span>]<span class="op">=</span>ds_dt</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  rhs[<span class="dv">1</span>]<span class="op">=</span>de_dt</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  rhs[<span class="dv">2</span>]<span class="op">=</span>dc_dt</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  rhs[<span class="dv">3</span>]<span class="op">=</span>dp_dt</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> rhs</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">1000</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>init_cond<span class="op">=</span>[s_0,e_0,c_0,p_0]</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>sol1 <span class="op">=</span> odeint(rhs_bruss_model, init_cond,t)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span>sol1[:,<span class="dv">0</span>]</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>e<span class="op">=</span>sol1[:,<span class="dv">1</span>]</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span>sol1[:,<span class="dv">2</span>]</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>p<span class="op">=</span>sol1[:,<span class="dv">3</span>]</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span>plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].plot(t, s, <span class="st">'b'</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_xlabel(<span class="st">'$t$'</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">0</span>].set_ylabel(<span class="st">'$s$'</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].plot(t,c,<span class="st">'r'</span>,t,e,<span class="st">'k'</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].set_xlabel(<span class="st">'$t$'</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>,<span class="dv">1</span>].legend([<span class="st">'$c$'</span>,<span class="st">'$e$'</span>])</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].plot(t,p,<span class="st">'r'</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_xlabel(<span class="st">'$t$'</span>)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">0</span>].set_ylabel(<span class="st">'$p$'</span>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].plot( s, c,<span class="st">'r'</span>)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_xlim([<span class="dv">0</span>,<span class="fl">1.25</span><span class="op">*</span>s_0])</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_xlabel(<span class="st">'$s$'</span>)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>,<span class="dv">1</span>].set_ylabel(<span class="st">'$c$'</span>)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-mm-numsol" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="enzymekinetics_files/figure-html/fig-mm-numsol-output-1.png" width="599" height="429" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;5.1: Numerical solutions of the Michaelis Menten model</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="reducing-the-dimensions-of-the-model" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="reducing-the-dimensions-of-the-model"><span class="header-section-number">5.2.3</span> Reducing the dimensions of the model</h3>
 <p>Whilst there are four dependent variables in the problem (<span class="math inline">\(s(t)\)</span>, <span class="math inline">\(c(t)\)</span>, <span class="math inline">\(e(t)\)</span> and <span class="math inline">\(p(t)\)</span>), the description of the problem can be simplified by noting that the variable <span class="math inline">\(p(t)\)</span> does not couple back to the other variables, i.e.&nbsp;if we can solve the system for <span class="math inline">\(s(t)\)</span>, <span class="math inline">\(e(t)\)</span> and <span class="math inline">\(c(t)\)</span> then <span class="math inline">\(c(t)\)</span> can be expressed as a function of time and</p>
 <p><span class="math display">\[
 p(t)=k_2\int c(t) dt + C_1.
@@ -426,8 +510,8 @@ e(t)=e_0-c(t),
 \end{aligned}
 \]</span></p>
 </section>
-<section id="the-quasi-steady-state-approximation-qssa" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="the-quasi-steady-state-approximation-qssa"><span class="header-section-number">5.2.3</span> The quasi-steady state approximation (QSSA)</h3>
+<section id="the-quasi-steady-state-approximation-qssa" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="the-quasi-steady-state-approximation-qssa"><span class="header-section-number">5.2.4</span> The quasi-steady state approximation (QSSA)</h3>
 <p>A usual approach to these equations is to assume that the timescale of complex dynamics is very fast compared to that of substrate dynamics.</p>
 <p>To make the QSSA we assume that one of the variables (in this case <span class="math inline">\(c\)</span>), is in equilibrium</p>
 <p><span class="math display">\[
@@ -454,10 +538,10 @@ K_m=\frac{k_{-1}+k_2}{k_1},
 \end{aligned}
 \]</span> Note this could be achieved by direct substitution for <span class="math inline">\(c(t)\)</span>.</p>
 </section>
-<section id="enzyme-kinetics-the-michaelis-menten-quasi-steady-state-approximation-qssa" class="level3" data-number="5.2.4">
-<h3 data-number="5.2.4" class="anchored" data-anchor-id="enzyme-kinetics-the-michaelis-menten-quasi-steady-state-approximation-qssa"><span class="header-section-number">5.2.4</span> Enzyme kinetics: the Michaelis-Menten quasi-steady state approximation (QSSA)</h3>
-<section id="nondimensionalisation" class="level4" data-number="5.2.4.1">
-<h4 data-number="5.2.4.1" class="anchored" data-anchor-id="nondimensionalisation"><span class="header-section-number">5.2.4.1</span> Nondimensionalisation</h4>
+<section id="enzyme-kinetics-the-michaelis-menten-quasi-steady-state-approximation-qssa" class="level3" data-number="5.2.5">
+<h3 data-number="5.2.5" class="anchored" data-anchor-id="enzyme-kinetics-the-michaelis-menten-quasi-steady-state-approximation-qssa"><span class="header-section-number">5.2.5</span> Enzyme kinetics: the Michaelis-Menten quasi-steady state approximation (QSSA)</h3>
+<section id="nondimensionalisation" class="level4" data-number="5.2.5.1">
+<h4 data-number="5.2.5.1" class="anchored" data-anchor-id="nondimensionalisation"><span class="header-section-number">5.2.5.1</span> Nondimensionalisation</h4>
 <p>Nondimensionalisation using <span class="math display">\[
 \tau=k_1 e_0 t, \ \ \ u=\frac{s}{s_0}, \ \ \ v=\frac{c}{e_0},
 \]</span> yields the ODEs <span id="eq-mmenten2varnondim"><span class="math display">\[
@@ -470,11 +554,11 @@ K_m=\frac{k_{-1}+k_2}{k_1},
 \lambda=\frac{k_2}{k_1 s_0}, \ \ \ K=\frac{k_{-1}+k_2}{k_1 s_0}, \ \ \ \epsilon=\frac{e_0}{s_0}.
 \]</span></p>
 </section>
-<section id="asymptotic-expansions-the-outer-solution" class="level4" data-number="5.2.4.2">
-<h4 data-number="5.2.4.2" class="anchored" data-anchor-id="asymptotic-expansions-the-outer-solution"><span class="header-section-number">5.2.4.2</span> Asymptotic expansions: the outer solution</h4>
+<section id="asymptotic-expansions-the-outer-solution" class="level4" data-number="5.2.5.2">
+<h4 data-number="5.2.5.2" class="anchored" data-anchor-id="asymptotic-expansions-the-outer-solution"><span class="header-section-number">5.2.5.2</span> Asymptotic expansions: the outer solution</h4>
 <p>We consider the (often realised) case where the amount of enzyme in the system is small compared with the amount of substrate, i.e. <span class="math display">\[
 \epsilon \ll 1.
-\]</span> The presence of the small parameter <span class="math inline">\(\epsilon\)</span> allows us to use perturbation theory to calculate approximate solutions to <a href="#eq-mmenten2varnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-mmenten2varnondim</span></a>. However, the problem is singular owing to the <span class="math inline">\(\epsilon dv/dt\)</span> term.</p>
+\]</span> The presence of the small parameter <span class="math inline">\(\epsilon\)</span> allows us to use perturbation theory to calculate approximate solutions to <a href="#eq-mmenten2varnondim">Equation&nbsp;<span>5.2</span></a>. However, the problem is singular owing to the <span class="math inline">\(\epsilon dv/dt\)</span> term.</p>
 <p>We propose an outer solution of the form</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -482,7 +566,7 @@ u(\tau;\epsilon)=u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ... = \
 v(\tau;\epsilon)=v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ... = \sum_{n=0}^{\infty}v_n(\tau)\epsilon^n.  \nonumber  
 \end{aligned}
 \]</span></p>
-<p>Substituting the expansions in <a href="#eq-mmenten2varnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-mmenten2varnondim</span></a> yields</p>
+<p>Substituting the expansions in <a href="#eq-mmenten2varnondim">Equation&nbsp;<span>5.2</span></a> yields</p>
 <p><span class="math display">\[
 \begin{aligned}
 \frac{du_0}{d\tau} + \epsilon \frac{du_1}{d\tau} + \epsilon^2\frac{du_2}{d\tau} + ... = -(u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...)+  \nonumber \\ (u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...+ K-\lambda)(v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ...).  \nonumber
@@ -540,8 +624,8 @@ v_0=\frac{1}{1+K} \neq 0.
 \]</span></p>
 <p>Hence the proposed expansion is not valid at least near <span class="math inline">\(\tau=0\)</span>.</p>
 </section>
-<section id="asymptotic-expansions-the-inner-solution" class="level4" data-number="5.2.4.3">
-<h4 data-number="5.2.4.3" class="anchored" data-anchor-id="asymptotic-expansions-the-inner-solution"><span class="header-section-number">5.2.4.3</span> Asymptotic expansions: the inner solution</h4>
+<section id="asymptotic-expansions-the-inner-solution" class="level4" data-number="5.2.5.3">
+<h4 data-number="5.2.5.3" class="anchored" data-anchor-id="asymptotic-expansions-the-inner-solution"><span class="header-section-number">5.2.5.3</span> Asymptotic expansions: the inner solution</h4>
 <p>This issue can be rectified by proposing a different scaling for time and recalculating a series solution in the new coordinate system.</p>
 <p>We proceed by making the change of variable <span class="math display">\[
 \sigma=\frac{\tau}{\epsilon}.
@@ -568,7 +652,7 @@ v(\tau;\epsilon)=V(\sigma;\epsilon). \nonumber
 \frac{d V}{d\sigma} &amp;= U-(U+K)V.  
 \end{aligned}
 \tag{5.3}\]</span></span></p>
-<p>We seek series solutions to <a href="#eq-longtimeuv">Equation&nbsp;<span class="quarto-unresolved-ref">eq-longtimeuv</span></a> of the form</p>
+<p>We seek series solutions to <a href="#eq-longtimeuv">Equation&nbsp;<span>5.3</span></a> of the form</p>
 <p><span class="math display">\[
 \begin{aligned}
 U(\sigma;\epsilon)&amp;=U_0(\sigma) + \epsilon U_1(\sigma) + \epsilon^2 U_2(\sigma) + ... = \sum_{n=0}^{\infty}U_n(\sigma)\epsilon^n, \nonumber \\
@@ -600,8 +684,8 @@ U(\sigma)=1.
 V_0=\frac{1-e^{-(1+K)\sigma}}{1+K}.
 \]</span></p>
 </section>
-<section id="asymptotic-expansions-matching-the-inner-and-outer-solutions" class="level4" data-number="5.2.4.4">
-<h4 data-number="5.2.4.4" class="anchored" data-anchor-id="asymptotic-expansions-matching-the-inner-and-outer-solutions"><span class="header-section-number">5.2.4.4</span> Asymptotic expansions: matching the inner and outer solutions</h4>
+<section id="asymptotic-expansions-matching-the-inner-and-outer-solutions" class="level4" data-number="5.2.5.4">
+<h4 data-number="5.2.5.4" class="anchored" data-anchor-id="asymptotic-expansions-matching-the-inner-and-outer-solutions"><span class="header-section-number">5.2.5.4</span> Asymptotic expansions: matching the inner and outer solutions</h4>
 <p>Inner and outer solutions are matched by taking limits <span class="math display">\[
 \lim_{\tau \rightarrow 0}(u_0(\tau),v_0(\tau))=\lim_{\sigma \rightarrow \infty}(U_0(\sigma),V_0(\sigma)).
 \]</span></p>
@@ -681,7 +765,7 @@ x=\sqrt{\frac{k_3}{k_4}}[X], \ \ \ \ \ y=\sqrt{\frac{k_3}{k_4}}[Y], \ \ \textrm{
 \begin{aligned}
 \frac{d x}{d \tau} &amp;= a-bx+x^2y-x = f(x,y), \\
 \frac{d y}{d \tau} &amp;= bx-x^2y = g(x,y),
-\end{align}
+\end{aligned}
 \tag{5.4}\]</span></span></p>
 <p>where <span class="math display">\[
 a=[A]\frac{k_1}{k_4}\sqrt{\frac{k_3}{k_4}} \ \ \ \textrm{and} \ \ \ b= [B]\frac{k_2}{k_4}.
@@ -689,7 +773,7 @@ a=[A]\frac{k_1}{k_4}\sqrt{\frac{k_3}{k_4}} \ \ \ \textrm{and} \ \ \ b= [B]\frac{
 </section>
 <section id="steady-states-analysis" class="level3" data-number="5.3.3">
 <h3 data-number="5.3.3" class="anchored" data-anchor-id="steady-states-analysis"><span class="header-section-number">5.3.3</span> Steady states analysis</h3>
-<p>Seeking steady states <span class="math inline">\((x^*,y^*)\)</span> of equations <a href="#eq-brussnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-brussnondim</span></a> such that <span class="math display">\[
+<p>Seeking steady states <span class="math inline">\((x^*,y^*)\)</span> of equations <a href="#eq-brussnondim">Equation&nbsp;<span>5.4</span></a> such that <span class="math display">\[
 f(x^*,y^*)=g(x^*,y^*)=0
 \]</span> yields</p>
 <p><span class="math display">\[
@@ -717,51 +801,51 @@ b-1&amp;a^2\\ -b &amp;-a^2\end{array}\right).
 <p>Hence <span class="math inline">\((a,b/a)\)</span> is not a saddle. The trace of the Jacobian is <span class="math display">\[
 \mathrm{tr} A=b-1-a^2.
 \]</span></p>
-<p>Hence if <span class="math inline">\(b&gt;1+a^2\)</span> the trace is positive and, referring to <a href="#fig-tdplane">Figure&nbsp;<span class="quarto-unresolved-ref">fig-tdplane</span></a>, the steady state is linearly unstable. Otherwise, the steady state is linearly stable.</p>
-<p>In <a href="#fig-bruss-numsol">Figure&nbsp;<span class="quarto-unresolved-ref">fig-bruss-numsol</span></a> we numerically solve <a href="#eq-brussnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-brussnondim</span></a> in the case of oscillatory solutions. Note that when the steady state is unstable, the numerical solution indicates that the system has limit cycle solutions. A valid question to ask is whether one can prove that this is the case.</p>
-<div class="cell" data-execution_count="1">
+<p>Hence if <span class="math inline">\(b&gt;1+a^2\)</span> the trace is positive and, referring to <a href="ContinuousTimeTwoSepcies.html#fig-tdplane">Figure&nbsp;<span>4.1</span></a>, the steady state is linearly unstable. Otherwise, the steady state is linearly stable.</p>
+<p>In <a href="#fig-bruss-numsol">Figure&nbsp;<span>5.2</span></a> we numerically solve <a href="#eq-brussnondim">Equation&nbsp;<span>5.4</span></a> in the case of oscillatory solutions. Note that when the steady state is unstable, the numerical solution indicates that the system has limit cycle solutions. A valid question to ask is whether one can prove that this is the case.</p>
+<div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">1.0</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="fl">3.2</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhs_bruss_model(z,t):</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  rhs<span class="op">=</span>np.zeros_like(z)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span>z[<span class="dv">0</span>]</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  y<span class="op">=</span>z[<span class="dv">1</span>]</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  dx_dt<span class="op">=</span>a<span class="op">-</span>b<span class="op">*</span>x<span class="op">+</span>x<span class="op">**</span><span class="dv">2</span><span class="op">*</span>y<span class="op">-</span>x</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  dy_dt<span class="op">=</span>b<span class="op">*</span>x<span class="op">-</span>x<span class="op">**</span><span class="dv">2</span><span class="op">*</span>y</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  rhs[<span class="dv">0</span>]<span class="op">=</span>dx_dt</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  rhs[<span class="dv">1</span>]<span class="op">=</span>dy_dt</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> rhs</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">50</span>, <span class="dv">1000</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>init_cond<span class="op">=</span>[<span class="fl">0.5</span>,<span class="fl">0.5</span>]</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>sol1 <span class="op">=</span> odeint(rhs_bruss_model, init_cond,t)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>sol1[:,<span class="dv">0</span>]</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>sol1[:,<span class="dv">1</span>]</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>plt.plot(t, x, <span class="st">'b'</span>,t,y,<span class="st">'r'</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'$x$'</span>,<span class="st">'$y$'</span>],loc<span class="op">=</span><span class="st">'best'</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'t'</span>)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="fl">3.2</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhs_bruss_model(z,t):</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  rhs<span class="op">=</span>np.zeros_like(z)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span>z[<span class="dv">0</span>]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  y<span class="op">=</span>z[<span class="dv">1</span>]</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  dx_dt<span class="op">=</span>a<span class="op">-</span>b<span class="op">*</span>x<span class="op">+</span>x<span class="op">**</span><span class="dv">2</span><span class="op">*</span>y<span class="op">-</span>x</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  dy_dt<span class="op">=</span>b<span class="op">*</span>x<span class="op">-</span>x<span class="op">**</span><span class="dv">2</span><span class="op">*</span>y</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  rhs[<span class="dv">0</span>]<span class="op">=</span>dx_dt</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  rhs[<span class="dv">1</span>]<span class="op">=</span>dy_dt</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> rhs</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">50</span>, <span class="dv">1000</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>init_cond<span class="op">=</span>[<span class="fl">0.5</span>,<span class="fl">0.5</span>]</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>sol1 <span class="op">=</span> odeint(rhs_bruss_model, init_cond,t)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>sol1[:,<span class="dv">0</span>]</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>sol1[:,<span class="dv">1</span>]</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>plt.plot(t, x, <span class="st">'b'</span>,t,y,<span class="st">'r'</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'$x$'</span>,<span class="st">'$y$'</span>],loc<span class="op">=</span><span class="st">'best'</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'t'</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-bruss-numsol" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="enzymekinetics_files/figure-html/fig-bruss-numsol-output-1.png" width="558" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.1: Numerical solutions of the Brusselator model</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;5.2: Numerical solutions of the Brusselator model</figcaption>
 </figure>
 </div>
 </div>
@@ -779,98 +863,98 @@ y=\frac{1+b}{x}-\frac{a}{x^2}.
 y=\frac{b}{x} \ \ \ \textrm{and} \ \ \ x=0.
 \]</span></p>
 <p>In the positive quadrant, this nullcline has a single root at <span class="math inline">\(a/(1+b)\)</span>, tends to 0 as <span class="math inline">\(x\rightarrow \infty\)</span> and has a maximum at <span class="math inline">\(x=2a/(1+b)\)</span>.</p>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>x_vec<span class="op">=</span>np.linspace(<span class="fl">0.01</span>,<span class="dv">6</span>,<span class="dv">100</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ComputeCompetitionSol(a,b,x_vec):</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1000</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    init_cond1<span class="op">=</span>[<span class="fl">0.75</span>,<span class="fl">0.75</span>]</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    init_cond2<span class="op">=</span>[<span class="fl">4.55</span>,<span class="fl">4.15</span>]</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    init_cond3<span class="op">=</span>[<span class="fl">2.5</span>,<span class="fl">0.5</span>]</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    ss<span class="op">=</span>[a,b<span class="op">/</span>a]</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">2.0</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    sol1 <span class="op">=</span> odeint(rhs_bruss_model, init_cond1,t)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    sol2 <span class="op">=</span> odeint(rhs_bruss_model, init_cond2,t)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    sol3 <span class="op">=</span> odeint(rhs_bruss_model, init_cond3,t)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    x_ncline<span class="op">=</span>(<span class="dv">1</span><span class="op">+</span>b)<span class="op">/</span>x_vec<span class="op">-</span>a<span class="op">/</span>x_vec<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    y_ncline_1_a<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">0</span>]    </span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    y_ncline_1_b<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">5</span>]   </span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    y_ncline_2_x<span class="op">=</span>b<span class="op">/</span>x_vec</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sol1,sol2,sol3,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">1.0</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="fl">3.2</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>sol1,sol2,sol3,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x<span class="op">=</span>ComputeCompetitionSol(a,b,x_vec)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>)</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(x_vec,x_ncline,<span class="st">'k--'</span>)</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(y_ncline_1_a,y_ncline_1_b,<span class="st">'k--'</span>)</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(x_vec,y_ncline_2_x,<span class="st">'r--'</span>)</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(sol1[:,<span class="dv">0</span>],sol1[:,<span class="dv">1</span>],sol2[:,<span class="dv">0</span>],sol2[:,<span class="dv">1</span>],sol3[:,<span class="dv">0</span>],sol3[:,<span class="dv">1</span>])</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(ss[<span class="dv">0</span>],ss[<span class="dv">1</span>],<span class="st">'k*'</span>)</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$y$'</span>)</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlim([<span class="op">-</span><span class="fl">0.05</span>,<span class="dv">6</span>])</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylim([<span class="op">-</span><span class="fl">0.005</span>,<span class="dv">6</span>])</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">4.0</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="fl">3.2</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>sol1,sol2,sol3,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x<span class="op">=</span>ComputeCompetitionSol(a,b,x_vec)</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(x_vec,x_ncline,<span class="st">'k--'</span>)</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(y_ncline_1_a,y_ncline_1_b,<span class="st">'k--'</span>)</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(x_vec,y_ncline_2_x,<span class="st">'r--'</span>)</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(sol1[:,<span class="dv">0</span>],sol1[:,<span class="dv">1</span>],sol2[:,<span class="dv">0</span>],sol2[:,<span class="dv">1</span>],sol3[:,<span class="dv">0</span>],sol3[:,<span class="dv">1</span>])</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(ss[<span class="dv">0</span>],ss[<span class="dv">1</span>],<span class="st">'k*'</span>)</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$y$'</span>)</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlim([<span class="op">-</span><span class="fl">0.05</span>,<span class="dv">6</span>])</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylim([<span class="op">-</span><span class="fl">0.005</span>,<span class="dv">6</span>])</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>sol1,sol2,sol3,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x<span class="op">=</span>ComputeCompetitionSol(a,b,x_vec)</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>x_vec<span class="op">=</span>np.linspace(<span class="fl">0.01</span>,<span class="dv">6</span>,<span class="dv">100</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ComputeCompetitionSol(a,b,x_vec):</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1000</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    init_cond1<span class="op">=</span>[<span class="fl">0.75</span>,<span class="fl">0.75</span>]</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    init_cond2<span class="op">=</span>[<span class="fl">4.55</span>,<span class="fl">4.15</span>]</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    init_cond3<span class="op">=</span>[<span class="fl">2.5</span>,<span class="fl">0.5</span>]</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    ss<span class="op">=</span>[a,b<span class="op">/</span>a]</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">2.0</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    sol1 <span class="op">=</span> odeint(rhs_bruss_model, init_cond1,t)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    sol2 <span class="op">=</span> odeint(rhs_bruss_model, init_cond2,t)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    sol3 <span class="op">=</span> odeint(rhs_bruss_model, init_cond3,t)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    x_ncline<span class="op">=</span>(<span class="dv">1</span><span class="op">+</span>b)<span class="op">/</span>x_vec<span class="op">-</span>a<span class="op">/</span>x_vec<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    y_ncline_1_a<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">0</span>]    </span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    y_ncline_1_b<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">5</span>]   </span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    y_ncline_2_x<span class="op">=</span>b<span class="op">/</span>x_vec</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sol1,sol2,sol3,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="fl">3.2</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>sol1,sol2,sol3,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x<span class="op">=</span>ComputeCompetitionSol(a,b,x_vec)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(x_vec,x_ncline,<span class="st">'k--'</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(y_ncline_1_a,y_ncline_1_b,<span class="st">'k--'</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(x_vec,y_ncline_2_x,<span class="st">'r--'</span>)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(sol1[:,<span class="dv">0</span>],sol1[:,<span class="dv">1</span>],sol2[:,<span class="dv">0</span>],sol2[:,<span class="dv">1</span>],sol3[:,<span class="dv">0</span>],sol3[:,<span class="dv">1</span>])</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(ss[<span class="dv">0</span>],ss[<span class="dv">1</span>],<span class="st">'k*'</span>)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$y$'</span>)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlim([<span class="op">-</span><span class="fl">0.05</span>,<span class="dv">6</span>])</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylim([<span class="op">-</span><span class="fl">0.005</span>,<span class="dv">6</span>])</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">4.0</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="fl">3.2</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>sol1,sol2,sol3,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x<span class="op">=</span>ComputeCompetitionSol(a,b,x_vec)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(x_vec,x_ncline,<span class="st">'k--'</span>)</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(y_ncline_1_a,y_ncline_1_b,<span class="st">'k--'</span>)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(x_vec,y_ncline_2_x,<span class="st">'r--'</span>)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(sol1[:,<span class="dv">0</span>],sol1[:,<span class="dv">1</span>],sol2[:,<span class="dv">0</span>],sol2[:,<span class="dv">1</span>],sol3[:,<span class="dv">0</span>],sol3[:,<span class="dv">1</span>])</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(ss[<span class="dv">0</span>],ss[<span class="dv">1</span>],<span class="st">'k*'</span>)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$y$'</span>)</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlim([<span class="op">-</span><span class="fl">0.05</span>,<span class="dv">6</span>])</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylim([<span class="op">-</span><span class="fl">0.005</span>,<span class="dv">6</span>])</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>sol1,sol2,sol3,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x<span class="op">=</span>ComputeCompetitionSol(a,b,x_vec)</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-bruss-numsol-phplane" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="enzymekinetics_files/figure-html/fig-bruss-numsol-phplane-output-1.png" width="562" height="434" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.2: Numerical solution of the Brusselator.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;5.3: Numerical solution of the Brusselator.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-bruss-numsol-phplane">Figure&nbsp;<span class="quarto-unresolved-ref">fig-bruss-numsol-phplane</span></a> we plot the the oscillatory solution together with the nullclines. Note that the nullclines separate the phase plane into regions of constant sign. Note that the <span class="math inline">\(x\)</span> nullcline separates the phase plane into regions where <span class="math inline">\(dx/dt&gt;0\)</span> and <span class="math inline">\(dx/dt&lt;0\)</span>. Similarly, the <span class="math inline">\(y\)</span> nullcline separates the phase plane into regions where <span class="math inline">\(dy/dt&gt;0\)</span> and <span class="math inline">\(dy/dt&lt;0\)</span>.</p>
+<p>In <a href="#fig-bruss-numsol-phplane">Figure&nbsp;<span>5.3</span></a> we plot the the oscillatory solution together with the nullclines. Note that the nullclines separate the phase plane into regions of constant sign. Note that the <span class="math inline">\(x\)</span> nullcline separates the phase plane into regions where <span class="math inline">\(dx/dt&gt;0\)</span> and <span class="math inline">\(dx/dt&lt;0\)</span>. Similarly, the <span class="math inline">\(y\)</span> nullcline separates the phase plane into regions where <span class="math inline">\(dy/dt&gt;0\)</span> and <span class="math inline">\(dy/dt&lt;0\)</span>.</p>
 <p>Note that signs for <span class="math inline">\(dx/dt\)</span> can be determined by considering behaviour of the function <span class="math inline">\(f\)</span> as one moves away from the nullcline where, by definition, <span class="math inline">\(f=0\)</span>. Consider some point that sits on the x nullcline. While keeping the <span class="math inline">\(x\)</span> value fixed, increase <span class="math inline">\(y\)</span> so the point moves vertically in the phase plane. This implies that <span class="math inline">\(f\)</span> has increased because the only term to change is <span class="math inline">\(x^2y\)</span>. Hence <span class="math inline">\(f\)</span> increases upon increasing <span class="math inline">\(y\)</span> and therefore <span class="math inline">\(dx/dt\)</span> is positive for all points above the <span class="math inline">\(x\)</span> nullcline. Alternatively, note that in the Jacobian matrix we have calculated that <span class="math inline">\(\partial f/\partial y\)</span> is positive.</p>
 <section id="a-confined-set" class="level4" data-number="5.3.5.1">
 <h4 data-number="5.3.5.1" class="anchored" data-anchor-id="a-confined-set"><span class="header-section-number">5.3.5.1</span> A confined set</h4>
-<p>To define a confined set, we construct the closed loop ABCDEA in phase space (see <a href="#fig-bruss-numsol-phplane-confinedset">Figure&nbsp;<span class="quarto-unresolved-ref">fig-bruss-numsol-phplane-confinedset</span></a>) where the points A, B, C, D and E are defined as follows. Let the points A and B be two points on the <span class="math inline">\(x\)</span> axis with coordinates <span class="math inline">\((\delta,0)\)</span> and <span class="math inline">\((a/(1+b),0)\)</span>, respectively. We choose <span class="math inline">\(\delta&gt;a\)</span>. The outward normal to the line segment AB is <span class="math inline">\(\mathbf{n}=[0,-1]\)</span>. To show that the trajectories point inwards along AB, we compute</p>
+<p>To define a confined set, we construct the closed loop ABCDEA in phase space (see <a href="#fig-bruss-numsol-phplane-confinedset">Figure&nbsp;<span>5.4</span></a>) where the points A, B, C, D and E are defined as follows. Let the points A and B be two points on the <span class="math inline">\(x\)</span> axis with coordinates <span class="math inline">\((\delta,0)\)</span> and <span class="math inline">\((a/(1+b),0)\)</span>, respectively. We choose <span class="math inline">\(\delta&gt;a\)</span>. The outward normal to the line segment AB is <span class="math inline">\(\mathbf{n}=[0,-1]\)</span>. To show that the trajectories point inwards along AB, we compute</p>
 <p><span class="math display">\[
 \mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] = -\frac{dy}{dt}.
 \]</span></p>
@@ -905,88 +989,88 @@ y=\frac{b}{x} \ \ \ \textrm{and} \ \ \ x=0.
 <p><span class="math display">\[
 \mathbf{n}.[\frac{dx}{dt},\frac{dy}{dt}] =  \frac{dx}{dt} &lt;0.
 \]</span></p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>x_vec<span class="op">=</span>np.linspace(<span class="fl">0.01</span>,<span class="dv">6</span>,<span class="dv">100</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ComputeCompetitionSol(a,b,x_vec):</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1000</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    init_cond1<span class="op">=</span>[<span class="fl">0.75</span>,<span class="fl">0.75</span>]</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    init_cond2<span class="op">=</span>[<span class="fl">4.55</span>,<span class="fl">4.15</span>]</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    init_cond3<span class="op">=</span>[<span class="fl">2.5</span>,<span class="fl">0.5</span>]</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    ss<span class="op">=</span>[a,b<span class="op">/</span>a]</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">2.0</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    sol1 <span class="op">=</span> odeint(rhs_bruss_model, init_cond1,t)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    x_ncline<span class="op">=</span>(<span class="dv">1</span><span class="op">+</span>b)<span class="op">/</span>x_vec<span class="op">-</span>a<span class="op">/</span>x_vec<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    y_ncline_1_a<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">0</span>]    </span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    y_ncline_1_b<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">5</span>]   </span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    y_ncline_2_x<span class="op">=</span>b<span class="op">/</span>x_vec</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sol1,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">1.0</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="fl">3.2</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>sol1,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x<span class="op">=</span>ComputeCompetitionSol(a,b,x_vec)</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>k<span class="op">=</span><span class="dv">2</span><span class="op">*</span>a</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>delta<span class="op">=</span><span class="fl">5.5</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>[delta,<span class="dv">0</span>]</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>B<span class="op">=</span>[<span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>b),<span class="dv">0</span>]</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>C<span class="op">=</span>[a<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>b),b<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>b)<span class="op">/</span>a]</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>D<span class="op">=</span>[k,b<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>b)<span class="op">/</span>a]</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>E<span class="op">=</span>[delta,(delta<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>b)<span class="op">-</span>a)<span class="op">/</span>delta<span class="op">**</span><span class="dv">2</span>]</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>ax.plot(x_vec,x_ncline,<span class="st">'k--'</span>)</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>ax.plot(y_ncline_1_a,y_ncline_1_b,<span class="st">'k--'</span>)</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>ax.plot(x_vec,y_ncline_2_x,<span class="st">'r--'</span>)</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>ax.plot(sol1[:,<span class="dv">0</span>],sol1[:,<span class="dv">1</span>])</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>ax.plot(ss[<span class="dv">0</span>],ss[<span class="dv">1</span>],<span class="st">'k*'</span>)</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>ax.plot([A[<span class="dv">0</span>], B[<span class="dv">0</span>]],[A[<span class="dv">1</span>], B[<span class="dv">1</span>]],<span class="st">'m--'</span>)</span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>ax.plot([B[<span class="dv">0</span>], C[<span class="dv">0</span>]],[B[<span class="dv">1</span>], C[<span class="dv">1</span>]],<span class="st">'m--'</span>)</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>ax.plot([C[<span class="dv">0</span>], D[<span class="dv">0</span>]],[C[<span class="dv">1</span>], D[<span class="dv">1</span>]],<span class="st">'m--'</span>)</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>ax.plot([D[<span class="dv">0</span>], E[<span class="dv">0</span>]],[D[<span class="dv">1</span>], E[<span class="dv">1</span>]],<span class="st">'m--'</span>)</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>ax.plot([E[<span class="dv">0</span>], A[<span class="dv">0</span>]],[E[<span class="dv">1</span>], A[<span class="dv">1</span>]],<span class="st">'m--'</span>)</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$y$'</span>)</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="op">-</span><span class="fl">0.05</span>,<span class="dv">6</span>])</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="op">-</span><span class="fl">0.5</span>,<span class="dv">20</span>])</span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>x_vec<span class="op">=</span>np.linspace(<span class="fl">0.01</span>,<span class="dv">6</span>,<span class="dv">100</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ComputeCompetitionSol(a,b,x_vec):</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1000</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    init_cond1<span class="op">=</span>[<span class="fl">0.75</span>,<span class="fl">0.75</span>]</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    init_cond2<span class="op">=</span>[<span class="fl">4.55</span>,<span class="fl">4.15</span>]</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    init_cond3<span class="op">=</span>[<span class="fl">2.5</span>,<span class="fl">0.5</span>]</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    ss<span class="op">=</span>[a,b<span class="op">/</span>a]</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">2.0</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    sol1 <span class="op">=</span> odeint(rhs_bruss_model, init_cond1,t)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    x_ncline<span class="op">=</span>(<span class="dv">1</span><span class="op">+</span>b)<span class="op">/</span>x_vec<span class="op">-</span>a<span class="op">/</span>x_vec<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    y_ncline_1_a<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">0</span>]    </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    y_ncline_1_b<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">5</span>]   </span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    y_ncline_2_x<span class="op">=</span>b<span class="op">/</span>x_vec</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sol1,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="fl">3.2</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>sol1,ss,x_ncline,y_ncline_1_a,y_ncline_1_b,y_ncline_2_x<span class="op">=</span>ComputeCompetitionSol(a,b,x_vec)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>k<span class="op">=</span><span class="dv">2</span><span class="op">*</span>a</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>delta<span class="op">=</span><span class="fl">5.5</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>[delta,<span class="dv">0</span>]</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>B<span class="op">=</span>[<span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>b),<span class="dv">0</span>]</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>C<span class="op">=</span>[a<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>b),b<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>b)<span class="op">/</span>a]</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>D<span class="op">=</span>[k,b<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>b)<span class="op">/</span>a]</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>E<span class="op">=</span>[delta,(delta<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>b)<span class="op">-</span>a)<span class="op">/</span>delta<span class="op">**</span><span class="dv">2</span>]</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>ax.plot(x_vec,x_ncline,<span class="st">'k--'</span>)</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>ax.plot(y_ncline_1_a,y_ncline_1_b,<span class="st">'k--'</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>ax.plot(x_vec,y_ncline_2_x,<span class="st">'r--'</span>)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>ax.plot(sol1[:,<span class="dv">0</span>],sol1[:,<span class="dv">1</span>])</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>ax.plot(ss[<span class="dv">0</span>],ss[<span class="dv">1</span>],<span class="st">'k*'</span>)</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>ax.plot([A[<span class="dv">0</span>], B[<span class="dv">0</span>]],[A[<span class="dv">1</span>], B[<span class="dv">1</span>]],<span class="st">'m--'</span>)</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>ax.plot([B[<span class="dv">0</span>], C[<span class="dv">0</span>]],[B[<span class="dv">1</span>], C[<span class="dv">1</span>]],<span class="st">'m--'</span>)</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>ax.plot([C[<span class="dv">0</span>], D[<span class="dv">0</span>]],[C[<span class="dv">1</span>], D[<span class="dv">1</span>]],<span class="st">'m--'</span>)</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>ax.plot([D[<span class="dv">0</span>], E[<span class="dv">0</span>]],[D[<span class="dv">1</span>], E[<span class="dv">1</span>]],<span class="st">'m--'</span>)</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>ax.plot([E[<span class="dv">0</span>], A[<span class="dv">0</span>]],[E[<span class="dv">1</span>], A[<span class="dv">1</span>]],<span class="st">'m--'</span>)</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$y$'</span>)</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="op">-</span><span class="fl">0.05</span>,<span class="dv">6</span>])</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="op">-</span><span class="fl">0.5</span>,<span class="dv">20</span>])</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-bruss-numsol-phplane-confinedset" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="enzymekinetics_files/figure-html/fig-bruss-numsol-phplane-confinedset-output-1.png" width="602" height="434" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.3: Numerical solution of the Brusselator.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;5.4: Numerical solution of the Brusselator.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Hence at all points on the closed loop ABCDEA trajectories point inwards (see <a href="#fig-bruss-numsol-phplane-confinedset">Figure&nbsp;<span class="quarto-unresolved-ref">fig-bruss-numsol-phplane-confinedset</span></a>). Hence ABDCEA is a confined set and the Poincaire-Bendixson theorem states that the system exhibits limit cycle solutions when the steady state is unstable. This is precisely the behaviour that we see numerically in Figure <a href="#fig-bruss-numsol-phplane">Figure&nbsp;<span class="quarto-unresolved-ref">fig-bruss-numsol-phplane</span></a>.</p>
+<p>Hence at all points on the closed loop ABCDEA trajectories point inwards (see <a href="#fig-bruss-numsol-phplane-confinedset">Figure&nbsp;<span>5.4</span></a>). Hence ABDCEA is a confined set and the Poincaire-Bendixson theorem states that the system exhibits limit cycle solutions when the steady state is unstable. This is precisely the behaviour that we see numerically in Figure <a href="#fig-bruss-numsol-phplane">Figure&nbsp;<span>5.3</span></a>.</p>
 
 
 </section>

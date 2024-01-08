@@ -366,7 +366,7 @@ Note that the linear stability analysis can explain the observations regarding t
 ### Graphical analysis
 
 
-In Figure @fig-dlogisticrhs we plot the right-hand side of @eq-logisticnondim.
+In  @fig-dlogisticrhs we plot the right-hand side of @eq-logisticnondim.
 We can qualitatively describe model solutions by considering the arrow along the x axis. 
 Suppose we consider an initial condition with $0<n_0<1$. Using the graph of $H(n)$, $dn/d\tau$ is positive, hence $n$ increases as a function of time until $n(\tau)\rightarrow 1$. 
 
@@ -541,7 +541,7 @@ plt.show()
 ```
 
 ### Numerical solutions
-In Figure @fig-sprucebudworm-numsol we plot some numerical solutions of @eq-budwormnondim at different values of the parameter $r$. 
+In @fig-sprucebudworm-numsol we plot some numerical solutions of @eq-budwormnondim at different values of the parameter $r$. 
 
 Numerical solutions of @eq-budwormnondim  indicate that there is a single stable steady state when $r$ is both small and large but for intermediate values of $r$ there are two stable steady states. 
 

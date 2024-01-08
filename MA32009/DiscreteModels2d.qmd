@@ -488,6 +488,67 @@ $$
 Hence the fixed point is unstable if $R_0>1$. 
 
 
+### Symbolic calculations in Python
+
+Below sympy is used to identify the fixed points. The Jacobian matrix is then computed and evaluated at the fixed points.  
+
+```{python}
+#| label: code-nich_bailery
+#| fig-cap: "Symbolic calculations"
+#| code-fold: True
+#| caption: none
+
+
+import numpy as np
+import sympy as sp
+
+
+# Define variables and constants
+R_0=sp.symbols("R_0",real=True,nonnegative=True)
+a=sp.symbols("a",real=True,nonnegative=True)
+C=sp.symbols("C",real=True,nonnegative=True)
+
+N = sp.symbols("N",real=True,nonnegative=True)
+P = sp.symbols("P",real=True,nonnegative=True)
+
+# Define H
+H_1=R_0*N*sp.exp(-a*P)
+H_2=C*N*(1-sp.exp(-a*P))
+
+# Solve the FP equation
+fp=sp.solve([H_1-N,H_2-P],[N,P],dict=True)
+
+print("The FPs are:")
+print(fp[0])
+print(fp[1])
+
+# Compute the Jacobian
+A=sp.Array( [[H_1.diff(N), H_1.diff(P)],[H_2.diff(N), H_2.diff(P)]])
+
+print("The Jacobian of H is:")
+print(sp.simplify(A))
+
+
+# Evaluate derivative
+
+print("The Jacobian evaluated at FP 0 is:")
+sol0_N=fp[0][N]
+sol0_P=fp[0][P]
+
+A_eval_0=A.subs([(N,sol0_N),(P,sol0_P)])
+print(A_eval_0)
+
+print("The Jacobian evaluated at FP 1 is:")
+sol1_N=fp[1][N]
+sol1_P=fp[1][P]
+
+A_eval_1=A.subs([(N,sol1_N),(P,sol1_P)])
+print(A_eval_1)
+
+
+```
+
+
 
 
 

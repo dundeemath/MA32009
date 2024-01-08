@@ -228,6 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#linear-stability-of-the-trivial-fixed-point" id="toc-linear-stability-of-the-trivial-fixed-point" class="nav-link" data-scroll-target="#linear-stability-of-the-trivial-fixed-point"><span class="header-section-number">3.3.4</span> Linear stability of the trivial fixed point</a></li>
   <li><a href="#linear-stability-of-the-nontrivial-fixed-point" id="toc-linear-stability-of-the-nontrivial-fixed-point" class="nav-link" data-scroll-target="#linear-stability-of-the-nontrivial-fixed-point"><span class="header-section-number">3.3.5</span> Linear stability of the nontrivial fixed point</a></li>
   <li><a href="#employing-the-jury-conditions" id="toc-employing-the-jury-conditions" class="nav-link" data-scroll-target="#employing-the-jury-conditions"><span class="header-section-number">3.3.6</span> Employing the Jury conditions</a></li>
+  <li><a href="#symbolic-calculations-in-python" id="toc-symbolic-calculations-in-python" class="nav-link" data-scroll-target="#symbolic-calculations-in-python"><span class="header-section-number">3.3.7</span> Symbolic calculations in Python</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -271,7 +272,7 @@ P_{t+1}=g(N_t,P_t).
 <h2 data-number="3.2" class="anchored" data-anchor-id="general-techniques-for-analysing-coupled-first-order-difference-equations"><span class="header-section-number">3.2</span> General techniques for analysing coupled first order difference equations</h2>
 <section id="fixed-points" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="fixed-points"><span class="header-section-number">3.2.1</span> Fixed points</h3>
-<p>The fixed points of <a href="#eq-discretetimetwovar">Equation&nbsp;<span class="quarto-unresolved-ref">eq-discretetimetwovar</span></a> <span class="math inline">\((N^*,P^*)\)</span> satisfy <span class="math display">\[
+<p>The fixed points of <a href="#eq-discretetimetwovar">Equation&nbsp;<span>3.3</span></a> <span class="math inline">\((N^*,P^*)\)</span> satisfy <span class="math display">\[
 \begin{aligned}
 N^*=g(N^*,P^*) \nonumber \\
 P^*=f(N^*,P^*).
@@ -301,7 +302,7 @@ Thus the only fixed point is (0,0).
 N_t&amp;=N^*+\hat{N}_{t},   \nonumber\\
 P_t&amp;=P^*+\hat{P}_{t}.  \nonumber
 \end{aligned}
-\]</span> After substitution in <a href="#eq-discretetimetwovar">Equation&nbsp;<span class="quarto-unresolved-ref">eq-discretetimetwovar</span></a> and making Taylor expansions about <span class="math inline">\((N^*,P^*)\)</span> we obtain at leading order</p>
+\]</span> After substitution in <a href="#eq-discretetimetwovar">Equation&nbsp;<span>3.3</span></a> and making Taylor expansions about <span class="math inline">\((N^*,P^*)\)</span> we obtain at leading order</p>
 <p><span id="eq-discretetimesecondorderdiff"><span class="math display">\[
 \left(\begin{array}{c}
 \hat{N}_{t+1} \\ \hat{P}_{t+1}\end{array}\right) = \left(\begin{array}{rr}
@@ -320,7 +321,7 @@ A= \left(\begin{array}{rr}
 <p><span class="math display">\[
 \mathbf{w}_{t+1}=A\mathbf{w}_{t}
 \]</span> By solving this linear system we can investigate whether small perturbation about the fixed point grow or decay in magnitude as time evolves and hence determine the linear stability of the fixed point.</p>
-<p>The solution of <a href="#eq-discretetimesecondorderdiff">Equation&nbsp;<span class="quarto-unresolved-ref">eq-discretetimesecondorderdiff</span></a> takes the form <span class="math display">\[
+<p>The solution of <a href="#eq-discretetimesecondorderdiff">Equation&nbsp;<span>3.2</span></a> takes the form <span class="math display">\[
 \mathbf{w}_t=\sum_{i=1}^2 C_i \lambda_i^t\mathbf{c}_i,
 \]</span> where the <span class="math inline">\(C_i\)</span>’s are constants determined by initial conditions and the <span class="math inline">\(\lambda_i\)</span>’s and <span class="math inline">\(\mathbf{c}_i\)</span>’s are the eigenvalues and eigenvectors of A, respectively. From this form we can see that if the magnitude of all eigenvalues is less than one, i.e. <span class="math display">\[
 |\lambda_i|&lt;1, \ \ \ \ \ \forall i,
@@ -352,7 +353,7 @@ $$
 <p>Consider the characteristic equation <span class="math display">\[
 P(\lambda)=\lambda^2 + a \lambda +b=0,
 \]</span> where <span class="math inline">\(a,b \in \Re\)</span>. Note that <span class="math inline">\(a=-tr{A}\)</span> and <span class="math inline">\(b=\det{A}\)</span>.</p>
-<p>The Jury conditions state that <span class="math inline">\(|\lambda_i |&lt;1 \forall \ \  i\)</span> if, and only if, * <span class="math inline">\(b&lt;1\)</span>, * <span class="math inline">\(1+a+b&gt;0\)</span>, * *<span class="math inline">\(1-a+b&gt;0\)</span>. See <a href="#fig-juryconditions">Figure&nbsp;<span class="quarto-unresolved-ref">fig-juryconditions</span></a> for schematic diagram.</p>
+<p>The Jury conditions state that <span class="math inline">\(|\lambda_i |&lt;1 \forall \ \  i\)</span> if, and only if, * <span class="math inline">\(b&lt;1\)</span>, * <span class="math inline">\(1+a+b&gt;0\)</span>, * *<span class="math inline">\(1-a+b&gt;0\)</span>. See <a href="#fig-juryconditions">Figure&nbsp;<span>3.1</span></a> for schematic diagram.</p>
 <div id="fig-juryconditions" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="JuryConditions2D.png" class="img-fluid figure-img"></p>
@@ -620,6 +621,71 @@ f_1'&gt;f_2'  \ \ \forall \ R_0&gt;1.
 \]</span> Hence <span class="math display">\[
 \ln R_0 &gt; 1-\frac{1}{R_0}.
 \]</span> Hence the fixed point is unstable if <span class="math inline">\(R_0&gt;1\)</span>.</p>
+</section>
+<section id="symbolic-calculations-in-python" class="level3" data-number="3.3.7">
+<h3 data-number="3.3.7" class="anchored" data-anchor-id="symbolic-calculations-in-python"><span class="header-section-number">3.3.7</span> Symbolic calculations in Python</h3>
+<p>Below sympy is used to identify the fixed points. The Jacobian matrix is then computed and evaluated at the fixed points.</p>
+<div id="code-nich_bailery" class="cell" data-caption="none" data-execution_count="2">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define variables and constants</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>R_0<span class="op">=</span>sp.symbols(<span class="st">"R_0"</span>,real<span class="op">=</span><span class="va">True</span>,nonnegative<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>sp.symbols(<span class="st">"a"</span>,real<span class="op">=</span><span class="va">True</span>,nonnegative<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>C<span class="op">=</span>sp.symbols(<span class="st">"C"</span>,real<span class="op">=</span><span class="va">True</span>,nonnegative<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> sp.symbols(<span class="st">"N"</span>,real<span class="op">=</span><span class="va">True</span>,nonnegative<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> sp.symbols(<span class="st">"P"</span>,real<span class="op">=</span><span class="va">True</span>,nonnegative<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Define H</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>H_1<span class="op">=</span>R_0<span class="op">*</span>N<span class="op">*</span>sp.exp(<span class="op">-</span>a<span class="op">*</span>P)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>H_2<span class="op">=</span>C<span class="op">*</span>N<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>sp.exp(<span class="op">-</span>a<span class="op">*</span>P))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the FP equation</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>fp<span class="op">=</span>sp.solve([H_1<span class="op">-</span>N,H_2<span class="op">-</span>P],[N,P],<span class="bu">dict</span><span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The FPs are:"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fp[<span class="dv">0</span>])</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fp[<span class="dv">1</span>])</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the Jacobian</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>sp.Array( [[H_1.diff(N), H_1.diff(P)],[H_2.diff(N), H_2.diff(P)]])</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The Jacobian of H is:"</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sp.simplify(A))</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate derivative</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The Jacobian evaluated at FP 0 is:"</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>sol0_N<span class="op">=</span>fp[<span class="dv">0</span>][N]</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>sol0_P<span class="op">=</span>fp[<span class="dv">0</span>][P]</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>A_eval_0<span class="op">=</span>A.subs([(N,sol0_N),(P,sol0_P)])</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A_eval_0)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The Jacobian evaluated at FP 1 is:"</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>sol1_N<span class="op">=</span>fp[<span class="dv">1</span>][N]</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>sol1_P<span class="op">=</span>fp[<span class="dv">1</span>][P]</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>A_eval_1<span class="op">=</span>A.subs([(N,sol1_N),(P,sol1_P)])</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A_eval_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>The FPs are:
+{N: 0, P: 0}
+{N: R_0*log(R_0)/(C*a*(R_0 - 1)), P: log(R_0)/a}
+The Jacobian of H is:
+[[R_0*exp(-P*a), -N*R_0*a*exp(-P*a)], [C - C*exp(-P*a), C*N*a*exp(-P*a)]]
+The Jacobian evaluated at FP 0 is:
+[[R_0, 0], [0, 0]]
+The Jacobian evaluated at FP 1 is:
+[[1, -R_0*log(R_0)/(C*(R_0 - 1))], [C*(1 - 1/R_0), log(R_0)/(R_0 - 1)]]</code></pre>
+</div>
+</div>
 
 
 </section>

@@ -316,7 +316,7 @@ N(t)=N_0\exp(rt).
 \tag{3.1}\]</span></span> where <span class="math inline">\(f\)</span> is the per capita growth rate and <span class="math inline">\(H\)</span> is the net growth rate.</p>
 <section id="numerical-solution" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">3.2.1</span> Numerical solution</h3>
-<p>Although an equation of the form <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span class="quarto-unresolved-ref">eq-gensinglespecodeagain</span></a> may not be explicitly integrable, so long as the right-hand side is sufficiently well behaved, we can numerically integrate the problem (e.g.&nbsp;using packages such as Python’s odeint). Such a technique provides a numerical approximation to the exact solution, given specific values of model parameters and initial conditions (i.e.&nbsp;we can graph solutions).</p>
+<p>Although an equation of the form <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span>3.1</span></a> may not be explicitly integrable, so long as the right-hand side is sufficiently well behaved, we can numerically integrate the problem (e.g.&nbsp;using packages such as Python’s odeint). Such a technique provides a numerical approximation to the exact solution, given specific values of model parameters and initial conditions (i.e.&nbsp;we can graph solutions).</p>
 </section>
 <section id="nondimensionalisation" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="nondimensionalisation"><span class="header-section-number">3.2.2</span> Nondimensionalisation</h3>
@@ -339,13 +339,13 @@ N(t)=N_0\exp(rt).
 </section>
 <section id="dimensionless-variables" class="level4" data-number="3.2.2.2">
 <h4 data-number="3.2.2.2" class="anchored" data-anchor-id="dimensionless-variables"><span class="header-section-number">3.2.2.2</span> Dimensionless variables</h4>
-<p>We could nondimensionalise <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span class="quarto-unresolved-ref">eq-gensinglespecodeagain</span></a> by defining the dimensionless variables <span class="math display">\[
+<p>We could nondimensionalise <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span>3.1</span></a> by defining the dimensionless variables <span class="math display">\[
 \begin{aligned}
 n=\frac{N}{\tilde{N}} \nonumber \\
 \tau=\frac{t}{\tilde{T}}.\nonumber
 \end{aligned}
 \]</span></p>
-<p>Making the proposed change of variables in <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span class="quarto-unresolved-ref">eq-gensinglespecodeagain</span></a> we obtain the dimensionless model <span class="math display">\[
+<p>Making the proposed change of variables in <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span>3.1</span></a> we obtain the dimensionless model <span class="math display">\[
 \frac{dn}{d\tau}= \frac{\tilde{T}}{\tilde{N}}H(\tilde{N}n(\tau)).
 \]</span> The choice for scalings is in general not unique (i.e.&nbsp;<span class="math inline">\(N^*\)</span> and <span class="math inline">\(T^*\)</span>). Appropriate choices can result in fewer dimensionless parameters in the dimensionless model.</p>
 <p>Exercise: Show that the Mathusian model <span class="math display">\[
@@ -366,7 +366,7 @@ n=\frac{N}{\tilde{N}} \quad \tau=\frac{t}{\tilde{T}}
 </section>
 <section id="steady-state" class="level3" data-number="3.2.3">
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="steady-state"><span class="header-section-number">3.2.3</span> Steady-state</h3>
-<p>We denote steady-state solutions of <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span class="quarto-unresolved-ref">eq-gensinglespecodeagain</span></a> using <span class="math inline">\(N=N^*\)</span>. At a steady-state, <span class="math display">\[
+<p>We denote steady-state solutions of <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span>3.1</span></a> using <span class="math inline">\(N=N^*\)</span>. At a steady-state, <span class="math display">\[
 \frac{dN}{dt}=0
 \]</span> and hence steady-states can be obtained by solving the algebraic equation <span class="math display">\[
 H(N^*)=0.
@@ -387,15 +387,15 @@ The steady states are $N^*=0$.
 <p>To perform a linear stability analysis we make the change of variables <span class="math display">\[
 N(t)=N^*+\hat{N}(t)
 \]</span> where the new dependent variable, <span class="math inline">\(\hat{N}(t)\)</span>, is a perturbation about the steady state.</p>
-<p>The time derivative on the left-hand side of <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span class="quarto-unresolved-ref">eq-gensinglespecodeagain</span></a> transforms to <span class="math display">\[
+<p>The time derivative on the left-hand side of <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span>3.1</span></a> transforms to <span class="math display">\[
 \frac{dN}{dt}= \frac{d }{dt} (N^*) + \frac{d }{dt}(\hat{N}(t))=\frac{d\hat{N}(t) }{dt}.
-\]</span> Hence <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span class="quarto-unresolved-ref">eq-gensinglespecodeagain</span></a> transforms to <span class="math display">\[
+\]</span> Hence <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span>3.1</span></a> transforms to <span class="math display">\[
 \frac{d\hat{N}(t) }{dt} = H(N^*+\hat{N}(t)).
 \]</span></p>
 </section>
 <section id="taylor-expansion-and-a-linear-system" class="level4" data-number="3.2.4.2">
 <h4 data-number="3.2.4.2" class="anchored" data-anchor-id="taylor-expansion-and-a-linear-system"><span class="header-section-number">3.2.4.2</span> Taylor expansion and a linear system</h4>
-<p>Employing the Taylor expansion on the right-hand side of <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span class="quarto-unresolved-ref">eq-gensinglespecodeagain</span></a> and making the assumption that perturbations are small <span class="math display">\[
+<p>Employing the Taylor expansion on the right-hand side of <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span>3.1</span></a> and making the assumption that perturbations are small <span class="math display">\[
 \frac{d\hat{N}(t) }{dt} = H(N^*)+  H'(N^*)\hat{N}(t) + H''(N^*)\hat{N}^2(t) + h.o.t.
 \]</span> Noting that<br>
 <span class="math display">\[
@@ -450,7 +450,7 @@ Hence for $r>0$, $N^*=0$ is linearly unstable. For $r<0$ $N^*=0$ is linearly sta
 <p>Questions to ask of such a model are: what type of biologically realistic solutions does it possess? Are there steady-states? If so, are they stable or unstable? Are there bifurcations in solutions?</p>
 <section id="numerical-solutions" class="level4" data-number="3.3.1.1">
 <h4 data-number="3.3.1.1" class="anchored" data-anchor-id="numerical-solutions"><span class="header-section-number">3.3.1.1</span> Numerical solutions</h4>
-<p>In <a href="#fig-logisticgrowthmodel">Figure&nbsp;<span class="quarto-unresolved-ref">fig-logisticgrowthmodel</span></a> we present numerical solutions of equation using different initial conditions. Note the limiting behaviour of solutions as <span class="math inline">\(t\rightarrow \infty\)</span>. In <a href="#fig-logisticgrowthmodel">Figure&nbsp;<span class="quarto-unresolved-ref">fig-logisticgrowthmodel</span></a> it is clear that even though some solutions are initialised at <span class="math inline">\(N_0=0.1\)</span>, much closer to <span class="math inline">\(N^*=0\)</span> than <span class="math inline">\(N^*=K\)</span>, they tend to the limit <span class="math inline">\(N=K\)</span>. Why do solutions not tend to <span class="math inline">\(N^*=0\)</span>?</p>
+<p>In <a href="#fig-logisticgrowthmodel">Figure&nbsp;<span>3.1</span></a> we present numerical solutions of equation using different initial conditions. Note the limiting behaviour of solutions as <span class="math inline">\(t\rightarrow \infty\)</span>. In <a href="#fig-logisticgrowthmodel">Figure&nbsp;<span>3.1</span></a> it is clear that even though some solutions are initialised at <span class="math inline">\(N_0=0.1\)</span>, much closer to <span class="math inline">\(N^*=0\)</span> than <span class="math inline">\(N^*=K\)</span>, they tend to the limit <span class="math inline">\(N=K\)</span>. Why do solutions not tend to <span class="math inline">\(N^*=0\)</span>?</p>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
@@ -502,11 +502,11 @@ Hence for $r>0$, $N^*=0$ is linearly unstable. For $r<0$ $N^*=0$ is linearly sta
 </section>
 <section id="dimensional-analysis-and-nondimensionalisation" class="level4" data-number="3.3.1.2">
 <h4 data-number="3.3.1.2" class="anchored" data-anchor-id="dimensional-analysis-and-nondimensionalisation"><span class="header-section-number">3.3.1.2</span> Dimensional analysis and nondimensionalisation</h4>
-<p><span class="math inline">\(N\)</span> represents the population density and has units of one over area (say <span class="math inline">\(1/m^2\)</span>) and <span class="math inline">\(t\)</span> has units of time (say, seconds, <span class="math inline">\(s\)</span>). Hence the left-hand side of <a href="#eq-logisticode">Equation&nbsp;<span class="quarto-unresolved-ref">eq-logisticode</span></a> has units of <span class="math inline">\(1/(m^2 s)\)</span>. The first term on the right-hand side of <a href="#eq-logisticode">Equation&nbsp;<span class="quarto-unresolved-ref">eq-logisticode</span></a> is <span class="math inline">\(rN\)</span>. <span class="math inline">\(N\)</span> has units <span class="math inline">\(1/m^2\)</span> hence the parameter <span class="math inline">\(r\)</span> must have units of <span class="math inline">\(1/s\)</span> for dimensional consistency. This is consistent as <span class="math inline">\(r\)</span> represents the linear growth rate.</p>
+<p><span class="math inline">\(N\)</span> represents the population density and has units of one over area (say <span class="math inline">\(1/m^2\)</span>) and <span class="math inline">\(t\)</span> has units of time (say, seconds, <span class="math inline">\(s\)</span>). Hence the left-hand side of <a href="#eq-logisticode">Equation&nbsp;<span>3.2</span></a> has units of <span class="math inline">\(1/(m^2 s)\)</span>. The first term on the right-hand side of <a href="#eq-logisticode">Equation&nbsp;<span>3.2</span></a> is <span class="math inline">\(rN\)</span>. <span class="math inline">\(N\)</span> has units <span class="math inline">\(1/m^2\)</span> hence the parameter <span class="math inline">\(r\)</span> must have units of <span class="math inline">\(1/s\)</span> for dimensional consistency. This is consistent as <span class="math inline">\(r\)</span> represents the linear growth rate.</p>
 <p>The second term has the form <span class="math inline">\(rN^2/K\)</span>. Given the chosen units for <span class="math inline">\(r\)</span> and <span class="math inline">\(N\)</span>, the parameter <span class="math inline">\(K\)</span> must have dimensions <span class="math inline">\(1/m^2\)</span>. Again, this is consistent as <span class="math inline">\(K\)</span> is a carrying capacity (i.e.&nbsp;it has units of population density).</p>
 <p>We define the nondimensionalised variables <span class="math display">\[
 n=\frac{N}{\tilde{N}} \ \ \ \ \ \ \tau=\frac{t}{\tilde{T}}
-\]</span> where <span class="math inline">\(\tilde{N}\)</span> and <span class="math inline">\(\tilde{T}\)</span> are constants that have units of population density and time, respectively. Hence <a href="#eq-logisticode">Equation&nbsp;<span class="quarto-unresolved-ref">eq-logisticode</span></a> transforms, upon change of variables, to <span class="math display">\[
+\]</span> where <span class="math inline">\(\tilde{N}\)</span> and <span class="math inline">\(\tilde{T}\)</span> are constants that have units of population density and time, respectively. Hence <a href="#eq-logisticode">Equation&nbsp;<span>3.2</span></a> transforms, upon change of variables, to <span class="math display">\[
 \begin{aligned}
 \frac{\tilde{N}}{\tilde{T} }\frac{dn}{d\tau}=r\tilde{N}n(1-\frac{n\tilde{N}}{K}).
 \end{aligned}
@@ -535,11 +535,11 @@ H'(n)= 1.
 <p>At the steady-state <span class="math inline">\(n^*=1\)</span> <span class="math display">\[
 H'(n^*)= -1
 \]</span> hence <span class="math inline">\(n^*=1\)</span> is linearly stable.</p>
-<p>Note that the linear stability analysis can explain the observations regarding the numeric solutions presented in <a href="#fig-logisticgrowthmodel">Figure&nbsp;<span class="quarto-unresolved-ref">fig-logisticgrowthmodel</span></a>.</p>
+<p>Note that the linear stability analysis can explain the observations regarding the numeric solutions presented in <a href="#fig-logisticgrowthmodel">Figure&nbsp;<span>3.1</span></a>.</p>
 </section>
 <section id="graphical-analysis" class="level3" data-number="3.3.3">
 <h3 data-number="3.3.3" class="anchored" data-anchor-id="graphical-analysis"><span class="header-section-number">3.3.3</span> Graphical analysis</h3>
-<p>In Figure <a href="#fig-dlogisticrhs">Figure&nbsp;<span class="quarto-unresolved-ref">fig-dlogisticrhs</span></a> we plot the right-hand side of <a href="#eq-logisticnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-logisticnondim</span></a>. We can qualitatively describe model solutions by considering the arrow along the x axis. Suppose we consider an initial condition with <span class="math inline">\(0&lt;n_0&lt;1\)</span>. Using the graph of <span class="math inline">\(H(n)\)</span>, <span class="math inline">\(dn/d\tau\)</span> is positive, hence <span class="math inline">\(n\)</span> increases as a function of time until <span class="math inline">\(n(\tau)\rightarrow 1\)</span>.</p>
+<p>In <a href="#fig-dlogisticrhs">Figure&nbsp;<span>3.2</span></a> we plot the right-hand side of <a href="#eq-logisticnondim">Equation&nbsp;<span>3.3</span></a>. We can qualitatively describe model solutions by considering the arrow along the x axis. Suppose we consider an initial condition with <span class="math inline">\(0&lt;n_0&lt;1\)</span>. Using the graph of <span class="math inline">\(H(n)\)</span>, <span class="math inline">\(dn/d\tau\)</span> is positive, hence <span class="math inline">\(n\)</span> increases as a function of time until <span class="math inline">\(n(\tau)\rightarrow 1\)</span>.</p>
 <div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
@@ -561,7 +561,7 @@ H'(n^*)= -1
 <div class="cell-output cell-output-display">
 <div id="fig-dlogisticrhs" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="SinglePopODEMOdels_files/figure-html/fig-dlogisticrhs-output-1.png" width="610" height="429" class="figure-img"></p>
+<p><img src="SinglePopODEMOdels_files/figure-html/fig-dlogisticrhs-output-1.png" width="609" height="429" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;3.2: Right-hand side of the logistic ODE</figcaption>
 </figure>
 </div>
@@ -613,7 +613,7 @@ p'(N)=\frac{2BN}{A^2+N^2} - \frac{2BN^3}{(A^2+N^2)^2} =  \frac{2BA^2N}{(A^2+N^2)
 <p><span class="math display">\[
 n=\frac{N}{\tilde{N}} \ \ \ \ \ \ \tau=\frac{t}{\tilde{T}}.
 \]</span></p>
-<p>Changing variables in <a href="#eq-sprucebudworm">Equation&nbsp;<span class="quarto-unresolved-ref">eq-sprucebudworm</span></a> yields</p>
+<p>Changing variables in <a href="#eq-sprucebudworm">Equation&nbsp;<span>3.4</span></a> yields</p>
 <p><span class="math display">\[
 \frac{\tilde{N}}{\tilde{T}}\frac{d n }{d\tau}= r_B \tilde{N}n\left(1-\frac{\tilde{N}n}{K_B}\right)-\frac{B\tilde{N}^2n^2}{A^2+\tilde{N}^2 n^2}.
 \]</span></p>
@@ -632,7 +632,7 @@ n=\frac{N}{\tilde{N}} \ \ \ \ \ \ \tau=\frac{t}{\tilde{T}}.
 \tag{3.5}\]</span></span> where we define the nondimensional parameters <span class="math display">\[
 r= \frac{r_B A}{B} \ \ \  \textrm{and} \ \ \  q=\frac{K_B}{A}.
 \]</span></p>
-<p>Note that <a href="#eq-budwormnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-budwormnondim</span></a> has two nondimensional parameters and all variables are dimensionless. See <a href="#fig-sprucebudworm-rhs">Figure&nbsp;<span class="quarto-unresolved-ref">fig-sprucebudworm-rhs</span></a> for a plot of right-hand side of equation <a href="#eq-budwormnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-budwormnondim</span></a>. What kind of behaviours do you expect to see from the model?</p>
+<p>Note that <a href="#eq-budwormnondim">Equation&nbsp;<span>3.5</span></a> has two nondimensional parameters and all variables are dimensionless. See <a href="#fig-sprucebudworm-rhs">Figure&nbsp;<span>3.3</span></a> for a plot of right-hand side of equation <a href="#eq-budwormnondim">Equation&nbsp;<span>3.5</span></a>. What kind of behaviours do you expect to see from the model?</p>
 <div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
@@ -687,8 +687,8 @@ r= \frac{r_B A}{B} \ \ \  \textrm{and} \ \ \  q=\frac{K_B}{A}.
 </section>
 <section id="numerical-solutions-1" class="level3" data-number="3.4.3">
 <h3 data-number="3.4.3" class="anchored" data-anchor-id="numerical-solutions-1"><span class="header-section-number">3.4.3</span> Numerical solutions</h3>
-<p>In Figure <a href="#fig-sprucebudworm-numsol">Figure&nbsp;<span class="quarto-unresolved-ref">fig-sprucebudworm-numsol</span></a> we plot some numerical solutions of <a href="#eq-budwormnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-budwormnondim</span></a> at different values of the parameter <span class="math inline">\(r\)</span>.</p>
-<p>Numerical solutions of <a href="#eq-budwormnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-budwormnondim</span></a> indicate that there is a single stable steady state when <span class="math inline">\(r\)</span> is both small and large but for intermediate values of <span class="math inline">\(r\)</span> there are two stable steady states.</p>
+<p>In <a href="#fig-sprucebudworm-numsol">Figure&nbsp;<span>3.4</span></a> we plot some numerical solutions of <a href="#eq-budwormnondim">Equation&nbsp;<span>3.5</span></a> at different values of the parameter <span class="math inline">\(r\)</span>.</p>
+<p>Numerical solutions of <a href="#eq-budwormnondim">Equation&nbsp;<span>3.5</span></a> indicate that there is a single stable steady state when <span class="math inline">\(r\)</span> is both small and large but for intermediate values of <span class="math inline">\(r\)</span> there are two stable steady states.</p>
 <p>Our goal is to analyse the model and understand why different parameter values yield these strikingly different model behaviours.</p>
 <div class="cell" data-execution_count="4">
 <details>
@@ -719,7 +719,7 @@ r= \frac{r_B A}{B} \ \ \  \textrm{and} \ \ \  q=\frac{K_B}{A}.
 </section>
 <section id="steady-state-analysis" class="level3" data-number="3.4.4">
 <h3 data-number="3.4.4" class="anchored" data-anchor-id="steady-state-analysis"><span class="header-section-number">3.4.4</span> Steady state analysis</h3>
-<p>Letting <span class="math inline">\(n^*\)</span> represent steady states of <a href="#eq-budwormnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-budwormnondim</span></a> yields <span class="math display">\[
+<p>Letting <span class="math inline">\(n^*\)</span> represent steady states of <a href="#eq-budwormnondim">Equation&nbsp;<span>3.5</span></a> yields <span class="math display">\[
 rn^*(1-\frac{n^*}{q})- \frac{n^*{^2}}{1+n^*{^2}}=0.
 \]</span> Hence either <span class="math display">\[
 n^*=0,
@@ -731,7 +731,7 @@ r\left(1-\frac{n^*}{q}\right)- \frac{n^*}{1+n^*{^2}}=0.
 f(n^*)=r\left(1-\frac{n^*}{q}\right) \ \ \textrm{and} \ \ g(n^*)=\frac{n^*}{1+n^*{^2}}.
 \tag{3.6}\]</span></span></p>
 <p>Roots occur for values of <span class="math inline">\(n^*\)</span> that satisfy <span class="math inline">\(f=g\)</span>.</p>
-<p>In <a href="#fig-sprucebudworm-rhsfg">Figure&nbsp;<span class="quarto-unresolved-ref">fig-sprucebudworm-rhsfg</span></a> (a) we fix the parameter <span class="math inline">\(q=10\)</span> and consider model behaviour as a function of the parameter <span class="math inline">\(r\)</span>. When <span class="math inline">\(r\gg1\)</span> there is a nonzero steady-state corresponding to <span class="math inline">\(n^*\gg 1\)</span>. When <span class="math inline">\(r\ll1\)</span> there is a nonzero steady-state corresponding to <span class="math inline">\(n^*\ll 1\)</span>. In the intermediate case there can be three intersection points.</p>
+<p>In <a href="#fig-sprucebudworm-rhsfg">Figure&nbsp;<span>3.5</span></a> (a) we fix the parameter <span class="math inline">\(q=10\)</span> and consider model behaviour as a function of the parameter <span class="math inline">\(r\)</span>. When <span class="math inline">\(r\gg1\)</span> there is a nonzero steady-state corresponding to <span class="math inline">\(n^*\gg 1\)</span>. When <span class="math inline">\(r\ll1\)</span> there is a nonzero steady-state corresponding to <span class="math inline">\(n^*\ll 1\)</span>. In the intermediate case there can be three intersection points.</p>
 <p>We can use the curve sketching techniques form Tutorial Sheet 1 to sketch <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>.</p>
 <p><span class="math inline">\(f\)</span> is linear. There is a root at <span class="math inline">\(n^*=q\)</span>. The derivative is <span class="math inline">\(-r/q\)</span>. <span class="math inline">\(f(0)\)</span>=r. <span class="math inline">\(g\)</span> has a unique root at <span class="math inline">\(n^*=0\)</span>. The derivative is <span class="math display">\[
 g'=\frac{1-n{^*}^2}{(1+n^*)^2}.
@@ -745,7 +745,7 @@ H'(n)=r(1-\frac{2n}{q})-\frac{2{n}}{1+{n}^2} +\frac{2{n}^3}{(1+{n}^2)^2}.
 <p>Hence at the steady state <span class="math inline">\(n^*=0\)</span> <span class="math display">\[
 H'(0)=r
 \]</span> and the steady state is linearly unstable.</p>
-<p>Given the nonzero steady states have not been calculated explicitly, we proceed using graphical analysis of stability. In <a href="#fig-sprucebudworm-rhsfg">Figure&nbsp;<span class="quarto-unresolved-ref">fig-sprucebudworm-rhsfg</span></a> (b) we plot the right-hand side of <a href="#eq-budwormnondim">Equation&nbsp;<span class="quarto-unresolved-ref">eq-budwormnondim</span></a> against <span class="math inline">\(n\)</span> and examine the cases of large, small and intermediate <span class="math inline">\(r\)</span> for a given value of <span class="math inline">\(q\)</span>.</p>
+<p>Given the nonzero steady states have not been calculated explicitly, we proceed using graphical analysis of stability. In <a href="#fig-sprucebudworm-rhsfg">Figure&nbsp;<span>3.5</span></a> (b) we plot the right-hand side of <a href="#eq-budwormnondim">Equation&nbsp;<span>3.5</span></a> against <span class="math inline">\(n\)</span> and examine the cases of large, small and intermediate <span class="math inline">\(r\)</span> for a given value of <span class="math inline">\(q\)</span>.</p>
 <p>When <span class="math inline">\(r\)</span> is both large and small the nonzero steady state is stable (the derivative at the roots is negative). In the case where three biologically relevant roots exist, the intermediate root is unstable.</p>
 <div class="cell" data-execution_count="5">
 <details>
@@ -823,7 +823,7 @@ f(n^*)= g(n^*) \ \ \ \  f'(n^*)= g'(n^*).
 r-\frac{n{^*}^{2}-1}{(1+n{^*}^{2})^2}n^*=\frac{n^*}{1+n{^*}^{2}},
 \]</span> which can be written in the form <span class="math display">\[
 r=\frac{2n{^*}^{3}}{(1+n{^*}^{2})^2}.
-\]</span> Substituting for <span class="math inline">\(r\)</span> in <a href="#eq-rqeqn1">Equation&nbsp;<span class="quarto-unresolved-ref">eq-rqeqn1</span></a> yields <span class="math display">\[
+\]</span> Substituting for <span class="math inline">\(r\)</span> in <a href="#eq-rqeqn1">Equation&nbsp;<span>3.7</span></a> yields <span class="math display">\[
 \frac{2n{^*}^{3}}{(1+n{^*}^{2})^2}=\frac{2n{^*}^{3}}{(1+n{^*}^{2})^2}\frac{n^*}{q}+\frac{n^*}{1+n{^*}^2}
 \]</span> which, after some algebra, yields <span id="eq-sprucebudwormqpara"><span class="math display">\[
 q=\frac{2n{^*}^3}{n{^*}^{2}-1}.
@@ -855,23 +855,17 @@ q=\frac{2n{^*}^3}{n{^*}^{2}-1}.
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/m_/vc0kz_0x6ls5n4qnksq052jw0000gp/T/ipykernel_30889/3415590409.py:2: RuntimeWarning:
-
-divide by zero encountered in divide
-</code></pre>
-</div>
 <div class="cell-output cell-output-display">
 <div id="fig-sprucebudworm-rq" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="SinglePopODEMOdels_files/figure-html/fig-sprucebudworm-rq-output-2.png" width="602" height="429" class="figure-img"></p>
+<p><img src="SinglePopODEMOdels_files/figure-html/fig-sprucebudworm-rq-output-1.png" width="602" height="429" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;3.6: Bifurcations in the rq plane</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>By varying values of <span class="math inline">\(n^*\)</span> in <a href="#fig-sprucebudworm-rq">Figure&nbsp;<span class="quarto-unresolved-ref">fig-sprucebudworm-rq</span></a> we plot a region of instability. Note for example that <span class="math inline">\(q\rightarrow \infty\)</span> as <span class="math inline">\(n^*\rightarrow 1\)</span> and as <span class="math inline">\(n^*\rightarrow \infty\)</span>. Note also that in these limits <span class="math inline">\(r\)</span> must take the value 1/2 and 0, respectively.</p>
-<p>We can show that the cusp in <a href="#fig-sprucebudworm-rq">Figure&nbsp;<span class="quarto-unresolved-ref">fig-sprucebudworm-rq</span></a> is given by <span class="math display">\[
+<p>By varying values of <span class="math inline">\(n^*\)</span> in <a href="#fig-sprucebudworm-rq">Figure&nbsp;<span>3.6</span></a> we plot a region of instability. Note for example that <span class="math inline">\(q\rightarrow \infty\)</span> as <span class="math inline">\(n^*\rightarrow 1\)</span> and as <span class="math inline">\(n^*\rightarrow \infty\)</span>. Note also that in these limits <span class="math inline">\(r\)</span> must take the value 1/2 and 0, respectively.</p>
+<p>We can show that the cusp in <a href="#fig-sprucebudworm-rq">Figure&nbsp;<span>3.6</span></a> is given by <span class="math display">\[
 \left(q,r\right)=\left(3^{\frac{3}{2}},\left(\frac{\sqrt{3}}{2}\right)^3\right).
 \]</span></p>
 <p>Note that <span class="math inline">\(r\)</span> is a decreasing function of <span class="math inline">\(q\)</span> for <span class="math inline">\(1&lt;n^*&lt;\sqrt{3}\)</span> but that <span class="math inline">\(r\)</span> is an increasing function of <span class="math inline">\(n^*\)</span> for <span class="math inline">\(\sqrt{3}&lt;n^*&lt;\infty\)</span>. This can be shown by finding the turning points of <span class="math inline">\(r\)</span> w.r.t <span class="math inline">\(n^*\)</span>, i.e. Given that <span class="math display">\[
@@ -887,7 +881,7 @@ r=\frac{2n{^*}^{3}}{(1+n{^*}^{2})^2},
 \]</span> Thus there is a turning point that minimises <span class="math inline">\(r\)</span> at <span class="math inline">\(n^*=\sqrt{3}\)</span>.</p>
 <p>Substitution for this value of <span class="math inline">\(n^*\)</span> yields <span class="math display">\[
 \left(q,r\right)=\left(3^{\frac{3}{2}},\left(\frac{\sqrt{3}}{2}\right)^3\right).
-\]</span> See <a href="#fig-sprucebudworm-rq">Figure&nbsp;<span class="quarto-unresolved-ref">fig-sprucebudworm-rq</span></a>.</p>
+\]</span> See <a href="#fig-sprucebudworm-rq">Figure&nbsp;<span>3.6</span></a>.</p>
 </section>
 <section id="hysteresis" class="level3" data-number="3.4.7">
 <h3 data-number="3.4.7" class="anchored" data-anchor-id="hysteresis"><span class="header-section-number">3.4.7</span> Hysteresis</h3>
@@ -896,35 +890,35 @@ r=\frac{2n{^*}^{3}}{(1+n{^*}^{2})^2},
 \]</span> we obtain <span id="eq-sprucebudwormrpara"><span class="math display">\[
    r = \frac{n^*}{(1+n{^*}^{2})(1-\frac{n^*}{q})}.
 \tag{3.10}\]</span></span></p>
-<p>Considering <span class="math inline">\(n^*&lt;q\)</span> we compute <span class="math inline">\(r\)</span>; plotting <span class="math inline">\(n^*\)</span> against <span class="math inline">\(r\)</span> yields the bifurcation curve presented in <a href="#fig-sprucebudworm-bfc">Figure&nbsp;<span class="quarto-unresolved-ref">fig-sprucebudworm-bfc</span></a>.</p>
+<p>Considering <span class="math inline">\(n^*&lt;q\)</span> we compute <span class="math inline">\(r\)</span>; plotting <span class="math inline">\(n^*\)</span> against <span class="math inline">\(r\)</span> yields the bifurcation curve presented in <a href="#fig-sprucebudworm-bfc">Figure&nbsp;<span>3.7</span></a>.</p>
 <div class="cell" data-execution_count="7">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Computern(x,q):</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  r<span class="op">=</span>x<span class="op">/</span>((<span class="dv">1</span><span class="op">+</span>x<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x<span class="op">/</span>q))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span>  r</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>q<span class="op">=</span><span class="dv">12</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>n_s_1<span class="op">=</span>np.linspace(<span class="dv">1</span>,np.sqrt(<span class="dv">3</span>),<span class="dv">100</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>n_s_2<span class="op">=</span>np.linspace(np.sqrt(<span class="dv">3</span>),<span class="fl">0.99</span><span class="op">*</span>q,<span class="dv">100</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>n_s_3<span class="op">=</span>np.linspace(<span class="dv">0</span>,np.sqrt(<span class="dv">3</span>),<span class="dv">100</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>r_1<span class="op">=</span>Computern(n_s_1,q)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>r_2<span class="op">=</span>Computern(n_s_2,q)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>r_3<span class="op">=</span>Computern(n_s_3,q)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>ax.plot(r_1, n_s_1,r_2, n_s_2,r_3,n_s_3)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$r$'</span>)</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$n^*$'</span>)</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="dv">2</span>])</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Computern(x,q):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  r<span class="op">=</span>x<span class="op">/</span>((<span class="dv">1</span><span class="op">+</span>x<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x<span class="op">/</span>q))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span>  r</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>q<span class="op">=</span><span class="dv">12</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>n_s_1<span class="op">=</span>np.linspace(<span class="dv">1</span>,np.sqrt(<span class="dv">3</span>),<span class="dv">100</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>n_s_2<span class="op">=</span>np.linspace(np.sqrt(<span class="dv">3</span>),<span class="fl">0.99</span><span class="op">*</span>q,<span class="dv">100</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>n_s_3<span class="op">=</span>np.linspace(<span class="dv">0</span>,np.sqrt(<span class="dv">3</span>),<span class="dv">100</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>r_1<span class="op">=</span>Computern(n_s_1,q)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>r_2<span class="op">=</span>Computern(n_s_2,q)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>r_3<span class="op">=</span>Computern(n_s_3,q)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>ax.plot(r_1, n_s_1,r_2, n_s_2,r_3,n_s_3)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$r$'</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$n^*$'</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="dv">2</span>])</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-sprucebudworm-bfc" class="quarto-figure quarto-figure-center anchored">
