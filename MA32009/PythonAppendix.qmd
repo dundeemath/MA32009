@@ -11,6 +11,8 @@ This library comes with [tutorials](https://docs.sympy.org/latest/tutorials/inde
 
 You are encouraged to familiarise yourself with the syntax by working through some of the tutorial examples provided at the links above.
 
+Many of the calculations that we do throughout the course involve solving systems of algebraic equations
+
 ## Numerical solution of difference equations
 
 Difference equations have been solved using a for loop. Routinse have been written to solve either single or coupled system of difference equaitons.
@@ -19,6 +21,13 @@ Difference equations have been solved using a for loop. Routinse have been writt
 ## Numerical integration of ODEs
 
 Throughout the notes systems of ODEs have been integrated using the [Scipy](https://scipython.com) function [odeint](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.odeint.html).
+
+
+
+## Plotting
+
+Line graphs are plotted using the Python library [Matplotlib](https://matplotlib.org).
+
 
 
 

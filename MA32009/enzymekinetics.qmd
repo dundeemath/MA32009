@@ -1017,6 +1017,13 @@ ax.plot([C[0], D[0]],[C[1], D[1]],'m--')
 ax.plot([D[0], E[0]],[D[1], E[1]],'m--')
 ax.plot([E[0], A[0]],[E[1], A[1]],'m--')
 
+ax.annotate('A', A)
+ax.annotate('B', B)
+ax.annotate('C', C)
+ax.annotate('D', D)
+ax.annotate('E', E)
+
+
 plt.xlabel('$x$')
 plt.ylabel('$y$')
 
