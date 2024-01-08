@@ -226,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#the-law-of-mass-action" id="toc-the-law-of-mass-action" class="nav-link active" data-scroll-target="#the-law-of-mass-action"><span class="header-section-number">5.1</span> The law of mass action</a>
   <ul class="collapse">
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">5.1.1</span> Example</a></li>
+  <li><a href="#example-2" id="toc-example-2" class="nav-link" data-scroll-target="#example-2"><span class="header-section-number">5.1.1</span> Example</a></li>
   </ul></li>
   <li><a href="#enzyme-kinetics" id="toc-enzyme-kinetics" class="nav-link" data-scroll-target="#enzyme-kinetics"><span class="header-section-number">5.2</span> Enzyme kinetics</a>
   <ul class="collapse">
@@ -291,7 +291,7 @@ k_b[C_1]^\gamma_1[C_2]^\gamma_2 ..[C_M]^\gamma_M
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Example
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -314,7 +314,7 @@ k[A][B].
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Example
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -337,8 +337,8 @@ A+B  \xrightleftharpoons[k_{-}]{k_{+}}  C.
 \]</span> the ODEs can be solved and hence the concentrations of the different molecules described as time evolves.</p>
 </div>
 </div>
-<section id="example" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="example"><span class="header-section-number">5.1.1</span> Example</h3>
+<section id="example-2" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="example-2"><span class="header-section-number">5.1.1</span> Example</h3>
 <p>The previous example have had stochiometric constants all set to unity (i.e.&nbsp;all reactions involved a molecules of one species interaction with one from another). Consider the reaction in which one molecule of species A with <span class="math inline">\(m\)</span> of species B giving rise to <span class="math inline">\(n\)</span> molecules of species B and <span class="math inline">\(p\)</span> molecules of species C, i.e. <span class="math display">\[
 A+mB \xrightarrow{k_1} nB + pC.
 %X \underset{k_2}{\stackrel{k_1}{\rightleftharpoons}} Y
@@ -359,7 +359,7 @@ k_1[A][B]^m.
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Example
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -408,7 +408,7 @@ s(0)=s_0, \ \ e(0)=e_0, \ \ c(0)=0, \ \ p(0)=0,
 <h3 data-number="5.2.2" class="anchored" data-anchor-id="numerical-solutions"><span class="header-section-number">5.2.2</span> Numerical solutions</h3>
 <p>In <a href="#fig-mm-numsol">Figure&nbsp;<span>5.1</span></a> we plot numerical solutions of <a href="#eq-mmenten4var">Equation&nbsp;<span>5.1</span></a>. For this solution we have chosen initial conditions such that <span class="math display">\[
 \frac{e_0}{s_0}\ll 1.
-\]</span> Note that the dynamics of <span class="math inline">\(c\)</span> and <span class="math inline">\(e\)</span> have sharp transitions whilst those of <span class="math inline">\(s\)</span> and <span class="math inline">\(p\)</span> do not.</p>
+\]</span> Note that <span class="math inline">\(c\)</span> and <span class="math inline">\(e\)</span> evolve rapidly in time close to the initial data whilst those of <span class="math inline">\(s\)</span> and <span class="math inline">\(p\)</span> do not.</p>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
@@ -481,7 +481,7 @@ s(0)=s_0, \ \ e(0)=e_0, \ \ c(0)=0, \ \ p(0)=0,
 <div class="cell-output cell-output-display">
 <div id="fig-mm-numsol" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="enzymekinetics_files/figure-html/fig-mm-numsol-output-1.png" width="599" height="429" class="figure-img"></p>
+<p><img src="enzymekinetics_files/figure-html/fig-mm-numsol-output-1.png" width="600" height="429" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;5.1: Numerical solutions of the Michaelis Menten model</figcaption>
 </figure>
 </div>

@@ -32,6 +32,7 @@ $$
 where $k_f$ and $k_b$ are dimensional rate constants.
 
 ::: {.callout-note }
+## Example
 
 Suppose A and B react to produce C. Hence
 $$
@@ -52,7 +53,9 @@ $$
 :::
 
 
-::: {.callout-note }
+::: {.callout-note}
+## Example
+
 
 Consider the reversible reaction
 $$
@@ -109,6 +112,7 @@ $$
 
 
 ::: {.callout-note }
+## Example
 
 Consider the reversible reaction
 $$
@@ -174,7 +178,7 @@ In @fig-mm-numsol we plot numerical solutions of @eq-mmenten4var. For this solut
 $$
 \frac{e_0}{s_0}\ll 1.
 $$
-Note that the dynamics of $c$ and $e$ have sharp transitions whilst those of $s$ and $p$ do not.
+Note that  $c$ and $e$ evolve rapidly in time close to the initial data whilst those of $s$ and $p$ do not.
 
 ```{python}
 #| label: fig-mm-numsol

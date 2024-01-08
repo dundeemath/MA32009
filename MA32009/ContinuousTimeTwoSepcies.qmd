@@ -30,29 +30,7 @@ $$
 
 Hence, by definition, the time derivatives of $u(t)$ and $v(t)$ are both zero at $(u^*,v^*)$. As was the case for single species models, steady states are obtained by solving algebraic equations.
 
-::: {.callout-note }
-Compute the steady states of the system of ODEs
-$$
-\begin{aligned}
-\frac{du}{dt}&=1-u,  \nonumber \\
-\frac{dv}{dt}&=1-uv-v.
-\end{aligned}
-$$
-:::
 
-::: {.callout-tip collapse="true"}
-  
-Suppose $(u^*,v^*)$ is a steady state.
- Hence
-$$
- 0=1-u^*
- $$
- and
-$$
- 0=1-u^*v^*-v^*
- $$
-   The steady state is $(1,1/2)$.
-:::
 
 
 ### Linear stability analysis
@@ -66,7 +44,7 @@ $$
 
 where $\hat{u}(t)$ and $\hat{v}(t)$ are perturbations about the steady state.
 
- Rewriting equation @eq-twovariablfegen in the transformed variables yields
+Rewriting equation @eq-twovariablfegen in the transformed variables yields
  
 $$
 \begin{aligned}
@@ -152,16 +130,7 @@ These different cases can be distinguished in the trace-determinant plane plotte
 Note that it can be shown rigorously  that the linear stability of the nonlinear system is equivalent to that of the linearised system in all cases except when the steady state is a centre. In this case, nonlinear stability analysis is required to determine the stability of the nonlinear system.
 
 
-::: {.callout-note }
-Deduce, by considering the form for the eigenvalues that, for example, the conditions
-$\det(A)>0$, $\mathrm{tr}(A)>0$ with $\mathrm{tr}(A)^2<4 \det(A)$ imply that the steady state is an unstable spiral.
-:::
 
-::: {.callout-tip collapse="true"}
-The eigenvalues are given by
-$$
-\lambda = \frac{\mathrm{tr}{A}\pm \sqrt{\mathrm{tr}{A}^2-4\det{A}}}{2}
-$$
 The condition$\det(A)>0$ excludes the  case that the eigenvalues are real but have opposite signs (i.e. it cannot be a saddle point).
 
 The condition $\mathrm{tr}(A)>0$ implies that the real part of both eigenvalues are positive (i.e.  the steady state is unstable).
@@ -175,45 +144,10 @@ $$
 e^{\lambda t} = e^{(\mu+i\omega) t} = e^{\mu t}e^{i\omega t}. 
 $$
 Thus the magnitude of perturbation grows but it oscillates about the steady state. Hence the steady state is an unstable spiral.
-:::
 
 
-::: {.callout-note}
-Compute the Jacobian matrix for the system of ODEs
-$$
-\begin{aligned}
-\frac{du}{dt}&=1-u,  \nonumber \\
-\frac{dv}{dt}&=1-uv-v.
-\end{aligned}
-$$
-Evaluate the Jacobian matrix at the steady state and hence determine its linear stability.
-:::
 
- 
-::: {.callout-tip collapse="true"}
- The Jacobian is given by 
-$$
-A=\left(\begin{array}{rr} -1&0 \\ -v &-u-1 \end{array}\right).
-$$
-At (1,1/2)
-$$
-A=\left(\begin{array}{rr} -1&0 \\ -\frac{1}{2} &-2 \end{array}\right).
-$$
- In this case 
-$$
- tr(A)=-3
- $$
- and 
-$$
- \det(A)=2
- $$
- Hence the steady state is stable.
- As 
-$$
- tr(A)^2-4\det(A)=9-8=1,
- $$
- it is a stable node.
-:::
+
 
 ### Nullclines 
 
@@ -235,20 +169,7 @@ respectively.
  The nullclines can be used to help identify confined sets and hence apply the Poincaire-Bendixson theorem.
 
  
-::: {.callout-note}
-  Sketch the nullclines of the system of ODEs
-$$
-\begin{aligned}
-\frac{du}{dt}&=1-u,  \nonumber \\
-\frac{dv}{dt}&=1-uv-v.
-\end{aligned}
-$$
-:::
-  
-::: {.callout-tip collapse="true"}
-  The $u$ nullcline is $u=1$.
-  The $v$ nullcline is $v=1/(1+u)$.
-:::
+
 
 
 ### Poincaire-Bendixson theorem
