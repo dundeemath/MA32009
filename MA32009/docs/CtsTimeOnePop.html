@@ -83,8 +83,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ContinuousTimeTwoSepcies.html" rel="next">
-<link href="./DiscreteModels2d.html" rel="prev">
+<link href="./CtsTimeMultiPop.html" rel="next">
+<link href="./DiscreteTimeTwoPop.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -129,7 +129,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./SinglePopODEMOdels.html">Continuous time</a></li><li class="breadcrumb-item"><a href="./SinglePopODEMOdels.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Single species population dynamics</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./CtsTimeOnePop.html">Continuous time</a></li><li class="breadcrumb-item"><a href="./CtsTimeOnePop.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Single species population dynamics</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -175,13 +175,13 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./MA32009-SinglePopDiscreteTimea.html" class="sidebar-item-text sidebar-link">
+  <a href="./DiscreteTimeOnePop.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Single species population dynamics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DiscreteModels2d.html" class="sidebar-item-text sidebar-link">
+  <a href="./DiscreteTimeTwoPop.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Multi species population dynamics</span></span></a>
   </div>
 </li>
@@ -198,19 +198,19 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./SinglePopODEMOdels.html" class="sidebar-item-text sidebar-link active">
+  <a href="./CtsTimeOnePop.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Single species population dynamics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ContinuousTimeTwoSepcies.html" class="sidebar-item-text sidebar-link">
+  <a href="./CtsTimeMultiPop.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multi species population dynamics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./enzymekinetics.html" class="sidebar-item-text sidebar-link">
+  <a href="./Biochemicalkinetics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Biochemical kinetics</span></span></a>
   </div>
 </li>
@@ -365,11 +365,6 @@ n=\frac{N}{\tilde{N}} \nonumber \\
 <p>Making the proposed change of variables in <a href="#eq-gensinglespecodeagain">Equation&nbsp;<span>3.1</span></a> we obtain the dimensionless model <span class="math display">\[
 \frac{dn}{d\tau}= \frac{\tilde{T}}{\tilde{N}}H(\tilde{N}n(\tau)).
 \]</span> The choice for scalings is in general not unique (i.e.&nbsp;<span class="math inline">\(N^*\)</span> and <span class="math inline">\(T^*\)</span>). Appropriate choices can result in fewer dimensionless parameters in the dimensionless model.</p>
-<p>Exercise: Show that the Mathusian model <span class="math display">\[
-\frac{dN}{dt}=rN
-\]</span> can be written in nondimensional form <span class="math display">\[
-\frac{dn}{d\tau}=n.
-\]</span></p>
 <p>Introducing dimensionless variable <span class="math display">\[
 n=\frac{N}{\tilde{N}} \quad \tau=\frac{t}{\tilde{T}}
 \]</span> yields <span class="math display">\[
@@ -388,14 +383,6 @@ n=\frac{N}{\tilde{N}} \quad \tau=\frac{t}{\tilde{T}}
 \]</span> and hence steady-states can be obtained by solving the algebraic equation <span class="math display">\[
 H(N^*)=0.
 \]</span></p>
-<!--
-We can compute the steady states of the Malthusian model
-$$
-\frac{dN}{dt}=rN.
-$$
-
-The steady states are $N^*=0$.
--->
 </section>
 <section id="linear-stability-analysis" class="level3" data-number="3.2.4">
 <h3 data-number="3.2.4" class="anchored" data-anchor-id="linear-stability-analysis"><span class="header-section-number">3.2.4</span> Linear stability analysis</h3>
@@ -426,24 +413,6 @@ H(N^*)=0
 <section id="a-condition-for-linear-stability" class="level4" data-number="3.2.4.3">
 <h4 data-number="3.2.4.3" class="anchored" data-anchor-id="a-condition-for-linear-stability"><span class="header-section-number">3.2.4.3</span> A condition for linear stability</h4>
 <p>When <span class="math inline">\(H'(N^*)&gt;0\)</span> the perturbation grows exponentially fast and the steady-state is unstable. When <span class="math inline">\(H'(N^*)&lt;0\)</span> the perturbation decays exponentially fast and the steady-state is stable.</p>
-
-<!--
-\examplequestion{Deduce the linear stability steady states of the Malthusian model
-$$
-\frac{dN}{dt}=rN.
-$$
-}
-\stwritingexample{
-In this case
-$$
-H'(N)=r
-$$
-Thus at steady state $N^*=0$
-$$
-H'(0)=r
-$$
-Hence for $r>0$, $N^*=0$ is linearly unstable. For $r<0$ $N^*=0$ is linearly stable. 
--->
 </section>
 </section>
 <section id="graphical-solution" class="level3" data-number="3.2.5">
@@ -475,43 +444,50 @@ Hence for $r>0$, $N^*=0$ is linearly unstable. For $r<0$ $N^*=0$ is linearly sta
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>N_max<span class="op">=</span><span class="fl">1.1</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>N_0<span class="op">=</span><span class="fl">0.1</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>K<span class="op">=</span><span class="dv">12</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>r_1<span class="op">=</span><span class="fl">0.22</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>r_2<span class="op">=</span><span class="fl">0.42</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>r_3<span class="op">=</span><span class="fl">0.72</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="dv">20</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>n_0<span class="op">=</span><span class="fl">1.5</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>n_vec<span class="op">=</span>np.linspace(<span class="dv">0</span>,N_max,<span class="dv">100</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># This codes computes a numerical solution of the logistic growth model</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define model parameters</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>K<span class="op">=</span><span class="dv">12</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>r_1<span class="op">=</span><span class="fl">0.22</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>r_2<span class="op">=</span><span class="fl">0.42</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>r_3<span class="op">=</span><span class="fl">0.72</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting parameter</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>N_max<span class="op">=</span><span class="fl">1.1</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhslogistic_model(x,t,r,K):</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  rhs<span class="op">=</span>r<span class="op">*</span>x<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x<span class="op">/</span>K)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> rhs</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.linspace(<span class="dv">0</span>,T,<span class="dv">100</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>sol1<span class="op">=</span>odeint(rhslogistic_model,n_0,t,args<span class="op">=</span>(r_1,K))</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>sol2<span class="op">=</span>odeint(rhslogistic_model,n_0,t,args<span class="op">=</span>(r_2,K))</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>sol3<span class="op">=</span>odeint(rhslogistic_model,n_0,t,args<span class="op">=</span>(r_3,K))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial condition</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>n_0<span class="op">=</span><span class="fl">1.5</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Max time</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="dv">20</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.linspace(<span class="dv">0</span>,T,<span class="dv">100</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhslogistic_model(x,t,r,K):</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  rhs<span class="op">=</span>r<span class="op">*</span>x<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x<span class="op">/</span>K)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> rhs</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>ax.plot(t, sol1,t, sol2,t, sol3)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$t$'</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$N$'</span>)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_1),<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_2),<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_3)])</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Numerically solve the ODE for different parameter values</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>sol1<span class="op">=</span>odeint(rhslogistic_model,n_0,t,args<span class="op">=</span>(r_1,K))</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>sol2<span class="op">=</span>odeint(rhslogistic_model,n_0,t,args<span class="op">=</span>(r_2,K))</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>sol3<span class="op">=</span>odeint(rhslogistic_model,n_0,t,args<span class="op">=</span>(r_3,K))</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot solutions</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>ax.plot(t, sol1,t, sol2,t, sol3)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$t$'</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$N$'</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_1),<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_2),<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_3)])</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-logisticgrowthmodel" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="SinglePopODEMOdels_files/figure-html/fig-logisticgrowthmodel-output-1.png" width="585" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.1: RHS of spr. budworm model</figcaption>
+<p><img src="CtsTimeOnePop_files/figure-html/fig-logisticgrowthmodel-output-1.png" width="585" height="429" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.1: Numerical solution of the logistic growth model</figcaption>
 </figure>
 </div>
 </div>
@@ -578,7 +554,7 @@ H'(n^*)= -1
 <div class="cell-output cell-output-display">
 <div id="fig-dlogisticrhs" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="SinglePopODEMOdels_files/figure-html/fig-dlogisticrhs-output-1.png" width="610" height="429" class="figure-img"></p>
+<p><img src="CtsTimeOnePop_files/figure-html/fig-dlogisticrhs-output-1.png" width="609" height="429" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;3.2: Right-hand side of the logistic ODE</figcaption>
 </figure>
 </div>
@@ -689,13 +665,14 @@ r= \frac{r_B A}{B} \ \ \  \textrm{and} \ \ \  q=\frac{K_B}{A}.
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>ax.plot(n_vec, rhs1,n_vec, rhs2,n_vec, rhs3)</span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$N$'</span>)</span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$H(N)$'</span>)</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_1),<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_2),<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_3)])</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-sprucebudworm-rhs" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="SinglePopODEMOdels_files/figure-html/fig-sprucebudworm-rhs-output-1.png" width="601" height="429" class="figure-img"></p>
+<p><img src="CtsTimeOnePop_files/figure-html/fig-sprucebudworm-rhs-output-1.png" width="601" height="429" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;3.3: RHS of spr. budworm model</figcaption>
 </figure>
 </div>
@@ -710,24 +687,32 @@ r= \frac{r_B A}{B} \ \ \  \textrm{and} \ \ \  q=\frac{K_B}{A}.
 <div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">101</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sol1 <span class="op">=</span> odeint(rhssprucebudworm_model, N_0, t, args<span class="op">=</span>(r_1, q))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sol2 <span class="op">=</span> odeint(rhssprucebudworm_model, N_0, t, args<span class="op">=</span>(r_2, q))</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>sol3 <span class="op">=</span> odeint(rhssprucebudworm_model, N_0, t, args<span class="op">=</span>(r_3, q))</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.plot(t, sol1, <span class="st">'b'</span>, label<span class="op">=</span><span class="st">'r='</span> <span class="op">+</span><span class="bu">str</span>(r_1))</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.plot(t, sol2, <span class="st">'r'</span>, label<span class="op">=</span><span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_2))</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.plot(t, sol3, <span class="st">'m'</span>, label<span class="op">=</span><span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_3))</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define time</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">101</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Numerically solve the ODE for differnet parameter values</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>sol1 <span class="op">=</span> odeint(rhssprucebudworm_model, N_0, t, args<span class="op">=</span>(r_1, q))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>sol2 <span class="op">=</span> odeint(rhssprucebudworm_model, N_0, t, args<span class="op">=</span>(r_2, q))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>sol3 <span class="op">=</span> odeint(rhssprucebudworm_model, N_0, t, args<span class="op">=</span>(r_3, q))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'best'</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'t'</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># plot results</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span> plt.subplots()</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ax.plot(t, sol1, <span class="st">'b'</span>, label<span class="op">=</span><span class="st">'r='</span> <span class="op">+</span><span class="bu">str</span>(r_1))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ax.plot(t, sol2, <span class="st">'r'</span>, label<span class="op">=</span><span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_2))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>ax.plot(t, sol3, <span class="st">'m'</span>, label<span class="op">=</span><span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_3))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'best'</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$t$'</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$N$'</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-sprucebudworm-numsol" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="SinglePopODEMOdels_files/figure-html/fig-sprucebudworm-numsol-output-1.png" width="566" height="429" class="figure-img"></p>
+<p><img src="CtsTimeOnePop_files/figure-html/fig-sprucebudworm-numsol-output-1.png" width="585" height="429" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;3.4: Numerical solution of spr. budworm model</figcaption>
 </figure>
 </div>
@@ -772,50 +757,63 @@ H'(0)=r
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>N_max<span class="op">=</span><span class="dv">13</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>N_0<span class="op">=</span><span class="fl">0.1</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>q<span class="op">=</span><span class="dv">12</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>r_1<span class="op">=</span><span class="fl">0.2</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>r_2<span class="op">=</span><span class="fl">0.5</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>r_3<span class="op">=</span><span class="fl">0.8</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>n_vec<span class="op">=</span>np.linspace(<span class="dv">0</span>,N_max,<span class="dv">100</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhssprucebudworm_model_f(x,t,r,q):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Define initial condition</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>N_0<span class="op">=</span><span class="fl">0.1</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Define model parameters</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>q<span class="op">=</span><span class="dv">12</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>r_1<span class="op">=</span><span class="fl">0.2</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>r_2<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>r_3<span class="op">=</span><span class="fl">0.8</span></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  f<span class="op">=</span>r<span class="op">*</span>x<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x<span class="op">/</span>q) </span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> f  </span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhssprucebudworm_model_g(x,t,r,q):</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Discretise n</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>N_max<span class="op">=</span><span class="dv">13</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>n_vec<span class="op">=</span>np.linspace(<span class="dv">0</span>,N_max,<span class="dv">100</span>)</span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  g<span class="op">=</span>x<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>x<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> g  </span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to compute f and g</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhssprucebudworm_model_f(x,t,r,q):</span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>f_1<span class="op">=</span>rhssprucebudworm_model_f(n_vec,<span class="dv">0</span>,r_1,q)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>f_2<span class="op">=</span>rhssprucebudworm_model_f(n_vec,<span class="dv">0</span>,r_2,q)</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>f_3<span class="op">=</span>rhssprucebudworm_model_f(n_vec,<span class="dv">0</span>,r_3,q)</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>g<span class="op">=</span>rhssprucebudworm_model_g(n_vec,<span class="dv">0</span>,r_1,q)</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>h_1<span class="op">=</span>rhssprucebudworm_model(n_vec,<span class="dv">0</span>,r_1,q)</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>h_2<span class="op">=</span>rhssprucebudworm_model(n_vec,<span class="dv">0</span>,r_2,q)</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>h_3<span class="op">=</span>rhssprucebudworm_model(n_vec,<span class="dv">0</span>,r_3,q)</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>)</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(n_vec, f_1,n_vec, f_2,n_vec, f_3,n_vec,g)</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$f,g$'</span>)</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(n_vec, h_1,n_vec, h_2,n_vec, h_3)</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$h$'</span>)</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  f<span class="op">=</span>r<span class="op">*</span>x<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x<span class="op">/</span>q) </span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> f  </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhssprucebudworm_model_g(x,t,r,q):</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  g<span class="op">=</span>x<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>x<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> g  </span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute f for different values of r and g</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>f_1<span class="op">=</span>rhssprucebudworm_model_f(n_vec,<span class="dv">0</span>,r_1,q)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>f_2<span class="op">=</span>rhssprucebudworm_model_f(n_vec,<span class="dv">0</span>,r_2,q)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>f_3<span class="op">=</span>rhssprucebudworm_model_f(n_vec,<span class="dv">0</span>,r_3,q)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>g<span class="op">=</span>rhssprucebudworm_model_g(n_vec,<span class="dv">0</span>,r_1,q)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute H for different values of r</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>h_1<span class="op">=</span>rhssprucebudworm_model(n_vec,<span class="dv">0</span>,r_1,q)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>h_2<span class="op">=</span>rhssprucebudworm_model(n_vec,<span class="dv">0</span>,r_2,q)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>h_3<span class="op">=</span>rhssprucebudworm_model(n_vec,<span class="dv">0</span>,r_3,q)</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot results</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(n_vec, f_1,n_vec, f_2,n_vec, f_3,n_vec,g)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'$f,g$'</span>)</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].grid(<span class="va">True</span>)</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(n_vec, h_1,n_vec, h_2,n_vec, h_3)</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'$h$'</span>)</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].grid(<span class="va">True</span>)</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-sprucebudworm-rhsfg" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="SinglePopODEMOdels_files/figure-html/fig-sprucebudworm-rhsfg-output-1.png" width="582" height="429" class="figure-img"></p>
+<p><img src="CtsTimeOnePop_files/figure-html/fig-sprucebudworm-rhsfg-output-1.png" width="660" height="470" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;3.5: RHS of spr. budworm model</figcaption>
 </figure>
 </div>
@@ -850,32 +848,35 @@ q=\frac{2n{^*}^3}{n{^*}^{2}-1}.
 <div class="cell" data-execution_count="6">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Computerq(x):</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  r_n_star<span class="op">=</span><span class="dv">2</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span><span class="op">/</span>(x<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  q_n_star<span class="op">=</span><span class="dv">2</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>x<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span>  r_n_star,q_n_star</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>n_s_1<span class="op">=</span>np.linspace(<span class="dv">1</span>,np.sqrt(<span class="dv">3</span>),<span class="dv">100</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>n_s_2<span class="op">=</span>np.linspace(np.sqrt(<span class="dv">3</span>),<span class="dv">200</span>,<span class="dv">100</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>r_1,q_1<span class="op">=</span>Computerq(n_s_1)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>r_2,q_2<span class="op">=</span>Computerq(n_s_2)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to compute bifurcation values of r and q as a function of n_star</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Computerq(x):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  r_n_star<span class="op">=</span><span class="dv">2</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span><span class="op">/</span>(x<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  q_n_star<span class="op">=</span><span class="dv">2</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>x<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span>  r_n_star,q_n_star</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define different domains of n</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>n_s_1<span class="op">=</span>np.linspace(<span class="dv">1</span>,np.sqrt(<span class="dv">3</span>),<span class="dv">100</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>n_s_2<span class="op">=</span>np.linspace(np.sqrt(<span class="dv">3</span>),<span class="dv">200</span>,<span class="dv">100</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute r and q</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>r_1,q_1<span class="op">=</span>Computerq(n_s_1)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>r_2,q_2<span class="op">=</span>Computerq(n_s_2)</span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>ax.plot(r_1, q_1,r_2, q_2)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$r$'</span>)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$q$'</span>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="dv">100</span>])</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot results</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>ax.plot(r_1, q_1,r_2, q_2)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$r$'</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$q$'</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="dv">100</span>])</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-sprucebudworm-rq" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="SinglePopODEMOdels_files/figure-html/fig-sprucebudworm-rq-output-1.png" width="602" height="429" class="figure-img"></p>
+<p><img src="CtsTimeOnePop_files/figure-html/fig-sprucebudworm-rq-output-1.png" width="602" height="429" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;3.6: Bifurcations in the rq plane</figcaption>
 </figure>
 </div>
@@ -911,36 +912,39 @@ r=\frac{2n{^*}^{3}}{(1+n{^*}^{2})^2},
 <div class="cell" data-execution_count="7">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Computern(x,q):</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  r<span class="op">=</span>x<span class="op">/</span>((<span class="dv">1</span><span class="op">+</span>x<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x<span class="op">/</span>q))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span>  r</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute r as a function of n</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Computern(x,q):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  r<span class="op">=</span>x<span class="op">/</span>((<span class="dv">1</span><span class="op">+</span>x<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x<span class="op">/</span>q))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span>  r</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>q<span class="op">=</span><span class="dv">12</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>n_s_1<span class="op">=</span>np.linspace(<span class="dv">1</span>,np.sqrt(<span class="dv">3</span>),<span class="dv">100</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>n_s_2<span class="op">=</span>np.linspace(np.sqrt(<span class="dv">3</span>),<span class="fl">0.99</span><span class="op">*</span>q,<span class="dv">100</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>n_s_3<span class="op">=</span>np.linspace(<span class="dv">0</span>,np.sqrt(<span class="dv">3</span>),<span class="dv">100</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define different domains of n for plotting </span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>q<span class="op">=</span><span class="dv">12</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>n_s_1<span class="op">=</span>np.linspace(<span class="dv">1</span>,np.sqrt(<span class="dv">3</span>),<span class="dv">100</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>n_s_2<span class="op">=</span>np.linspace(np.sqrt(<span class="dv">3</span>),<span class="fl">0.99</span><span class="op">*</span>q,<span class="dv">100</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>n_s_3<span class="op">=</span>np.linspace(<span class="dv">0</span>,np.sqrt(<span class="dv">3</span>),<span class="dv">100</span>)</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>r_1<span class="op">=</span>Computern(n_s_1,q)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>r_2<span class="op">=</span>Computern(n_s_2,q)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>r_3<span class="op">=</span>Computern(n_s_3,q)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate r</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>r_1<span class="op">=</span>Computern(n_s_1,q)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>r_2<span class="op">=</span>Computern(n_s_2,q)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>r_3<span class="op">=</span>Computern(n_s_3,q)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>ax.plot(r_1, n_s_1,r_2, n_s_2,r_3,n_s_3)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$r$'</span>)</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$n^*$'</span>)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="dv">2</span>])</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plote results</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>ax.plot(r_1, n_s_1,r_2, n_s_2,r_3,n_s_3)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$r$'</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$n^*$'</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="dv">2</span>])</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-sprucebudworm-bfc" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="SinglePopODEMOdels_files/figure-html/fig-sprucebudworm-bfc-output-1.png" width="601" height="429" class="figure-img"></p>
+<p><img src="CtsTimeOnePop_files/figure-html/fig-sprucebudworm-bfc-output-1.png" width="601" height="429" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;3.7: Bifurcations in the rq plane</figcaption>
 </figure>
 </div>
@@ -985,7 +989,7 @@ E^*=\frac{rK}{4}.
 \frac{d \hat{N}}{dt} = (E-r)\hat{N}.
 \]</span> Hence the recovery time scale is <span class="math display">\[
 T_R(E)=O(\frac{1}{r-E}).
-\]</span> As the harvesting rate approaches the linear growth rate <span class="math inline">\(r\)</span>, not only does the steady state population tend to zero but the timescale for stocks to recover tends to infinity. }</p>
+\]</span> As the harvesting rate approaches the linear growth rate <span class="math inline">\(r\)</span>, not only does the steady state population tend to zero but the timescale for stocks to recover tends to infinity.</p>
 </section>
 <section id="delay-differential-equation-models" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="delay-differential-equation-models"><span class="header-section-number">3.6</span> Delay differential equation models</h2>
@@ -1281,12 +1285,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./DiscreteModels2d.html" class="pagination-link">
+      <a href="./DiscreteTimeTwoPop.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Multi species population dynamics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ContinuousTimeTwoSepcies.html" class="pagination-link">
+      <a href="./CtsTimeMultiPop.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multi species population dynamics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

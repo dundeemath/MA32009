@@ -1,0 +1,568 @@
+---
+title: "Multi species population dynamics"
+format:
+  html:
+    code-fold: true
+  pdf:
+    code-fold: false    
+jupyter: python3
+---
+
+
+# Multiple species in discrete time
+In this chapter we generalise the previous approach by considering the population dynamics of two interacting populations.
+
+## A general model of two interacting species in discrete time
+
+Let $N_t$ and $P_t$ represent population densities at time $t$ where $t$ is a discrete variable. 
+
+We consider governing equations of the form
+$$
+\begin{aligned}
+N_{t+1}=f(N_t,P_t), \nonumber \\
+P_{t+1}=g(N_t,P_t).
+\end{aligned}
+$$ {#eq-discretetimetwovar}
+where the population dynamics of the species are coupled to one another via the functions $f$ and $g$. 
+
+The precise form for $f$ and $g$ will be defined by the biological system under study. Typical interpopulation interactions that are studied are: predator prey models, competition and cooperation.
+
+
+## General techniques for analysing coupled  first order difference equations
+
+### Fixed points 
+
+The fixed points of @eq-discretetimetwovar $(N^*,P^*)$ satisfy
+$$
+\begin{aligned}
+N^*=g(N^*,P^*) \nonumber \\
+P^*=f(N^*,P^*).
+\end{aligned}
+$$
+
+<!--
+Identify the fixed points of the model
+\begin{aligned}
+N_{t+1}&=P_t \\
+P_{t+1}&=N_t+P_t.
+\end{aligned}
+}
+
+\stwritingexample{
+Fixed points satisfy
+\begin{aligned}
+N^*&=P^* \\
+P^*&=N^*+P^*.
+\end{aligned}
+Thus the only fixed point is (0,0).
+-->
+
+### Linear stability analysis
+To consider linear stability of a steady state we consider the change of variable
+$$
+\begin{aligned}
+N_t&=N^*+\hat{N}_{t},   \nonumber\\
+P_t&=P^*+\hat{P}_{t}.  \nonumber
+\end{aligned}
+$$
+After substitution in @eq-discretetimetwovar and making Taylor expansions about $(N^*,P^*)$ we obtain at leading order
+
+$$
+\left(\begin{array}{c}
+\hat{N}_{t+1} \\ \hat{P}_{t+1}\end{array}\right) = \left(\begin{array}{rr}
+\frac{\partial f}{\partial N}&\frac{\partial f}{\partial P} \\ \frac{\partial g}{\partial N }&\frac{\partial g}{\partial P} \end{array}\right)_{(N^*,P^*)} \left(\begin{array}{c} \hat{N}_{t} \\ \hat{P}_{t}\end{array}\right).
+$$ {#eq-discretetimesecondorderdiff}
+
+Note the appearance of the Jacobian matrix 
+$$
+A= \left(\begin{array}{rr}
+\frac{\partial f}{\partial N}&\frac{\partial f}{\partial P} \\ \frac{\partial g}{\partial N }&\frac{\partial g}{\partial P} \end{array}\right)_{(N^*,P^*)} \left(\begin{array}{c} \hat{N}_{t} \\ \hat{P}_{t}\end{array}\right).
+$$
+
+
+### Solving the linearised problem 
+Defining
+$$
+\mathbf{w}_t=\left(\begin{array}{c}\hat{N}_{t} \\ \hat{P}_{t}\end{array}\right), 
+$$
+
+$$
+\mathbf{w}_{t+1}=A\mathbf{w}_{t}
+$$
+By solving this linear system we can investigate whether small perturbation about the fixed point grow or decay in magnitude as time evolves and hence determine the linear stability of the fixed point.
+
+ 
+The solution of @eq-discretetimesecondorderdiff takes the form
+$$
+\mathbf{w}_t=\sum_{i=1}^2 C_i \lambda_i^t\mathbf{c}_i,
+$$
+where  the $C_i$'s are constants determined by initial conditions and the $\lambda_i$'s and $\mathbf{c}_i$'s are the eigenvalues and eigenvectors of A, respectively. From this form we can see that if the magnitude of all eigenvalues is less than one, i.e.
+$$
+|\lambda_i|<1, \ \ \ \ \ \forall i,
+$$
+the fixed point is linearly stable. If at least one of the eigenvalues has $|\lambda_i|>1$ then the fixed point is unstable to linear perturbations.
+
+
+<!--
+\examplequestion{
+Compute the Jacobian matrix of the model
+\begin{aligned}
+N_{t+1}&=P_t \\
+P_{t+1}&=N_t+P_t.
+\end{aligned}
+
+The Jacobian matrix is given by
+$$
+A= \left(\begin{array}{cc}
+0 & 1 \\ 
+1 & 1 \end{array}\right).
+$$
+-->
+
+
+###  Jury conditions 
+
+In many cases it is not very useful to explicitly compute the eigenvalues of the Jacobian matrix. In such cases we can employ the Jury conditions in order to determine when a fixed point is linearly stable.
+
+
+Recall that for a two dimensional matrix, the eigenvalues satisfy the quadratic characteristic equation
+
+$$
+\lambda^2- trA \lambda + detA=0.
+$$
+
+The stability of the fixed is guaranteed if $|\lambda _i|<1$ $\forall i$.
+
+Consider the characteristic equation
+$$
+P(\lambda)=\lambda^2 + a \lambda +b=0,
+$$
+where $a,b \in \Re$. Note that $a=-tr{A}$ and $b=\det{A}$.
+
+The Jury conditions state that  $|\lambda_i |<1 \forall \ \  i$ if, and only if,
+* $b<1$,
+* $1+a+b>0$,
+* *$1-a+b>0$.
+See @fig-juryconditions for schematic diagram.
+
+
+![Jury conditions](JuryConditions2D.png){#fig-juryconditions}
+
+
+### Proof of the Jury conditions
+
+The roots of $P(\lambda)$ are
+$$
+\lambda_{1,2}=\frac{-a \pm \sqrt{a^2-4b}}{2}.
+$$
+
+### Complex roots 
+
+Suppose $a^2-4b< 0$. 
+The roots are complex. Since $b$ is equal to the product of the roots, we find that 
+
+$$
+b=\lambda_1\lambda_2 = |\lambda_1|^2 = |\lambda_2^2|.
+$$
+Hence $\lambda_i<1$ $\forall \ \ i$ if and only if $b<1$.
+
+
+
+For the other conditions we introduce the identity:
+$$
+a^2-4b=(|a|-2)^2 - 4(1+b-|a|).
+$$
+Therefore, when $a^2-4b<0$, the inequality requires
+$$
+(|a|-2)^2 - 4(1+b-|a|)<0.
+$$
+This can only occur if
+$$
+1+b-|a| >0 \implies 1+b-a>0 \ \ \textrm{and} \ \  1+b+a>0.
+$$
+
+
+###  Real roots 
+Suppose $a^2-4b\geq 0$
+
+The largest magnitude of the roots
+is
+$$
+R=\max\{|\lambda_1|,|\lambda_2|\} =  \frac{|a| + \sqrt{a^2-4b}}{2}.
+$$
+This is an increasing function of $|a|$. 
+
+$R=1$
+$$
+\implies  \frac{|a| + \sqrt{a^2-4b}}{2}=1
+\implies |a|-2=-\sqrt{|a|^2-4b}
+\implies |a|^2-4|a|+4=|a|^2-4b 
+\implies |a|=b+1.
+$$
+Hence $0\leq R < 1$ if and only if $0\leq |a|<1+b$. Also, since $|\lambda_i|<1 \forall i$ implies that $|\lambda_1\lambda_2|<1$, it follows that $|b|<1$ must hold.
+
+
+<!--
+\begin{figure}
+\centering
+\subfigure{\includegraphics[scale=1.0]{JuryConditions2D.eps}}
+\caption{Application of the Jury conditions for a two variable model.}
+\label{JuryConditions}
+\end{figure}
+-->
+
+<!--Suppose a linear stability analysis of some fixed point yields the Jacobian matrix
+$$
+A= \left(\begin{array}{cc}
+1 & 0 \\0&r  \end{array}\right).
+$$
+where $r\in\Re^+$.
+Use the Jury conditions to determine whether or not the fixed point is linearly stable.
+The characteristic equation is
+$$
+\lambda^2 -\lambda(1+r) + r=0.
+$$
+Hence in this case $a=-(1+r)$, $b=r$.
+$$
+b<1 \implies r< 1 \implies 
+$$
+-->
+
+## Host Parasitoid infection
+
+Parasitoids are creatures that have a free living and parasitic stage. The free-living adult lays eggs in a host that later hatch and develop after eating the host. The discrete stages of the parasitoids life cycle and the dependence on its reproduction on the availability of host suggest a discrete time, multi species models. Let $N_{t}$ and $P_t$ represent the number of hosts and parasitoids at time $t$, respectively. Let $R_0$ represent the reproductive ratio of host in the absence of parasites and $C$ the average number of viable eggs laid by each parasite on a host.
+###  Model  equations 
+
+We consider equations of the form
+$$
+\begin{aligned}
+N_{t+1}&=R_0N_t f(N_t,P_t), \nonumber \\
+P_{t+1}&=CN_t (1- f(N_t,P_t)). \nonumber
+\end{aligned}
+$${#eq-discretetimetwovar}
+
+The justification for this form is that at a given time $t$ there are $N_t$ hosts. A total of $N_t f(N_t,P_t)$ escape the parasite and are able to reproduce whilst a total of $N_t(1-f(N_t,P_t))$ do not escape the parasite and lead to parasitic reproduction at the next time step.  
+
+
+Choosing 
+$$
+f(N_t,P_t)=e^{-aP_t},
+$$
+yields the Nicholson Bailey model
+$$
+\begin{aligned}
+N_{t+1}=R_0N_t e^{-aP_t}, \nonumber \\
+P_{t+1}=CN_t (1- e^{-aP_t}). 
+\end{aligned}
+$$ {#eq-nichbail}
+
+
+<!--
+Show that in the limit of small parasite numbers the parasite equation can be approximated by
+$$
+P_{t+1}=CaN_t P_t. %(1- e^{-aP_t}). 
+$$
+Also show that has parasite number get very large the parasite equation can be approximated by
+$$
+P_{t+1}=CN_t. %(1- e^{-aP_t}). 
+$$
+
+
+Taylor expanding the exponential yields at leading order
+$$
+P_{t+1}=CaN_t P_t. %(1- e^{-aP_t}). 
+$$
+In the limit of small parasite population the per capita growth rate is proportional to $N_t$. 
+\\
+Taking the limit $P_t\rightarrow \infty$ yields
+$$
+P_{t+1}=CN_t. %(1- e^{-aP_t}). 
+$$
+The population dynamics are approximately independent of parasite population.
+
+-->
+
+### Numerical solution
+```{python}
+#| label: fig-plotNicolsonBailey
+#| fig-cap: "A plot of the Nicholson Bailey model solution."
+import numpy as np
+import matplotlib.pyplot as plt
+# This code solve the Nicholson Bailry model
+
+# Discretise time
+T=100
+t = np.arange(0, T, 1)
+
+# Define parameters
+R_0=1.5
+C=3.7
+a=1.7
+
+# Define initial data
+N_0=[1.5, 0.1]
+
+# Define rhs of NIch Bailey model
+def rhsNicholsonBailey(x,par):
+  N=x[0]
+  P=x[1]
+
+  R_0=par[0]
+  C=par[1]
+  a=par[2]
+
+  # Generate empty vector
+  g=np.zeros_like(x,dtype=float)
+
+  # Encode rhs of N Bailry model
+  f=np.exp(-a*P)
+  g[0]=R_0*N*f
+  g[1]=C*N*(1-f)
+ 
+  return g
+
+# Gen solver for solving Two pop Model
+def SolveTwoPopDiff(t,rhs,N_0,par):
+  # Define solution vectors
+  N = np.zeros_like(t,dtype=float)
+  P=  np.zeros_like(t,dtype=float) 
+  # Make 0th entry the initial data
+  N[0]=N_0[0]
+  P[0]=N_0[1]
+
+  # Loop over time
+  for i in t:
+    if i>0:
+
+      rhs_eval=rhs([N[i-1],P[i-1]],par)
+      N[i]=rhs_eval[0]
+      P[i]=rhs_eval[1] 
+
+  return N,P
+
+# Solve Nicholson Bailey model
+N,P=SolveTwoPopDiff(t,rhsNicholsonBailey,N_0,[R_0,C,a])
+
+# Plot results
+fig, ax = plt.subplots(1,2)
+ax[0].plot(t, N)
+ax[0].set_xlabel('$t$')
+ax[0].set_ylabel('$N_t$')
+ax[0].set_ylim([0,100])
+
+ax[1].plot(t, P)
+ax[1].set_xlabel('$t$')
+ax[1].set_ylabel('$P_t$')
+plt.tight_layout()
+plt.show()
+```
+
+
+
+###  Fixed points 
+
+The fixed points satisfy
+$$
+\begin{aligned}
+N^*=R_0N^*e^{-aP^*}, \nonumber \\
+P^*=CN^* (1- e^{-aP^*}). 
+\end{aligned}
+$$
+
+The first equation yields
+$$
+N^*=0.
+$$
+
+Suppose $N^*\neq 0$
+$$
+1=R_0e^{-aP^*}.
+$$
+
+Hence
+$$
+P^*=\frac{1}{a}\ln R_0.
+$$
+
+Consider the second equation.
+Suppose $N^*=0$.
+We obtain
+$$
+P^*=0. 
+$$
+Hence one fixed point is $(0,0)$.
+
+Suppose $P^*=\frac{1}{a}\ln R_0$.
+$$
+\frac{1}{a}\ln R_0 = CN^*(1-\frac{1}{R_0}).
+$$
+Hence
+$$
+N^* = \frac{\frac{1}{a}\ln R_0 }{C(1-\frac{1}{R_0})} = \frac{R_0\ln R_0 }{aC(R_0-1)}.
+$$
+Hence the second fixed point is
+$$
+\left(\frac{R_0\ln R_0 }{aC(R_0-1)},\frac{1}{a} \ln R_0 \right).
+$$
+
+We can verify by substitution that 
+$$
+\left(\frac{R_0\ln R_0 }{aC(R_0-1)},\frac{1}{a} \ln R_0 \right).
+$$
+is a fixed point. We can then deduce a condition on the model parameters that must hold in order that the fixed point is biologically relevant.
+
+
+To verify by substitution we substitute the proposed solution into the governing equations. 
+Note that
+$$
+e^{-aP^*}=\frac{1}{R_0}.
+$$
+In this case
+$$
+\begin{aligned}
+\frac{R_0\ln R_0 }{aC(R_0-1)}=R_0 \frac{R_0\ln R_0 }{aC(R_0-1)}\frac{1}{R_0}, \nonumber \\
+\frac{1}{a} \ln R_0=C\frac{R_0\ln R_0 }{aC(R_0-1)} (1-\frac{1}{R_0}). 
+\end{aligned}
+$$ {#eq-nichbail}
+
+Cancellation shows that both equations hold. Hence the fixed point is a valid fixed point.
+To be biologically relevant we require that both components of the solution are real and positive. In this case this leads to the condition $R_0>1$}.
+
+### Linear stability  
+
+The Jacobian matrix is given by
+$$
+A_{(N_t,P_t)}= \left(\begin{array}{cc}
+R_0e^{-aP_t}&-R_0aN_te^{-aP_t} \\ c(1-e^{-aP_t})&aCN_te^{-aP_t} \end{array}\right).
+$$
+
+###  Linear stability of the trivial fixed point  
+
+Evaluating at (0,0) yields
+ $$
+A= \left(\begin{array}{cc}
+R_0 & 0 \\ 0 & 0 \end{array}\right).
+$$
+Hence the eigenvalues are $R_0$ and 0. 
+ If $0<R_0<1$ (0,0) is stable whilst if $R_0>1$ (0,0) is unstable.
+
+ 
+###  Linear stability of the nontrivial fixed point  
+
+
+We can show  that the Jacobian matrix evaluated at  the nontrivial fixed point can be written as
+$$
+A= \left(\begin{array}{cc}
+1&-\frac{R_0 \ln R_0}{c(R_0-1)} \\ c(1-\frac{1}{R_0})&\frac{\ln R_0}{R_0-1} \end{array}\right) .
+$$
+and deduce that the eigenvalues of A satisfy the characteristic polynomial
+$$
+\lambda^2 - \lambda\left(1+\frac{\ln R_0}{R_0-1}\right)+ \frac{R_0\ln(R_0)}{R_0-1}=0.
+$$
+
+<!--
+%and let the roots be given by $\lambda_1$ and $\lambda_2$. Hence $d=\lambda_1\lambda_2$.
+%Hence if $d>1$ it implies that at least one of  $|\lambda_1|$ or $\lambda_2$ is greater than one. Hence showing that $d>1$ is sufficient to show that  fixed point is unstable.
+-->
+
+### Employing the Jury conditions 
+To proceed with linear stability analysis we employ the Jury conditions.
+Consider the polynomial
+$$
+\lambda^2+a\lambda+b=0,
+$$
+In our case 
+$$
+a= - (1+\frac{\ln R_0}{R_0-1}) 
+$$
+and
+$$
+b=\frac{R_0\ln(R_0)}{R_0-1}.
+$$
+
+
+The third Jury condition ($b<1$) implies that for linear stability
+$$
+\ln R_0 < 1-\frac{1}{R_0}.
+$$
+To demonstrate that this inequality is  not true for $R_0>1$, let $f_1=\ln R_0$ and $f_2=1- 1/R_0$. When $R_0=1$, $f_1=f_2=0$. However, 
+$$
+f_1'=\frac{1}{R_0}  \ \ \textrm{and} \ \ f_2'=\frac{1}{R_0^2},
+$$ 
+ implies 
+$$
+f_1'>f_2'  \ \ \forall \ R_0>1.
+$$
+Hence
+$$
+\ln R_0 > 1-\frac{1}{R_0}.
+$$
+Hence the fixed point is unstable if $R_0>1$. 
+
+
+### Symbolic calculations in Python
+
+Below sympy is used to identify the fixed points. The Jacobian matrix is then computed and evaluated at the fixed points.  
+
+```{python}
+#| label: code-nich_bailery
+#| fig-cap: "Symbolic calculations"
+#| code-fold: True
+#| caption: none
+
+
+import numpy as np
+import sympy as sp
+
+
+# Define variables and constants
+R_0=sp.symbols("R_0",real=True,nonnegative=True)
+a=sp.symbols("a",real=True,nonnegative=True)
+C=sp.symbols("C",real=True,nonnegative=True)
+
+N = sp.symbols("N",real=True,nonnegative=True)
+P = sp.symbols("P",real=True,nonnegative=True)
+
+# Define H
+H_1=R_0*N*sp.exp(-a*P)
+H_2=C*N*(1-sp.exp(-a*P))
+
+# Solve the FP equation
+fp=sp.solve([H_1-N,H_2-P],[N,P],dict=True)
+
+print("The FPs are:")
+print(fp[0])
+print(fp[1])
+
+# Compute the Jacobian
+A=sp.Array( [[H_1.diff(N), H_1.diff(P)],[H_2.diff(N), H_2.diff(P)]])
+
+print("The Jacobian of H is:")
+print(sp.simplify(A))
+
+
+# Evaluate derivative
+
+print("The Jacobian evaluated at FP 0 is:")
+sol0_N=fp[0][N]
+sol0_P=fp[0][P]
+
+A_eval_0=A.subs([(N,sol0_N),(P,sol0_P)])
+print(A_eval_0)
+
+print("The Jacobian evaluated at FP 1 is:")
+sol1_N=fp[1][N]
+sol1_P=fp[1][P]
+
+A_eval_1=A.subs([(N,sol1_N),(P,sol1_P)])
+print(A_eval_1)
+
+
+```
+
+
+
+
+
+
+

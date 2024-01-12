@@ -1,6 +1,8 @@
 project:
   type: book
   output-dir: docs
+  resources: lectureslides.pdf
+
 
 
 book:
@@ -9,18 +11,22 @@ book:
   date: "12/22/2023"
   repo-url: https://github.com/dundeemath/MA32009/
   downloads: pdf
+  repo-actions: [issue]
+  cover-image: MA32009Cover.png
+
+
   
   chapters:
     - index.qmd
     - part: "Discrete time"
       chapters: 
-        - MA32009-SinglePopDiscreteTimea.qmd
-        - DiscreteModels2d.qmd
+        - DiscreteTimeOnePop.qmd
+        - DiscreteTimeTwoPop.qmd
     - part: "Continuous time"
       chapters:
-        - SinglePopODEMOdels.qmd
-        - ContinuousTimeTwoSepcies.qmd  
-        - enzymekinetics.qmd
+        - CtsTimeOnePop.qmd
+        - CtsTimeMultiPop.qmd  
+        - Biochemicalkinetics.qmd
 
     - part: "Appendices"
       chapters:
@@ -38,6 +44,12 @@ format:
     include-in-header:
       - text: |
           \usepackage{chemarr}
+          \usepackage{lipsum}
+          \usepackage{tikz}
+          \AtBeginDocument{\thispagestyle{empty}
+          \begin{tikzpicture}[remember picture,overlay]
+          \node at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{MA32009Cover.png}};
+          \end{tikzpicture}\clearpage}
 
 execute:
   warning: false
