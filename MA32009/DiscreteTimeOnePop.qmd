@@ -392,35 +392,45 @@ fig, ax = plt.subplots(3,2)
 ax[0,0].plot([N_min, N_max], [N_min, N_max])
 ax[0,0].set_xlabel('$N_t$')
 ax[0,0].set_ylabel('$N_{t+1}$')
+ax[0,0].set_title('Draw straight line (blue)')
 
 ax[0,1].plot([N_min, N_max], [N_min, N_max])
 ax[0,1].plot(N_plot, H_N_plot)
 ax[0,1].set_xlabel('$N_t$')
 ax[0,1].set_ylabel('$N_{t+1}$')
+ax[0,1].set_title('Sketch a graph of $H$ (red).')
+
 
 ax[1,0].plot([N_min, N_max], [N_min, N_max])
 ax[1,0].plot(N_plot, H_N_plot)
 ax[1,0].plot(CobwebSol[0,0], CobwebSol[0,1],'*')
 ax[1,0].set_xlabel('$N_t$')
 ax[1,0].set_ylabel('$N_{t+1}$')
+ax[1,0].set_title('Choose $N_0$, evaluate $H(N_0)$.')
+
 
 ax[1,1].plot([N_min, N_max], [N_min, N_max])
 ax[1,1].plot(N_plot, H_N_plot)
 ax[1,1].plot(CobwebSol[0:5,0], CobwebSol[0:5,1])
 ax[1,1].set_xlabel('$N_t$')
 ax[1,1].set_ylabel('$N_{t+1}$')
+ax[1,1].set_title('Graphically iterate (horizontal then vertical)')
+
 
 ax[2,0].plot([N_min, N_max], [N_min, N_max])
 ax[2,0].plot(N_plot, H_N_plot)
 ax[2,0].plot(CobwebSol[0:7,0], CobwebSol[0:7,1])
 ax[2,0].set_xlabel('$N_t$')
 ax[2,0].set_ylabel('$N_{t+1}$')
+ax[2,0].set_title('Iterate')
+
 
 ax[2,1].plot([N_min, N_max], [N_min, N_max])
 ax[2,1].plot(N_plot, H_N_plot)
 ax[2,1].plot(CobwebSol[:,0], CobwebSol[:,1])
 ax[2,1].set_xlabel('$N_t$')
 ax[2,1].set_ylabel('$N_{t+1}$')
+ax[2,1].set_title('Iterate')
 
 
 plt.tight_layout()
