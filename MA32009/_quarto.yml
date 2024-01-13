@@ -31,6 +31,7 @@ book:
     - part: "Appendices"
       chapters:
         - PythonAppendix.qmd    
+        - CurveSketching.qmd
       
 bibliography: references.bib
 

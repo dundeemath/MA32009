@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Philip Murray">
-<meta name="dcterms.date" content="2023-12-22">
 
-<title>MA32009</title>
+<title>MA32009 - 7&nbsp; Curve sketching</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -51,7 +30,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./DiscreteTimeOnePop.html" rel="next">
+<link href="./PythonAppendix.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,6 +61,8 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -94,7 +75,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./PythonAppendix.html">Appendices</a></li><li class="breadcrumb-item"><a href="./CurveSketching.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Curve sketching</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -125,7 +106,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -198,7 +179,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./CurveSketching.html" class="sidebar-item-text sidebar-link">
+  <a href="./CurveSketching.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Curve sketching</span></span></a>
   </div>
 </li>
@@ -214,16 +195,7 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
-  <ul class="collapse">
-  <li><a href="#how-to-contact-me" id="toc-how-to-contact-me" class="nav-link" data-scroll-target="#how-to-contact-me">How to contact me?</a></li>
-  <li><a href="#lecture-notes" id="toc-lecture-notes" class="nav-link" data-scroll-target="#lecture-notes">Lecture notes</a></li>
-  <li><a href="#reading" id="toc-reading" class="nav-link" data-scroll-target="#reading">Reading</a></li>
-  <li><a href="#python-codes" id="toc-python-codes" class="nav-link" data-scroll-target="#python-codes">Python codes</a></li>
-  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
-  <li><a href="#plan" id="toc-plan" class="nav-link" data-scroll-target="#plan">Plan</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">7.1</span> </a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dundeemath/MA32009/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -232,26 +204,14 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MA32009</h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Curve sketching</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Philip Murray </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">December 22, 2023</p>
-    </div>
-  </div>
   
     
   </div>
@@ -259,129 +219,33 @@ div.csl-indent {
 
 </header>
 
-
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1><p><img src="MA32009Cover.png" title="MA32009" class="quarto-cover-image img-fluid"></p>
-<p>Welcome to MA32009 Mathematical Biology I.</p>
-<p>My name is Philip Murray and I am the module lead.</p>
-<section id="how-to-contact-me" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-contact-me">How to contact me?</h2>
-<ul>
-<li>email: pmurray@dundee.ac.uk</li>
-<li>office: G11, Fulton Building</li>
-<li>Teams: PM me</li>
-</ul>
-</section>
-<section id="lecture-notes" class="level2">
-<h2 class="anchored" data-anchor-id="lecture-notes">Lecture notes</h2>
-<p>You can find lecture notes for the module on this page. If you would like a pdf this can be easily generated by clicking on the pdf link of the webpage. I will occasionally edit/update the notes as we proceed through lectures. If you spot any errors, typos or omissions please Raise an Issue</p>
-</section>
-<section id="reading" class="level2">
-<h2 class="anchored" data-anchor-id="reading">Reading</h2>
-<p>Mathematical Biology I, <span class="citation" data-cites="murray2002mathematical">Murray (<a href="#ref-murray2002mathematical" role="doc-biblioref">2002</a>)</span></p>
-<p>Esswential Mathemtical Biology <span class="citation" data-cites="britton2003essential">Britton and Britton (<a href="#ref-britton2003essential" role="doc-biblioref">2003</a>)</span></p>
-<p>Mathematical models in Biology <span class="citation" data-cites="edelstein2005mathematical">Edelstein-Keshet (<a href="#ref-edelstein2005mathematical" role="doc-biblioref">2005</a>)</span></p>
-</section>
-<section id="python-codes" class="level2">
-<h2 class="anchored" data-anchor-id="python-codes">Python codes</h2>
-<p>I have provided Python codes for most of the figures in the notes (you can unfold code section by clicking `Code’). Note that the Python code does not appear in the pdf.</p>
-<p>Many of you have taken the Introduction to Programming module at Level 2 and have therefore some experience using Python. I strongly encourage you to use the provided codes as a tool to play around with numerical solutions of the various models that we will be working on. The codes should run as standalone Python codes.</p>
-<p>I have also provided some examples of how to use Python as a symbolic calculator. This uses a Python library called <em>sympy</em> and is quite similar to Maple.</p>
-</section>
-<section id="assessment" class="level2">
-<h2 class="anchored" data-anchor-id="assessment">Assessment</h2>
-<ul>
-<li><p>Final exam (80 %)</p></li>
-<li><p>2 class tests (8.5 % each), Week 6 and 10</p></li>
-<li><p>3 quizes (1 % each), Week 2,4 and 8</p></li>
-</ul>
-</section>
-<section id="plan" class="level2">
-<h2 class="anchored" data-anchor-id="plan">Plan</h2>
-<table class="table">
-<caption>Projected delivery</caption>
-<thead>
-<tr class="header">
-<th>Week</th>
-<th style="text-align: left;">Chapter</th>
-<th>Tutorial sheet</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td style="text-align: left;">1</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td style="text-align: left;">1</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td style="text-align: left;">1</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td style="text-align: left;">2</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td style="text-align: left;">3</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td style="text-align: left;">3</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td style="text-align: left;">4</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td style="text-align: left;">4</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td style="text-align: left;">4</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td style="text-align: left;">5</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td>11</td>
-<td style="text-align: left;">5</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="section" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="section"><span class="header-section-number">7.1</span> </h2>
+<p>In the module we will be required to graph of nonlinear function.</p>
+<p>Consider a nonlinear function <span class="math display">\[
+f(x;p), \quad x \in \Re.
+\]</span> where <span class="math inline">\(p\)</span> is a constant.</p>
+<p>For example, <span class="math display">\[
+f(x)=rx(1-x), \quad x \in \Re.
+\]</span></p>
+<p>Our goal is usually to sketch <span class="math inline">\(f\)</span> in qualitatively distinct cases. For example: the graph of <span class="math inline">\(f\)</span> when <span class="math inline">\(r=1\)</span> is <em>qualitatively</em> equivelent to the graph of <span class="math inline">\(f\)</span> when <span class="math inline">\(r=2\)</span>. However, when <span class="math inline">\(r=-1\)</span> it is qualitatively distinct.</p>
+<p>The challenge is to firstly identify qualitatively distinct cases. Then sketch <span class="math inline">\(f\)</span> for each of these cases.</p>
+<p>T0 identify qualitatively distinct cases we test the properties of <span class="math inline">\(f\)</span> as follows:</p>
+<ol type="1">
+<li><p>Identify the <em>biologically relevant</em> roots of f.&nbsp; We define <span class="math inline">\(x^*\)</span> such that <span class="math display">\[
+f(x^*;p)=0.
+\]</span> Biologically relevant solutions require <span class="math inline">\(x^*\geq0\)</span>.</p>
+<p>Does the number of biologically relevant solutions depend on the parameter <span class="math inline">\(p\)</span>?</p></li>
+<li><p>Identify the turning points of f.<br>
+Differentiate <span class="math inline">\(f\)</span> with respect to <span class="math inline">\(x\)</span>. Identify turning points, <span class="math inline">\(x_c\)</span>, such that <span class="math display">\[
+     \frac{df}{dx}\bigg|_{x=x_c}=0.
+\]</span> Are there any turning points? Are they biologically relevant? Does the number of biologically relevant solutions depend on the parameter <span class="math inline">\(p\)</span>?</p></li>
+<li><p>Identify limiting behaviour as <span class="math inline">\(x\rightarrow \infty\)</span>. Compute the limit <span class="math display">\[
+\lim_{x\rightarrow \infty}f(x;p)=0.
+\]</span></p></li>
+</ol>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-britton2003essential" class="csl-entry" role="listitem">
-Britton, Nicholas F, and NF Britton. 2003. <em>Essential Mathematical Biology</em>. Vol. 453. Springer.
-</div>
-<div id="ref-edelstein2005mathematical" class="csl-entry" role="listitem">
-Edelstein-Keshet, Leah. 2005. <em>Mathematical Models in Biology</em>. SIAM.
-</div>
-<div id="ref-murray2002mathematical" class="csl-entry" role="listitem">
-Murray, J. D. 2002. <em>Mathematical Biology i: An Introduction</em>. Springer.
-</div>
-</div>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -620,11 +484,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./PythonAppendix.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./DiscreteTimeOnePop.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Single species population dynamics</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
