@@ -1,0 +1,58 @@
+---
+title: "Curve sketching"
+format: html
+---
+
+## 
+
+In the module we will be required to graph of nonlinear function.
+
+Consider a nonlinear function 
+$$
+f(x;p), \quad x \in \Re.
+$$
+where $p$ is a constant.
+
+
+For example, 
+$$
+f(x)=rx(1-x), \quad x \in \Re.
+$$
+
+Our goal is usually to sketch $f$ in qualitatively distinct cases. For example: the graph of $f$ when $r=1$ is *qualitatively* equivelent to the graph of $f$ when $r=2$. However, when $r=-1$ it is qualitatively distinct.
+
+The challenge is to firstly identify qualitatively distinct cases. Then sketch $f$ for each of these cases.
+
+T0 identify qualitatively distinct cases we test the properties of $f$ as follows:
+
+1. Identify the *biologically relevant* roots of f. 
+    We define $x^*$ such that
+    $$ 
+    f(x^*;p)=0.
+    $$
+    Biologically relevant solutions require $x^*\geq0$.
+
+    Does the number of biologically relevant solutions depend on the parameter $p$?
+
+2. Identify the turning points of f.    
+   Differentiate $f$ with respect to $x$. Identify turning points, $x_c$, such that
+   $$
+        \frac{df}{dx}\bigg|_{x=x_c}=0.
+   $$ 
+   Are there any turning points?
+   Are they biologically relevant?
+   Does the number of biologically relevant solutions depend on the parameter $p$?
+
+3. Identify limiting behaviour as $x\rightarrow \infty$. Compute the limit
+$$
+ \lim_{x\rightarrow \infty}f(x;p)=0.
+$$
+
+
+
+
+
+
+
+
+
