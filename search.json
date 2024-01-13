@@ -264,5 +264,12 @@
     "title": "6  Python",
     "section": "6.4 Plotting",
     "text": "6.4 Plotting\nLine graphs are plotted using the Python library Matplotlib."
+  },
+  {
+    "objectID": "CurveSketching.html#section",
+    "href": "CurveSketching.html#section",
+    "title": "7  Curve sketching",
+    "section": "7.1 ",
+    "text": "7.1 \nIn the module we will be required to graph of nonlinear function.\nConsider a nonlinear function \\[\nf(x;p), \\quad x \\in \\Re.\n\\] where \\(p\\) is a constant.\nFor example, \\[\nf(x)=rx(1-x), \\quad x \\in \\Re.\n\\]\nOur goal is usually to sketch \\(f\\) in qualitatively distinct cases. For example: the graph of \\(f\\) when \\(r=1\\) is qualitatively equivelent to the graph of \\(f\\) when \\(r=2\\). However, when \\(r=-1\\) it is qualitatively distinct.\nThe challenge is to firstly identify qualitatively distinct cases. Then sketch \\(f\\) for each of these cases.\nT0 identify qualitatively distinct cases we test the properties of \\(f\\) as follows:\n\nIdentify the biologically relevant roots of f.  We define \\(x^*\\) such that \\[\nf(x^*;p)=0.\n\\] Biologically relevant solutions require \\(x^*\\geq0\\).\nDoes the number of biologically relevant solutions depend on the parameter \\(p\\)?\nIdentify the turning points of f.\nDifferentiate \\(f\\) with respect to \\(x\\). Identify turning points, \\(x_c\\), such that \\[\n     \\frac{df}{dx}\\bigg|_{x=x_c}=0.\n\\] Are there any turning points? Are they biologically relevant? Does the number of biologically relevant solutions depend on the parameter \\(p\\)?\nIdentify limiting behaviour as \\(x\\rightarrow \\infty\\). Compute the limit \\[\n\\lim_{x\\rightarrow \\infty}f(x;p)=0.\n\\]"
   }
 ]
