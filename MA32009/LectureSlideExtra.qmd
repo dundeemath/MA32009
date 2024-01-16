@@ -1,0 +1,138 @@
+
+## Steady state calculation
+
+Compute the steady states of the system of ODEs
+$$
+\begin{aligned}
+\frac{du}{dt}&=1-u,  \nonumber \\
+\frac{dv}{dt}&=1-uv-v.
+\end{aligned}
+$$
+
+  
+Suppose $(u^*,v^*)$ is a steady state.
+ Hence
+$$
+ 0=1-u^*
+ $$
+ and
+$$
+ 0=1-u^*v^*-v^*
+ $$
+   The steady state is $(1,1/2)$.
+
+
+## Linear stability calculation
+
+Deduce, by considering the form for the eigenvalues that, for example, the conditions
+$\det(A)>0$, $\mathrm{tr}(A)>0$ with $\mathrm{tr}(A)^2<4 \det(A)$ imply that the steady state is an unstable spiral.
+
+The eigenvalues are given by
+$$
+\lambda = \frac{\mathrm{tr}{A}\pm \sqrt{\mathrm{tr}{A}^2-4\det{A}}}{2}
+$$
+
+
+## Jacobian calculation
+Compute the Jacobian matrix for the system of ODEs
+$$
+\begin{aligned}
+\frac{du}{dt}&=1-u,  \nonumber \\
+\frac{dv}{dt}&=1-uv-v.
+\end{aligned}
+$$
+Evaluate the Jacobian matrix at the steady state and hence determine its linear stability.
+
+The Jacobian is given by 
+$$
+A=\left(\begin{array}{rr} -1&0 \\ -v &-u-1 \end{array}\right).
+$$
+At (1,1/2)
+$$
+A=\left(\begin{array}{rr} -1&0 \\ -\frac{1}{2} &-2 \end{array}\right).
+$$
+In this case 
+$$
+ tr(A)=-3
+$$
+and 
+$$
+ \det(A)=2
+$$
+ 
+ Hence the steady state is stable.
+ As 
+$$
+ tr(A)^2-4\det(A)=9-8=1,
+$$
+ it is a stable node.
+
+## Nullclines calculation
+
+Sketch the nullclines of the system of ODEs
+$$
+\begin{aligned}
+\frac{du}{dt}&=1-u,  \nonumber \\
+\frac{dv}{dt}&=1-uv-v.
+\end{aligned}
+$$
+
+
+The $u$ nullcline is $u=1$.
+The $v$ nullcline is $v=1/(1+u)$.
+
+
+
+## Biochemical kinetics I
+
+Suppose A and B react to produce C. Hence
+$$
+A+B\xrightarrow{k}  C.
+$$
+
+The law of mass action states that the rate of the reaction is 
+
+$$
+k[A][B].
+$$
+
+Using the reaction rates, we write down ordinary differential equations that describe how concentrations of a given molecule will change in time. Hence
+
+$$
+\frac{d[C]}{dt}=k[A][B].
+$$ 
+
+
+
+## Biochemical kinetics
+
+Consider the reversible reaction
+$$
+A+B  \xrightleftharpoons[k_{-}]{k_{+}}  C.
+$$
+Define dependent variables, identify reaction rates and derive ordinary differential equations that describe how concentrations evolved in time.
+
+The dependent variables are:
+$$ [A](t), \ \ [B](t), \ \ [C](t) $$.
+
+Applying the law of mass action yields the reaction rates: 
+
+$$ k_+[A][B] \ \ \textrm{and} \ \ k_-[C]$$.
+
+
+## Ctd. 
+The ODEs are
+
+$$
+\begin{aligned}
+\frac{d[A]}{dt}&=-k_+[A][B]+k_-[C], \nonumber\\
+\frac{d[B]}{dt}&=-k_+[A][B]+k_-[C], \nonumber\\
+\frac{d[C]}{dt}&=k_+[A][B]-k_-[C]. \nonumber
+\end{aligned}
+$$
+
+For a given set of initial conditions, 
+$$
+[A](t=0)=[A]_0, \ \ \ [B](t=0)=[B]_0, \ \ \ [C](t=0)=[C]_0,
+$$
+the ODEs can be solved and hence the concentrations of the different molecules described as time evolves.
