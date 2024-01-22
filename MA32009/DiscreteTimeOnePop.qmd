@@ -621,7 +621,7 @@ The stability of the fixed point $N^*=0$ is determined by
 $$
 H'(0)= \gamma.
 $$ 
-Hence if \$\gamma \<1\$ the first fixed point is monotonically stable as $0<H'(0) < 1$.
+Hence if $\gamma <1$ the first fixed point is monotonically stable as $0<H'(0) < 1$.
 
 When $\gamma > 1$ the second fixed point becomes biologically relevant and the first fixed point becomes monotonically unstable.
 
