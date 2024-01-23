@@ -549,7 +549,7 @@ In @fig-plotdensmodel1 time series solution of the model are plotted for paramet
 
 ```{python}
 #| label: fig-plotdensmodel1
-#| fig-cap: "Time series solution for (a) $g$=0.5 and (b) $g$=1.5 and (c) $g$=10.5."
+#| fig-cap: "Time series solution for (a) $\\gamma$=0.5 and (b) $\\gamma$=1.5 and (c) $\\gamma$=10.5."
 # Computes solution of density dependent model
 import numpy as np
 import matplotlib.pyplot as plt
@@ -670,7 +670,7 @@ In @fig-densmodelcobweb cobweb diagrams illustrate model behaviour in the three 
 
 ```{python}
 #| label: fig-densmodelcobweb
-#| fig-cap: "Cobweb diagrams for different values of gamma."
+#| fig-cap: "Cobweb diagrams for different values of $\\gamma$."
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -838,7 +838,7 @@ Based on the previous analysis we consider the system in a parameter regime wher
 
 ```{python}
 #| label: fig-plotdensmodelharvest
-#| fig-cap: "Time series solution for (a) $gamma$=0.5 and (b) $gamma$=1.5 and (c) $gamma$=10.5."
+#| fig-cap: "Time series solution for different values of $h$."
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -996,7 +996,7 @@ $$
 \gamma=\frac{(1+h)^2}{h}.
 $$
 
-In Figure @fig-plotdensmodelharveststab we plot the contours of the hypersurface $H'(N^*)$ at the critical values of $-1$, $0$ and 1. Note that the points in parameter space used to generate the simulation results in @fig-plotdensmodelharvest are $(h,\gamma)=(0.1,5)$ $(h,\gamma)=(1,5)$ and $(h,\gamma)=(3,5)$. Cobweb diagrams in different regions of parameter space are presented in @fig-densharvestingmodelcobweb. The plot in @fig-plotdensmodelharveststab can be used to explain why the model transfers from a stable fixed point, through oscillatory fixed point and back to a stable fixed point as the harvesting rate increases from 0.1, to $1$ and then 5?
+In @fig-plotdensmodelharveststab we plot the contours of the hypersurface $H'(N^*)$ at the critical values of $-1$, $0$ and 1. Note that the points in parameter space used to generate the simulation results in @fig-plotdensmodelharvest are $(h,\gamma)=(0.1,5)$ $(h,\gamma)=(1,5)$ and $(h,\gamma)=(3,5)$. Cobweb diagrams in different regions of parameter space are presented in @fig-densharvestingmodelcobweb. The plot in @fig-plotdensmodelharveststab can be used to explain why the model transfers from a stable fixed point, through oscillatory fixed point and back to a stable fixed point as the harvesting rate increases from 0.1, to $1$ and then 5?
 
 
 ```{python}

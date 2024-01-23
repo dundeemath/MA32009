@@ -840,7 +840,7 @@ H(N_{t})=\frac{\gamma N_t}{1+N_t^2}.
 <div id="fig-plotdensmodel1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="DiscreteTimeOnePop_files/figure-html/fig-plotdensmodel1-output-1.png" width="660" height="468" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.5: Time series solution for (a) <span class="math inline">\(g\)</span>=0.5 and (b) <span class="math inline">\(g\)</span>=1.5 and (c) <span class="math inline">\(g\)</span>=10.5.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;1.5: Time series solution for (a) <span class="math inline">\(\gamma\)</span>=0.5 and (b) <span class="math inline">\(\gamma\)</span>=1.5 and (c) <span class="math inline">\(\gamma\)</span>=10.5.</figcaption>
 </figure>
 </div>
 </div>
@@ -867,7 +867,7 @@ H'(N_t)= \frac{\gamma}{1+N_t^2} + \frac{-2 \gamma N_t^2}{(1+N_t^2)^2}.
 <h4 data-number="1.5.4.1" class="anchored" data-anchor-id="n0"><span class="header-section-number">1.5.4.1</span> <span class="math inline">\(N^*=0\)</span></h4>
 <p>The stability of the fixed point <span class="math inline">\(N^*=0\)</span> is determined by <span class="math display">\[
 H'(0)= \gamma.
-\]</span> Hence if $&lt;1$ the first fixed point is monotonically stable as <span class="math inline">\(0&lt;H'(0) &lt; 1\)</span>.</p>
+\]</span> Hence if <span class="math inline">\(\gamma &lt;1\)</span> the first fixed point is monotonically stable as <span class="math inline">\(0&lt;H'(0) &lt; 1\)</span>.</p>
 <p>When <span class="math inline">\(\gamma &gt; 1\)</span> the second fixed point becomes biologically relevant and the first fixed point becomes monotonically unstable.</p>
 </section>
 <section id="nsqrtgamma-1" class="level4" data-number="1.5.4.2">
@@ -973,7 +973,7 @@ H'(\sqrt{\gamma-1}) = \frac{2}{\gamma}-1 &gt;1,
 <div id="fig-densmodelcobweb" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="DiscreteTimeOnePop_files/figure-html/fig-densmodelcobweb-output-1.png" width="660" height="467" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.6: Cobweb diagrams for different values of gamma.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;1.6: Cobweb diagrams for different values of <span class="math inline">\(\gamma\)</span>.</figcaption>
 </figure>
 </div>
 </div>
@@ -1136,7 +1136,7 @@ N_{t+1}=\frac{\gamma N_t}{1+N_t^2} - h N_t,
 <div id="fig-plotdensmodelharvest" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="DiscreteTimeOnePop_files/figure-html/fig-plotdensmodelharvest-output-1.png" width="660" height="468" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.8: Time series solution for (a) <span class="math inline">\(gamma\)</span>=0.5 and (b) <span class="math inline">\(gamma\)</span>=1.5 and (c) <span class="math inline">\(gamma\)</span>=10.5.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;1.8: Time series solution for (a) <span class="math inline">\(\gamma\)</span>=0.5 and (b) <span class="math inline">\(\gamma\)</span>=1.5 and (c) <span class="math inline">\(\gamma\)</span>=10.5.</figcaption>
 </figure>
 </div>
 </div>
@@ -1232,7 +1232,7 @@ h^2\frac{2}{\gamma} + h\frac{2}{\gamma}(2-\gamma) + \frac{2}{\gamma}-1 = -1,
 <p>Solving for <span class="math inline">\(\gamma\)</span> yields <span class="math display">\[
 \gamma=\frac{(1+h)^2}{h}.
 \]</span></p>
-<p>In Figure <a href="#fig-plotdensmodelharveststab">Figure&nbsp;<span>1.9</span></a> we plot the contours of the hypersurface <span class="math inline">\(H'(N^*)\)</span> at the critical values of <span class="math inline">\(-1\)</span>, <span class="math inline">\(0\)</span> and 1. Note that the points in parameter space used to generate the simulation results in <a href="#fig-plotdensmodelharvest">Figure&nbsp;<span>1.8</span></a> are <span class="math inline">\((h,\gamma)=(0.1,5)\)</span> <span class="math inline">\((h,\gamma)=(1,5)\)</span> and <span class="math inline">\((h,\gamma)=(3,5)\)</span>. Cobweb diagrams in different regions of parameter space are presented in <a href="#fig-densharvestingmodelcobweb">Figure&nbsp;<span>1.10</span></a>. The plot in <a href="#fig-plotdensmodelharveststab">Figure&nbsp;<span>1.9</span></a> can be used to explain why the model transfers from a stable fixed point, through oscillatory fixed point and back to a stable fixed point as the harvesting rate increases from 0.1, to <span class="math inline">\(1\)</span> and then 5?</p>
+<p>In <a href="#fig-plotdensmodelharveststab">Figure&nbsp;<span>1.9</span></a> we plot the contours of the hypersurface <span class="math inline">\(H'(N^*)\)</span> at the critical values of <span class="math inline">\(-1\)</span>, <span class="math inline">\(0\)</span> and 1. Note that the points in parameter space used to generate the simulation results in <a href="#fig-plotdensmodelharvest">Figure&nbsp;<span>1.8</span></a> are <span class="math inline">\((h,\gamma)=(0.1,5)\)</span> <span class="math inline">\((h,\gamma)=(1,5)\)</span> and <span class="math inline">\((h,\gamma)=(3,5)\)</span>. Cobweb diagrams in different regions of parameter space are presented in <a href="#fig-densharvestingmodelcobweb">Figure&nbsp;<span>1.10</span></a>. The plot in <a href="#fig-plotdensmodelharveststab">Figure&nbsp;<span>1.9</span></a> can be used to explain why the model transfers from a stable fixed point, through oscillatory fixed point and back to a stable fixed point as the harvesting rate increases from 0.1, to <span class="math inline">\(1\)</span> and then 5?</p>
 <div class="cell" data-execution_count="11">
 <details>
 <summary>Code</summary>
