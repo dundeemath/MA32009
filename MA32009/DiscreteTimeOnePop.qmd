@@ -964,13 +964,18 @@ h_vec=np.linspace(0.1,5,100)
 gamma_1=(1+h_vec)**2/h_vec
 gamma_2=1+h_vec
 gamma_3=h_vec
+gamma_4=2*(1+h_vec)**2/(1+2*h_vec)
+
 
 
 # PLot results
 fig, ax = plt.subplots(1)
 ax.plot(h_vec, gamma_1)
+ax.plot(h_vec, gamma_4)
 ax.plot(h_vec, gamma_2)
 ax.plot(h_vec, gamma_3)
+
+ax.legend(['$H_p$=-1','$H_p$=0','$H_p$=1','$N^*=0$ mon'])
 
 plt.xlabel('$h$')
 plt.ylabel('$\gamma$')
@@ -1061,8 +1066,6 @@ plt.tight_layout()
 
 plt.show()
 ```
-
-We can construct a cobweb diagram for the case $(h,\gamma)=(3,5)$.
 
 Many of the above calculations can be aided using a symbolic calculator:
 

@@ -1136,7 +1136,7 @@ N_{t+1}=\frac{\gamma N_t}{1+N_t^2} - h N_t,
 <div id="fig-plotdensmodelharvest" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="DiscreteTimeOnePop_files/figure-html/fig-plotdensmodelharvest-output-1.png" width="660" height="468" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.8: Time series solution for (a) <span class="math inline">\(\gamma\)</span>=0.5 and (b) <span class="math inline">\(\gamma\)</span>=1.5 and (c) <span class="math inline">\(\gamma\)</span>=10.5.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;1.8: Time series solution for different values of <span class="math inline">\(h\)</span>.</figcaption>
 </figure>
 </div>
 </div>
@@ -1197,17 +1197,22 @@ H'(N^*) = h^2\frac{2}{\gamma} + h\frac{2}{\gamma}(2-\gamma) + \frac{2}{\gamma}-1
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>gamma_1<span class="op">=</span>(<span class="dv">1</span><span class="op">+</span>h_vec)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>h_vec</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>gamma_2<span class="op">=</span><span class="dv">1</span><span class="op">+</span>h_vec</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>gamma_3<span class="op">=</span>h_vec</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>gamma_4<span class="op">=</span><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>h_vec)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span>h_vec)</span>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># PLot results</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>ax.plot(h_vec, gamma_1)</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>ax.plot(h_vec, gamma_2)</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>ax.plot(h_vec, gamma_3)</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$h$'</span>)</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$\gamma$'</span>)</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co"># PLot results</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>ax.plot(h_vec, gamma_1)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>ax.plot(h_vec, gamma_4)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>ax.plot(h_vec, gamma_2)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>ax.plot(h_vec, gamma_3)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>ax.legend([<span class="st">'$H_p$=-1'</span>,<span class="st">'$H_p$=0'</span>,<span class="st">'$H_p$=1'</span>,<span class="st">'$N^*=0$ mon'</span>])</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$h$'</span>)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$\gamma$'</span>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-plotdensmodelharveststab" class="quarto-figure quarto-figure-center anchored">
@@ -1304,7 +1309,6 @@ h^2\frac{2}{\gamma} + h\frac{2}{\gamma}(2-\gamma) + \frac{2}{\gamma}-1 = -1,
 </div>
 </div>
 </div>
-<p>We can construct a cobweb diagram for the case <span class="math inline">\((h,\gamma)=(3,5)\)</span>.</p>
 <p>Many of the above calculations can be aided using a symbolic calculator:</p>
 <div id="code-calc1harvesting" class="cell" data-caption="none" data-execution_count="12">
 <details>
