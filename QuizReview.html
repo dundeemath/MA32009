@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA32009 - 7&nbsp; Curve sketching</title>
+<title>MA32009 - 8&nbsp; Quiz 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./QuizReview.html" rel="next">
-<link href="./PythonAppendix.html" rel="prev">
+<link href="./CurveSketching.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -61,6 +60,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -76,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./PythonAppendix.html">Appendices</a></li><li class="breadcrumb-item"><a href="./CurveSketching.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Curve sketching</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./PythonAppendix.html">Appendices</a></li><li class="breadcrumb-item"><a href="./QuizReview.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quiz 1</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -180,13 +182,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./CurveSketching.html" class="sidebar-item-text sidebar-link active">
+  <a href="./CurveSketching.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Curve sketching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./QuizReview.html" class="sidebar-item-text sidebar-link">
+  <a href="./QuizReview.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quiz 1</span></span></a>
   </div>
 </li>
@@ -202,7 +204,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">7.1</span> </a></li>
+  <li><a href="#strategy-for-solving-the-fixed-point-problem" id="toc-strategy-for-solving-the-fixed-point-problem" class="nav-link active" data-scroll-target="#strategy-for-solving-the-fixed-point-problem"><span class="header-section-number">8.1</span> Strategy for solving the fixed point problem</a></li>
+  <li><a href="#derivatives" id="toc-derivatives" class="nav-link" data-scroll-target="#derivatives"><span class="header-section-number">8.2</span> Derivatives</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dundeemath/MA32009/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -211,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Curve sketching</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quiz 1</span></h1>
 </div>
 
 
@@ -226,32 +229,181 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="section" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="section"><span class="header-section-number">7.1</span> </h2>
-<p>In the module we will be required to graph of nonlinear function.</p>
-<p>Consider a nonlinear function <span class="math display">\[
-f(x;p), \quad x \in \Re.
-\]</span> where <span class="math inline">\(p\)</span> is a constant.</p>
-<p>For example, <span class="math display">\[
-f(x)=rx(1-x), \quad x \in \Re.
+<section id="strategy-for-solving-the-fixed-point-problem" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="strategy-for-solving-the-fixed-point-problem"><span class="header-section-number">8.1</span> Strategy for solving the fixed point problem</h2>
+<p>Suppose we are solving the fixed point equation <span class="math display">\[
+H(N^*;p)=N^*.
+\]</span> Here <span class="math inline">\(N^*\)</span> is the fixed point value and <span class="math inline">\(p\)</span> represents model parameters. In the flow chart below we represent <span class="math inline">\(N^*\)</span> by <span class="math inline">\(x\)</span> for notational convenience.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Know variables and parameters]--&gt;B[Identify FP equation for unknown x]  
+  B--&gt; C(Linear)
+  C --&gt; D(Solve)
+  B --&gt; E(Quadratic)
+  E --&gt; F(ax^2+bx+c=0)
+  F --&gt;G(Solve for x using quadratic formula)
+  E --&gt; H(ax^2+bx=0)
+  H --&gt;I(Factorise x=0 and solve)
+  B --&gt;J(Terms involving x on denominator)
+  J --&gt;K(Multiply by denominators and gather terms in powers of x)
+  K--&gt;O(Linear or quadratic)
+  K--&gt;Q(Do something elsse)
+  B--&gt;L(Other form)
+  L--&gt;M(Write as some 'gx=a')
+  M--&gt;P(Apply inverse function to isolate x)
+  L--&gt;N(Do something else)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Spotting the quadratic with a zero root
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suppose the fixed point were a quadratic equation of the form <span class="math display">\[
+a{N^*}^2+bN^*+c
+\]</span> where <span class="math display">\[a,b,c \in \Re^+.\]</span></p>
+<p>The solution is <span class="math display">\[
+N^*=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 \]</span></p>
-<p>Our goal is usually to sketch <span class="math inline">\(f\)</span> in qualitatively distinct cases. For example: the graph of <span class="math inline">\(f\)</span> when <span class="math inline">\(r=1\)</span> is <em>qualitatively</em> equivelent to the graph of <span class="math inline">\(f\)</span> when <span class="math inline">\(r=2\)</span>. However, when <span class="math inline">\(r=-1\)</span> it is qualitatively distinct.</p>
-<p>The challenge is to firstly identify qualitatively distinct cases. Then sketch <span class="math inline">\(f\)</span> for each of these cases.</p>
-<p>T0 identify qualitatively distinct cases we test the properties of <span class="math inline">\(f\)</span> as follows:</p>
-<ol type="1">
-<li><p>Identify the <em>biologically relevant</em> roots of f.&nbsp; We define <span class="math inline">\(x^*\)</span> such that <span class="math display">\[
-f(x^*;p)=0.
-\]</span> Biologically relevant solutions require <span class="math inline">\(x^*\geq0\)</span>.</p>
-<p>Does the number of biologically relevant solutions depend on the parameter <span class="math inline">\(p\)</span>?</p></li>
-<li><p>Identify the turning points of f.<br>
-Differentiate <span class="math inline">\(f\)</span> with respect to <span class="math inline">\(x\)</span>. Identify turning points, <span class="math inline">\(x_c\)</span>, such that <span class="math display">\[
-     \frac{df}{dx}\bigg|_{x=x_c}=0.
-\]</span> Are there any turning points? Are they biologically relevant? Does the number of biologically relevant solutions depend on the parameter <span class="math inline">\(p\)</span>?</p></li>
-<li><p>Identify limiting behaviour as <span class="math inline">\(x\rightarrow \infty\)</span>. Compute the limit <span class="math display">\[
-\lim_{x\rightarrow \infty}f(x;p)=0.
-\]</span></p></li>
-<li></li>
-</ol>
+<p>However, in the case you are trying to solve <span class="math display">\[c=0.\]</span></p>
+<p>Factorise instead. i.e. <span class="math display">\[
+a{N^*}^2+bN^*=0.
+\]</span> Hence <span class="math display">\[
+N^*(aN^*+b)=0.
+\]</span> Hence one root is <span class="math display">\[
+N^*=0.
+\]</span> The other is <span class="math display">\[
+N^*=-b/a.
+\]</span></p>
+</div>
+</div>
+<div id="fig-simple" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Know variables and parameters]:::foo--&gt;B[Identify FP equation for unknown x]:::foo 
+  B--&gt; C(Linear)
+  C --&gt; D(Solve)
+  B --&gt; E(Quadratic)
+  E --&gt; F(ax^2+bx+c=0)
+  F --&gt;G(Solve for x using quadratic formula)
+  E --&gt; H(ax^2+bx=0)
+  H --&gt;I(Factorise x=0 and solve)
+  B --&gt;J(Terms involving x on denominator):::foo
+  J --&gt;K(Multiply by denominators and gather terms in powers of x):::foo
+  K--&gt;O(Linear or quadratic):::foo
+  K--&gt;Q(Do something elsse)
+  B--&gt;L(Other form)
+  L--&gt;M(Write as some 'gx=a')
+  M--&gt;P(Apply inverse function to isolate x)
+  L--&gt;N(Do something else)
+
+  classDef foo stroke:#f00
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="figure-caption">Figure&nbsp;8.1: The strategy for this problem is highlighted.</figcaption>
+</figure>
+</div>
+<p>In Quiz 1 the fixed point problem takes the form <span id="eq-fpquiz"><span class="math display">\[
+N^*=\frac{rN^*}{1+N^*}-hN^*.
+\tag{8.1}\]</span></span></p>
+<p>We want to solve <a href="#eq-fpquiz">Equation&nbsp;<span>8.1</span></a> for the unknown <span class="math inline">\(N^*\)</span>. <span class="math inline">\(r\)</span> and <span class="math inline">\(h\)</span> are the model parameters (these are fixed constants).</p>
+<p>To isolate the <span class="math inline">\(N^*\)</span> we need to deal with the denominator.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is at least one term involving the variable in a denominator.</p>
+</div>
+</div>
+<p>Hence multiply every term in <a href="#eq-fpquiz">Equation&nbsp;<span>8.1</span></a> by the denominator <span class="math inline">\(1+N^*\)</span>.</p>
+<p>Therefore <span class="math display">\[
+N^*(1+N^*)=rN^*-hN^*(1+N^*).
+\]</span></p>
+<p>Now gather coefficients of powers of <span class="math inline">\(N^*\)</span>.</p>
+<p>Hence <span class="math display">\[
+{N^*}^2 (1+h) + N^*(1+h-r)=0.
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is of the form <span class="math display">\[
+ax^2+bx=0.
+\]</span></p>
+</div>
+</div>
+<p>Factorise out an <span class="math inline">\(N^*\)</span>. Hence <span class="math display">\[
+N^*((1+h)(1+N^*)-r)=0.
+\]</span> Hence one solution is <span class="math display">\[
+N^*=0.
+\]</span> The other is <span class="math display">\[
+N^*=\frac{r}{1+h}-1.
+\]</span></p>
+</section>
+<section id="derivatives" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="derivatives"><span class="header-section-number">8.2</span> Derivatives</h2>
+<p><span class="math display">\[
+N_{t+1}=H(N_t)=\frac{rN_t}{1+N_t}-hN_t.
+\]</span></p>
+<p>To differentiate see below.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suppose <span class="math display">\[
+f(x)=\frac{u(x)}{v(x)}.
+\]</span></p>
+<p>Write as <span class="math display">\[
+f(x)={u(x)}{v(x)}^{-1}.
+\]</span></p>
+<p>Apply the product rule <span class="math display">\[
+\frac{df}{dx}=\frac{du}{dx}v(x)^{-1} +u(x)\left(-v(x)^{-2}\frac{dv}{dx}\right).
+\]</span></p>
+</div>
+</div>
+<p>Hence <span class="math display">\[
+H'(N_t)= r (1+N_t)^{-1} +rN_t\left(-(1+N_t)^{-2}\right) -h.
+\]</span></p>
+<p>Tidying <span class="math display">\[
+H'(N_t)= \frac{r}{(1+N_t)^2} -h.
+\]</span></p>
 
 
 </section>
@@ -492,14 +644,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./PythonAppendix.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python</span></span>
+      <a href="./CurveSketching.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Curve sketching</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./QuizReview.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quiz 1</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
