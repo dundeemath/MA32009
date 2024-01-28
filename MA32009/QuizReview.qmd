@@ -1,0 +1,187 @@
+---
+title: "Quiz 1"
+format: html
+---
+
+## Strategy for solving the fixed point problem
+
+Suppose we are solving the fixed point equation
+$$
+H(N^*;p)=N^*.
+$$
+Here $N^*$ is the fixed point value and $p$ represents model parameters.
+In the flow chart below we represent $N^*$ by $x$ for notational convenience. 
+
+
+```{mermaid}
+flowchart LR
+  A[Know variables and parameters]-->B[Identify FP equation for unknown x]  
+  B--> C(Linear)
+  C --> D(Solve)
+  B --> E(Quadratic)
+  E --> F(ax^2+bx+c=0)
+  F -->G(Solve for x using quadratic formula)
+  E --> H(ax^2+bx=0)
+  H -->I(Factorise x=0 and solve)
+  B -->J(Terms involving x on denominator)
+  J -->K(Multiply by denominators and gather terms in powers of x)
+  K-->O(Linear or quadratic)
+  K-->Q(Do something elsse)
+  B-->L(Other form)
+  L-->M(Write as some 'gx=a')
+  M-->P(Apply inverse function to isolate x)
+  L-->N(Do something else)
+```
+
+::: {.callout-note}
+## Spotting the quadratic with a zero root
+Suppose the fixed point were a quadratic equation of the form
+$$ 
+a{N^*}^2+bN^*+c
+$$
+where $$a,b,c \in \Re^+.$$
+
+The solution is 
+$$
+N^*=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+$$
+
+However, in the case you are trying to solve $$c=0.$$
+
+Factorise instead.
+i.e.
+$$
+a{N^*}^2+bN^*=0.
+$$
+Hence
+$$
+N^*(aN^*+b)=0.
+$$
+Hence one root is 
+$$
+N^*=0.
+$$
+The other is 
+$$
+N^*=-b/a.
+$$
+:::
+
+::: {#fig-simple}
+
+```{mermaid} 
+flowchart LR
+  A[Know variables and parameters]:::foo-->B[Identify FP equation for unknown x]:::foo 
+  B--> C(Linear)
+  C --> D(Solve)
+  B --> E(Quadratic)
+  E --> F(ax^2+bx+c=0)
+  F -->G(Solve for x using quadratic formula)
+  E --> H(ax^2+bx=0)
+  H -->I(Factorise x=0 and solve)
+  B -->J(Terms involving x on denominator):::foo
+  J -->K(Multiply by denominators and gather terms in powers of x):::foo
+  K-->O(Linear or quadratic):::foo
+  K-->Q(Do something elsse)
+  B-->L(Other form)
+  L-->M(Write as some 'gx=a')
+  M-->P(Apply inverse function to isolate x)
+  L-->N(Do something else)
+
+  classDef foo stroke:#f00
+
+```
+
+The strategy for this problem is highlighted.
+:::
+
+
+In Quiz 1 the fixed point problem takes the form
+$$
+N^*=\frac{rN^*}{1+N^*}-hN^*.
+$$ {#eq-fpquiz}
+
+We want to solve @eq-fpquiz for the unknown $N^*$. $r$ and $h$ are the model parameters (these are fixed constants).
+
+To isolate the $N^*$ we need to deal with the denominator. 
+
+::: {.callout-note}
+# 
+There is at least one term involving the variable in a denominator.
+:::
+
+Hence multiply every term in @eq-fpquiz by the denominator $1+N^*$.
+
+Therefore
+$$
+N^*(1+N^*)=rN^*-hN^*(1+N^*).
+$$
+
+Now gather coefficients of powers of $N^*$.
+
+Hence
+$$
+{N^*}^2 (1+h) + N^*(1+h-r)=0.
+$$
+
+
+::: {.callout-note}
+# 
+This is of the form
+$$
+ax^2+bx=0.
+$$
+:::
+
+
+Factorise out an $N^*$. Hence
+$$
+N^*((1+h)(1+N^*)-r)=0.
+$$
+Hence one solution is
+$$
+N^*=0.
+$$
+The other is 
+$$
+N^*=\frac{r}{1+h}-1.
+$$
+
+
+## Derivatives
+
+
+$$
+N_{t+1}=H(N_t)=\frac{rN_t}{1+N_t}-hN_t.
+$$ 
+
+To differentiate see below.
+
+::: {.callout-note}
+Suppose
+$$
+f(x)=\frac{u(x)}{v(x)}.
+$$
+
+Write as 
+$$
+f(x)={u(x)}{v(x)}^{-1}.
+$$
+
+Apply the product rule
+$$
+\frac{df}{dx}=\frac{du}{dx}v(x)^{-1} +u(x)\left(-v(x)^{-2}\frac{dv}{dx}\right).
+$$
+
+:::
+
+Hence
+$$
+H'(N_t)= r (1+N_t)^{-1} +rN_t\left(-(1+N_t)^{-2}\right) -h.
+$$
+
+
+Tidying
+$$
+H'(N_t)= \frac{r}{(1+N_t)^2} -h.
+$$
