@@ -46,10 +46,9 @@ $$
 N^*=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 $$
 
-However, in the case you are trying to solve $$c=0.$$
+However, in the case you are trying to solve $c=0$.
 
-Factorise instead.
-i.e.
+In this case, factorise instead, i.e.
 $$
 a{N^*}^2+bN^*=0.
 $$
@@ -136,7 +135,7 @@ $$
 
 Factorise out an $N^*$. Hence
 $$
-N^*((1+h)(1+N^*)-r)=0.
+N^*((1+h)N^*+1+h-r)=0.
 $$
 Hence one solution is
 $$
