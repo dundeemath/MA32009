@@ -103,21 +103,6 @@ $$
 the fixed point is linearly stable. If at least one of the eigenvalues has $|\lambda_i|>1$ then the fixed point is unstable to linear perturbations.
 
 
-<!--
-\examplequestion{
-Compute the Jacobian matrix of the model
-\begin{aligned}
-N_{t+1}&=P_t \\
-P_{t+1}&=N_t+P_t.
-\end{aligned}
-
-The Jacobian matrix is given by
-$$
-A= \left(\begin{array}{cc}
-0 & 1 \\ 
-1 & 1 \end{array}\right).
-$$
--->
 
 
 ###  Jury conditions 

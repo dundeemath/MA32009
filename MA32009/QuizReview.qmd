@@ -26,7 +26,7 @@ flowchart LR
   B -->J(Terms involving x on denominator)
   J -->K(Multiply by denominators and gather terms in powers of x)
   K-->O(Linear or quadratic)
-  K-->Q(Do something elsse)
+  K-->Q(Do something else)
   B-->L(Other form)
   L-->M(Write as some 'gx=a')
   M-->P(Apply inverse function to isolate x)
