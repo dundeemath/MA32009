@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA32009 - 2&nbsp; Multi species population dynamics</title>
+<title>MA32009 - 2&nbsp; Multi species population dynamics in discrete time</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -110,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DiscreteTimeOnePop.html">Discrete time</a></li><li class="breadcrumb-item"><a href="./DiscreteTimeTwoPop.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Multi species population dynamics</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DiscreteTimeOnePop.html">Discrete time</a></li><li class="breadcrumb-item"><a href="./DiscreteTimeTwoPop.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Multi species population dynamics in discrete time</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -163,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./DiscreteTimeTwoPop.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Multi species population dynamics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Multi species population dynamics in discrete time</span></span></a>
   </div>
 </li>
       </ul>
@@ -236,29 +236,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#multiple-species-in-discrete-time" id="toc-multiple-species-in-discrete-time" class="nav-link active" data-scroll-target="#multiple-species-in-discrete-time"><span class="header-section-number">3</span> Multiple species in discrete time</a>
+  <li><a href="#a-general-model-of-two-interacting-species-in-discrete-time" id="toc-a-general-model-of-two-interacting-species-in-discrete-time" class="nav-link active" data-scroll-target="#a-general-model-of-two-interacting-species-in-discrete-time"><span class="header-section-number">2.1</span> A general model of two interacting species in discrete time</a></li>
+  <li><a href="#general-techniques-for-analysing-coupled-first-order-difference-equations" id="toc-general-techniques-for-analysing-coupled-first-order-difference-equations" class="nav-link" data-scroll-target="#general-techniques-for-analysing-coupled-first-order-difference-equations"><span class="header-section-number">2.2</span> General techniques for analysing coupled first order difference equations</a>
   <ul class="collapse">
-  <li><a href="#a-general-model-of-two-interacting-species-in-discrete-time" id="toc-a-general-model-of-two-interacting-species-in-discrete-time" class="nav-link" data-scroll-target="#a-general-model-of-two-interacting-species-in-discrete-time"><span class="header-section-number">3.1</span> A general model of two interacting species in discrete time</a></li>
-  <li><a href="#general-techniques-for-analysing-coupled-first-order-difference-equations" id="toc-general-techniques-for-analysing-coupled-first-order-difference-equations" class="nav-link" data-scroll-target="#general-techniques-for-analysing-coupled-first-order-difference-equations"><span class="header-section-number">3.2</span> General techniques for analysing coupled first order difference equations</a>
-  <ul class="collapse">
-  <li><a href="#fixed-points" id="toc-fixed-points" class="nav-link" data-scroll-target="#fixed-points"><span class="header-section-number">3.2.1</span> Fixed points</a></li>
-  <li><a href="#linear-stability-analysis" id="toc-linear-stability-analysis" class="nav-link" data-scroll-target="#linear-stability-analysis"><span class="header-section-number">3.2.2</span> Linear stability analysis</a></li>
-  <li><a href="#solving-the-linearised-problem" id="toc-solving-the-linearised-problem" class="nav-link" data-scroll-target="#solving-the-linearised-problem"><span class="header-section-number">3.2.3</span> Solving the linearised problem</a></li>
-  <li><a href="#jury-conditions" id="toc-jury-conditions" class="nav-link" data-scroll-target="#jury-conditions"><span class="header-section-number">3.2.4</span> Jury conditions</a></li>
-  <li><a href="#proof-of-the-jury-conditions" id="toc-proof-of-the-jury-conditions" class="nav-link" data-scroll-target="#proof-of-the-jury-conditions"><span class="header-section-number">3.2.5</span> Proof of the Jury conditions</a></li>
-  <li><a href="#complex-roots" id="toc-complex-roots" class="nav-link" data-scroll-target="#complex-roots"><span class="header-section-number">3.2.6</span> Complex roots</a></li>
-  <li><a href="#real-roots" id="toc-real-roots" class="nav-link" data-scroll-target="#real-roots"><span class="header-section-number">3.2.7</span> Real roots</a></li>
+  <li><a href="#fixed-points" id="toc-fixed-points" class="nav-link" data-scroll-target="#fixed-points"><span class="header-section-number">2.2.1</span> Fixed points</a></li>
+  <li><a href="#linear-stability-analysis" id="toc-linear-stability-analysis" class="nav-link" data-scroll-target="#linear-stability-analysis"><span class="header-section-number">2.2.2</span> Linear stability analysis</a></li>
+  <li><a href="#solving-the-linearised-problem" id="toc-solving-the-linearised-problem" class="nav-link" data-scroll-target="#solving-the-linearised-problem"><span class="header-section-number">2.2.3</span> Solving the linearised problem</a></li>
+  <li><a href="#jury-conditions" id="toc-jury-conditions" class="nav-link" data-scroll-target="#jury-conditions"><span class="header-section-number">2.2.4</span> Jury conditions</a></li>
+  <li><a href="#proof-of-the-jury-conditions" id="toc-proof-of-the-jury-conditions" class="nav-link" data-scroll-target="#proof-of-the-jury-conditions"><span class="header-section-number">2.2.5</span> Proof of the Jury conditions</a></li>
+  <li><a href="#complex-roots" id="toc-complex-roots" class="nav-link" data-scroll-target="#complex-roots"><span class="header-section-number">2.2.6</span> Complex roots</a></li>
+  <li><a href="#real-roots" id="toc-real-roots" class="nav-link" data-scroll-target="#real-roots"><span class="header-section-number">2.2.7</span> Real roots</a></li>
   </ul></li>
-  <li><a href="#host-parasitoid-infection" id="toc-host-parasitoid-infection" class="nav-link" data-scroll-target="#host-parasitoid-infection"><span class="header-section-number">3.3</span> Host Parasitoid infection</a>
+  <li><a href="#host-parasitoid-infection" id="toc-host-parasitoid-infection" class="nav-link" data-scroll-target="#host-parasitoid-infection"><span class="header-section-number">2.3</span> Host Parasitoid infection</a>
   <ul class="collapse">
-  <li><a href="#numerical-solution" id="toc-numerical-solution" class="nav-link" data-scroll-target="#numerical-solution"><span class="header-section-number">3.3.1</span> Numerical solution</a></li>
-  <li><a href="#fixed-points-1" id="toc-fixed-points-1" class="nav-link" data-scroll-target="#fixed-points-1"><span class="header-section-number">3.3.2</span> Fixed points</a></li>
-  <li><a href="#linear-stability" id="toc-linear-stability" class="nav-link" data-scroll-target="#linear-stability"><span class="header-section-number">3.3.3</span> Linear stability</a></li>
-  <li><a href="#linear-stability-of-the-trivial-fixed-point" id="toc-linear-stability-of-the-trivial-fixed-point" class="nav-link" data-scroll-target="#linear-stability-of-the-trivial-fixed-point"><span class="header-section-number">3.3.4</span> Linear stability of the trivial fixed point</a></li>
-  <li><a href="#linear-stability-of-the-nontrivial-fixed-point" id="toc-linear-stability-of-the-nontrivial-fixed-point" class="nav-link" data-scroll-target="#linear-stability-of-the-nontrivial-fixed-point"><span class="header-section-number">3.3.5</span> Linear stability of the nontrivial fixed point</a></li>
-  <li><a href="#employing-the-jury-conditions" id="toc-employing-the-jury-conditions" class="nav-link" data-scroll-target="#employing-the-jury-conditions"><span class="header-section-number">3.3.6</span> Employing the Jury conditions</a></li>
-  <li><a href="#symbolic-calculations-in-python" id="toc-symbolic-calculations-in-python" class="nav-link" data-scroll-target="#symbolic-calculations-in-python"><span class="header-section-number">3.3.7</span> Symbolic calculations in Python</a></li>
-  </ul></li>
+  <li><a href="#numerical-solution" id="toc-numerical-solution" class="nav-link" data-scroll-target="#numerical-solution"><span class="header-section-number">2.3.1</span> Numerical solution</a></li>
+  <li><a href="#fixed-points-1" id="toc-fixed-points-1" class="nav-link" data-scroll-target="#fixed-points-1"><span class="header-section-number">2.3.2</span> Fixed points</a></li>
+  <li><a href="#linear-stability" id="toc-linear-stability" class="nav-link" data-scroll-target="#linear-stability"><span class="header-section-number">2.3.3</span> Linear stability</a></li>
+  <li><a href="#linear-stability-of-the-trivial-fixed-point" id="toc-linear-stability-of-the-trivial-fixed-point" class="nav-link" data-scroll-target="#linear-stability-of-the-trivial-fixed-point"><span class="header-section-number">2.3.4</span> Linear stability of the trivial fixed point</a></li>
+  <li><a href="#linear-stability-of-the-nontrivial-fixed-point" id="toc-linear-stability-of-the-nontrivial-fixed-point" class="nav-link" data-scroll-target="#linear-stability-of-the-nontrivial-fixed-point"><span class="header-section-number">2.3.5</span> Linear stability of the nontrivial fixed point</a></li>
+  <li><a href="#employing-the-jury-conditions" id="toc-employing-the-jury-conditions" class="nav-link" data-scroll-target="#employing-the-jury-conditions"><span class="header-section-number">2.3.6</span> Employing the Jury conditions</a></li>
+  <li><a href="#symbolic-calculations-in-python" id="toc-symbolic-calculations-in-python" class="nav-link" data-scroll-target="#symbolic-calculations-in-python"><span class="header-section-number">2.3.7</span> Symbolic calculations in Python</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dundeemath/MA32009/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -268,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Multi species population dynamics</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Multi species population dynamics in discrete time</span></h1>
 </div>
 
 
@@ -283,25 +280,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="multiple-species-in-discrete-time" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Multiple species in discrete time</h1>
 <p>In this chapter we generalise the previous approach by considering the population dynamics of two interacting populations.</p>
-<section id="a-general-model-of-two-interacting-species-in-discrete-time" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="a-general-model-of-two-interacting-species-in-discrete-time"><span class="header-section-number">3.1</span> A general model of two interacting species in discrete time</h2>
+<section id="a-general-model-of-two-interacting-species-in-discrete-time" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="a-general-model-of-two-interacting-species-in-discrete-time"><span class="header-section-number">2.1</span> A general model of two interacting species in discrete time</h2>
 <p>Let <span class="math inline">\(N_t\)</span> and <span class="math inline">\(P_t\)</span> represent population densities at time <span class="math inline">\(t\)</span> where <span class="math inline">\(t\)</span> is a discrete variable.</p>
 <p>We consider governing equations of the form <span id="eq-discretetimetwovar"><span class="math display">\[
 \begin{aligned}
 N_{t+1}=f(N_t,P_t), \nonumber \\
 P_{t+1}=g(N_t,P_t).
 \end{aligned}
-\tag{3.1}\]</span></span> where the population dynamics of the species are coupled to one another via the functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>.</p>
+\tag{2.1}\]</span></span> where the population dynamics of the species are coupled to one another via the functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>.</p>
 <p>The precise form for <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> will be defined by the biological system under study. Typical interpopulation interactions that are studied are: predator prey models, competition and cooperation.</p>
 </section>
-<section id="general-techniques-for-analysing-coupled-first-order-difference-equations" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="general-techniques-for-analysing-coupled-first-order-difference-equations"><span class="header-section-number">3.2</span> General techniques for analysing coupled first order difference equations</h2>
-<section id="fixed-points" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="fixed-points"><span class="header-section-number">3.2.1</span> Fixed points</h3>
-<p>The fixed points of <a href="#eq-discretetimetwovar">Equation&nbsp;<span>3.3</span></a> <span class="math inline">\((N^*,P^*)\)</span> satisfy <span class="math display">\[
+<section id="general-techniques-for-analysing-coupled-first-order-difference-equations" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="general-techniques-for-analysing-coupled-first-order-difference-equations"><span class="header-section-number">2.2</span> General techniques for analysing coupled first order difference equations</h2>
+<section id="fixed-points" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="fixed-points"><span class="header-section-number">2.2.1</span> Fixed points</h3>
+<p>The fixed points of <a href="#eq-discretetimetwovar">Equation&nbsp;<span>2.3</span></a> <span class="math inline">\((N^*,P^*)\)</span> satisfy <span class="math display">\[
 \begin{aligned}
 N^*=g(N^*,P^*) \nonumber \\
 P^*=f(N^*,P^*).
@@ -324,55 +319,40 @@ P^*&=N^*+P^*.
 Thus the only fixed point is (0,0).
 -->
 </section>
-<section id="linear-stability-analysis" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="linear-stability-analysis"><span class="header-section-number">3.2.2</span> Linear stability analysis</h3>
+<section id="linear-stability-analysis" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="linear-stability-analysis"><span class="header-section-number">2.2.2</span> Linear stability analysis</h3>
 <p>To consider linear stability of a steady state we consider the change of variable <span class="math display">\[
 \begin{aligned}
 N_t&amp;=N^*+\hat{N}_{t},   \nonumber\\
 P_t&amp;=P^*+\hat{P}_{t}.  \nonumber
 \end{aligned}
-\]</span> After substitution in <a href="#eq-discretetimetwovar">Equation&nbsp;<span>3.3</span></a> and making Taylor expansions about <span class="math inline">\((N^*,P^*)\)</span> we obtain at leading order</p>
+\]</span> After substitution in <a href="#eq-discretetimetwovar">Equation&nbsp;<span>2.3</span></a> and making Taylor expansions about <span class="math inline">\((N^*,P^*)\)</span> we obtain at leading order</p>
 <p><span id="eq-discretetimesecondorderdiff"><span class="math display">\[
 \left(\begin{array}{c}
 \hat{N}_{t+1} \\ \hat{P}_{t+1}\end{array}\right) = \left(\begin{array}{rr}
 \frac{\partial f}{\partial N}&amp;\frac{\partial f}{\partial P} \\ \frac{\partial g}{\partial N }&amp;\frac{\partial g}{\partial P} \end{array}\right)_{(N^*,P^*)} \left(\begin{array}{c} \hat{N}_{t} \\ \hat{P}_{t}\end{array}\right).
-\tag{3.2}\]</span></span></p>
+\tag{2.2}\]</span></span></p>
 <p>Note the appearance of the Jacobian matrix <span class="math display">\[
 A= \left(\begin{array}{rr}
 \frac{\partial f}{\partial N}&amp;\frac{\partial f}{\partial P} \\ \frac{\partial g}{\partial N }&amp;\frac{\partial g}{\partial P} \end{array}\right)_{(N^*,P^*)} \left(\begin{array}{c} \hat{N}_{t} \\ \hat{P}_{t}\end{array}\right).
 \]</span></p>
 </section>
-<section id="solving-the-linearised-problem" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="solving-the-linearised-problem"><span class="header-section-number">3.2.3</span> Solving the linearised problem</h3>
+<section id="solving-the-linearised-problem" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="solving-the-linearised-problem"><span class="header-section-number">2.2.3</span> Solving the linearised problem</h3>
 <p>Defining <span class="math display">\[
 \mathbf{w}_t=\left(\begin{array}{c}\hat{N}_{t} \\ \hat{P}_{t}\end{array}\right),
 \]</span></p>
 <p><span class="math display">\[
 \mathbf{w}_{t+1}=A\mathbf{w}_{t}
 \]</span> By solving this linear system we can investigate whether small perturbation about the fixed point grow or decay in magnitude as time evolves and hence determine the linear stability of the fixed point.</p>
-<p>The solution of <a href="#eq-discretetimesecondorderdiff">Equation&nbsp;<span>3.2</span></a> takes the form <span class="math display">\[
+<p>The solution of <a href="#eq-discretetimesecondorderdiff">Equation&nbsp;<span>2.2</span></a> takes the form <span class="math display">\[
 \mathbf{w}_t=\sum_{i=1}^2 C_i \lambda_i^t\mathbf{c}_i,
 \]</span> where the <span class="math inline">\(C_i\)</span>’s are constants determined by initial conditions and the <span class="math inline">\(\lambda_i\)</span>’s and <span class="math inline">\(\mathbf{c}_i\)</span>’s are the eigenvalues and eigenvectors of A, respectively. From this form we can see that if the magnitude of all eigenvalues is less than one, i.e. <span class="math display">\[
 |\lambda_i|&lt;1, \ \ \ \ \ \forall i,
 \]</span> the fixed point is linearly stable. If at least one of the eigenvalues has <span class="math inline">\(|\lambda_i|&gt;1\)</span> then the fixed point is unstable to linear perturbations.</p>
-<!--
-\examplequestion{
-Compute the Jacobian matrix of the model
-\begin{aligned}
-N_{t+1}&=P_t \\
-P_{t+1}&=N_t+P_t.
-\end{aligned}
-
-The Jacobian matrix is given by
-$$
-A= \left(\begin{array}{cc}
-0 & 1 \\ 
-1 & 1 \end{array}\right).
-$$
--->
 </section>
-<section id="jury-conditions" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="jury-conditions"><span class="header-section-number">3.2.4</span> Jury conditions</h3>
+<section id="jury-conditions" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="jury-conditions"><span class="header-section-number">2.2.4</span> Jury conditions</h3>
 <p>In many cases it is not very useful to explicitly compute the eigenvalues of the Jacobian matrix. In such cases we can employ the Jury conditions in order to determine when a fixed point is linearly stable.</p>
 <p>Recall that for a two dimensional matrix, the eigenvalues satisfy the quadratic characteristic equation</p>
 <p><span class="math display">\[
@@ -382,22 +362,22 @@ $$
 <p>Consider the characteristic equation <span class="math display">\[
 P(\lambda)=\lambda^2 + a \lambda +b=0,
 \]</span> where <span class="math inline">\(a,b \in \Re\)</span>. Note that <span class="math inline">\(a=-tr{A}\)</span> and <span class="math inline">\(b=\det{A}\)</span>.</p>
-<p>The Jury conditions state that <span class="math inline">\(|\lambda_i |&lt;1 \forall \ \  i\)</span> if, and only if, * <span class="math inline">\(b&lt;1\)</span>, * <span class="math inline">\(1+a+b&gt;0\)</span>, * *<span class="math inline">\(1-a+b&gt;0\)</span>. See <a href="#fig-juryconditions">Figure&nbsp;<span>3.1</span></a> for schematic diagram.</p>
+<p>The Jury conditions state that <span class="math inline">\(|\lambda_i |&lt;1 \forall \ \  i\)</span> if, and only if, * <span class="math inline">\(b&lt;1\)</span>, * <span class="math inline">\(1+a+b&gt;0\)</span>, * *<span class="math inline">\(1-a+b&gt;0\)</span>. See <a href="#fig-juryconditions">Figure&nbsp;<span>2.1</span></a> for schematic diagram.</p>
 <div id="fig-juryconditions" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="JuryConditions2D.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.1: Jury conditions</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;2.1: Jury conditions</figcaption>
 </figure>
 </div>
 </section>
-<section id="proof-of-the-jury-conditions" class="level3" data-number="3.2.5">
-<h3 data-number="3.2.5" class="anchored" data-anchor-id="proof-of-the-jury-conditions"><span class="header-section-number">3.2.5</span> Proof of the Jury conditions</h3>
+<section id="proof-of-the-jury-conditions" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="proof-of-the-jury-conditions"><span class="header-section-number">2.2.5</span> Proof of the Jury conditions</h3>
 <p>The roots of <span class="math inline">\(P(\lambda)\)</span> are <span class="math display">\[
 \lambda_{1,2}=\frac{-a \pm \sqrt{a^2-4b}}{2}.
 \]</span></p>
 </section>
-<section id="complex-roots" class="level3" data-number="3.2.6">
-<h3 data-number="3.2.6" class="anchored" data-anchor-id="complex-roots"><span class="header-section-number">3.2.6</span> Complex roots</h3>
+<section id="complex-roots" class="level3" data-number="2.2.6">
+<h3 data-number="2.2.6" class="anchored" data-anchor-id="complex-roots"><span class="header-section-number">2.2.6</span> Complex roots</h3>
 <p>Suppose <span class="math inline">\(a^2-4b&lt; 0\)</span>. The roots are complex. Since <span class="math inline">\(b\)</span> is equal to the product of the roots, we find that</p>
 <p><span class="math display">\[
 b=\lambda_1\lambda_2 = |\lambda_1|^2 = |\lambda_2^2|.
@@ -410,8 +390,8 @@ a^2-4b=(|a|-2)^2 - 4(1+b-|a|).
 1+b-|a| &gt;0 \implies 1+b-a&gt;0 \ \ \textrm{and} \ \  1+b+a&gt;0.
 \]</span></p>
 </section>
-<section id="real-roots" class="level3" data-number="3.2.7">
-<h3 data-number="3.2.7" class="anchored" data-anchor-id="real-roots"><span class="header-section-number">3.2.7</span> Real roots</h3>
+<section id="real-roots" class="level3" data-number="2.2.7">
+<h3 data-number="2.2.7" class="anchored" data-anchor-id="real-roots"><span class="header-section-number">2.2.7</span> Real roots</h3>
 <p>Suppose <span class="math inline">\(a^2-4b\geq 0\)</span></p>
 <p>The largest magnitude of the roots is <span class="math display">\[
 R=\max\{|\lambda_1|,|\lambda_2|\} =  \frac{|a| + \sqrt{a^2-4b}}{2}.
@@ -449,15 +429,15 @@ $$
 -->
 </section>
 </section>
-<section id="host-parasitoid-infection" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="host-parasitoid-infection"><span class="header-section-number">3.3</span> Host Parasitoid infection</h2>
+<section id="host-parasitoid-infection" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="host-parasitoid-infection"><span class="header-section-number">2.3</span> Host Parasitoid infection</h2>
 <p>Parasitoids are creatures that have a free living and parasitic stage. The free-living adult lays eggs in a host that later hatch and develop after eating the host. The discrete stages of the parasitoids life cycle and the dependence on its reproduction on the availability of host suggest a discrete time, multi species models. Let <span class="math inline">\(N_{t}\)</span> and <span class="math inline">\(P_t\)</span> represent the number of hosts and parasitoids at time <span class="math inline">\(t\)</span>, respectively. Let <span class="math inline">\(R_0\)</span> represent the reproductive ratio of host in the absence of parasites and <span class="math inline">\(C\)</span> the average number of viable eggs laid by each parasite on a host. ### Model equations</p>
 <p>We consider equations of the form <span id="eq-discretetimetwovar"><span class="math display">\[
 \begin{aligned}
 N_{t+1}&amp;=R_0N_t f(N_t,P_t), \nonumber \\
 P_{t+1}&amp;=CN_t (1- f(N_t,P_t)). \nonumber
 \end{aligned}
-\tag{3.3}\]</span></span></p>
+\tag{2.3}\]</span></span></p>
 <p>The justification for this form is that at a given time <span class="math inline">\(t\)</span> there are <span class="math inline">\(N_t\)</span> hosts. A total of <span class="math inline">\(N_t f(N_t,P_t)\)</span> escape the parasite and are able to reproduce whilst a total of <span class="math inline">\(N_t(1-f(N_t,P_t))\)</span> do not escape the parasite and lead to parasitic reproduction at the next time step.</p>
 <p>Choosing <span class="math display">\[
 f(N_t,P_t)=e^{-aP_t},
@@ -466,7 +446,7 @@ f(N_t,P_t)=e^{-aP_t},
 N_{t+1}=R_0N_t e^{-aP_t}, \nonumber \\
 P_{t+1}=CN_t (1- e^{-aP_t}).
 \end{aligned}
-\tag{3.4}\]</span></span></p>
+\tag{2.4}\]</span></span></p>
 <!--
 Show that in the limit of small parasite numbers the parasite equation can be approximated by
 $$
@@ -491,8 +471,8 @@ $$
 The population dynamics are approximately independent of parasite population.
 
 -->
-<section id="numerical-solution" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">3.3.1</span> Numerical solution</h3>
+<section id="numerical-solution" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">2.3.1</span> Numerical solution</h3>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
@@ -570,14 +550,14 @@ The population dynamics are approximately independent of parasite population.
 <div id="fig-plotnicolsonbailey" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="DiscreteTimeTwoPop_files/figure-html/fig-plotnicolsonbailey-output-1.png" width="659" height="468" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.2: A plot of the Nicholson Bailey model solution.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;2.2: A plot of the Nicholson Bailey model solution.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="fixed-points-1" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="fixed-points-1"><span class="header-section-number">3.3.2</span> Fixed points</h3>
+<section id="fixed-points-1" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="fixed-points-1"><span class="header-section-number">2.3.2</span> Fixed points</h3>
 <p>The fixed points satisfy <span class="math display">\[
 \begin{aligned}
 N^*=R_0N^*e^{-aP^*}, \nonumber \\
@@ -613,39 +593,34 @@ e^{-aP^*}=\frac{1}{R_0}.
 \frac{R_0\ln R_0 }{aC(R_0-1)}=R_0 \frac{R_0\ln R_0 }{aC(R_0-1)}\frac{1}{R_0}, \nonumber \\
 \frac{1}{a} \ln R_0=C\frac{R_0\ln R_0 }{aC(R_0-1)} (1-\frac{1}{R_0}).
 \end{aligned}
-\tag{3.5}\]</span></span></p>
+\tag{2.5}\]</span></span></p>
 <p>Cancellation shows that both equations hold. Hence the fixed point is a valid fixed point. To be biologically relevant we require that both components of the solution are real and positive. In this case this leads to the condition <span class="math inline">\(R_0&gt;1\)</span>}.</p>
 </section>
-<section id="linear-stability" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="linear-stability"><span class="header-section-number">3.3.3</span> Linear stability</h3>
+<section id="linear-stability" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="linear-stability"><span class="header-section-number">2.3.3</span> Linear stability</h3>
 <p>The Jacobian matrix is given by <span class="math display">\[
 A_{(N_t,P_t)}= \left(\begin{array}{cc}
 R_0e^{-aP_t}&amp;-R_0aN_te^{-aP_t} \\ c(1-e^{-aP_t})&amp;aCN_te^{-aP_t} \end{array}\right).
 \]</span></p>
 </section>
-<section id="linear-stability-of-the-trivial-fixed-point" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="linear-stability-of-the-trivial-fixed-point"><span class="header-section-number">3.3.4</span> Linear stability of the trivial fixed point</h3>
+<section id="linear-stability-of-the-trivial-fixed-point" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="linear-stability-of-the-trivial-fixed-point"><span class="header-section-number">2.3.4</span> Linear stability of the trivial fixed point</h3>
 <p>Evaluating at (0,0) yields <span class="math display">\[
 A= \left(\begin{array}{cc}
 R_0 &amp; 0 \\ 0 &amp; 0 \end{array}\right).
 \]</span> Hence the eigenvalues are <span class="math inline">\(R_0\)</span> and 0. If <span class="math inline">\(0&lt;R_0&lt;1\)</span> (0,0) is stable whilst if <span class="math inline">\(R_0&gt;1\)</span> (0,0) is unstable.</p>
 </section>
-<section id="linear-stability-of-the-nontrivial-fixed-point" class="level3" data-number="3.3.5">
-<h3 data-number="3.3.5" class="anchored" data-anchor-id="linear-stability-of-the-nontrivial-fixed-point"><span class="header-section-number">3.3.5</span> Linear stability of the nontrivial fixed point</h3>
+<section id="linear-stability-of-the-nontrivial-fixed-point" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="linear-stability-of-the-nontrivial-fixed-point"><span class="header-section-number">2.3.5</span> Linear stability of the nontrivial fixed point</h3>
 <p>We can show that the Jacobian matrix evaluated at the nontrivial fixed point can be written as <span class="math display">\[
 A= \left(\begin{array}{cc}
 1&amp;-\frac{R_0 \ln R_0}{c(R_0-1)} \\ c(1-\frac{1}{R_0})&amp;\frac{\ln R_0}{R_0-1} \end{array}\right) .
 \]</span> and deduce that the eigenvalues of A satisfy the characteristic polynomial <span class="math display">\[
 \lambda^2 - \lambda\left(1+\frac{\ln R_0}{R_0-1}\right)+ \frac{R_0\ln(R_0)}{R_0-1}=0.
 \]</span></p>
-
-<!--
-%and let the roots be given by $\lambda_1$ and $\lambda_2$. Hence $d=\lambda_1\lambda_2$.
-%Hence if $d>1$ it implies that at least one of  $|\lambda_1|$ or $\lambda_2$ is greater than one. Hence showing that $d>1$ is sufficient to show that  fixed point is unstable.
--->
 </section>
-<section id="employing-the-jury-conditions" class="level3" data-number="3.3.6">
-<h3 data-number="3.3.6" class="anchored" data-anchor-id="employing-the-jury-conditions"><span class="header-section-number">3.3.6</span> Employing the Jury conditions</h3>
+<section id="employing-the-jury-conditions" class="level3" data-number="2.3.6">
+<h3 data-number="2.3.6" class="anchored" data-anchor-id="employing-the-jury-conditions"><span class="header-section-number">2.3.6</span> Employing the Jury conditions</h3>
 <p>To proceed with linear stability analysis we employ the Jury conditions. Consider the polynomial <span class="math display">\[
 \lambda^2+a\lambda+b=0,
 \]</span> In our case <span class="math display">\[
@@ -663,8 +638,8 @@ f_1'&gt;f_2'  \ \ \forall \ R_0&gt;1.
 \ln R_0 &gt; 1-\frac{1}{R_0}.
 \]</span> Hence the fixed point is unstable if <span class="math inline">\(R_0&gt;1\)</span>.</p>
 </section>
-<section id="symbolic-calculations-in-python" class="level3" data-number="3.3.7">
-<h3 data-number="3.3.7" class="anchored" data-anchor-id="symbolic-calculations-in-python"><span class="header-section-number">3.3.7</span> Symbolic calculations in Python</h3>
+<section id="symbolic-calculations-in-python" class="level3" data-number="2.3.7">
+<h3 data-number="2.3.7" class="anchored" data-anchor-id="symbolic-calculations-in-python"><span class="header-section-number">2.3.7</span> Symbolic calculations in Python</h3>
 <p>Below sympy is used to identify the fixed points. The Jacobian matrix is then computed and evaluated at the fixed points.</p>
 <div id="code-nich_bailery" class="cell" data-caption="none" data-execution_count="2">
 <details>
@@ -729,7 +704,6 @@ The Jacobian evaluated at FP 1 is:
 </div>
 
 
-</section>
 </section>
 </section>
 
