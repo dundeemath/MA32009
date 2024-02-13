@@ -1,5 +1,5 @@
 ---
-title: "Multi species population dynamics"
+title: "Multi species population dynamics in discrete time"
 format:
   html:
     code-fold: true
@@ -9,7 +9,6 @@ jupyter: python3
 ---
 
 
-# Multiple species in discrete time
 In this chapter we generalise the previous approach by considering the population dynamics of two interacting populations.
 
 ## A general model of two interacting species in discrete time
@@ -445,10 +444,6 @@ $$
 \lambda^2 - \lambda\left(1+\frac{\ln R_0}{R_0-1}\right)+ \frac{R_0\ln(R_0)}{R_0-1}=0.
 $$
 
-<!--
-%and let the roots be given by $\lambda_1$ and $\lambda_2$. Hence $d=\lambda_1\lambda_2$.
-%Hence if $d>1$ it implies that at least one of  $|\lambda_1|$ or $\lambda_2$ is greater than one. Hence showing that $d>1$ is sufficient to show that  fixed point is unstable.
--->
 
 ### Employing the Jury conditions 
 To proceed with linear stability analysis we employ the Jury conditions.

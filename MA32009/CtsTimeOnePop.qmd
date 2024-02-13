@@ -67,6 +67,7 @@ For example, we can deduce that the units of the parameter $r$ in the Malthusian
 $$
 \frac{dN}{dt}=rN.
 $$
+\vspace{5cm}
 
 The units of the left-hand term are
 $$

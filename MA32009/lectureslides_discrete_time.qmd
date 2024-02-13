@@ -1,0 +1,1175 @@
+---
+title: "Lecture slides"
+author: "Philip Murray"
+format: beamer
+include-in-header:
+      - text: |
+          \usepackage{chemarr}
+---
+
+## Lecture 1
+
+* Introduction to nonlinear difference equations
+* The Malthusian model
+* The Ricker model
+
+## Why difference equations?
+
+
+## A general model
+
+Consider the first order difference equation
+$$
+N_{t+1}=N_tf(N_t)=H(N_t),
+$$ {#eq-GeneralPopulationModel}
+where $f(N_t)$ is a function that defines the per capita growth rate. The function $H(N_t)$ describes the total (net) growth rate. 
+\vspace{3cm}
+
+
+## The Malthusian model
+The population size at time $t+1$ is 
+$$
+N_{t+1}=N_t + bN_t - dN_t=rN_t,
+$$ 
+
+\vspace{5cm}
+
+## Exercise: solve the Malthusian model and classify qualitative behaviours
+
+
+## Nonlinear models 
+
+* Beverton-Holt
+$$
+N_{t+1}=\frac{rN_t}{1+\frac{N_t}{K}},
+$$ 
+
+* Hassell model 
+$$
+N_{t+1}=\frac{rN_t}{(1+\frac{N_t}{K})^b},
+$$ 
+
+* Ricker model 
+$$
+N_{t+1}=N_te^{r(1-\frac{N_t}{K})}.
+$$ 
+
+## Numerical simulation of the Ricker model
+
+```{python}
+#| label: fig-plotricker
+#| fig-cap: "A plot of numerical solutions of the Ricker model. (a)r=0.5. (b) r=1.5. (c) r=2.5."
+import numpy as np
+import matplotlib.pyplot as plt
+
+r_1=0.5
+r_2=1.5
+r_3=2.5
+K=2.0
+
+T=20
+t = np.arange(0, T, 1)
+N_1 = np.zeros_like(t,dtype=float)
+N_2 = np.zeros_like(t,dtype=float)
+N_3 = np.zeros_like(t,dtype=float)
+
+def rhs(x,par):
+  r=par[0]
+  K=par[1]
+  f=x*np.exp(r*(1-x/K))
+  return f
+
+def SolveSingleDiff(t,rhs,N_0,par):
+  N = np.zeros_like(t,dtype=float)
+  N[0]=N_0
+
+  for i in t:
+    if i>0:
+      N[i]=rhs(N[i-1],par) 
+  return N  
+
+N_0=2.2
+
+N_1=SolveSingleDiff(t,rhs,N_0,[r_1,K])
+N_2=SolveSingleDiff(t,rhs,N_0,[r_2,K])
+N_3=SolveSingleDiff(t,rhs,N_0,[r_3,K])
+
+
+fig, ax = plt.subplots(1,3)
+ax[0].plot(t, N_1)
+plt.xlabel('$t$')
+plt.ylabel('$N_t$')
+ax[1].plot(t, N_2)
+plt.xlabel('$t$')
+plt.ylabel('$N_t$')
+ax[2].plot(t, N_3)
+plt.xlabel('$t$')
+plt.ylabel('$N_t$')
+plt.show()
+```
+
+
+
+## Summary
+
+* Motivated use of difference equation models
+* Introduced general model for one population
+* Solved the Malthusian model
+* Introduced nonlinear models
+
+
+## Lecture 2 - General techniques for solving nonlinear difference equations
+
+$$
+N_{t+1}=N_tf(N_t)=H(N_t),
+$$ {#eq-GeneralPopulationModelAgain}
+
+* Computational solutions
+* Fixed points
+* Linear stability of fixed points
+* Cobweb diagrams
+* Bifurcation diagrams
+* Identify how model solutions depend on model parameters
+
+
+
+## Fixed points
+
+Suppose the solution at the next iteration is equal to that at a given iteration, i,e. there exists some $N^*$ such that
+$$
+N^*=N_{t+1}=N_t
+$$
+
+::: {.callout-tip}
+## Fixed point definition
+$$
+N^*=H(N^*), N^* \geq 0
+$$
+:::
+
+Biological relevance: non-negative solutions 
+
+## Linear stability analysis - how do small perturbations about $N^*$ behave?
+
+
+## Linear stability analysis (ctd)
+
+
+\vspace{5cm}
+::: {.callout-tip}
+## Linear stability is determined by the derivative of $H$ evaluated at $N^*$
+$$
+|H'(N^*)|<1 \implies \textrm{linear stability of} \ N^*.
+$$
+:::
+
+## Exercise 
+
+Identify the fixed points of the Malthusian model
+$$
+N_{t+1}=rN_t
+$$
+and identify their linear stability.
+
+\vspace{5cm}
+## Cobweb diagrams
+
+::: {.callout-tip}
+## Definition
+A cobweb diagram is a technique for computing graphical solutions of a difference equation.
+:::
+
+Use previous analyses to identify different qualitative cases (one cobweb digram for each fixed point).
+
+For each case:
+
+* Sketch a graph of $H$ to evaulate iterative solutions
+* Compute an iterative solution
+
+
+
+## Example
+```{python}
+#| label: fig-cobwebstepbystep
+#| fig-cap: "Generating a cobweb plot."
+import numpy as np
+import matplotlib.pyplot as plt
+# This code computes the dtaa necessary to make a cobweb diagram
+
+# Define time vector
+T=10
+t = np.arange(0, T, 1)
+
+# Define model parameters
+N_0=2.4
+r=0.5
+r_2=1.5
+
+# Define some parameters for plotting
+N_max=2.5
+N_min=1.5
+
+# rhs function is just  a linear model
+def ModifiedMalthusian(x,r):
+  f=r*x+1
+  return f
+
+# this function computes the solutio to the difference equation. It also stores solution in format for cobweb plotting
+def SolveSingleDiffAndCobweb(t,rhs,N_0,r):
+  # Initialise solution vector
+  N = np.zeros_like(t,dtype=float)
+  N[0]=N_0
+
+
+  num_time_steps=t.shape[0]
+
+
+  # Initialise cobweb solution object
+  CobwebSol=np.zeros((2*num_time_steps,2))
+  CobwebSol[0,0]=N_0
+  CobwebSol[0,1]=rhs(N_0,r)
+  CobwebSol[1,0]=CobwebSol[0,1]
+  CobwebSol[1,1]=CobwebSol[0,1]
+
+  # loop over time and compute solution.
+  for i in t:
+    if i>0:
+      N[i]=rhs(N[i-1],r) 
+
+      sol_temp=N[i-1]
+      rhs_temp=rhs(sol_temp,r)
+      CobwebSol[2*i,0]=sol_temp
+      CobwebSol[2*i,1]=rhs_temp
+      CobwebSol[2*i+1,0]=rhs_temp
+      CobwebSol[2*i+1,1]=rhs_temp
+  return N, CobwebSol
+
+
+# Cal function to compute solution time series + cobweb data
+N,CobwebSol=SolveSingleDiffAndCobweb(t,ModifiedMalthusian,N_0,r)
+
+
+# Discretise N so that we can plot the function H
+N_plot=np.linspace(N_min,N_max,100)
+H_N_plot=ModifiedMalthusian(N_plot,r)
+
+
+# Plot results
+fig, ax = plt.subplots(3,2)
+ax[0,0].plot([N_min, N_max], [N_min, N_max])
+ax[0,0].set_xlabel('$N_t$')
+ax[0,0].set_ylabel('$N_{t+1}$')
+ax[0,0].set_title('Draw straight line (blue)')
+
+ax[0,1].plot([N_min, N_max], [N_min, N_max])
+ax[0,1].plot(N_plot, H_N_plot)
+ax[0,1].set_xlabel('$N_t$')
+ax[0,1].set_ylabel('$N_{t+1}$')
+ax[0,1].set_title('Sketch a graph of $H$ (red).')
+
+
+ax[1,0].plot([N_min, N_max], [N_min, N_max])
+ax[1,0].plot(N_plot, H_N_plot)
+ax[1,0].plot(CobwebSol[0,0], CobwebSol[0,1],'*')
+ax[1,0].set_xlabel('$N_t$')
+ax[1,0].set_ylabel('$N_{t+1}$')
+ax[1,0].set_title('Choose $N_0$, evaluate $H(N_0)$.')
+
+
+ax[1,1].plot([N_min, N_max], [N_min, N_max])
+ax[1,1].plot(N_plot, H_N_plot)
+ax[1,1].plot(CobwebSol[0:5,0], CobwebSol[0:5,1])
+ax[1,1].set_xlabel('$N_t$')
+ax[1,1].set_ylabel('$N_{t+1}$')
+ax[1,1].set_title('Graphically iterate (horizontal then vertical)')
+
+
+ax[2,0].plot([N_min, N_max], [N_min, N_max])
+ax[2,0].plot(N_plot, H_N_plot)
+ax[2,0].plot(CobwebSol[0:7,0], CobwebSol[0:7,1])
+ax[2,0].set_xlabel('$N_t$')
+ax[2,0].set_ylabel('$N_{t+1}$')
+ax[2,0].set_title('Iterate')
+
+
+ax[2,1].plot([N_min, N_max], [N_min, N_max])
+ax[2,1].plot(N_plot, H_N_plot)
+ax[2,1].plot(CobwebSol[:,0], CobwebSol[:,1])
+ax[2,1].set_xlabel('$N_t$')
+ax[2,1].set_ylabel('$N_{t+1}$')
+ax[2,1].set_title('Iterate')
+
+
+plt.tight_layout()
+plt.show()
+```
+
+
+## Bifurcation diagrams - Plot fixed points against a parameter and annotate their stability
+
+
+## Exercise 
+
+Draw cobweb diagrams for the Malthusian model.
+$$
+N_{t+1}=rN_t
+$$
+and identify their linear stability.
+
+\vspace{5cm}
+
+
+## Lecture 3  - Preparation for tutorial 3
+
+* Curve sketching nonlinear functions in qualitatively distinct cases
+
+Example: 
+
+Sketch a graph of
+$$
+f(x)=xe^{-r(1-\frac{x}{K})}, \quad r,K \in \Re^+, \quad x \in \Re, x\geq 0
+$$
+
+::: {.callout-tip}
+## Approach
+Identify properties of H to distinguish qualitatively distinct cases
+:::
+
+## Roots
+
+## Turning points
+
+## Limit as $x\rightarrow \infty$
+
+## Limiting behaviour as $x\rightarrow 0$
+
+## Tutorial sheet 1
+
+
+## Lecture 4 
+
+Consider the model
+$$
+N_{t+1}=\frac{\gamma N_t}{1+N_t^2}, \quad \gamma\in \Re^+.
+$$
+
+
+
+\vspace{6cm}
+
+## Fixed points 
+
+## Linear stability
+
+## Cobweb diagrams
+
+## Bifurcations
+
+## Symbolic computations
+
+```{python}
+#| label: code-calc1
+#| fig-cap: "Symbolic calculations"
+#| code-fold: True
+#| caption: none
+
+
+import numpy as np
+import sympy as sp
+
+# Define variables and constants
+gamma=sp.symbols("gamma",real=True,nonnegative=True)
+N = sp.symbols("N",real=True,nonnegative=True)
+
+# Define H
+H=gamma*N/(1+N**2)
+
+# Solve the FP equation
+fp=sp.solve(H-N,N,dict=True)
+
+print("The FPs are:")
+print(fp)
+
+# Compute H prime by differentiating H
+H_p=H.diff(N)
+
+
+print("The derivative of H is:")
+print(sp.simplify(H_p))
+
+
+# Evaluate derivative at different FPs
+
+print("The derivative evaluated at FP 1 is:")
+sol1=fp[0][N]
+H_p_eval_0=sp.simplify(H_p.subs(N,sol1))
+
+print(H_p_eval_0)
+
+print("The derivative evaluated at FP 2 is:")
+sol2=fp[2][N]
+H_p_eval_2=H_p.subs(N,sol2)
+
+print(sp.simplify(H_p_eval_2))
+
+```
+
+## Lecture 4 .. A model with harvesting
+
+$$
+N_{t+1}=\frac{\gamma N_t}{1+N_t^2} - h N_t, \quad \gamma>0, \quad h\geq 0
+$$ {#eq-harvestingmodel}
+
+
+\vspace{6cm}
+
+## Numerical simulation
+
+```{python}
+#| label: fig-plotdensmodelharvest
+#| fig-cap: "Time series solution for different values of $h$."
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define time vector
+T=10
+t = np.arange(0, T, 1)
+
+
+# DEfine model parameters
+N_0=0.1
+gam=5.0
+h_1=0.1
+h_2=1.0
+h_3=3.0
+
+
+# Define rhs of differnece equation
+def densmodelwithharvesting(x,par):
+  r=par[0]
+  h=par[1]
+  f=r*x/(1+x**2)-h*x
+  return f
+
+# Compute solution for different values of parameters
+N_1=SolveSingleDiff(t,densmodelwithharvesting,N_0,[gam,h_1])
+N_2=SolveSingleDiff(t,densmodelwithharvesting,N_0,[gam,h_2])
+N_3=SolveSingleDiff(t,densmodelwithharvesting,N_0,[gam,h_3])
+
+# Plot results
+fig, ax = plt.subplots(1,3)
+ax[0].plot(t, N_1)
+ax[0].set_xlabel('$t$')
+ax[0].set_ylabel('$N_t$')
+
+ax[1].plot(t, N_2)
+ax[1].set_xlabel('$t$')
+ax[1].set_ylabel('$N_t$')
+
+ax[2].plot(t, N_3)
+ax[2].set_xlabel('$t$')
+ax[2].set_ylabel('$N_t$')
+plt.tight_layout()
+plt.show()
+```
+
+## Computing FPs
+
+## Linear stability
+
+## Deriving expressions for  linear stability boundaries in the $h\gamma$ plane
+
+## Sketch of stability boundaries
+
+```{python}
+#| label: fig-plotdensmodelharveststab
+#| fig-cap: "Stability regions for the harvesting model."
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Discretise h
+h_vec=np.linspace(0.1,5,100)
+
+# Plot gamma for the different stability boundaries
+gamma_1=(1+h_vec)**2/h_vec
+gamma_2=1+h_vec
+gamma_3=h_vec
+gamma_4=2*(1+h_vec)**2/(1+2*h_vec)
+
+
+
+# PLot results
+fig, ax = plt.subplots(1)
+ax.plot(h_vec, gamma_1)
+ax.plot(h_vec, gamma_4)
+ax.plot(h_vec, gamma_2)
+ax.plot(h_vec, gamma_3)
+
+ax.legend(['$H_p$=-1','$H_p$=0','$H_p$=1','$N^*=0$ mon'])
+
+plt.xlabel('$h$')
+plt.ylabel('$\gamma$')
+plt.show()
+```
+
+
+## Cobweb diagrams
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define time
+T=10
+t = np.arange(0, T, 1)
+
+# Define parameters
+N_0=0.2
+h_1=0.1
+h_2=1.0
+h_3=3.0
+r=5.0
+
+N_max=4.0
+
+# Compute solution at differnet values of h
+N1,CobwebSol1=SolveSingleDiffAndCobweb(t,densmodelwithharvesting,N_0,[r,h_1])
+N2,CobwebSol2=SolveSingleDiffAndCobweb(t,densmodelwithharvesting,N_0,[r,h_2])
+N3,CobwebSol3=SolveSingleDiffAndCobweb(t,densmodelwithharvesting,N_0,[r,h_3])
+
+# Evulate the function H at different values of H
+N_plot=np.linspace(0,N_max,100)
+H_N_plot1=densmodelwithharvesting(N_plot,[r,h_1])
+H_N_plot2=densmodelwithharvesting(N_plot,[r,h_2])
+H_N_plot3=densmodelwithharvesting(N_plot,[r,h_3])
+
+# Plot results
+fig, ax = plt.subplots(1,3)
+
+ax[0].plot(CobwebSol1[:,0], CobwebSol1[:,1])
+ax[0].plot(CobwebSol1[0,0], CobwebSol1[0,1],'*')
+ax[0].plot([0, N_max], [0, N_max])
+ax[0].plot(N_plot, H_N_plot1)
+ax[0].set_ylim([-0.001, 4])
+ax[0].set_xlabel('$N_t$')
+ax[0].set_ylabel('$N_{t+1}$')
+
+ax[1].plot(CobwebSol2[:,0], CobwebSol2[:,1])
+ax[1].plot(CobwebSol2[0,0], CobwebSol2[0,1],'*')
+ax[1].plot([0, N_max], [0, N_max])
+ax[1].plot(N_plot, H_N_plot2)
+ax[1].set_ylim([-0.001, 2])
+ax[1].set_xlabel('$N_t$')
+ax[1].set_ylabel('$N_{t+1}$')
+
+ax[2].plot(CobwebSol3[:,0], CobwebSol3[:,1])
+ax[2].plot(CobwebSol3[0,0], CobwebSol3[0,1],'*')
+ax[2].plot([0, N_max], [0, N_max])
+ax[2].plot(N_plot, H_N_plot3)
+ax[2].set_ylim([-0.001, 1])
+ax[2].set_xlim([-0.001, 2])
+
+ax[2].set_xlabel('$N_t$')
+ax[2].set_ylabel('$N_{t+1}$')
+plt.tight_layout()
+
+plt.show()
+```
+
+
+# Lecture 5 
+
+## Quiz review
+
+```{mermaid}
+%%| fig-width: 9.5
+
+flowchart LR
+  A[Know variables and parameters]-->B[Identify FP equation for unknown x]  
+  B--> C(Linear)
+  C --> D(Solve)
+  B --> E(Quadratic)
+  E --> F(ax^2+bx+c=0)
+  F -->G(Solve for x using quadratic formula)
+  E --> H(ax^2+bx=0)
+  H -->I(Factorise x=0 and solve)
+  B -->J(Terms involving x on denominator)
+  J -->K(Multiply by denominators and gather terms in powers of x)
+  K-->O(Linear or quadratic)
+  K-->Q(Do something else)
+  B-->L(Other form)
+  L-->M(Write as some 'gx=a')
+  M-->P(Apply inverse function to isolate x)
+  L-->N(Do something else)
+```
+
+## Oscillatory solutions
+
+$$
+N_{t+1}=H(N_t)
+$$ {#eq-genformagain} 
+
+A solution to @eq-genformagain is defined to be periodic with period $T$ if
+$$
+\begin{aligned}
+N_{t+T}&=N_t \ \  \forall t, 
+N_{t+\tau}&\neq N_t  \ \ \forall t, \  \ \ \tau<T.
+\end{aligned}
+$$
+
+\vspace{5cm}
+
+## 
+```{python}
+#| label: fig-densharvestingmodelcobwebp4
+#| fig-cap: "Transition form period 2 to period 4 solutions in the harvesting model"
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define time
+
+T=40
+t = np.arange(0, T, 1)
+
+# Define model parameters
+N_0=0.1
+r_1=9.68
+r_2=12.221
+r_3=30.25
+h=0.1
+
+# Plotting parameters
+N_max=20.0
+
+
+# Solve model and compuote cobweb data
+
+N1,CobwebSol1=SolveSingleDiffAndCobweb(t,densmodelwithharvesting,N_0,[r_1,h])
+N2,CobwebSol2=SolveSingleDiffAndCobweb(t,densmodelwithharvesting,N_0,[r_2,h])
+N3,CobwebSol3=SolveSingleDiffAndCobweb(t,densmodelwithharvesting,N_0,[r_3,h])
+
+
+# Discretise N and generate H for different values of r
+N_plot=np.linspace(0,N_max,100)
+H_N_plot1=densmodelwithharvesting(N_plot,[r_1,h])
+H_N_plot2=densmodelwithharvesting(N_plot,[r_2,h])
+H_N_plot3=densmodelwithharvesting(N_plot,[r_3,h])
+
+
+# Make figure
+fig, ax = plt.subplots(3,2)
+
+ax[0,0].plot(t, N1)
+ax[0,0].set_xlabel('$t$')
+ax[0,0].set_ylabel('$N_{t}$')
+
+ax[0,1].plot(CobwebSol1[:,0], CobwebSol1[:,1])
+ax[0,1].plot(CobwebSol1[0,0], CobwebSol1[0,1],'*')
+ax[0,1].plot([0, N_max], [0, N_max])
+ax[0,1].plot(N_plot, H_N_plot1)
+ax[0,1].set_xlabel('$N_t$')
+ax[0,1].set_ylabel('$N_{t+1}$')
+
+ax[1,0].plot(t, N2)
+ax[1,0].set_xlabel('$t$')
+ax[1,0].set_ylabel('$N_{t}$')
+
+ax[1,1].plot(CobwebSol2[:,0], CobwebSol2[:,1])
+ax[1,1].plot(CobwebSol2[0,0], CobwebSol2[0,1],'*')
+ax[1,1].plot([0, N_max], [0, N_max])
+ax[1,1].plot(N_plot, H_N_plot2)
+ax[1,1].set_xlabel('$N_t$')
+ax[1,1].set_ylabel('$N_{t+1}$')
+
+ax[2,0].plot(t, N3)
+ax[2,0].set_xlabel('$t$')
+ax[2,0].set_ylabel('$N_{t}$')
+
+ax[2,1].plot(CobwebSol3[:,0], CobwebSol3[:,1])
+ax[2,1].plot(CobwebSol3[0,0], CobwebSol3[0,1],'*')
+ax[2,1].plot([0, N_max], [0, N_max])
+ax[2,1].plot(N_plot, H_N_plot3)
+ax[2,1].set_xlabel('$N_t$')
+ax[2,1].set_ylabel('$N_{t+1}$')
+plt.tight_layout()
+
+plt.show()
+```
+
+
+## 
+Exercise: identify an equation satisfied by period 2 solutions of the logistic map 
+$$ 
+ N_{t+1}=rN_1(1-N_t).
+$$
+
+# Systems of coupled difference equations
+
+## General form of model
+We consider governing equations of the form
+$$
+\begin{aligned}
+N_{t+1}=f(N_t,P_t), \nonumber \\
+P_{t+1}=g(N_t,P_t).
+\end{aligned}
+$$ {#eq-discretetimetwovar}
+
+
+
+## Fixed points
+
+The fixed points $(N^*,P^*)$ satisfy
+$$
+\begin{aligned}
+N^*=g(N^*,P^*) \nonumber \\
+P^*=f(N^*,P^*).
+\end{aligned}
+$$
+
+## Example
+
+Compute the fixed points of the model
+$$
+\begin{aligned}
+N_{t+1}&=P_t \\
+P_{t+1}&=N_t+P_t.
+\end{aligned}
+$$
+\vspace{5cm}
+
+
+
+## Linear stability analysis
+Let
+$$
+\begin{aligned}
+N_t&=N^*+\hat{N}_{t},   \nonumber\\
+P_t&=P^*+\hat{P}_{t}.  \nonumber
+\end{aligned}
+$$
+\vspace{5cm}
+
+## Eigenvalues of the Jacobian matrix determine stability
+
+## Recap
+
+We are studying equations of the form
+$$
+\begin{aligned}
+N_{t+1}=f(N_t,P_t), \nonumber \\
+P_{t+1}=g(N_t,P_t).
+\end{aligned}
+$$ 
+
+The solution of the linearised system takes the form
+$$
+\mathbf{w}_t=\sum_{i=1}^2 C_i \lambda_i^t\mathbf{c}_i,
+$$
+
+where $\lambda_i$ $i=1,2$ are eigenvalues of the Jacobian matrix and $\mathbf{c}_i$ corresponding eigenvector.
+
+::: {.callout-note}
+For linear stability - real part of both eigenvalues is less than 1 in magnitude
+:::
+
+## Example 
+Compute the Jacobian matrix of the model
+$$
+\begin{aligned}
+N_{t+1}&=P_t \\
+P_{t+1}&=N_t+2P_t.
+\end{aligned}
+$$
+and hence determine linear stability of the FP (0,0).
+\vspace{5cm}
+
+
+## Trace determinant form
+
+Suppose 
+$$
+A= \left(\begin{array}{cc}
+a_{11} & a_{12} \\ 
+a_{21} & a_{22} \end{array}\right).
+$$
+
+The characteristic equation is
+$$
+|A-\lambda \mathbf{1}|=0
+$$
+
+Hence
+$$
+\lambda^2-\lambda(a_{11}+a_{22}) + (a_{11}a_{22}-a_{12}a_{21})=0.
+$$
+
+This can be written as 
+
+$$
+\lambda^2-\lambda(\mathrm{tr} A) + \det{A}=0.
+$$
+
+The eigenvalues are
+$$
+\lambda=\frac{-\mathrm{tr} A\pm\sqrt{\mathrm{tr} A^2-4\det A}}{2}
+$$
+
+
+
+
+## When the eigenvalues cannot be easily explicitly computed
+
+::: {.callout-note}
+## Jury conditions
+Consider the characteristic equation
+$$
+P(\lambda)=\lambda^2 + a \lambda +b=0,
+$$
+where $a,b \in \Re$. 
+
+The Jury conditions state that  $|\lambda_i |<1 \ \ \forall \ \  i$ if, and only if,
+
+* $b<1$,
+* $1+a+b>0$,
+* $1-a+b>0$.
+:::
+
+* Testing of the Jury conditions is sufficient to determine linear stability.
+
+* This is often easier than explicitly working out the eigenvalues.
+
+## Jury conditions in trace-determinant form
+
+::: {.callout-note}
+## Jury conditions
+Consider the characteristic equation
+$$
+P(\lambda)=\lambda^2 - \mathrm{tr}A \lambda +\det {A}=0,
+$$
+where $a,b \in \Re$. 
+
+The Jury conditions state that  $|\lambda_i |<1 \ \ \forall \ \  i$ if, and only if,
+
+* $\det {A}<1$,
+* $1-\mathrm{tr}A+\det {A}>0$,
+* $1+\mathrm{tr}A+\det {A}>0$.
+:::
+
+* Compute the trace and determinant of the Jacobian
+
+* Testing the Jury conditions to determine linear stability
+
+* This is often easier than explicitly working out the eigenvalues.
+
+## Interpretation in the trace-determinant plane
+
+$$
+P(\lambda)=\lambda^2 - \mathrm{tr} A \lambda +\det{A}=0,
+$$
+
+
+![Jury conditions](JuryConditions2D.png){fig-width=5
+
+
+\vspace{5cm}
+
+
+##  Proof of the Jury conditions
+Consider the characteristic equation
+$$
+P(\lambda)=\lambda^2 + a \lambda +b=0,
+$$
+The roots of $P(\lambda)$ are
+$$
+\lambda_{1,2}=\frac{-a \pm \sqrt{a^2-4b}}{2}.
+$$
+
+## Complex roots - $a^2-4b<0$
+
+### JC 1
+$$
+b=\lambda_1\lambda_2 = |\lambda_1|^2=|\lambda_2|^2
+$$
+\vspace{2cm}
+
+
+### JC 2 and 3
+$$
+(a^2-4b)=(|a|^2-2)^2 + ...
+$$
+
+
+## Real roots - $a^2-4b\geq0$
+
+Define the largest of the roots to be
+$$
+R=max\{|\lambda_1|,|\lambda_2|\} =  \frac{|a| + \sqrt{a^2-4b}}{2}.
+$$
+
+Consider $R=1$.
+\vspace{5cm}
+
+
+## Lecture 7 - The Nicholson-Bailey model
+
+$$
+\begin{aligned}
+N_{t+1}&=R_0N_t f(N_t,P_t), \nonumber \\
+P_{t+1}&=CN_t (1- f(N_t,P_t)). \nonumber
+\end{aligned}
+$${#eq-discretetimetwovar}
+
+\vspace{5cm}
+
+## Numerical solution
+```{python}
+#| label: fig-plotNicolsonBailey
+#| fig-cap: "A plot of the Nicholson Bailey model solution."
+import numpy as np
+import matplotlib.pyplot as plt
+# This code solve the Nicholson Bailry model
+
+# Discretise time
+T=100
+t = np.arange(0, T, 1)
+
+# Define parameters
+R_0=1.5
+C=3.7
+a=1.7
+
+# Define initial data
+N_0=[1.5, 0.1]
+
+# Define rhs of NIch Bailey model
+def rhsNicholsonBailey(x,par):
+  N=x[0]
+  P=x[1]
+
+  R_0=par[0]
+  C=par[1]
+  a=par[2]
+
+  # Generate empty vector
+  g=np.zeros_like(x,dtype=float)
+
+  # Encode rhs of N Bailry model
+  f=np.exp(-a*P)
+  g[0]=R_0*N*f
+  g[1]=C*N*(1-f)
+ 
+  return g
+
+# Gen solver for solving Two pop Model
+def SolveTwoPopDiff(t,rhs,N_0,par):
+  # Define solution vectors
+  N = np.zeros_like(t,dtype=float)
+  P=  np.zeros_like(t,dtype=float) 
+  # Make 0th entry the initial data
+  N[0]=N_0[0]
+  P[0]=N_0[1]
+
+  # Loop over time
+  for i in t:
+    if i>0:
+
+      rhs_eval=rhs([N[i-1],P[i-1]],par)
+      N[i]=rhs_eval[0]
+      P[i]=rhs_eval[1] 
+
+  return N,P
+
+# Solve Nicholson Bailey model
+N,P=SolveTwoPopDiff(t,rhsNicholsonBailey,N_0,[R_0,C,a])
+
+# Plot results
+fig, ax = plt.subplots(1,2)
+ax[0].plot(t, N)
+ax[0].set_xlabel('$t$')
+ax[0].set_ylabel('$N_t$')
+ax[0].set_ylim([0,100])
+
+ax[1].plot(t, P)
+ax[1].set_xlabel('$t$')
+ax[1].set_ylabel('$P_t$')
+plt.tight_layout()
+plt.show()
+```
+
+##  Fixed points 
+
+The fixed points satisfy
+$$
+\begin{aligned}
+N^*=R_0N^*e^{-aP^*}, \nonumber \\
+P^*=CN^* (1- e^{-aP^*}). 
+\end{aligned}
+$$
+
+\vspace{5cm}
+
+## FPs ctd
+
+
+## Linear stability
+The Jacobian matrix is given by
+$$
+A_{(N_t,P_t)}= \left(\begin{array}{cc}
+R_0e^{-aP_t}&-R_0aN_te^{-aP_t} \\ c(1-e^{-aP_t})&aCN_te^{-aP_t} \end{array}\right).
+$$
+
+
+At (0,0) ...
+\space{5cm}
+
+## Linear stability of the nontrivial FP
+The Jacobian matrix is given by
+$$
+A_{(N_t,P_t)}= \left(\begin{array}{cc}
+R_0e^{-aP_t}&-R_0aN_te^{-aP_t} \\ c(1-e^{-aP_t})&aCN_te^{-aP_t} \end{array}\right).
+$$
+The FP is
+$$
+\left(\frac{R_0\ln R_0 }{aC(R_0-1)},\frac{1}{a} \ln R_0 \right).
+$$
+
+\space{5cm}
+
+## Applying the Jury conditions
+
+## Symbolic computation in Python
+
+```{python}
+#| label: code-nich_bailery
+#| fig-cap: "Symbolic calculations"
+#| code-fold: True
+#| caption: none
+
+
+import numpy as np
+import sympy as sp
+
+
+# Define variables and constants
+R_0=sp.symbols("R_0",real=True,nonnegative=True)
+a=sp.symbols("a",real=True,nonnegative=True)
+C=sp.symbols("C",real=True,nonnegative=True)
+
+N = sp.symbols("N",real=True,nonnegative=True)
+P = sp.symbols("P",real=True,nonnegative=True)
+
+# Define H
+H_1=R_0*N*sp.exp(-a*P)
+H_2=C*N*(1-sp.exp(-a*P))
+
+# Solve the FP equation
+fp=sp.solve([H_1-N,H_2-P],[N,P],dict=True)
+
+print("The FPs are:")
+print(fp[0])
+print(fp[1])
+
+# Compute the Jacobian
+A=sp.Array( [[H_1.diff(N), H_1.diff(P)],[H_2.diff(N), H_2.diff(P)]])
+
+print("The Jacobian of H is:")
+print(sp.simplify(A))
+
+
+# Evaluate derivative
+
+print("The Jacobian evaluated at FP 0 is:")
+sol0_N=fp[0][N]
+sol0_P=fp[0][P]
+
+A_eval_0=A.subs([(N,sol0_N),(P,sol0_P)])
+print(A_eval_0)
+
+print("The Jacobian evaluated at FP 1 is:")
+sol1_N=fp[1][N]
+sol1_P=fp[1][P]
+
+A_eval_1=A.subs([(N,sol1_N),(P,sol1_P)])
+print(A_eval_1)
+
+
+```
+
+
+##  Feedback
+
+* Slides  (x6)
+* Clearer notes (x1)
+* More specific instructions for each week (xx)
+* Change room from Scrm
+* More tutorial qs
+* Tutorials - more time for trying questions
+
+## 
+
+$$
+\begin{aligned}
+N_{t+1}&=N_te^{1-P_t} \\
+P_{t+1}&=P_te^{1-N_t}
+\end{aligned}
+$$
+
+$b,K \in \Re^+, b\neq 1$
+
+1. Justify the form for the model
+2. What type of population interaction is occurring?
+3. Identify the fixed points
+
+##
+
+```{python}
+#| label: code-BevHoltharv
+#| fig-cap: "Symbolic calculations"
+#| code-fold: True
+#| caption: none
+
+
+import numpy as np
+import sympy as sp
+
+
+# Define variables and constants
+r=sp.symbols("r",real=True,nonnegative=True)
+K=sp.symbols("K",real=True,nonnegative=True)
+h=sp.symbols("h",real=True,nonnegative=True)
+
+N = sp.symbols("N",real=True,nonnegative=True)
+
+# Define H
+H_1=r*N/(K+N)-h
+
+# Solve the FP equation
+fp=sp.solve([H_1-N],[N],dict=True)
+
+print("The FPs are:")
+print(fp[0])
+print(fp[1])
+
+# Compute the Jacobian
+A=sp.Array([H_1.diff(N)])
+
+print("The Jacobian of H is:")
+print(sp.simplify(A))
+
+
+# Evaluate derivative
+
+print("The Jacobian evaluated at FP 0 is:")
+sol0_N=fp[0][N]
+
+A_eval_0=A.subs([(N,sol0_N)])
+print(A_eval_0)
+
+print("The Jacobian evaluated at FP 1 is:")
+sol1_N=fp[1][N]
+
+A_eval_1=A.subs([(N,sol1_N)])
+print(A_eval_1)
+
+
+```
