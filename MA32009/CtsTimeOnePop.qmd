@@ -627,11 +627,11 @@ n_vec=np.linspace(0,N_max,100)
 # Function to compute f and g
 def rhssprucebudworm_model_f(x,t,r,q):
 
-  f=r*x*(1-x/q) 
+  f=r*(1-x/q) 
   return f  
 def rhssprucebudworm_model_g(x,t,r,q):
 
-  g=x**2/(1+x**2)
+  g=x/(1+x**2)
   return g  
 
 # Compute f for different values of r and g
@@ -654,10 +654,12 @@ ax[0].plot(n_vec, f_1,n_vec, f_2,n_vec, f_3,n_vec,g)
 ax[0].set_xlabel('$n$')
 ax[0].set_ylabel('$f,g$')
 ax[0].grid(True)
+ax[0].legend(['r='+str(r_1),'r='+str(r_2),'r='+str(r_3)])
 ax[1].plot(n_vec, h_1,n_vec, h_2,n_vec, h_3)
 ax[1].set_xlabel('$n$')
 ax[1].set_ylabel('$H$')
 ax[1].grid(True)
+ax[1].legend(['r='+str(r_1),'r='+str(r_2),'r='+str(r_3)])
 plt.tight_layout()
 plt.show()
 ```
@@ -715,8 +717,8 @@ $$
 
 # Function to compute bifurcation values of r and q as a function of n_star
 def Computerq(x):
-  r_n_star=2*x**3/(x**2-1)
-  q_n_star=2*x**3/(1+x**2)**2
+  q_n_star=2*x**3/(x**2-1)
+  r_n_star=2*x**3/(1+x**2)**2
   return  r_n_star,q_n_star
 
 # Define different domains of n
@@ -730,9 +732,9 @@ r_2,q_2=Computerq(n_s_2)
 # Plot results
 fig, ax = plt.subplots(1)
 
-ax.plot(r_1, q_1,r_2, q_2)
-plt.xlabel('$r$')
-plt.ylabel('$q$')
+ax.plot(q_1, r_1,q_2, r_2)
+plt.xlabel('$q$')
+plt.ylabel('$r$')
 ax.set_xlim([0, 100])
 plt.grid(True)
 

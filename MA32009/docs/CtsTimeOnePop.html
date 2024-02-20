@@ -788,11 +788,11 @@ H'(0)=r
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to compute f and g</span></span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhssprucebudworm_model_f(x,t,r,q):</span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  f<span class="op">=</span>r<span class="op">*</span>x<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x<span class="op">/</span>q) </span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  f<span class="op">=</span>r<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x<span class="op">/</span>q) </span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> f  </span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhssprucebudworm_model_g(x,t,r,q):</span>
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  g<span class="op">=</span>x<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>x<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  g<span class="op">=</span>x<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>x<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> g  </span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute f for different values of r and g</span></span>
@@ -815,12 +815,14 @@ H'(0)=r
 <span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlabel(<span class="st">'$n$'</span>)</span>
 <span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'$f,g$'</span>)</span>
 <span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].grid(<span class="va">True</span>)</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(n_vec, h_1,n_vec, h_2,n_vec, h_3)</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">'$n$'</span>)</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'$H$'</span>)</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].grid(<span class="va">True</span>)</span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].legend([<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_1),<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_2),<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_3)])</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(n_vec, h_1,n_vec, h_2,n_vec, h_3)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'$H$'</span>)</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].grid(<span class="va">True</span>)</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].legend([<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_1),<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_2),<span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r_3)])</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-sprucebudworm-rhsfg" class="quarto-figure quarto-figure-center anchored">
@@ -862,8 +864,8 @@ q=\frac{2n{^*}^3}{n{^*}^{2}-1}.
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to compute bifurcation values of r and q as a function of n_star</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Computerq(x):</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  r_n_star<span class="op">=</span><span class="dv">2</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span><span class="op">/</span>(x<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  q_n_star<span class="op">=</span><span class="dv">2</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>x<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  q_n_star<span class="op">=</span><span class="dv">2</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span><span class="op">/</span>(x<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  r_n_star<span class="op">=</span><span class="dv">2</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>x<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span>  r_n_star,q_n_star</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define different domains of n</span></span>
@@ -877,9 +879,9 @@ q=\frac{2n{^*}^3}{n{^*}^{2}-1}.
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot results</span></span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>ax.plot(r_1, q_1,r_2, q_2)</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$r$'</span>)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$q$'</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>ax.plot(q_1, r_1,q_2, r_2)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$q$'</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$r$'</span>)</span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="dv">100</span>])</span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
