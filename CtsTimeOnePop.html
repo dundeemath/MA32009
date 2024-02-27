@@ -566,7 +566,7 @@ H'(n^*)= -1
 <div class="cell-output cell-output-display">
 <div id="fig-dlogisticrhs" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="CtsTimeOnePop_files/figure-html/fig-dlogisticrhs-output-1.png" width="609" height="429" class="figure-img"></p>
+<p><img src="CtsTimeOnePop_files/figure-html/fig-dlogisticrhs-output-1.png" width="610" height="429" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;3.2: Right-hand side of the logistic ODE</figcaption>
 </figure>
 </div>
@@ -827,7 +827,7 @@ H'(0)=r
 <div class="cell-output cell-output-display">
 <div id="fig-sprucebudworm-rhsfg" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="CtsTimeOnePop_files/figure-html/fig-sprucebudworm-rhsfg-output-1.png" width="660" height="470" class="figure-img"></p>
+<p><img src="CtsTimeOnePop_files/figure-html/fig-sprucebudworm-rhsfg-output-1.png" width="659" height="468" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;3.5: RHS of spr. budworm model</figcaption>
 </figure>
 </div>
@@ -1025,31 +1025,28 @@ N(t-T)=e^{\lambda (t-T)}.
 <p>Substitution yields <span class="math display">\[
 \lambda  e^{\lambda t} = - e^{\lambda (t-T)}.
 \]</span> Hence the eigenvalue, <span class="math inline">\(\lambda\)</span>, satisfies a transcendental equation <span class="math display">\[
-\lambda=-e^{\lambda -T}.
-\]</span> This equation has no solutions for <span class="math inline">\(\lambda \in \Re\)</span>.</p>
-<p>Consider solutions <span class="math inline">\(\lambda \in \mathbb{C}\)</span>. Let <span class="math inline">\(\lambda=\mu+i\omega\)</span>. Substitution yields <span class="math display">\[
+\lambda=-e^{-\lambda T}.
+\]</span> This equation has no solutions for <span class="math inline">\(\lambda \in \Re^+\)</span>. Hence any steady-states with real eigenvalues are linearly stable.</p>
+<p>Now consider solutions <span class="math inline">\(\lambda \in \mathbb{C}\)</span>. Let <span class="math inline">\(\lambda=\mu+i\omega\)</span>. Substitution yields <span class="math display">\[
 \mu+i\omega = -e^{-\mu T}(\cos(\omega T)-i \sin(\omega T)).
-\]</span> Hence <span class="math display">\[
-\begin{aligned}
-\mu=-\cos(\omega T)e^{-\mu T} \\
+\]</span> Hence <span id="eq-mu"><span class="math display">\[
+\mu=-\cos(\omega T)e^{-\mu T}
+\tag{3.11}\]</span></span> and <span id="eq-om"><span class="math display">\[
 \omega = \sin(\omega T)e^{-\mu T}.
-\end{aligned}
-\]</span> For linear stability we require that <span class="math inline">\(\mu &lt;0\)</span>. This implies that <span class="math display">\[
--\frac{\pi}{2}&lt;\omega T &lt; \frac{\pi}{2}.
+\tag{3.12}\]</span></span></p>
+<p>For linear stability of the steady state it is required that <span class="math inline">\(\mu &lt;0\)</span>.</p>
+<p>If <span class="math inline">\(\omega\)</span> is a solution of <a href="#eq-mu">Equation&nbsp;<span>3.11</span></a> and <a href="#eq-om">Equation&nbsp;<span>3.12</span></a> then so is <span class="math inline">\(-\omega\)</span>. Hence w.l.o.g we consider the case <span class="math inline">\(\omega&gt;0\)</span>.</p>
+<p>Consider <span class="math inline">\(\mu=0\)</span> in <a href="#eq-mu">Equation&nbsp;<span>3.11</span></a>. This implies <span class="math display">\[
+\omega T=\frac{\pi}{2} + 2n\pi, \quad n \in Z.
+\]</span> We consider the smallest positive root, i.e.&nbsp;<span class="math inline">\(n=0\)</span>, as we want to consider the smallest value of delay time, <span class="math inline">\(T\)</span>, at which instability arises.</p>
+<p>Note <span class="math inline">\(\mu&lt;0\)</span> for <span class="math display">\[
+\omega T&lt; \frac{\pi}{2}.
 \]</span></p>
-<p>Consider <span class="math display">\[
-\frac{e^{\mu T}}{T}=\frac{\omega e^{\mu T}}{\omega T} = \frac{\sin(\omega T)}{\omega T}
+<p>On the stablity boundary, <span class="math inline">\(\mu=0\)</span>. Upon substitution in <a href="#eq-om">Equation&nbsp;<span>3.12</span></a> <span class="math display">\[
+\omega = \sin(\frac{\pi}{2})=1.
 \]</span></p>
-<p>Noting that <span class="math display">\[
-\frac{\sin z}{z} &gt; \frac{1}{\frac{\pi}{2}}
-\]</span> yields <span class="math display">\[
-\frac{\sin(\omega T)}{\omega T}&gt;\frac{2}{\pi}.
-\]</span> Hence <span class="math display">\[
-\frac{e^{\mu T}}{T} &gt;\frac{2}{\pi}.
-\]</span> Rearranging <span class="math display">\[
-T&lt;\frac{\pi}{2}e^{\mu T}.
-\]</span> For linear stability <span class="math inline">\(\mu&lt;0\)</span>. Hence a necessary condition for linear stability is that <span class="math display">\[
-T&lt;\frac{\pi}{2}
+<p>Hence the steady state is linearly stable for <span class="math display">\[
+T&lt; \frac{\pi}{2}.
 \]</span></p>
 </section>
 <section id="references" class="level2" data-number="3.7">
