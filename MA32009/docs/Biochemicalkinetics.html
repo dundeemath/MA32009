@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA32009 - 5&nbsp; Biochemical kinetics</title>
+<title>5&nbsp; Biochemical kinetics – MA32009</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,14 +96,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -107,13 +141,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./CtsTimeOnePop.html">Continuous time</a></li><li class="breadcrumb-item"><a href="./Biochemicalkinetics.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Biochemical kinetics</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./CtsTimeOnePop.html">Continuous time</a></li><li class="breadcrumb-item"><a href="./Biochemicalkinetics.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Biochemical kinetics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -122,13 +156,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">MA32009</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/dundeemath/MA32009/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./MA32009.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/dundeemath/MA32009/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./MA32009.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -147,9 +181,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Discrete time</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -170,9 +204,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Continuous time</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -199,9 +233,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -229,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -257,12 +291,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#applying-the-poincaire-bendixson-theorem" id="toc-applying-the-poincaire-bendixson-theorem" class="nav-link" data-scroll-target="#applying-the-poincaire-bendixson-theorem"><span class="header-section-number">5.3.5</span> Applying the Poincaire-Bendixson theorem</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dundeemath/MA32009/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/dundeemath/MA32009/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./CtsTimeOnePop.html">Continuous time</a></li><li class="breadcrumb-item"><a href="./Biochemicalkinetics.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Biochemical kinetics</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Biochemical kinetics</span></h1>
 </div>
@@ -277,7 +311,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p>Biochemical kinetics concern the concentration of chemical substances in biological systems. In this section we neglect spatial variation in concentrations, effectively assuming chemical reactions occur in environments that are “well-mixed”.</p>
 <section id="the-law-of-mass-action" class="level2" data-number="5.1">
@@ -418,11 +454,11 @@ s(0)=s_0, \ \ e(0)=e_0, \ \ c(0)=0, \ \ p(0)=0,
 </section>
 <section id="numerical-solutions" class="level3" data-number="5.2.2">
 <h3 data-number="5.2.2" class="anchored" data-anchor-id="numerical-solutions"><span class="header-section-number">5.2.2</span> Numerical solutions</h3>
-<p>In <a href="#fig-mm-numsol">Figure&nbsp;<span>5.1</span></a> we plot numerical solutions of <a href="#eq-mmenten4var">Equation&nbsp;<span>5.1</span></a>. For this solution we have chosen initial conditions such that <span class="math display">\[
+<p>In <a href="#fig-mm-numsol" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> we plot numerical solutions of <a href="#eq-mmenten4var" class="quarto-xref">Equation&nbsp;<span>5.1</span></a>. For this solution we have chosen initial conditions such that <span class="math display">\[
 \frac{e_0}{s_0}\ll 1.
 \]</span> Note that <span class="math inline">\(c\)</span> and <span class="math inline">\(e\)</span> evolve rapidly in time close to the initial data whilst those of <span class="math inline">\(s\)</span> and <span class="math inline">\(p\)</span> do not.</p>
-<div class="cell" data-execution_count="1">
-<details>
+<div id="cell-fig-mm-numsol" class="cell" data-execution_count="1">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -501,10 +537,14 @@ s(0)=s_0, \ \ e(0)=e_0, \ \ c(0)=0, \ \ p(0)=0,
 <span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-mm-numsol" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="Biochemicalkinetics_files/figure-html/fig-mm-numsol-output-1.png" width="661" height="470" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.1: Numerical solutions of the Michaelis Menten model</figcaption>
+<div id="fig-mm-numsol" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mm-numsol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Biochemicalkinetics_files/figure-html/fig-mm-numsol-output-1.png" width="660" height="468" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mm-numsol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: Numerical solutions of the Michaelis Menten model
+</figcaption>
 </figure>
 </div>
 </div>
@@ -598,7 +638,7 @@ K_m=\frac{k_{-1}+k_2}{k_1},
 <h4 data-number="5.2.5.2" class="anchored" data-anchor-id="asymptotic-expansions-the-outer-solution"><span class="header-section-number">5.2.5.2</span> Asymptotic expansions: the outer solution</h4>
 <p>We consider the (often realised) case where the amount of enzyme in the system is small compared with the amount of substrate, i.e. <span class="math display">\[
 \epsilon \ll 1.
-\]</span> The presence of the small parameter <span class="math inline">\(\epsilon\)</span> allows us to use perturbation theory to calculate approximate solutions to <a href="#eq-mmenten2varnondim">Equation&nbsp;<span>5.2</span></a>. However, the problem is singular owing to the <span class="math inline">\(\epsilon dv/dt\)</span> term.</p>
+\]</span> The presence of the small parameter <span class="math inline">\(\epsilon\)</span> allows us to use perturbation theory to calculate approximate solutions to <a href="#eq-mmenten2varnondim" class="quarto-xref">Equation&nbsp;<span>5.2</span></a>. However, the problem is singular owing to the <span class="math inline">\(\epsilon dv/dt\)</span> term.</p>
 <p>We propose an outer solution of the form</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -606,7 +646,7 @@ u(\tau;\epsilon)=u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ... = \
 v(\tau;\epsilon)=v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ... = \sum_{n=0}^{\infty}v_n(\tau)\epsilon^n.  \nonumber  
 \end{aligned}
 \]</span></p>
-<p>Substituting the expansions in <a href="#eq-mmenten2varnondim">Equation&nbsp;<span>5.2</span></a> yields</p>
+<p>Substituting the expansions in <a href="#eq-mmenten2varnondim" class="quarto-xref">Equation&nbsp;<span>5.2</span></a> yields</p>
 <p><span class="math display">\[
 \begin{aligned}
 \frac{du_0}{d\tau} + \epsilon \frac{du_1}{d\tau} + \epsilon^2\frac{du_2}{d\tau} + ... = -(u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...)+  \nonumber \\ (u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ...+ K-\lambda)(v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ...).  \nonumber
@@ -692,7 +732,7 @@ v(\tau;\epsilon)=V(\sigma;\epsilon). \nonumber
 \frac{d V}{d\sigma} &amp;= U-(U+K)V.  
 \end{aligned}
 \tag{5.3}\]</span></span></p>
-<p>We seek series solutions to <a href="#eq-longtimeuv">Equation&nbsp;<span>5.3</span></a> of the form</p>
+<p>We seek series solutions to <a href="#eq-longtimeuv" class="quarto-xref">Equation&nbsp;<span>5.3</span></a> of the form</p>
 <p><span class="math display">\[
 \begin{aligned}
 U(\sigma;\epsilon)&amp;=U_0(\sigma) + \epsilon U_1(\sigma) + \epsilon^2 U_2(\sigma) + ... = \sum_{n=0}^{\infty}U_n(\sigma)\epsilon^n, \nonumber \\
@@ -813,7 +853,7 @@ a=[A]\frac{k_1}{k_4}\sqrt{\frac{k_3}{k_4}} \ \ \ \textrm{and} \ \ \ b= [B]\frac{
 </section>
 <section id="steady-states-analysis" class="level3" data-number="5.3.3">
 <h3 data-number="5.3.3" class="anchored" data-anchor-id="steady-states-analysis"><span class="header-section-number">5.3.3</span> Steady states analysis</h3>
-<p>Seeking steady states <span class="math inline">\((x^*,y^*)\)</span> of equations <a href="#eq-brussnondim">Equation&nbsp;<span>5.4</span></a> such that <span class="math display">\[
+<p>Seeking steady states <span class="math inline">\((x^*,y^*)\)</span> of equations <a href="#eq-brussnondim" class="quarto-xref">Equation&nbsp;<span>5.4</span></a> such that <span class="math display">\[
 f(x^*,y^*)=g(x^*,y^*)=0
 \]</span> yields</p>
 <p><span class="math display">\[
@@ -841,10 +881,10 @@ b-1&amp;a^2\\ -b &amp;-a^2\end{array}\right).
 <p>Hence <span class="math inline">\((a,b/a)\)</span> is not a saddle. The trace of the Jacobian is <span class="math display">\[
 \mathrm{tr} A=b-1-a^2.
 \]</span></p>
-<p>Hence if <span class="math inline">\(b&gt;1+a^2\)</span> the trace is positive and, referring to <a href="CtsTimeMultiPop.html#fig-tdplane">Figure&nbsp;<span>4.1</span></a>, the steady state is linearly unstable. Otherwise, the steady state is linearly stable.</p>
-<p>In <a href="#fig-bruss-numsol">Figure&nbsp;<span>5.2</span></a> we numerically solve <a href="#eq-brussnondim">Equation&nbsp;<span>5.4</span></a> in the case of oscillatory solutions. Note that when the steady state is unstable, the numerical solution indicates that the system has limit cycle solutions. A valid question to ask is whether one can prove that this is the case.</p>
-<div class="cell" data-execution_count="2">
-<details>
+<p>Hence if <span class="math inline">\(b&gt;1+a^2\)</span> the trace is positive and, referring to <a href="CtsTimeMultiPop.html#fig-tdplane" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>, the steady state is linearly unstable. Otherwise, the steady state is linearly stable.</p>
+<p>In <a href="#fig-bruss-numsol" class="quarto-xref">Figure&nbsp;<span>5.2</span></a> we numerically solve <a href="#eq-brussnondim" class="quarto-xref">Equation&nbsp;<span>5.4</span></a> in the case of oscillatory solutions. Note that when the steady state is unstable, the numerical solution indicates that the system has limit cycle solutions. A valid question to ask is whether one can prove that this is the case.</p>
+<div id="cell-fig-bruss-numsol" class="cell" data-execution_count="2">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -887,10 +927,14 @@ b-1&amp;a^2\\ -b &amp;-a^2\end{array}\right).
 <span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-bruss-numsol" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="Biochemicalkinetics_files/figure-html/fig-bruss-numsol-output-1.png" width="558" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.2: Numerical solutions of the Brusselator model</figcaption>
+<div id="fig-bruss-numsol" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bruss-numsol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Biochemicalkinetics_files/figure-html/fig-bruss-numsol-output-1.png" width="558" height="429" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bruss-numsol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.2: Numerical solutions of the Brusselator model
+</figcaption>
 </figure>
 </div>
 </div>
@@ -908,8 +952,8 @@ y=\frac{1+b}{x}-\frac{a}{x^2}.
 y=\frac{b}{x} \ \ \ \textrm{and} \ \ \ x=0.
 \]</span></p>
 <p>In the positive quadrant, this nullcline has a single root at <span class="math inline">\(a/(1+b)\)</span>, tends to 0 as <span class="math inline">\(x\rightarrow \infty\)</span> and has a maximum at <span class="math inline">\(x=2a/(1+b)\)</span>.</p>
-<div class="cell" data-execution_count="3">
-<details>
+<div id="cell-fig-bruss-numsol-phplane" class="cell" data-execution_count="3">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -993,19 +1037,23 @@ y=\frac{b}{x} \ \ \ \textrm{and} \ \ \ x=0.
 <span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-bruss-numsol-phplane" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="Biochemicalkinetics_files/figure-html/fig-bruss-numsol-phplane-output-1.png" width="661" height="470" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.3: Numerical solution of the Brusselator.</figcaption>
+<div id="fig-bruss-numsol-phplane" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bruss-numsol-phplane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Biochemicalkinetics_files/figure-html/fig-bruss-numsol-phplane-output-1.png" width="660" height="468" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bruss-numsol-phplane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.3: Numerical solution of the Brusselator.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-bruss-numsol-phplane">Figure&nbsp;<span>5.3</span></a> we plot the the oscillatory solution together with the nullclines. Note that the nullclines separate the phase plane into regions of constant sign. Note that the <span class="math inline">\(x\)</span> nullcline separates the phase plane into regions where <span class="math inline">\(dx/dt&gt;0\)</span> and <span class="math inline">\(dx/dt&lt;0\)</span>. Similarly, the <span class="math inline">\(y\)</span> nullcline separates the phase plane into regions where <span class="math inline">\(dy/dt&gt;0\)</span> and <span class="math inline">\(dy/dt&lt;0\)</span>.</p>
+<p>In <a href="#fig-bruss-numsol-phplane" class="quarto-xref">Figure&nbsp;<span>5.3</span></a> we plot the the oscillatory solution together with the nullclines. Note that the nullclines separate the phase plane into regions of constant sign. Note that the <span class="math inline">\(x\)</span> nullcline separates the phase plane into regions where <span class="math inline">\(dx/dt&gt;0\)</span> and <span class="math inline">\(dx/dt&lt;0\)</span>. Similarly, the <span class="math inline">\(y\)</span> nullcline separates the phase plane into regions where <span class="math inline">\(dy/dt&gt;0\)</span> and <span class="math inline">\(dy/dt&lt;0\)</span>.</p>
 <p>Note that signs for <span class="math inline">\(dx/dt\)</span> can be determined by considering behaviour of the function <span class="math inline">\(f\)</span> as one moves away from the nullcline where, by definition, <span class="math inline">\(f=0\)</span>. Consider some point that sits on the x nullcline. While keeping the <span class="math inline">\(x\)</span> value fixed, increase <span class="math inline">\(y\)</span> so the point moves vertically in the phase plane. This implies that <span class="math inline">\(f\)</span> has increased because the only term to change is <span class="math inline">\(x^2y\)</span>. Hence <span class="math inline">\(f\)</span> increases upon increasing <span class="math inline">\(y\)</span> and therefore <span class="math inline">\(dx/dt\)</span> is positive for all points above the <span class="math inline">\(x\)</span> nullcline. Alternatively, note that in the Jacobian matrix we have calculated that <span class="math inline">\(\partial f/\partial y\)</span> is positive.</p>
 <section id="a-confined-set" class="level4" data-number="5.3.5.1">
 <h4 data-number="5.3.5.1" class="anchored" data-anchor-id="a-confined-set"><span class="header-section-number">5.3.5.1</span> A confined set</h4>
-<p>To define a confined set, we construct the closed loop ABCDEA in phase space (see <a href="#fig-bruss-numsol-phplane-confinedset">Figure&nbsp;<span>5.4</span></a>) where the points A, B, C, D and E are defined as follows. Let the points A and B be two points on the <span class="math inline">\(x\)</span> axis with coordinates <span class="math display">\[
+<p>To define a confined set, we construct the closed loop ABCDEA in phase space (see <a href="#fig-bruss-numsol-phplane-confinedset" class="quarto-xref">Figure&nbsp;<span>5.4</span></a>) where the points A, B, C, D and E are defined as follows. Let the points A and B be two points on the <span class="math inline">\(x\)</span> axis with coordinates <span class="math display">\[
 (\delta,0)
 \]</span> and <span class="math display">\[
 \left(\frac{a}{1+b},0\right).
@@ -1044,8 +1092,8 @@ y=\frac{b}{x} \ \ \ \textrm{and} \ \ \ x=0.
 <p><span class="math display">\[
 \mathbf{n}.\left[\frac{dx}{dt},\frac{dy}{dt}\right] =  \frac{dx}{dt} &lt;0.
 \]</span></p>
-<div class="cell" data-execution_count="4">
-<details>
+<div id="cell-fig-bruss-numsol-phplane-confinedset" class="cell" data-execution_count="4">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1124,15 +1172,19 @@ y=\frac{b}{x} \ \ \ \textrm{and} \ \ \ x=0.
 <span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-bruss-numsol-phplane-confinedset" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="Biochemicalkinetics_files/figure-html/fig-bruss-numsol-phplane-confinedset-output-1.png" width="602" height="434" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.4: Numerical solution of the Brusselator.</figcaption>
+<div id="fig-bruss-numsol-phplane-confinedset" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bruss-numsol-phplane-confinedset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Biochemicalkinetics_files/figure-html/fig-bruss-numsol-phplane-confinedset-output-1.png" width="602" height="434" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bruss-numsol-phplane-confinedset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.4: Numerical solution of the Brusselator.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Hence at all points on the closed loop ABCDEA trajectories point inwards (see <a href="#fig-bruss-numsol-phplane-confinedset">Figure&nbsp;<span>5.4</span></a>). Hence ABDCEA is a confined set and the Poincaire-Bendixson theorem states that the system exhibits limit cycle solutions when the steady state is unstable. This is precisely the behaviour that we see numerically in Figure <a href="#fig-bruss-numsol-phplane">Figure&nbsp;<span>5.3</span></a>.</p>
+<p>Hence at all points on the closed loop ABCDEA trajectories point inwards (see <a href="#fig-bruss-numsol-phplane-confinedset" class="quarto-xref">Figure&nbsp;<span>5.4</span></a>). Hence ABDCEA is a confined set and the Poincaire-Bendixson theorem states that the system exhibits limit cycle solutions when the steady state is unstable. This is precisely the behaviour that we see numerically in Figure <a href="#fig-bruss-numsol-phplane" class="quarto-xref">Figure&nbsp;<span>5.3</span></a>.</p>
 
 
 </section>
@@ -1175,18 +1227,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1218,11 +1259,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1232,8 +1312,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1245,7 +1334,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1289,6 +1501,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1314,6 +1527,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1375,12 +1614,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./CtsTimeMultiPop.html" class="pagination-link">
+      <a href="./CtsTimeMultiPop.html" class="pagination-link" aria-label="Multi species population dynamics">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multi species population dynamics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./PythonAppendix.html" class="pagination-link">
+      <a href="./PythonAppendix.html" class="pagination-link" aria-label="Python">
         <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1389,4 +1628,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dundeemath/MA32009/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

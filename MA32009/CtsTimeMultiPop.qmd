@@ -595,7 +595,7 @@ $$
 Therefore the coexistence steady state is a stable node or spiral.
 
 
-In the case where $a_{21}>1$ and $a_{12}>1
+In the case where $a_{21}>1$ and $a_{12}>1$
 
 $$
 \det{A} = \rho(+)(+)(-)<0 .

@@ -1,5 +1,6 @@
+
 ---
-title: "Lecture slides"
+title: "MA32009 Lecture slides"
 author: "Philip Murray"
 format: beamer
 include-in-header:
@@ -7,215 +8,1002 @@ include-in-header:
           \usepackage{chemarr}
 ---
 
-# Lecture 1 
+# Lecture 1
 
-## A general model
+# Malthusian model - derivation and qualitative analysis
 
-Consider the first order difference equation
+# A general model
 $$
-N_{t+1}=N_tf(N_t)=H(N_t),
-$$ {#eq-GeneralPopulationModel}
-where $f(N_t)$ is a function that defines the per capita growth rate. The function $H(N_t)$ describes the total (net) growth rate. 
-
-
-## The Malthusian model
-
-## The Ricker model 
-
+\frac{dN}{dt}=f(N)N=H(N),
 $$
-N_{t+1}=N_te^{r(1-\frac{N_t}{K})}.
+\vspace{5cm}
+
+# Numerical solution
+
+# Dimensions and nondimensionalisation
+As an example, consider the linear ODE
+$$
+\frac{dN}{dt}=rN.
+$$
+\vspace{5cm}
+ 
+# Introducing dimensionless variables
+
+# Steady-state analysis
+
+
+# Lecture 10 
+* Recap
+* Techniques for single first order ODE (ctd)
+* Example model 1: Logistic growth
+* Example model 2: Spruce budworm
+
+# Linear stability analysis
+
+# Linear stability analysis (ctd)
+
+# Graphical solution
+
+# Bifurcation diagrams
+
+# Example model 1: the logistic growth equation 
+$$
+\frac{dN}{dt}=rN(t)\left (1-\frac{N(t)}{K}\right).
 $$
 
+\vspace{6cm}
 
+
+# Numerical solution
 ```{python}
-#| label: fig-plotricker
-#| fig-cap: "A plot of numerical solutions of the Ricker model. (a)r=0.5. (b) r=1.5. (c) r=2.5."
+#| label: fig-logisticgrowthmodel
+#| fig-cap: "Numerical solution of the logistic growth model"
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy
+from scipy.integrate import odeint
+# This codes computes a numerical solution of the logistic growth model
 
-r_1=0.5
-r_2=1.5
-r_3=2.5
-K=2.0
 
+# Define model parameters
+K=12
+r_1=0.22
+r_2=0.42
+r_3=0.72
+
+# Plotting parameter
+N_max=1.1
+
+# Initial condition
+n_0=1.5
+# Max time
 T=20
-t = np.arange(0, T, 1)
-N_1 = np.zeros_like(t,dtype=float)
-N_2 = np.zeros_like(t,dtype=float)
-N_3 = np.zeros_like(t,dtype=float)
+t=np.linspace(0,T,100)
 
-def rhs(x,par):
-  r=par[0]
-  K=par[1]
-  f=x*np.exp(r*(1-x/K))
-  return f
+def rhslogistic_model(x,t,r,K):
 
-def SolveSingleDiff(t,rhs,N_0,par):
-  N = np.zeros_like(t,dtype=float)
-  N[0]=N_0
+  rhs=r*x*(1-x/K)
+  return rhs
 
-  for i in t:
-    if i>0:
-      N[i]=rhs(N[i-1],par) 
-  return N  
-
-N_0=2.2
-
-N_1=SolveSingleDiff(t,rhs,N_0,[r_1,K])
-N_2=SolveSingleDiff(t,rhs,N_0,[r_2,K])
-N_3=SolveSingleDiff(t,rhs,N_0,[r_3,K])
+# Numerically solve the ODE for different parameter values
+sol1=odeint(rhslogistic_model,n_0,t,args=(r_1,K))
+sol2=odeint(rhslogistic_model,n_0,t,args=(r_2,K))
+sol3=odeint(rhslogistic_model,n_0,t,args=(r_3,K))
 
 
-fig, ax = plt.subplots(1,3)
-ax[0].plot(t, N_1)
+# Plot solutions
+fig, ax = plt.subplots(1)
+
+ax.plot(t, sol1,t, sol2,t, sol3)
 plt.xlabel('$t$')
-plt.ylabel('$N_t$')
-ax[1].plot(t, N_2)
-plt.xlabel('$t$')
-plt.ylabel('$N_t$')
-ax[2].plot(t, N_3)
-plt.xlabel('$t$')
-plt.ylabel('$N_t$')
+plt.ylabel('$N$')
+plt.grid(True)
+plt.legend(['r='+str(r_1),'r='+str(r_2),'r='+str(r_3)])
 plt.show()
 ```
 
 
 
+# Steady states and linear stability
 
-## Steady state calculation
+# Graphical analysis
 
-Compute the steady states of the system of ODEs
+# An exact solution of the logistic growth equation
+
+# Example model 2: the spruce budworm model
+
 $$
+\frac{dN }{dt}= r_B N\left(1-\frac{N}{K_B}\right)-\frac{B N^2}{A^2 +N^2},
+$${#eq-sprucebudworm}
+
+\vspace{6cm}
+
+
+# Nondimensionalisation
+$$
+\frac{dn }{d\tau}= rn\left(1-\frac{n}{q}\right)-\frac{n^2}{1+n^2} = H(n),
+$$
+\vspace{5cm}
+
+# Plotting the RHS
+```{python}
+#| label: fig-sprucebudworm-rhs
+#| fig-cap: "RHS of spr. budworm model"
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy
+from scipy.integrate import odeint
+
+N_max=10.1
+N_0=0.1
+q=12
+r_1=0.22
+r_2=0.42
+r_3=0.72
+
+n_vec=np.linspace(0,N_max,100)
+
+def rhssprucebudworm_model(x,t,r,q):
+
+  rhs=r*x*(1-x/q) - x**2/(1+x**2)
+  return rhs
+def rhssprucebudworm_model_f(x,t,r,q):
+
+  f=r*x*(1-x/q) 
+  return f  
+def rhssprucebudworm_model_g(x,t,r,q):
+
+  g=x**2/(1+x**2)
+  return g  
+
+rhs1=rhssprucebudworm_model(n_vec,0,r_1,q)
+rhs2=rhssprucebudworm_model(n_vec,0,r_2,q)
+rhs3=rhssprucebudworm_model(n_vec,0,r_3,q)
+
+fig, ax = plt.subplots(1)
+
+ax.plot(n_vec, rhs1,n_vec, rhs2,n_vec, rhs3)
+plt.xlabel('$N$')
+plt.ylabel('$H(N)$')
+plt.legend(['r='+str(r_1),'r='+str(r_2),'r='+str(r_3)])
+plt.grid(True)
+plt.show()
+```
+
+# Numerical solution
+```{python}
+
+# Define time
+t = np.linspace(0, 100, 101)
+
+N_0_1=1.0
+N_0_2=4.0
+N_0_3=7.0
+r_1=0.4
+# Numerically solve the ODE for differnet parameter values
+sol1 = odeint(rhssprucebudworm_model, N_0_1, t, args=(r_1, q))
+sol2 = odeint(rhssprucebudworm_model, N_0_2, t, args=(r_1, q))
+sol3 = odeint(rhssprucebudworm_model, N_0_3, t, args=(r_1, q))
+
+
+# plot results
+fig, ax= plt.subplots()
+ax.plot(t, sol1, 'b', label='r=' +str(r_1))
+ax.plot(t, sol2, 'r', label='r='+str(r_1))
+ax.plot(t, sol3, 'm', label='r='+str(r_1))
+
+plt.xlabel('$t$')
+plt.ylabel('$N$')
+
+plt.grid()
+plt.show()
+```
+
+# Steady state analysis
+$$
+rn^*(1-\frac{n^*}{q})- \frac{n^*{^2}}{1+n^*{^2}}=0.
+$$
+\vspace{6cm}
+
+
+# Linear stability analysis
+
+# Lecture 12
+
+:::{.callout-note}
+# Recap - Spruce budworm model
+$$
+\frac{dn }{d\tau}= rn\left(1-\frac{n}{q}\right)-\frac{n^2}{1+n^2} = H(n),
+$$
+
+Steady states: $n^*=0$ or 
+$$
+rn^*(1-\frac{n^*}{q})- \frac{n^*{^2}}{1+n^*{^2}}=0.
+$$
+
+* $r$ small - one stable steady state
+* $r$ large - one stable steady state (outbreak)
+* $r$ intermediate - bistability (two stable steady states and one unstable)
+:::
+
+Today: bifurcation analysis, hysteresis, harvesting
+
+# Tangent bifurcations in $rq$ space
+
+# Plotting stability regions in the rq plane
+
+```{python}
+#| label: fig-sprucebudworm-rq
+#| fig-cap: "Bifurcations in the rq plane"
+
+# Function to compute bifurcation values of r and q as a function of n_star
+def Computerq(x):
+  q_n_star=2*x**3/(x**2-1)
+  r_n_star=2*x**3/(1+x**2)**2
+  return  r_n_star,q_n_star
+
+# Define different domains of n
+n_s_1=np.linspace(1,np.sqrt(3),100)
+n_s_2=np.linspace(np.sqrt(3),200,100)
+
+# Compute r and q
+r_1,q_1=Computerq(n_s_1)
+r_2,q_2=Computerq(n_s_2)
+
+# Plot results
+fig, ax = plt.subplots(1)
+
+ax.plot(q_1, r_1,q_2, r_2)
+plt.xlabel('$q$')
+plt.ylabel('$r$')
+ax.set_xlim([0, 100])
+plt.grid(True)
+
+plt.show()
+```
+
+# Hysteresis - irreversible transitions in solution behaviour
+
+
+# Hysteresis
+```{python}
+#| label: fig-sprucebudworm-bfc
+#| fig-cap: "Bifurcations in the rq plane"
+
+# Compute r as a function of n
+def Computern(x,q):
+  r=x/((1+x**2)*(1-x/q))
+  return  r
+
+# Define different domains of n for plotting 
+q=12
+n_s_1=np.linspace(1,np.sqrt(3),100)
+n_s_2=np.linspace(np.sqrt(3),0.99*q,100)
+n_s_3=np.linspace(0,np.sqrt(3),100)
+
+
+# Evaluate r
+r_1=Computern(n_s_1,q)
+r_2=Computern(n_s_2,q)
+r_3=Computern(n_s_3,q)
+
+
+# Plote results
+fig, ax = plt.subplots(1)
+
+ax.plot(r_1, n_s_1,r_2, n_s_2,r_3,n_s_3)
+plt.xlabel('$r$')
+plt.ylabel('$n^*$')
+ax.set_xlim([0, 2])
+plt.grid(True)
+
+plt.show()
+```
+
+# Harvesting
+- use models to simulate how much resource can be extracted?
+- approach: take model without harvesting and add in harvesting terms
+
+$$
+\frac{dN}{dt}=rN\left(1-\frac{N}{K}\right) -EN.
+$$
+where $E$ is the harvesting rate.
+
+Question: what value of $E$ maximises the long term yield?
+
+\vspace{5cm}
+
+# Delay differential equation models
+
+$$
+\frac{dN}{dt}=H(N(t),N(t-T)),
+$$
+
+\vspace{5cm}
+# A linear delay differential equation model 
+$$
+\frac{dN}{dt}=-N(t-T),
+$$
+\vspace{5cm}
+
+# Linear stability analysis (ctd.) 
+$$
+\frac{dN}{dt}=-N(t-T),
+$$
+\vspace{5cm}
+
+# Two dependent variable ODE models
+ $$
 \begin{aligned}
-\frac{du}{dt}&=1-u,  \nonumber \\
-\frac{dv}{dt}&=1-uv-v.
+\frac{du}{dt}&=f(u,v), \nonumber \\
+\frac{dv}{dt}&=g(u,v).
+\end{aligned}
+$$ {#eq-twovariablfegen}
+\vspace{5cm}
+
+# Steady states
+
+# Linear stability analysis
+
+# Linear stability analysis (ctd.)
+
+# The trace determinant plane
+
+![Stability in the trace detemrinant plane.](TDPlane.png){#fig-tdplane}
+
+# Lecture 14
+
+Recap
+ $$
+\begin{aligned}
+\frac{du}{dt}&=f(u,v), \nonumber \\
+\frac{dv}{dt}&=g(u,v).
+\end{aligned}
+$$ 
+
+
+::: {layout-ncol=2}
+
+![](TDPlane.png){width=200}
+
+$$
+\lambda = \frac{\mathrm{tr}{A}\pm \sqrt{\mathrm{tr}{A}^2-4\det{A}}}{2}.
+$$
+:::
+
+# Nullclines
+
+# Periodic solutions (Poincaire-Bendixson theorem)
+
+- System of two ODEs
+- Confined set containing unstable node or spiral
+- as $t\rightarrow \infty$, the trajectory will tend towards a limit cycle.
+\vspace{4cm}
+
+# No periodic soltutions - (Dulac criterion)
+
+- $D$  simply connected region in the plane 
+- $B(x,y)$, continuously differentiable on $D$, with
+$$
+\frac{\partial }{\partial u} (Bf) + \frac{\partial }{\partial v} (Bg)
+$$ 
+ not identically zero and does not change sign in D. 
+\vspace{4cm}
+
+# Lotka Volterra
+$$
+   \begin{aligned}
+   \frac{dN }{dt} &= aN -bNP, \nonumber \\
+      \frac{dP }{dt} &= cNP -dP, 
 \end{aligned}
 $$
+\vspace{6cm}
 
-  
-Suppose $(u^*,v^*)$ is a steady state.
- Hence
-$$
- 0=1-u^*
- $$
- and
-$$
- 0=1-u^*v^*-v^*
- $$
-   The steady state is $(1,1/2)$.
-
-
-## Linear stability calculation
-
-Deduce, by considering the form for the eigenvalues that, for example, the conditions
-$\det(A)>0$, $\mathrm{tr}(A)>0$ with $\mathrm{tr}(A)^2<4 \det(A)$ imply that the steady state is an unstable spiral.
-
-The eigenvalues are given by
-$$
-\lambda = \frac{\mathrm{tr}{A}\pm \sqrt{\mathrm{tr}{A}^2-4\det{A}}}{2}
-$$
-
-
-## Jacobian calculation
-Compute the Jacobian matrix for the system of ODEs
+# Nondimensionalisation 
 $$
 \begin{aligned}
-\frac{du}{dt}&=1-u,  \nonumber \\
-\frac{dv}{dt}&=1-uv-v.
+ \frac{dn }{d\tau} &= n(1-p) = f(n,p), \nonumber \\
+ \frac{dp }{d\tau} &=\alpha p(n-1)  = g(n,p),
+\end{aligned} 
+$$ {#eq-lotkavolterranondim}
+\vspace{6cm}
+
+
+# Lecture 15 - recap
+
+Lotka-Volterra model - predator prey interaction
+
+$n$ - prey
+$p$ - predator
+
+$$
+\begin{aligned}
+ \frac{dn }{d\tau} &= n(1-p) = f(n,p), \nonumber \\
+ \frac{dp }{d\tau} &=\alpha p(n-1)  = g(n,p),
+\end{aligned} 
+$$ {#eq-lotkavolterranondim}
+\vspace{1cm}
+
+Strategy: 
+
+* numerical solution
+* steady states
+* nullclines
+* linear stability 
+
+# Numerical solutions
+```{python}
+#| label: fig-lv-numsol
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy
+from scipy.integrate import odeint
+
+
+
+# Define model parameters
+alpha=1.5
+
+# Define rhs of LV ODEs
+def rhs_lv_model(x,t):
+  rhs=np.zeros_like(x)
+  n=x[0]
+  p=x[1]
+  dn_dt=n*(1-p)
+  dp_dt=alpha*p*(n-1)
+  rhs[0]=dn_dt
+  rhs[1]=dp_dt
+  return rhs
+
+# Define discretised t domain
+t = np.linspace(0, 10, 1000)
+
+# define initial conditions
+init_cond=[0.5,0.5]
+
+# Compute numerical solution of ODEs
+sol1 = odeint(rhs_lv_model, init_cond,t)
+
+
+# Plot results
+n=sol1[:,0]
+p=sol1[:,1]
+
+plt.plot(t, n, 'b',t,p,'r')
+
+plt.legend(['n','p'],loc='best')
+plt.xlabel('$t$')
+
+plt.grid()
+plt.show()
+```  
+
+
+
+# Steady states
+
+# Nullclines
+
+# The phase plane
+```{python}
+#| label: fig-lv-numsol-phplane
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy
+from scipy.integrate import odeint
+
+
+# Define model parameters
+alpha=2.0
+
+# Define t domain
+T=10
+t = np.linspace(0, T, 1000)
+
+
+# Define different ICs
+init_cond1=[0.75,0.75]
+init_cond2=[0.15,0.15]
+init_cond3=[2.5,0.5]
+
+
+# Numerically integrate ODEs for different ICs
+sol1 = odeint(rhs_lv_model, init_cond1,t)
+sol2 = odeint(rhs_lv_model, init_cond2,t)
+sol3 = odeint(rhs_lv_model, init_cond3,t)
+
+
+# Plot results
+n=sol1[:,0]
+p=sol1[:,1]
+
+ss=[1,1]
+
+fig, ax=plt.subplots()
+ax.plot(sol1[:,0],sol1[:,1],sol2[:,0],sol2[:,1],sol3[:,0],sol3[:,1])
+ax.plot(ss[0],ss[1],'k*')
+ax.set_xlabel('$n$')
+ax.set_ylabel('$p$')
+
+plt.grid()
+plt.show()
+```  
+
+
+# Linear stability
+
+
+# Integration
+
+#
+
+
+::::
+
+# Lecture 16 Competition 
+
+
+::: {.callout-note}
+# Recap: Lotka-Volterra model  
+
+* predator prey interaction
+* $n$ - prey
+* $p$ - predator
+
+$$
+   \begin{aligned}
+   \frac{dN }{dt} &= aN -bNP, \nonumber \\
+      \frac{dP }{dt} &= cNP -dP, 
 \end{aligned}
 $$
-Evaluate the Jacobian matrix at the steady state and hence determine its linear stability.
+\vspace{1cm}
+:::
 
-The Jacobian is given by 
-$$
-A=\left(\begin{array}{rr} -1&0 \\ -v &-u-1 \end{array}\right).
-$$
-At (1,1/2)
-$$
-A=\left(\begin{array}{rr} -1&0 \\ -\frac{1}{2} &-2 \end{array}\right).
-$$
-In this case 
-$$
- tr(A)=-3
-$$
-and 
-$$
- \det(A)=2
-$$
+::: {.callout-note}
+# Aim - introduce and analyse a model of competition 
  
- Hence the steady state is stable.
- As 
-$$
- tr(A)^2-4\det(A)=9-8=1,
-$$
- it is a stable node.
+:::
 
-## Nullclines calculation
+# Competition model
 
-Sketch the nullclines of the system of ODEs
 $$
 \begin{aligned}
-\frac{du}{dt}&=1-u,  \nonumber \\
-\frac{dv}{dt}&=1-uv-v.
+\frac{d N_1}{dt} &= r_1N_1\left(1-\frac{N_1}{K_1}-b_{12}\frac{N_2}{K_1}\right), \nonumber \\
+\frac{d N_2}{dt} &= r_2N_2\left(1-\frac{N_2}{K_2}-b_{21}\frac{N_1}{K_2}\right), 
 \end{aligned}
 $$
 
+* Justify why this a is a model for competition
+* Define model parameters
+* Explain the meaning of each of the terms in the model
 
-The $u$ nullcline is $u=1$.
-The $v$ nullcline is $v=1/(1+u)$.
+\vspace{6cm}
+
+# Nondimensionalisation
+
+$$
+\begin{aligned}
+\frac{d n_1}{d\tau} &= n_1\left(1- n_1-a_{12}n_2\right) = f(n_1,n_2), \nonumber \\
+\frac{d n_2}{d\tau} &= \rho n_2\left(1-n_2-a_{21}n_1\right) =g(n_1,n_2),
+\end{aligned}
+$$
+
+* Define $\rho$, $a_{12}$ and $a_{21}$
+\vspace{5cm}
+
+# Nondimensionalisation (ctd.)
+
+# Steady states
+
+# Steady states (ctd)
+
+# Nullclines
+
+
+# Lecture 17 Competition 
+$$
+\begin{aligned}
+\frac{d n_1}{d\tau} &= n_1\left(1- n_1-a_{12}n_2\right) = f(n_1,n_2), \nonumber \\
+\frac{d n_2}{d\tau} &= \rho n_2\left(1-n_2-a_{21}n_1\right) =g(n_1,n_2),
+\end{aligned}
+$$
+
+Steady states: 
+
+$$ (0,0), \ (1,0), \ (0,1) $$
+and
+$$
+\left(\frac{1-a_{12}}{1-a_{12}a_{21}},\frac{1-a_{21}}{1-a_{12}a_{21}}\right).
+$$
+
+# Linear stability analysis
+$$
+A_{(n_1^*,n_2^*)} = \left(\begin{array}{rr}
+1-2n_1 -a_{12}n_2&-a_{12}n_1 \\ -\rho a_{21}n_2 &\rho(1-2n_2-a_{21}n_1)\end{array}\right)_{({n_1}^*,{n_2}^*)}. 
+$$
+
+\vspace{5cm}
+
+# Linear stability analysis (ctd)
+
+# Phase portrait (one for each qualitatively distinct case)
+
+
+``` {python}
+#| label: fig-comp-numsol-phplane
+#| caption: ''
+# Phase plane for the competition model 
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy
+from scipy.integrate import odeint
+
+rho=1.5
+# Discretise n domain
+n_1_vec=np.linspace(0,5,100)
+
+def rhs_comp_model(x,t):
+  rhs=np.zeros_like(x)
+  n_1=x[0]
+  n_2=x[1]
+  dn_1_dt=n_1*(1-n_1)-a_12*n_1*n_2
+  dn_2_dt=rho*(n_2*(1-n_2)-a_21*n_1*n_2)
+  rhs[0]=dn_1_dt
+  rhs[1]=dn_2_dt
+  return rhs
+
+# COmpute different elements of the phase plane
+def ComputeCompetitionSol(a_12,a_21,n_1_vec):
+    t = np.linspace(0, 10, 1000)
+
+    # Different ICs for integrating trajectories
+    init_cond1=[0.75,0.75]
+    init_cond2=[0.15,0.15]
+    init_cond3=[2.5,0.5]
+
+    # Integrate the ODEs
+    alpha=2.0
+    sol1 = odeint(rhs_comp_model, init_cond1,t)
+    sol2 = odeint(rhs_comp_model, init_cond2,t)
+    sol3 = odeint(rhs_comp_model, init_cond3,t)
+
+    # determine which case we are in
+    num_steady_states=3
+    fourth_ss_condition= ((a_12<1) & (a_21<1)) | ((a_12>1) & (a_21>1))
+    if fourth_ss_condition==True:
+        num_steady_states=4
+
+    # Compute the steady dstates
+    ss=np.zeros((num_steady_states,2),dtype=float)
+    ss[0,:]=[0,0]
+    ss[1,:]=[1,0]
+    ss[2,:]=[0,1]
+    if fourth_ss_condition==True:
+        ss[3,:]=[(1-a_12)/(1-a_12*a_21),(1-a_21)/(1-a_12*a_21)]
+
+
+    # Compute the nullclines
+    n1_ncline_1_n_1=[0,0]    
+    n1_ncline_1_n_2=[0,5]   
+    n1_ncline_2_n_2=1/a_12*(1-n_1_vec)
+    n2_ncline_1_n_1=[0,5]    
+    n2_ncline_1_n_2=[0,0]   
+    n2_ncline_2_n_2=1-a_21*(n_1_vec)
+
+    # Return the various computed QUANTITIES
+    return sol1,sol2,sol3,ss,n1_ncline_1_n_1,n1_ncline_1_n_2,n1_ncline_2_n_2,n2_ncline_1_n_1,n2_ncline_1_n_2,n2_ncline_2_n_2
+
+# Compute quantities
+a_12=0.5
+a_21=0.4
+sol1,sol2,sol3,ss, n1_ncline_1_n_1,n1_ncline_1_n_2,n1_ncline_2_n_2,n2_ncline_1_n_1,n2_ncline_1_n_2,n2_ncline_2_n_2=ComputeCompetitionSol(a_12,a_21,n_1_vec)
+
+# PLot phase plane
+fig, ax = plt.subplots(1,2)
+ax[0].plot(n1_ncline_1_n_1,n1_ncline_1_n_2,'k--')
+ax[0].plot(n_1_vec,n1_ncline_2_n_2,'k--')
+ax[0].plot(n2_ncline_1_n_1,n2_ncline_1_n_2,'r--')
+ax[0].plot(n_1_vec,n2_ncline_2_n_2,'r--')
+
+ax[0].plot(sol1[:,0],sol1[:,1],sol2[:,0],sol2[:,1],sol3[:,0],sol3[:,1])
+ax[0].plot(ss[:,0],ss[:,1],'k*')
+ax[0].set_xlabel('$n_1$')
+ax[0].set_ylabel('$n_2$')
+
+ax[0].set_xlim([-0.05,1.5])
+ax[0].set_ylim([-0.05,1.5])
+
+# Compoute quantitied for different parameters
+a_12=1.5
+a_21=0.4
+sol1,sol2,sol3,ss, n1_ncline_1_n_1,n1_ncline_1_n_2,n1_ncline_2_n_2,n2_ncline_1_n_1,n2_ncline_1_n_2,n2_ncline_2_n_2=ComputeCompetitionSol(a_12,a_21,n_1_vec)
+
+# PLot phase plane
+ax[1].plot(n1_ncline_1_n_1,n1_ncline_1_n_2,'k--')
+ax[1].plot(n_1_vec,n1_ncline_2_n_2,'k--')
+ax[1].plot(n2_ncline_1_n_1,n2_ncline_1_n_2,'r--')
+ax[1].plot(n_1_vec,n2_ncline_2_n_2,'r--')
+
+ax[1].plot(sol1[:,0],sol1[:,1],sol2[:,0],sol2[:,1],sol3[:,0],sol3[:,1])
+ax[1].plot(ss[:,0],ss[:,1],'k*')
+ax[1].set_xlabel('$n_1$')
+ax[1].set_ylabel('$n_2$')
+
+ax[1].set_xlim([-0.05,1.5])
+ax[1].set_ylim([-0.05,1.5])
+
+plt.tight_layout()
+plt.grid()
+plt.show()
+```
+
+# Insight
+
+# Mutualism/symbiosis
+
+$$
+\begin{aligned}
+\frac{d n_1}{d\tau} &= n_1(1- n_1+a_{12}n_2) = f(n_1,n_2), \nonumber \\
+\frac{d n_2}{d\tau} &= \rho n_2(1-n_2+a_{21}n_1) =g(n_1,n_2).
+\end{aligned}
+$$
+\vspace{5cm}
+
+# Steady states
+This model has steady-states $(0,0)$, $(1,0)$,$(0,1)$ and  
+$$
+\left({n_1}^*,{n_2}^*\right)=\left(\frac{1+a_{12}}{1-a_{12}a_{21}},\frac{1+a_{21}}{1-a_{12}a_{21}}\right).
+$$
+\vspace{5cm}
+
+# Coexistence steady state
+
+# Summary
+
+* Predator-prey, competition, mutualism
+* techniques to analyse systems of nonlinear ODEs
+
+# Lecture 18  Biochemical kinetics
+
+* Cells make proteins via gene transcription and translation
+* Proteins can interact 
+* Molecular biology is the study of the molecules that underpin biological phenomena
+* For example: the cell cycle regulated by changing concentrations of cyclin/CDKs
+
+::: {.callout-note}
+# Our question
+
+How do we mathematically describe networks of interacting chemical? 
+:::
+
+# LOMA - reaction rate proportional to product of concentration of reactants
 
 
 
-## Biochemical kinetics I
 
-Suppose A and B react to produce C. Hence
+
+$$
+\lambda_1C_1+\lambda_2 C_2+...+\lambda_m C_M \xrightleftharpoons[k_{b}]{k_{f}} 
+\gamma_1 C_1+\gamma_2 C_2 + ... \gamma_M C_M.
+$$
+\vspace{5cm}
+# Conservation equation
+
+# A forwards reaction
+
 $$
 A+B\xrightarrow{k}  C.
 $$
 
-The law of mass action states that the rate of the reaction is 
+\vspace{5cm}
 
-$$
-k[A][B].
-$$
-
-Using the reaction rates, we write down ordinary differential equations that describe how concentrations of a given molecule will change in time. Hence
-
-$$
-\frac{d[C]}{dt}=k[A][B].
-$$ 
-
-
-
-## Biochemical kinetics
-
-Consider the reversible reaction
+# A reversible reaction
 $$
 A+B  \xrightleftharpoons[k_{-}]{k_{+}}  C.
 $$
-Define dependent variables, identify reaction rates and derive ordinary differential equations that describe how concentrations evolved in time.
 
-The dependent variables are:
-$$ [A](t), \ \ [B](t), \ \ [C](t) $$.
-
-Applying the law of mass action yields the reaction rates: 
-
-$$ k_+[A][B] \ \ \textrm{and} \ \ k_-[C]$$.
+\vspace{5cm}
 
 
-## Ctd. 
-The ODEs are
+# General stochiometric constants
+
+$$
+A+mB \xrightarrow{k_1} nB + pC.
+%X \underset{k_2}{\stackrel{k_1}{\rightleftharpoons}} Y
+$$
+\vspace{5cm}
+
+# A reversible dimerisation
+$$
+A+A  \xrightleftharpoons[k_{-}]{k_{+}}  B.
+$$
+\vspace{5cm}
+
+# Enzyme kinetics
+
+$$
+S+E  \xrightleftharpoons[k_{-1}]{k_{1}}  C \xrightarrow{k_2} P+E .
+$$
+\vspace{5cm}
+
+
+# Numerical solution
+```{python}
+#| label: fig-mm-numsol
+#| fig-cap: "Numerical solutions of the Michaelis Menten model"
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy
+from scipy.integrate import odeint
+
+
+# Define moel parameters
+
+k_1=1.0
+k_2=0.4
+k_m_1=2.0
+s_0=10.0
+e_0=0.5
+p_0=0
+c_0=0
+
+
+# Define RHS of enzyme kinetics model
+def rhs_enzyme_kinetics_model(z,t):
+  rhs=np.zeros_like(z)
+  s=z[0]
+  e=z[1]
+  c=z[2]
+  p=z[3]
+
+  ds_dt= -k_1*s*e + k_m_1*c
+  de_dt= -k_1*s*e + k_m_1*c + k_2*c
+  dc_dt= k_1*s*e  - k_m_1*c - k_2*c
+  dp_dt= k_2*c
+
+  rhs[0]=ds_dt
+  rhs[1]=de_dt
+  rhs[2]=dc_dt
+  rhs[3]=dp_dt
+  return rhs
+
+
+# Discretise time domain
+t = np.linspace(0, 100, 1000)
+
+
+# Define ICS
+init_cond=[s_0,e_0,c_0,p_0]
+
+# Integrate ODEs
+sol1 = odeint(rhs_enzyme_kinetics_model, init_cond,t)
+
+# PLot results
+s=sol1[:,0]
+e=sol1[:,1]
+c=sol1[:,2]
+p=sol1[:,3]
+
+
+fig, ax=plt.subplots(2,2)
+ax[0,0].plot(t, s, 'b')
+ax[0,0].set_xlabel('$t$')
+ax[0,0].set_ylabel('$s$')
+
+ax[0,1].plot(t,c,'r',t,e,'k')
+ax[0,1].set_xlabel('$t$')
+ax[0,1].legend(['$c$','$e$'])
+
+ax[1,0].plot(t,p,'r')
+ax[1,0].set_xlabel('$t$')
+ax[1,0].set_ylabel('$p$')
+
+ax[1,1].plot( s, c,'r')
+ax[1,1].set_xlim([0,1.25*s_0])
+ax[1,1].set_xlabel('$s$')
+ax[1,1].set_ylabel('$c$')
+
+plt.tight_layout()
+plt.grid()
+plt.show()
+``` 
+
+# Dimension reduction
+
+# QSSA
+
+# Nondimensionalisation
+$$
+\begin{aligned}
+\frac{d u}{d\tau} &= -u+(u+K-\lambda)v, \nonumber \\
+\epsilon \frac{d v}{d\tau} &= u-(u+K)v, \nonumber \\
+\end{aligned}
+$$
+where
+$$
+\lambda=\frac{k_2}{k_1 s_0}, \ \ \ K=\frac{k_{-1}+k_2}{k_1 s_0}, \ \ \ \epsilon=\frac{e_0}{s_0}. 
+$$
+
+\vspace{6cm}
+
+# Propose asymptotic expansion: outer solution 
 
 $$
 \begin{aligned}
-\frac{d[A]}{dt}&=-k_+[A][B]+k_-[C], \nonumber\\
-\frac{d[B]}{dt}&=-k_+[A][B]+k_-[C], \nonumber\\
-\frac{d[C]}{dt}&=k_+[A][B]-k_-[C]. \nonumber
+u(\tau;\epsilon)=u_0(\tau) + \epsilon u_1(\tau) + \epsilon^2 u_2(\tau) + ... = \sum_{n=0}^{\infty}u_n(\tau)\epsilon^n, \nonumber \\
+v(\tau;\epsilon)=v_0(\tau) + \epsilon v_1(\tau) + \epsilon^2 v_2(\tau) + ... = \sum_{n=0}^{\infty}v_n(\tau)\epsilon^n.  \nonumber  
 \end{aligned}
 $$
 
-For a given set of initial conditions, 
+## Substitute:
+
+\vspace{6cm}
+
+# Gather terms in  powers of epsilon
+
+# Leading order solution
+
+# An inner solution
+Rescale time:
 $$
-[A](t=0)=[A]_0, \ \ \ [B](t=0)=[B]_0, \ \ \ [C](t=0)=[C]_0,
+\sigma=\frac{\tau}{\epsilon}.
 $$
-the ODEs can be solved and hence the concentrations of the different molecules described as time evolves.
+
+Define
+$$
+\begin{aligned}
+u(\tau;\epsilon)=U(\sigma;\epsilon),  \nonumber \\ 
+v(\tau;\epsilon)=V(\sigma;\epsilon). \nonumber 
+\end{aligned}
+$$
+
+# The inner problem
+$$
+\begin{aligned}
+\frac{d U}{d\sigma} &= -\epsilon U+ \epsilon (U+K-\lambda)V, \nonumber \\
+\frac{d V}{d\sigma} &= U-(U+K)V.  
+\end{aligned}
+$$ {#eq-longtimeuv}
+\vspace{5cm}
+
+# Seek series solutions
+$$
+\begin{aligned}
+U(\sigma;\epsilon)&=U_0(\sigma) + \epsilon U_1(\sigma) + \epsilon^2 U_2(\sigma) + ... = \sum_{n=0}^{\infty}U_n(\sigma)\epsilon^n, \nonumber \\
+V(\sigma;\epsilon)&=V_0(\sigma) + \epsilon V_1(\sigma) + \epsilon^2 V_2(\sigma) + ... = \sum_{n=0}^{\infty}V_n(\sigma)\epsilon^n. \nonumber  
+\end{aligned}
+$$
+
+\vspace{6cm}
+
+# Mathching inner and outer solutions
+
+# The Brusselator
+$$
+\begin{aligned}
+A&\xrightarrow{k_{1}} X,  \nonumber \\
+B+X&\xrightarrow{k_{2}} Y+D, \nonumber\\
+2X+Y&\xrightarrow{k_{3}} 3X, \nonumber\\
+X&\xrightarrow{k_{4}} E. 
+\end{aligned}
+$$
+
+\vspace{6cm}
+
+# Nondimensional form 
+$$
+\begin{aligned}
+\frac{d x}{d \tau} &= a-bx+x^2y-x = f(x,y), \\
+\frac{d y}{d \tau} &= bx-x^2y = g(x,y), 
+\end{aligned}
+$$ {#eq-brussnondim}
+
+\vspace{5cm}
+
+
+
+
+
+
+
+

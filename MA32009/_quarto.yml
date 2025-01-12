@@ -52,6 +52,8 @@ format:
           \begin{tikzpicture}[remember picture,overlay]
           \node at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{MA32009Cover.png}};
           \end{tikzpicture}\clearpage}
+filters:
+  - shinylive
 
 execute:
   warning: false

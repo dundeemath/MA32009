@@ -941,51 +941,48 @@ $$
 $$
 Hence the eigenvalue, $\lambda$, satisfies a transcendental equation
 $$
-\lambda=-e^{\lambda -T}.
+\lambda=-e^{-\lambda T}.
 $$
-This equation has no solutions for $\lambda \in \Re$.
+This equation has no  solutions for $\lambda \in \Re^+$. Hence any steady-states with real eigenvalues are linearly stable.
 
-Consider solutions $\lambda \in \mathbb{C}$.
+Now consider solutions $\lambda \in \mathbb{C}$.
 Let $\lambda=\mu+i\omega$. Substitution yields
 $$
 \mu+i\omega = -e^{-\mu T}(\cos(\omega T)-i \sin(\omega T)).
 $$
 Hence
 $$
-\begin{aligned}
-\mu=-\cos(\omega T)e^{-\mu T} \\
+\mu=-\cos(\omega T)e^{-\mu T} 
+$$ {#eq-mu}
+and
+$$
 \omega = \sin(\omega T)e^{-\mu T}.
-\end{aligned}
-$$
-For linear stability we require that $\mu <0$. This implies that 
-$$
--\frac{\pi}{2}<\omega T < \frac{\pi}{2}.
-$$ 
+$$ {#eq-om}
 
-Consider
+For linear stability of the steady state it is required that $\mu <0$. 
+
+If $\omega$ is a solution of @eq-mu and @eq-om then so is $-\omega$. Hence w.l.o.g we consider the case $\omega>0$.
+
+Consider $\mu=0$ in @eq-mu. This implies
 $$
-\frac{e^{\mu T}}{T}=\frac{\omega e^{\mu T}}{\omega T} = \frac{\sin(\omega T)}{\omega T}
+\omega T=\frac{\pi}{2} + 2n\pi, \quad n \in Z.
+$$
+We consider the smallest positive root, i.e. $n=0$, as we want to consider the smallest value of delay time, $T$, at which instability arises.
+
+Note $\mu<0$ for 
+$$
+\omega T< \frac{\pi}{2}.
 $$
 
-Noting that
+On the stablity boundary, $\mu=0$. Upon substitution in @eq-om
 $$
-\frac{\sin z}{z} > \frac{1}{\frac{\pi}{2}}
+\omega = \sin(\frac{\pi}{2})=1.
 $$
-yields
+
+Hence the steady state is linearly stable for 
 $$
- \frac{\sin(\omega T)}{\omega T}>\frac{2}{\pi}.
+ T< \frac{\pi}{2}.
 $$
-Hence
-$$
-\frac{e^{\mu T}}{T} >\frac{2}{\pi}.
-$$
-Rearranging
-$$
-T<\frac{\pi}{2}e^{\mu T}.
-$$
-For linear stability $\mu<0$. Hence a necessary condition for linear stability is that
-$$
-T<\frac{\pi}{2}
-$$
+
 
 ## References

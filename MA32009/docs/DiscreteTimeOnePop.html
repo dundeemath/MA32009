@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA32009 - 1&nbsp; Single species population dynamics</title>
+<title>1&nbsp; Single species population dynamics – MA32009</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -75,13 +75,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content=".">
+<script src="site_libs/quarto-contrib/shinylive-0.9.3/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.9.3/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.9.3/shinylive/shinylive.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,14 +101,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -107,13 +146,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DiscreteTimeOnePop.html">Discrete time</a></li><li class="breadcrumb-item"><a href="./DiscreteTimeOnePop.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Single species population dynamics</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DiscreteTimeOnePop.html">Discrete time</a></li><li class="breadcrumb-item"><a href="./DiscreteTimeOnePop.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Single species population dynamics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -122,13 +161,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">MA32009</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/dundeemath/MA32009/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./MA32009.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/dundeemath/MA32009/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./MA32009.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -147,9 +186,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Discrete time</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -170,9 +209,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Continuous time</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -199,9 +238,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -229,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -272,12 +311,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#oscillations" id="toc-oscillations" class="nav-link" data-scroll-target="#oscillations"><span class="header-section-number">1.7</span> Oscillations</a></li>
   <li><a href="#a-note-on-the-modelling-of-real-world-fish-stocks" id="toc-a-note-on-the-modelling-of-real-world-fish-stocks" class="nav-link" data-scroll-target="#a-note-on-the-modelling-of-real-world-fish-stocks"><span class="header-section-number">1.8</span> A note on the modelling of real-world fish stocks</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dundeemath/MA32009/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/dundeemath/MA32009/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DiscreteTimeOnePop.html">Discrete time</a></li><li class="breadcrumb-item"><a href="./DiscreteTimeOnePop.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Single species population dynamics</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Single species population dynamics</span></h1>
 </div>
@@ -292,7 +331,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p>Let us firstly consider models of a single population defined at discrete times. Discrete (rather than continuous) time is used in population models where, for example, there are strong annual trends in the underlying animal behaviour (e.g.&nbsp;fish eggs hatching at a fixed time in the year), there are not overlapping generations and the population size at the next time step can be written as a function of the current population size.</p>
 <section id="a-general-model-for-a-single-population-in-discrete-time" class="level2" data-number="1.1">
@@ -303,12 +344,12 @@ N_{t+1}=N_tf(N_t)=H(N_t),
 \tag{1.1}\]</span></span> where <span class="math inline">\(f(N_t)\)</span> is a function that defines the <em>per capita</em> growth rate. The function <span class="math inline">\(H(N_t)\)</span> describes the total (net) growth rate.</p>
 <p>Given some initial condition <span class="math inline">\(N_0\)</span> defined such that <span class="math display">\[
 N_{t=0}=N_0,
-\]</span> the goal of this section is to develop a range of techniques that allow us to analyse the behaviour of <a href="#eq-GeneralPopulationModel">Equation&nbsp;<span>1.1</span></a> for a given <span class="math inline">\(H\)</span>.</p>
+\]</span> the goal of this section is to develop a range of techniques that allow us to analyse the behaviour of <a href="#eq-GeneralPopulationModel" class="quarto-xref">Equation&nbsp;<span>1.1</span></a> for a given <span class="math inline">\(H\)</span>.</p>
 <p>Finally, note that many of you were introduced to difference equations in the module MA21003 Discrete Mathematics. It is recommended that you revisit the section on Discrete Difference Equations.</p>
 </section>
 <section id="the-malthusian-model" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="the-malthusian-model"><span class="header-section-number">1.2</span> The Malthusian model</h2>
-<p>Perhaps the simplest form for equation <a href="#eq-GeneralPopulationModel">Equation&nbsp;<span>1.1</span></a> is when the net per capita growth rate is a constant.</p>
+<p>Perhaps the simplest form for equation <a href="#eq-GeneralPopulationModel" class="quarto-xref">Equation&nbsp;<span>1.1</span></a> is when the net per capita growth rate is a constant.</p>
 <p>Let <span class="math inline">\(b\)</span> be the per capita growth rate and <span class="math inline">\(d\)</span> the per capita death rate with <span class="math inline">\(b\)</span> and <span class="math inline">\(d\)</span> both positive real constants.</p>
 <p>Hence, a population of size <span class="math inline">\(N_t\)</span> at time <span class="math inline">\(t\)</span> will grow by <span class="math display">\[
 bN_t
@@ -319,7 +360,7 @@ dN_t.
 \]</span> Therefore the population size at time <span class="math inline">\(t+1\)</span> is <span id="eq-MalthusianEqn"><span class="math display">\[
 N_{t+1}=N_t + bN_t - dN_t=rN_t,
 \tag{1.2}\]</span></span> where the parameter <span class="math inline">\(r=1+b-d\)</span> is known as the net growth rate.</p>
-<p>Given the initial condition <span class="math inline">\(N_0\)</span>, equation <a href="#eq-MalthusianEqn">Equation&nbsp;<span>1.2</span></a> can be solved recursively as follows:</p>
+<p>Given the initial condition <span class="math inline">\(N_0\)</span>, equation <a href="#eq-MalthusianEqn" class="quarto-xref">Equation&nbsp;<span>1.2</span></a> can be solved recursively as follows:</p>
 <p><span class="math display">\[
 N_1=rN_0,
 N_2=r(N_1)=r^2N_0,   
@@ -327,9 +368,9 @@ N_3=rN_2=r^3N_0, ...,
 N_t=r^tN_0.
 \]</span></p>
 <p>Hence for the case of Malthusian growth, the size of the population can be explicitly calculated for all <span class="math inline">\(t\)</span>.</p>
-<p>In <a href="#fig-plotmalthusian">Figure&nbsp;<span>1.1</span></a> a numerical solution of the model is computed for different values of the parameter <span class="math inline">\(r\)</span>.</p>
-<div class="cell" data-execution_count="1">
-<details>
+<p>In <a href="#fig-plotmalthusian" class="quarto-xref">Figure&nbsp;<span>1.1</span></a> a numerical solution of the model is computed for different values of the parameter <span class="math inline">\(r\)</span>.</p>
+<div id="cell-fig-plotmalthusian" class="cell" data-execution_count="1">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -384,10 +425,14 @@ N_t=r^tN_0.
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-plotmalthusian" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiscreteTimeOnePop_files/figure-html/fig-plotmalthusian-output-1.png" width="661" height="470" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.1: A plot of the Malthusian model solution when (a) <span class="math inline">\(r\)</span>=0.5 and (b) <span class="math inline">\(r\)</span>=1.5.</figcaption>
+<div id="fig-plotmalthusian" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotmalthusian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiscreteTimeOnePop_files/figure-html/fig-plotmalthusian-output-1.png" width="660" height="468" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotmalthusian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: A plot of the Malthusian model solution when (a) <span class="math inline">\(r\)</span>=0.5 and (b) <span class="math inline">\(r\)</span>=1.5.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -404,7 +449,7 @@ N_0&amp; r=1  \\
 0 &amp; r&lt;1.     
 \end{array} \right.
 \]</span></p>
-<p>In <a href="#fig-plotmalthusian">Figure&nbsp;<span>1.1</span></a> solutions in each of the (nontrivial) parameter regimes are plotted. When <span class="math inline">\(r&lt;1\)</span> the population tends to zero and when <span class="math inline">\(r&gt;1\)</span> the population explodes.</p>
+<p>In <a href="#fig-plotmalthusian" class="quarto-xref">Figure&nbsp;<span>1.1</span></a> solutions in each of the (nontrivial) parameter regimes are plotted. When <span class="math inline">\(r&lt;1\)</span> the population tends to zero and when <span class="math inline">\(r&gt;1\)</span> the population explodes.</p>
 <p>Whilst the simplicity of the Malthusian model allows us to calculate explicit solutions that yield insight into how the processes of birth and death combine to give either net growth or net reduction in population size, an obvious flaw with this model is that it displays unbounded growth for <span class="math inline">\(r&gt;1\)</span>. In most biological systems, other effects, such as competition for resources or predation, will tend to limit a population’s size. In single species population models, these effects are accounted for phenomenologically by introducing nonlinear terms into the function <span class="math inline">\(f\)</span>.</p>
 </section>
 <section id="a-motivating-example-of-a-nonlinear-model---the-ricker-model" class="level2" data-number="1.3">
@@ -427,12 +472,12 @@ N_{t+1}=N_te^{r(1-\frac{N_t}{K})}.
 </section>
 <section id="computational-solutions" class="level3" data-number="1.3.2">
 <h3 data-number="1.3.2" class="anchored" data-anchor-id="computational-solutions"><span class="header-section-number">1.3.2</span> Computational solutions</h3>
-<p>After directly computing numerical solutions of the Ricker model for different values of the parameter <span class="math inline">\(r\)</span>, the data in <a href="#fig-plotricker">Figure&nbsp;<span>1.2</span></a> were obtained.</p>
+<p>After directly computing numerical solutions of the Ricker model for different values of the parameter <span class="math inline">\(r\)</span>, the data in <a href="#fig-plotricker" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> were obtained.</p>
 <p>Note that model behaviour changes drastically as the parameter <span class="math inline">\(r\)</span> varies. For instance,</p>
 <ul>
-<li>when <span class="math inline">\(r=0.5\)</span> (<a href="#fig-plotricker">Figure&nbsp;<span>1.2</span></a> (a)), the solution monotonically approaches the value <span class="math inline">\(2\)</span>,</li>
-<li>when <span class="math inline">\(r=1.5\)</span> (<a href="#fig-plotricker">Figure&nbsp;<span>1.2</span></a> (b)) it approaches two in an oscillatory manner; and</li>
-<li>when <span class="math inline">\(r=2.5\)</span> (<a href="#fig-plotricker">Figure&nbsp;<span>1.2</span></a> (c)) it oscillates around two.</li>
+<li>when <span class="math inline">\(r=0.5\)</span> (<a href="#fig-plotricker" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> (a)), the solution monotonically approaches the value <span class="math inline">\(2\)</span>,</li>
+<li>when <span class="math inline">\(r=1.5\)</span> (<a href="#fig-plotricker" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> (b)) it approaches two in an oscillatory manner; and</li>
+<li>when <span class="math inline">\(r=2.5\)</span> (<a href="#fig-plotricker" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> (c)) it oscillates around two.</li>
 </ul>
 <p>The above numerical results raise the following questions:</p>
 <ul>
@@ -441,8 +486,8 @@ N_{t+1}=N_te^{r(1-\frac{N_t}{K})}.
 <li>how do such families of solutions depend on model parameters?</li>
 </ul>
 <p>We will return to analysis of the Ricker model in Worksheet 1.</p>
-<div class="cell" data-execution_count="2">
-<details>
+<div id="cell-fig-plotricker" class="cell" data-execution_count="2">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -495,13 +540,137 @@ N_{t+1}=N_te^{r(1-\frac{N_t}{K})}.
 <span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-plotricker" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiscreteTimeOnePop_files/figure-html/fig-plotricker-output-1.png" width="661" height="470" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.2: A plot of numerical solutions of the Ricker model. (a)r=0.5. (b) r=1.5. (c) r=2.5.</figcaption>
+<div id="fig-plotricker" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotricker-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiscreteTimeOnePop_files/figure-html/fig-plotricker-output-1.png" width="660" height="468" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotricker-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: A plot of numerical solutions of the Ricker model. (a)r=0.5. (b) r=1.5. (c) r=2.5.
+</figcaption>
 </figure>
 </div>
 </div>
+</div>
+<p>In <a href="#fig-rickerapp" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> you can explore simulations of the Ricker model.</p>
+<div id="fig-rickerapp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rickerapp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-rickerapp" class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="r",label="r",min=0.0,max=5.0,value=1.2,step=0.001),             
+    ui.input_slider(id="u0",label="N_0 (Initial condition)",min=0.0,max=1.0,value=0.5,step=0.01),
+    ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
+       
+        ),
+
+        ui.output_plot("plot"),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots(2,1)
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        r=float(input.r())
+        u0=float(input.u0())
+        T=int(input.T())
+        
+        def rickerrhs(x,par):
+          r=par
+          K=1.0
+          f=x*np.exp(r*(1-x/K))
+          return f
+        # Define rhs of logistic map 
+     
+        # this function computes the solutio to the difference equation. It also stores solution in format for cobweb plotting
+        def SolveSingleDiffAndCobweb(t,rhs,N_0,r):
+          # Initialise solution vector
+          N = np.zeros_like(t,dtype=float)
+          N[0]=N_0
+
+
+          num_time_steps=t.shape[0]
+
+
+          # Initialise cobweb solution object
+          CobwebSol=np.zeros((2*num_time_steps,2))
+          CobwebSol[0,0]=N_0
+          CobwebSol[0,1]=rhs(N_0,r)
+          CobwebSol[1,0]=CobwebSol[0,1]
+          CobwebSol[1,1]=CobwebSol[0,1]
+
+          # loop over time and compute solution.
+          for i in t:
+            if i&gt;0:
+              N[i]=rhs(N[i-1],r) 
+
+              sol_temp=N[i-1]
+              rhs_temp=rhs(sol_temp,r)
+              CobwebSol[2*i,0]=sol_temp
+              CobwebSol[2*i,1]=rhs_temp
+              CobwebSol[2*i+1,0]=rhs_temp
+              CobwebSol[2*i+1,1]=rhs_temp
+          return N, CobwebSol
+
+        # Define discretised t domain
+        t = np.arange(0, T, 1)
+        # define initial conditions
+        init_cond=u0
+        
+        # Compute numerical solution of ODEs
+        y,CobwebSol = SolveSingleDiffAndCobweb(t,rickerrhs,init_cond,r)
+
+        # Plot results
+        
+        ax[0].plot(t,y)
+        ax[0].set_xlabel('$t$')
+        ax[0].set_ylabel('$N_t$')
+        ax[0].set_title('Time series')
+
+        ax[1].plot(CobwebSol[0,0], CobwebSol[0,1],'*')
+        ax[1].plot(CobwebSol[:,0], CobwebSol[:,1],'-')
+        ax[1].plot([0,np.max(y)],[0,np.max(y)])
+
+        x_plot=np.linspace(0,np.max(y),10000)
+        y_plot=rickerrhs(x_plot,r)
+        ax[1].plot(x_plot,y_plot)
+        ax[1].set_title('Cobweb')
+        ax[1].set_xlabel('$N_t$')
+        ax[1].set_ylabel('$N_{t+1}$')
+
+        plt.grid()
+
+        plt.show()
+    
+app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rickerapp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: An app to explore behaviour of the Ricker model.
+</figcaption>
+</figure>
 </div>
 </section>
 </section>
@@ -512,12 +681,12 @@ N_{t+1}=N_t f(N_t)=H(N_t).
 \tag{1.4}\]</span></span></p>
 <section id="computational-solutions-1" class="level3" data-number="1.4.1">
 <h3 data-number="1.4.1" class="anchored" data-anchor-id="computational-solutions-1"><span class="header-section-number">1.4.1</span> Computational solutions</h3>
-<p>Perhaps the most obvious way to investigate an equation of the form of <a href="#eq-generaleqn">Equation&nbsp;<span>1.4</span></a> is to iteratively compute <span class="math inline">\(N_t\)</span> over a prescribed time range.</p>
+<p>Perhaps the most obvious way to investigate an equation of the form of <a href="#eq-generaleqn" class="quarto-xref">Equation&nbsp;<span>1.4</span></a> is to iteratively compute <span class="math inline">\(N_t\)</span> over a prescribed time range.</p>
 <p>Hence given some initial population <span class="math inline">\(N_0\)</span>, the solution set <span class="math inline">\(\{N_0,N_1,N_2,...,N_T\}\)</span> is computed up to some end time <span class="math inline">\(T\)</span>. Such an approach provides a numerical solution for a given parameter set and initial condition. However, it does not provide much insight into the general behaviour of model.</p>
 </section>
 <section id="fixed-points" class="level3" data-number="1.4.2">
 <h3 data-number="1.4.2" class="anchored" data-anchor-id="fixed-points"><span class="header-section-number">1.4.2</span> Fixed points</h3>
-<p>We define <span class="math inline">\(N^*\)</span> to be a fixed point of <a href="#eq-generaleqn">Equation&nbsp;<span>1.4</span></a> if and only if <span class="math display">\[
+<p>We define <span class="math inline">\(N^*\)</span> to be a fixed point of <a href="#eq-generaleqn" class="quarto-xref">Equation&nbsp;<span>1.4</span></a> if and only if <span class="math display">\[
 N^*=N^*f(N^*)=H(N^*).
 \]</span> Hence the fixed points can be identified by solving an algebraic equation.</p>
 </section>
@@ -526,7 +695,7 @@ N^*=N^*f(N^*)=H(N^*).
 <p>By linearising about the identified fixed points using a Taylor series expansion, it can be determined whether or not small perturbations around the fixed point grow or decay in subsequent iterations.</p>
 <p>Making a change of dependent variables <span class="math display">\[
 N_t=N^*+\hat{N_t},
-\]</span> <a href="#eq-generaleqn">Equation&nbsp;<span>1.4</span></a> transforms upon substitution to <span class="math display">\[
+\]</span> <a href="#eq-generaleqn" class="quarto-xref">Equation&nbsp;<span>1.4</span></a> transforms upon substitution to <span class="math display">\[
 N^*+\hat{N}_{t+1} =  H(N^*+\hat{N}_t).
 \]</span></p>
 <p>Taylor expanding the right-hand side yields <span class="math display">\[
@@ -558,7 +727,7 @@ N^*= H(N^*),
 <li>Plot a horizontal line between <span class="math inline">\((N_0, H(N_0))\)</span> and <span class="math inline">\((H(N_0),H(N_0))\)</span>. Note <span class="math inline">\(N_1=H(N_0)\)</span>.</li>
 <li>Plot a vertical line between <span class="math inline">\((N_1,N_1)\)</span> and <span class="math inline">\((N_1,H(N_1))\)</span>. *Repeat steps 6 and 7.</li>
 </ul>
-<p>Plotting cobweb diagrams in the vicinity of a fixed point <span class="math inline">\(N^*\)</span> for different values of <span class="math inline">\(H'(N^*)\)</span> allows us to see graphically how the derivative of the right-hand side affects linear stability of a fixed point (see <a href="#fig-cobwebstepbystep">Figure&nbsp;<span>1.3</span></a>). In particular,</p>
+<p>Plotting cobweb diagrams in the vicinity of a fixed point <span class="math inline">\(N^*\)</span> for different values of <span class="math inline">\(H'(N^*)\)</span> allows us to see graphically how the derivative of the right-hand side affects linear stability of a fixed point (see <a href="#fig-cobwebstepbystep" class="quarto-xref">Figure&nbsp;<span>1.4</span></a>). In particular,</p>
 <ul>
 <li>when <span class="math inline">\(H'(N^*)&gt;1\)</span>, the fixed point is monotonically unstable;</li>
 <li>when <span class="math inline">\(0&lt;H'(N^*)&lt;1\)</span>, the fixed point is monotonically stable;</li>
@@ -566,8 +735,8 @@ N^*= H(N^*),
 <li>when <span class="math inline">\(H'(N^*)=-1\)</span>, the fixed point is oscillatory; and</li>
 <li>when <span class="math inline">\(H'(N^*)&lt;-1\)</span>, the fixed point is oscillatory unstable.</li>
 </ul>
-<div class="cell" data-execution_count="3">
-<details>
+<div id="cell-fig-cobwebstepbystep" class="cell" data-execution_count="3">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -681,10 +850,14 @@ N^*= H(N^*),
 <span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-cobwebstepbystep" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiscreteTimeOnePop_files/figure-html/fig-cobwebstepbystep-output-1.png" width="704" height="469" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.3: Generating a cobweb plot.</figcaption>
+<div id="fig-cobwebstepbystep" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cobwebstepbystep-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiscreteTimeOnePop_files/figure-html/fig-cobwebstepbystep-output-1.png" width="703" height="466" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cobwebstepbystep-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.4: Generating a cobweb plot.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -697,13 +870,13 @@ N^*= H(N^*),
 </section>
 <section id="perform-a-qualitative-analysis-on-the-matlhusian-model" class="level3" data-number="1.4.6">
 <h3 data-number="1.4.6" class="anchored" data-anchor-id="perform-a-qualitative-analysis-on-the-matlhusian-model"><span class="header-section-number">1.4.6</span> Perform a qualitative analysis on the Matlhusian model</h3>
-<p>Let’s work through the various concepts introduced above using the Malthusian model (<a href="#eq-MalthusianEqn">Equation&nbsp;<span>1.2</span></a>).</p>
+<p>Let’s work through the various concepts introduced above using the Malthusian model (<a href="#eq-MalthusianEqn" class="quarto-xref">Equation&nbsp;<span>1.2</span></a>).</p>
 <p>The fixed points satisfy <span class="math display">\[
 N^*=rN^*.
 \]</span> As <span class="math inline">\(r&gt;0\)</span> the only solution is <span class="math inline">\(N^*=0\)</span>.</p>
 <p>In this case <span class="math display">\[
 H'(N_t)=r.
-\]</span> Hence the linear stability of the solution depends on the value of the parameter <span class="math inline">\(r\)</span> For <span class="math inline">\(r&gt;1\)</span> the fixed point <span class="math inline">\(N^*=0\)</span> is monotonically unstable. For <span class="math inline">\(r&lt;1\)</span> the fixed point <span class="math inline">\(N^*=0\)</span> is monotonically unstable. As expected this result is consistent with the simulation results in <a href="#fig-plotmalthusian">Figure&nbsp;<span>1.1</span></a>.</p>
+\]</span> Hence the linear stability of the solution depends on the value of the parameter <span class="math inline">\(r\)</span> For <span class="math inline">\(r&gt;1\)</span> the fixed point <span class="math inline">\(N^*=0\)</span> is monotonically unstable. For <span class="math inline">\(r&lt;1\)</span> the fixed point <span class="math inline">\(N^*=0\)</span> is monotonically unstable. As expected this result is consistent with the simulation results in <a href="#fig-plotmalthusian" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>.</p>
 <p>For cobweb diagram:</p>
 <ul>
 <li>Sketch axes and label with <span class="math inline">\(N_t\)</span> and <span class="math inline">\(N_{t+1}\)</span>.</li>
@@ -713,8 +886,8 @@ H'(N_t)=r.
 <li>Fill in the cobwebbed trajectories with some arbitrarily chosen initial condition.</li>
 <li>Establish that behaviour of the cobweb is consistent with linear stability analysis.</li>
 </ul>
-<div class="cell" data-execution_count="4">
-<details>
+<div id="cell-fig-plotmalthusiancobweb" class="cell" data-execution_count="4">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -764,10 +937,14 @@ H'(N_t)=r.
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-plotmalthusiancobweb" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiscreteTimeOnePop_files/figure-html/fig-plotmalthusiancobweb-output-1.png" width="661" height="470" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.4: A cobweb plot of the Malthusian model solution when <span class="math inline">\(r\)</span>=0.5. (a) Time series and (b) Cobweb diagrams.</figcaption>
+<div id="fig-plotmalthusiancobweb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotmalthusiancobweb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiscreteTimeOnePop_files/figure-html/fig-plotmalthusiancobweb-output-1.png" width="660" height="467" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotmalthusiancobweb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.5: A cobweb plot of the Malthusian model solution when <span class="math inline">\(r\)</span>=0.5. (a) Time series and (b) Cobweb diagrams.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -796,9 +973,9 @@ H(N_{t})=\frac{\gamma N_t}{1+N_t^2}.
 </section>
 <section id="numerical-solution" class="level3" data-number="1.5.2">
 <h3 data-number="1.5.2" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">1.5.2</span> Numerical solution</h3>
-<p>In <a href="#fig-plotdensmodel1">Figure&nbsp;<span>1.5</span></a> time series solution of the model are plotted for parameter values <span class="math inline">\(\gamma=0.5\)</span>, <span class="math inline">\(\gamma=1.5\)</span>, <span class="math inline">\(\gamma=2.5\)</span>. Note qualitative changes in model behaviour in the different parameter regimes. Can you identify the fixed points? Are the solutions oscillatory?</p>
-<div class="cell" data-execution_count="5">
-<details>
+<p>In <a href="#fig-plotdensmodel1" class="quarto-xref">Figure&nbsp;<span>1.6</span></a> time series solution of the model are plotted for parameter values <span class="math inline">\(\gamma=0.5\)</span>, <span class="math inline">\(\gamma=1.5\)</span>, <span class="math inline">\(\gamma=2.5\)</span>. Note qualitative changes in model behaviour in the different parameter regimes. Can you identify the fixed points? Are the solutions oscillatory?</p>
+<div id="cell-fig-plotdensmodel1" class="cell" data-execution_count="5">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Computes solution of density dependent model</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -843,18 +1020,146 @@ H(N_{t})=\frac{\gamma N_t}{1+N_t^2}.
 <span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-plotdensmodel1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiscreteTimeOnePop_files/figure-html/fig-plotdensmodel1-output-1.png" width="661" height="470" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.5: Time series solution for (a) <span class="math inline">\(\gamma\)</span>=0.5 and (b) <span class="math inline">\(\gamma\)</span>=1.5 and (c) <span class="math inline">\(\gamma\)</span>=10.5.</figcaption>
+<div id="fig-plotdensmodel1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotdensmodel1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiscreteTimeOnePop_files/figure-html/fig-plotdensmodel1-output-1.png" width="660" height="468" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotdensmodel1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.6: Time series solution for (a) <span class="math inline">\(\gamma\)</span>=0.5 and (b) <span class="math inline">\(\gamma\)</span>=1.5 and (c) <span class="math inline">\(\gamma\)</span>=10.5.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
+<div id="fig-nonlinModel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nonlinModel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-nonlinModel" class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="r",label="gamma",min=0.0,max=5.0,value=1.2,step=0.001),             
+    ui.input_slider(id="u0",label="N_0 (Initial condition)",min=0.0,max=4.0,value=0.5,step=0.01),
+    ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
+    ui.input_slider(id="max_sol",label="Max. axis value",min=0.0,max=5.0,value=1.5,step=0.1),
+
+       
+        ),
+
+        ui.output_plot("plot"),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots(2,1)
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        r=float(input.r())
+        u0=float(input.u0())
+        T=int(input.T())
+        max_sol=float(input.max_sol())
+        
+        def rickerrhs(x,par):
+          r=par
+          K=1.0
+          f=r*x/(1+x**2)
+          return f
+        # Define rhs of logistic map 
+     
+        # this function computes the solutio to the difference equation. It also stores solution in format for cobweb plotting
+        def SolveSingleDiffAndCobweb(t,rhs,N_0,r):
+          # Initialise solution vector
+          N = np.zeros_like(t,dtype=float)
+          N[0]=N_0
+
+
+          num_time_steps=t.shape[0]
+
+
+          # Initialise cobweb solution object
+          CobwebSol=np.zeros((2*num_time_steps,2))
+          CobwebSol[0,0]=N_0
+          CobwebSol[0,1]=rhs(N_0,r)
+          CobwebSol[1,0]=CobwebSol[0,1]
+          CobwebSol[1,1]=CobwebSol[0,1]
+
+          # loop over time and compute solution.
+          for i in t:
+            if i&gt;0:
+              N[i]=rhs(N[i-1],r) 
+
+              sol_temp=N[i-1]
+              rhs_temp=rhs(sol_temp,r)
+              CobwebSol[2*i,0]=sol_temp
+              CobwebSol[2*i,1]=rhs_temp
+              CobwebSol[2*i+1,0]=rhs_temp
+              CobwebSol[2*i+1,1]=rhs_temp
+          return N, CobwebSol
+
+        # Define discretised t domain
+        t = np.arange(0, T, 1)
+        # define initial conditions
+        init_cond=u0
+        
+        # Compute numerical solution of ODEs
+        y,CobwebSol = SolveSingleDiffAndCobweb(t,rickerrhs,init_cond,r)
+
+        # Plot results
+        
+        ax[0].plot(t,y)
+        ax[0].set_xlabel('$t$')
+        ax[0].set_ylabel('$N_t$')
+        ax[0].set_title('Time series')
+
+
+        ax[1].plot(CobwebSol[0,0], CobwebSol[0,1],'*')
+        ax[1].plot(CobwebSol[:,0], CobwebSol[:,1],'-')
+        ax[1].plot([0,max_sol],[0,max_sol])
+
+        x_plot=np.linspace(0,max_sol,10000)
+        y_plot=rickerrhs(x_plot,r)
+        ax[1].plot(x_plot,y_plot)
+        ax[1].set_title('Cobweb')
+        ax[1].set_xlabel('$N_t$')
+        ax[1].set_ylabel('$N_{t+1}$')
+        ax[1].set_xlim([0,max_sol])
+
+        plt.grid()
+
+        plt.show()
+    
+app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nonlinModel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.7: An app to explore model behaviour.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="fixed-points-1" class="level3" data-number="1.5.3">
 <h3 data-number="1.5.3" class="anchored" data-anchor-id="fixed-points-1"><span class="header-section-number">1.5.3</span> Fixed points</h3>
-<p>The fixed points of <a href="#eq-denslimgrowtheqn">Equation&nbsp;<span>1.5</span></a> satisfy the algebraic equation <span class="math display">\[
+<p>The fixed points of <a href="#eq-denslimgrowtheqn" class="quarto-xref">Equation&nbsp;<span>1.5</span></a> satisfy the algebraic equation <span class="math display">\[
 N^*=\frac{\gamma N^*}{1+{N^*}^2}
 \]</span> which has solutions <span class="math display">\[
 N^* = 0  \ \ \ \ \textrm{and} \ \ \ \ N^*=\sqrt{\gamma-1}.
@@ -904,9 +1209,9 @@ H'(\sqrt{\gamma-1}) = \frac{2}{\gamma}-1 &gt;1,
 </section>
 <section id="cobweb-diagrams" class="level3" data-number="1.5.5">
 <h3 data-number="1.5.5" class="anchored" data-anchor-id="cobweb-diagrams"><span class="header-section-number">1.5.5</span> Cobweb diagrams</h3>
-<p>In <a href="#fig-densmodelcobweb">Figure&nbsp;<span>1.6</span></a> cobweb diagrams illustrate model behaviour in the three different parameter regimes. Note that the cobweb diagrams can be sketched by hand, given an accurate enough sketch of the right-hand side function <span class="math inline">\(H(N_t)\)</span>. Note also that the cobweb diagrams are consistent with the linear stability analysis but that the linear approximation is only valid close to the equilibrium point.</p>
-<div class="cell" data-execution_count="6">
-<details>
+<p>In <a href="#fig-densmodelcobweb" class="quarto-xref">Figure&nbsp;<span>1.8</span></a> cobweb diagrams illustrate model behaviour in the three different parameter regimes. Note that the cobweb diagrams can be sketched by hand, given an accurate enough sketch of the right-hand side function <span class="math inline">\(H(N_t)\)</span>. Note also that the cobweb diagrams are consistent with the linear stability analysis but that the linear approximation is only valid close to the equilibrium point.</p>
+<div id="cell-fig-densmodelcobweb" class="cell" data-execution_count="6">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -976,10 +1281,14 @@ H'(\sqrt{\gamma-1}) = \frac{2}{\gamma}-1 &gt;1,
 <span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-densmodelcobweb" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiscreteTimeOnePop_files/figure-html/fig-densmodelcobweb-output-1.png" width="661" height="470" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.6: Cobweb diagrams for different values of <span class="math inline">\(\gamma\)</span>.</figcaption>
+<div id="fig-densmodelcobweb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-densmodelcobweb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiscreteTimeOnePop_files/figure-html/fig-densmodelcobweb-output-1.png" width="660" height="467" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-densmodelcobweb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.8: Cobweb diagrams for different values of <span class="math inline">\(\gamma\)</span>.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -987,13 +1296,13 @@ H'(\sqrt{\gamma-1}) = \frac{2}{\gamma}-1 &gt;1,
 </section>
 <section id="bifurcation-diagram" class="level3" data-number="1.5.6">
 <h3 data-number="1.5.6" class="anchored" data-anchor-id="bifurcation-diagram"><span class="header-section-number">1.5.6</span> Bifurcation diagram</h3>
-<p>Bifurcations at the critical values <span class="math inline">\(\gamma=1\)</span> and <span class="math inline">\(\gamma=2\)</span> are highlighted in the bifurcation diagram presented in <a href="#fig-densmodelbfc">Figure&nbsp;<span>1.7</span></a>. Note that the bifurcation diagram allows classification of the different model behaviours in a single plot without explicitly calculating the solution to the model.</p>
+<p>Bifurcations at the critical values <span class="math inline">\(\gamma=1\)</span> and <span class="math inline">\(\gamma=2\)</span> are highlighted in the bifurcation diagram presented in <a href="#fig-densmodelbfc" class="quarto-xref">Figure&nbsp;<span>1.9</span></a>. Note that the bifurcation diagram allows classification of the different model behaviours in a single plot without explicitly calculating the solution to the model.</p>
 </section>
 <section id="symbolic-computation" class="level3" data-number="1.5.7">
 <h3 data-number="1.5.7" class="anchored" data-anchor-id="symbolic-computation"><span class="header-section-number">1.5.7</span> Symbolic computation</h3>
 <p>We can use symbolic calculators to aid many of computations performed above. Below is an example using the Python library sympi.</p>
-<div class="cell" data-execution_count="7">
-<details>
+<div id="cell-fig-densmodelbfc" class="cell" data-execution_count="7">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1019,17 +1328,21 @@ H'(\sqrt{\gamma-1}) = \frac{2}{\gamma}-1 &gt;1,
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-densmodelbfc" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiscreteTimeOnePop_files/figure-html/fig-densmodelbfc-output-1.png" width="599" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.7: A bifiurcation diagram.</figcaption>
+<div id="fig-densmodelbfc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-densmodelbfc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiscreteTimeOnePop_files/figure-html/fig-densmodelbfc-output-1.png" width="599" height="429" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-densmodelbfc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.9: A bifiurcation diagram.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Many of the calculations can be aided by using a symbolic calculator.</p>
 <div id="code-calc1" class="cell" data-caption="none" data-execution_count="8">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -1091,8 +1404,8 @@ N_{t+1}=\frac{\gamma N_t}{1+N_t^2} - h N_t,
 <section id="direct-simulation" class="level3" data-number="1.6.1">
 <h3 data-number="1.6.1" class="anchored" data-anchor-id="direct-simulation"><span class="header-section-number">1.6.1</span> Direct simulation</h3>
 <p>Based on the previous analysis we consider the system in a parameter regime where without harvesting there is a stable fixed point (<span class="math inline">\(\gamma&gt;1\)</span>).</p>
-<div class="cell" data-execution_count="9">
-<details>
+<div id="cell-fig-plotdensmodelharvest" class="cell" data-execution_count="9">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1139,15 +1452,145 @@ N_{t+1}=\frac{\gamma N_t}{1+N_t^2} - h N_t,
 <span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-plotdensmodelharvest" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiscreteTimeOnePop_files/figure-html/fig-plotdensmodelharvest-output-1.png" width="661" height="470" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.8: Time series solution for different values of <span class="math inline">\(h\)</span>.</figcaption>
+<div id="fig-plotdensmodelharvest" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotdensmodelharvest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiscreteTimeOnePop_files/figure-html/fig-plotdensmodelharvest-output-1.png" width="660" height="468" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotdensmodelharvest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.10: Time series solution for different values of <span class="math inline">\(h\)</span>.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-plotdensmodelharvest">Figure&nbsp;<span>1.8</span></a> time series solutions at increasing harvesting rates (<span class="math inline">\(h=0.1\)</span>, <span class="math inline">\(h=1\)</span>, <span class="math inline">\(h=3\)</span>) are presented. For low harvesting rates the system behaves almost identically to the no harvesting case but with an expected reduction in the fixed point value. However for intermediate harvesting the population undergoes oscillations. However, for further increased harvesting rates there appears again to be a stable fixed point.</p>
+<div id="fig-nonlinModel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nonlinModel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-nonlinModel" class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="r",label="gamma",min=0.0,max=5.0,value=1.2,step=0.001), 
+    ui.input_slider(id="h",label="h",min=0.0,max=5.0,value=1.2,step=0.001),             
+    ui.input_slider(id="u0",label="N_0 (Initial condition)",min=0.0,max=4.0,value=0.5,step=0.01),
+    ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
+    ui.input_slider(id="max_sol",label="Max. axis value",min=0.0,max=5.0,value=1.5,step=0.1),
+
+       
+        ),
+
+        ui.output_plot("plot"),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots(2,1)
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        r=float(input.r())
+        h=float(input.h())
+        u0=float(input.u0())
+        T=int(input.T())
+        max_sol=float(input.max_sol())
+        
+        def rickerrhs(x,r,h):
+          f=r*x/(1+x**2)-h*x
+          return f
+        # Define rhs of logistic map 
+     
+        # this function computes the solutio to the difference equation. It also stores solution in format for cobweb plotting
+        def SolveSingleDiffAndCobweb(t,rhs,N_0,r,h):
+          # Initialise solution vector
+          N = np.zeros_like(t,dtype=float)
+          N[0]=N_0
+
+
+          num_time_steps=t.shape[0]
+
+
+          # Initialise cobweb solution object
+          CobwebSol=np.zeros((2*num_time_steps,2))
+          CobwebSol[0,0]=N_0
+          CobwebSol[0,1]=rhs(N_0,r,h)
+          CobwebSol[1,0]=CobwebSol[0,1]
+          CobwebSol[1,1]=CobwebSol[0,1]
+
+          # loop over time and compute solution.
+          for i in t:
+            if i&gt;0:
+              N[i]=rhs(N[i-1],r,h) 
+
+              sol_temp=N[i-1]
+              rhs_temp=rhs(sol_temp,r,h)
+              CobwebSol[2*i,0]=sol_temp
+              CobwebSol[2*i,1]=rhs_temp
+              CobwebSol[2*i+1,0]=rhs_temp
+              CobwebSol[2*i+1,1]=rhs_temp
+          return N, CobwebSol
+
+        # Define discretised t domain
+        t = np.arange(0, T, 1)
+        # define initial conditions
+        init_cond=u0
+        
+        # Compute numerical solution of ODEs
+        y,CobwebSol = SolveSingleDiffAndCobweb(t,rickerrhs,init_cond,r,h)
+
+        # Plot results
+        
+        ax[0].plot(t,y)
+        ax[0].set_xlabel('$t$')
+        ax[0].set_ylabel('$N_t$')
+        ax[0].set_ylim([0,max_sol])
+        ax[0].set_title('Time series')
+
+
+        ax[1].plot(CobwebSol[0,0], CobwebSol[0,1],'*')
+        ax[1].plot(CobwebSol[:,0], CobwebSol[:,1],'-')
+        ax[1].plot([0,max_sol],[0,max_sol])
+
+        x_plot=np.linspace(0,max_sol,10000)
+        y_plot=rickerrhs(x_plot,r,h)
+        ax[1].plot(x_plot,y_plot)
+        ax[1].set_title('Cobweb')
+        ax[1].set_xlabel('$N_t$')
+        ax[1].set_ylabel('$N_{t+1}$')
+        ax[1].set_xlim([0,max_sol])
+        ax[1].set_ylim([0,max_sol])
+
+        plt.grid()
+
+        plt.show()
+    
+app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nonlinModel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.11: An app to explore behaviour in the harvesting model.
+</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-plotdensmodelharvest" class="quarto-xref">Figure&nbsp;<span>1.10</span></a> time series solutions at increasing harvesting rates (<span class="math inline">\(h=0.1\)</span>, <span class="math inline">\(h=1\)</span>, <span class="math inline">\(h=3\)</span>) are presented. For low harvesting rates the system behaves almost identically to the no harvesting case but with an expected reduction in the fixed point value. However for intermediate harvesting the population undergoes oscillations. However, for further increased harvesting rates there appears again to be a stable fixed point.</p>
 <p>Can analysis of the model help us understand how/why changes in solutions occur?</p>
 </section>
 <section id="fixed-points-2" class="level3" data-number="1.6.2">
@@ -1190,8 +1633,8 @@ H'\left(\sqrt{\frac{\gamma}{1+h}-1}\right)=\frac{\gamma }{1+\frac{\gamma}{1+h}-1
 H'(N^*) = h^2\frac{2}{\gamma} + h\frac{2}{\gamma}(2-\gamma) + \frac{2}{\gamma}-1,
 \tag{1.7}\]</span></span></p>
 <p>and hence that when <span class="math inline">\(h=0\)</span> we retrieve the stability condition from the previous model.</p>
-<div class="cell" data-execution_count="10">
-<details>
+<div id="cell-fig-plotdensmodelharveststab" class="cell" data-execution_count="10">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1221,10 +1664,14 @@ H'(N^*) = h^2\frac{2}{\gamma} + h\frac{2}{\gamma}(2-\gamma) + \frac{2}{\gamma}-1
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-plotdensmodelharveststab" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiscreteTimeOnePop_files/figure-html/fig-plotdensmodelharveststab-output-1.png" width="585" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.9: Stability regions for the harvesting model.</figcaption>
+<div id="fig-plotdensmodelharveststab" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotdensmodelharveststab-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiscreteTimeOnePop_files/figure-html/fig-plotdensmodelharveststab-output-1.png" width="585" height="429" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotdensmodelharveststab-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.12: Stability regions for the harvesting model.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1243,9 +1690,9 @@ h^2\frac{2}{\gamma} + h\frac{2}{\gamma}(2-\gamma) + \frac{2}{\gamma}-1 = -1,
 <p>Solving for <span class="math inline">\(\gamma\)</span> yields <span class="math display">\[
 \gamma=\frac{(1+h)^2}{h}.
 \]</span></p>
-<p>In <a href="#fig-plotdensmodelharveststab">Figure&nbsp;<span>1.9</span></a> we plot the contours of the hypersurface <span class="math inline">\(H'(N^*)\)</span> at the critical values of <span class="math inline">\(-1\)</span>, <span class="math inline">\(0\)</span> and 1. Note that the points in parameter space used to generate the simulation results in <a href="#fig-plotdensmodelharvest">Figure&nbsp;<span>1.8</span></a> are <span class="math inline">\((h,\gamma)=(0.1,5)\)</span> <span class="math inline">\((h,\gamma)=(1,5)\)</span> and <span class="math inline">\((h,\gamma)=(3,5)\)</span>. Cobweb diagrams in different regions of parameter space are presented in <a href="#fig-densharvestingmodelcobweb">Figure&nbsp;<span>1.10</span></a>. The plot in <a href="#fig-plotdensmodelharveststab">Figure&nbsp;<span>1.9</span></a> can be used to explain why the model transfers from a stable fixed point, through oscillatory fixed point and back to a stable fixed point as the harvesting rate increases from 0.1, to <span class="math inline">\(1\)</span> and then 5?</p>
-<div class="cell" data-execution_count="11">
-<details>
+<p>In <a href="#fig-plotdensmodelharveststab" class="quarto-xref">Figure&nbsp;<span>1.12</span></a> we plot the contours of the hypersurface <span class="math inline">\(H'(N^*)\)</span> at the critical values of <span class="math inline">\(-1\)</span>, <span class="math inline">\(0\)</span> and 1. Note that the points in parameter space used to generate the simulation results in <a href="#fig-plotdensmodelharvest" class="quarto-xref">Figure&nbsp;<span>1.10</span></a> are <span class="math inline">\((h,\gamma)=(0.1,5)\)</span> <span class="math inline">\((h,\gamma)=(1,5)\)</span> and <span class="math inline">\((h,\gamma)=(3,5)\)</span>. Cobweb diagrams in different regions of parameter space are presented in <a href="#fig-densharvestingmodelcobweb" class="quarto-xref">Figure&nbsp;<span>1.13</span></a>. The plot in <a href="#fig-plotdensmodelharveststab" class="quarto-xref">Figure&nbsp;<span>1.12</span></a> can be used to explain why the model transfers from a stable fixed point, through oscillatory fixed point and back to a stable fixed point as the harvesting rate increases from 0.1, to <span class="math inline">\(1\)</span> and then 5?</p>
+<div id="cell-fig-densharvestingmodelcobweb" class="cell" data-execution_count="11">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1307,17 +1754,21 @@ h^2\frac{2}{\gamma} + h\frac{2}{\gamma}(2-\gamma) + \frac{2}{\gamma}-1 = -1,
 <span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-densharvestingmodelcobweb" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiscreteTimeOnePop_files/figure-html/fig-densharvestingmodelcobweb-output-1.png" width="661" height="470" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.10: Cobweb diagrams for different values of h.</figcaption>
+<div id="fig-densharvestingmodelcobweb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-densharvestingmodelcobweb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiscreteTimeOnePop_files/figure-html/fig-densharvestingmodelcobweb-output-1.png" width="660" height="467" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-densharvestingmodelcobweb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.13: Cobweb diagrams for different values of h.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Many of the above calculations can be aided using a symbolic calculator:</p>
 <div id="code-calc1harvesting" class="cell" data-caption="none" data-execution_count="12">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -1379,13 +1830,13 @@ The derivative evaluated at FP 2 is:
 ### Defining a periodic solution Consider the general form <span id="eq-genformagain"><span class="math display">\[
 N_{t+1}=H(N_t)
 \tag{1.8}\]</span></span></p>
-<p>A solution to <a href="#eq-genformagain">Equation&nbsp;<span>1.8</span></a> is defined to be periodic with period <span class="math inline">\(T\)</span> if <span class="math display">\[
+<p>A solution to <a href="#eq-genformagain" class="quarto-xref">Equation&nbsp;<span>1.8</span></a> is defined to be periodic with period <span class="math inline">\(T\)</span> if <span class="math display">\[
 \begin{aligned}
 N_{t+T}&amp;=N_t \ \  \forall t,
 N_{t+\tau}&amp;\neq N_t  \ \ \forall t, \  \ \ \tau&lt;T.
 \end{aligned}
 \]</span></p>
-<p>Period 2 solutions can be identified by looking for solutions that repeat after two iterations. Suppose <span class="math inline">\(\bar{N}\)</span> is a period 2 solution of <a href="#eq-genformagain">Equation&nbsp;<span>1.8</span></a> and let <span class="math inline">\(\bar{N}=N_1\)</span>. Then <span class="math display">\[
+<p>Period 2 solutions can be identified by looking for solutions that repeat after two iterations. Suppose <span class="math inline">\(\bar{N}\)</span> is a period 2 solution of <a href="#eq-genformagain" class="quarto-xref">Equation&nbsp;<span>1.8</span></a> and let <span class="math inline">\(\bar{N}=N_1\)</span>. Then <span class="math display">\[
 N_{2}=H(\bar{N}).
 \]</span></p>
 <p>However, <span class="math display">\[
@@ -1394,9 +1845,9 @@ N_{3}=H(N_2)=H(H(\bar{N}))
 \bar{N}=H(H(\bar{N})).
 \]</span> Note that period two solutions are fixed points of the problem <span class="math display">\[
 N_{t+2}=H^2(N_t)=g(N_t).
-\]</span> Using the tools we have developed, period solutions and their stability can be determined. Furthermore, longer period solutions can be identified by generalising the argument but at the expense of ever increasingly complicated right-hand side functions. In many systems, such as the harvesting model and the logistic equation, increasing the growth rate parameter leads initially to the fixed point becoming unstable and the emergence of period two solutions, then period 4 solutions and so on until eventually there is a transition to chaotic solutions (see, for example, <a href="#fig-densharvestingmodelcobwebp4">Figure&nbsp;<span>1.11</span></a>).</p>
-<div class="cell" data-execution_count="13">
-<details>
+\]</span> Using the tools we have developed, period solutions and their stability can be determined. Furthermore, longer period solutions can be identified by generalising the argument but at the expense of ever increasingly complicated right-hand side functions. In many systems, such as the harvesting model and the logistic equation, increasing the growth rate parameter leads initially to the fixed point becoming unstable and the emergence of period two solutions, then period 4 solutions and so on until eventually there is a transition to chaotic solutions (see, for example, <a href="#fig-densharvestingmodelcobwebp4" class="quarto-xref">Figure&nbsp;<span>1.14</span></a>).</p>
+<div id="cell-fig-densharvestingmodelcobwebp4" class="cell" data-execution_count="13">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1471,10 +1922,14 @@ N_{t+2}=H^2(N_t)=g(N_t).
 <span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-densharvestingmodelcobwebp4" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="DiscreteTimeOnePop_files/figure-html/fig-densharvestingmodelcobwebp4-output-1.png" width="666" height="470" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.11: Transition form period 2 to period 4 solutions in the harvesting model</figcaption>
+<div id="fig-densharvestingmodelcobwebp4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-densharvestingmodelcobwebp4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="DiscreteTimeOnePop_files/figure-html/fig-densharvestingmodelcobwebp4-output-1.png" width="664" height="467" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-densharvestingmodelcobwebp4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.14: Transition form period 2 to period 4 solutions in the harvesting model
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1526,18 +1981,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1569,11 +2013,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1583,8 +2066,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1596,7 +2088,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1640,6 +2255,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1665,6 +2281,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1726,12 +2368,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
+      <a href="./index.html" class="pagination-link" aria-label="Preface">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./DiscreteTimeTwoPop.html" class="pagination-link">
+      <a href="./DiscreteTimeTwoPop.html" class="pagination-link" aria-label="Multi species population dynamics in discrete time">
         <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Multi species population dynamics in discrete time</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1740,4 +2382,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dundeemath/MA32009/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

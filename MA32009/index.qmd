@@ -1,7 +1,7 @@
 # Preface {.unnumbered}
 
 
-Welcome to MA32009 Mathematical Biology I.
+Welcome to the module MA32009 Mathematical Biology I.
 
 My name is Philip Murray and I am the module lead.
 
@@ -47,8 +47,8 @@ I have provided Python codes for most of the figures in the notes (you can unfol
 | 3     | 2.2  |   2 |        |
 | 4     | 2.3.7  |   2 | Quiz 2 (Up to 2.2.1) |
 | 5     | 3.3  |   3 |
-| 6     | 3.6  |   3 | Test 1 (Chapters 1 and 2)|
-| 7     | 4  |   4 | |
+| 6     | 3.5  |   3 | Test 1  (Chapters 1 and 2)|
+| 7     | 4.1  |   4 | |
 | 8     | 4  |   4 | Quiz 3|
 | 9     | 4  |   5 | |
 | 10    | 5  |   5 | Test 2|
