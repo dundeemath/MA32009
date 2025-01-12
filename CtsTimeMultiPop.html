@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA32009 - 4&nbsp; Multi species population dynamics</title>
+<title>4&nbsp; Multi species population dynamics – MA32009</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,14 +96,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -107,13 +141,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./CtsTimeOnePop.html">Continuous time</a></li><li class="breadcrumb-item"><a href="./CtsTimeMultiPop.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multi species population dynamics</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./CtsTimeOnePop.html">Continuous time</a></li><li class="breadcrumb-item"><a href="./CtsTimeMultiPop.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multi species population dynamics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -122,13 +156,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">MA32009</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/dundeemath/MA32009/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./MA32009.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/dundeemath/MA32009/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./MA32009.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -147,9 +181,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Discrete time</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -170,9 +204,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Continuous time</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -199,9 +233,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -229,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -271,12 +305,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#insight-1" id="toc-insight-1" class="nav-link" data-scroll-target="#insight-1"><span class="header-section-number">4.4.5</span> Insight</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dundeemath/MA32009/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/dundeemath/MA32009/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./CtsTimeOnePop.html">Continuous time</a></li><li class="breadcrumb-item"><a href="./CtsTimeMultiPop.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multi species population dynamics</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multi species population dynamics</span></h1>
 </div>
@@ -291,7 +325,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p>In this chapter we consider models of interacitng populations.</p>
 <p>Let <span class="math inline">\(u=u(t)\)</span> and <span class="math inline">\(v=v(t)\)</span> represent populations of two different species at continuous time <span class="math inline">\(t\)</span>. Suppose that <span class="math inline">\(u(t)\)</span> and <span class="math inline">\(v(t)\)</span> satisfy the ordinary differential equations <span id="eq-twovariablfegen"><span class="math display">\[
@@ -300,12 +336,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 \frac{dv}{dt}&amp;=g(u,v).
 \end{aligned}
 \tag{4.1}\]</span></span></p>
-<p>In this section we will consider particular forms for <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> that represent different types of inter species interaction. Before considering particular examples, we develop some general techniques for analysing equations of the form <a href="#eq-twovariablfegen">Equation&nbsp;<span>4.1</span></a>.</p>
+<p>In this section we will consider particular forms for <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> that represent different types of inter species interaction. Before considering particular examples, we develop some general techniques for analysing equations of the form <a href="#eq-twovariablfegen" class="quarto-xref">Equation&nbsp;<span>4.1</span></a>.</p>
 <section id="general-tools" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="general-tools"><span class="header-section-number">4.1</span> General tools</h2>
 <section id="steady-states" class="level3" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="steady-states"><span class="header-section-number">4.1.1</span> Steady states</h3>
-<p><span class="math inline">\((u^*,v^*)\)</span> is defined to be a steady state of <a href="#eq-twovariablfegen">Equation&nbsp;<span>4.1</span></a> if</p>
+<p><span class="math inline">\((u^*,v^*)\)</span> is defined to be a steady state of <a href="#eq-twovariablfegen" class="quarto-xref">Equation&nbsp;<span>4.1</span></a> if</p>
 <p><span class="math display">\[
 f(u^*,v^*)=g(u^*,v^*)=0.
 \]</span></p>
@@ -313,13 +349,13 @@ f(u^*,v^*)=g(u^*,v^*)=0.
 </section>
 <section id="linear-stability-analysis" class="level3" data-number="4.1.2">
 <h3 data-number="4.1.2" class="anchored" data-anchor-id="linear-stability-analysis"><span class="header-section-number">4.1.2</span> Linear stability analysis</h3>
-<p>Suppose that <span class="math inline">\((u^*,v^*)\)</span> is a steady state of equations <a href="#eq-twovariablfegen">Equation&nbsp;<span>4.1</span></a>.</p>
+<p>Suppose that <span class="math inline">\((u^*,v^*)\)</span> is a steady state of equations <a href="#eq-twovariablfegen" class="quarto-xref">Equation&nbsp;<span>4.1</span></a>.</p>
 <p>We consider a change of dependent variables such that</p>
 <p><span class="math display">\[
 u(t)=u^*+ \hat{u}(t)  \  \  \textrm{and} \ \ v(t)=v^*+\hat{v}(t),
 \]</span></p>
 <p>where <span class="math inline">\(\hat{u}(t)\)</span> and <span class="math inline">\(\hat{v}(t)\)</span> are perturbations about the steady state.</p>
-<p>Rewriting equation <a href="#eq-twovariablfegen">Equation&nbsp;<span>4.1</span></a> in the transformed variables yields</p>
+<p>Rewriting equation <a href="#eq-twovariablfegen" class="quarto-xref">Equation&nbsp;<span>4.1</span></a> in the transformed variables yields</p>
 <p><span id="eq-twovariablfegentrans"><span class="math display">\[
 \begin{aligned}
 \frac{d\hat{u}}{dt}&amp;=f(u^*+\hat{u},v^*+\hat{v}),  \nonumber \\
@@ -350,7 +386,7 @@ u(t)=u^*+ \hat{u}(t)  \  \  \textrm{and} \ \ v(t)=v^*+\hat{v}(t),
 A=\left(\begin{array}{rr}
 \frac{\partial f}{\partial u}&amp;\frac{\partial f}{\partial v} \\ \frac{\partial g}{\partial u}&amp;\frac{\partial g}{\partial v} \end{array}\right)_{(u^*,v^*)}. \qquad
 \]</span></p>
-<p>The linear system arrived upon in <a href="#eq-linearsystem2d">Equation&nbsp;<span>4.4</span></a> was encountered previously in Differential Equations (MA31002). We summarise the important results here. Seeking a solution of <a href="#eq-linearsystem2d">Equation&nbsp;<span>4.4</span></a> of the form</p>
+<p>The linear system arrived upon in <a href="#eq-linearsystem2d" class="quarto-xref">Equation&nbsp;<span>4.4</span></a> was encountered previously in Differential Equations (MA31002). We summarise the important results here. Seeking a solution of <a href="#eq-linearsystem2d" class="quarto-xref">Equation&nbsp;<span>4.4</span></a> of the form</p>
 <p><span class="math display">\[
 \mathbf{w}=\mathbf{v}e^{\lambda t}
 \]</span></p>
@@ -361,11 +397,15 @@ A=\left(\begin{array}{rr}
 <p><span class="math display">\[
 \lambda = \frac{\mathrm{tr}{A}\pm \sqrt{\mathrm{tr}{A}^2-4\det{A}}}{2}.
 \]</span></p>
-<p>Whilst a complete classification of the linear stability of a steady state can be obtained by explicitly calculating the eigenvalues, in many cases it is sufficient to deduce whether or not a steady state is stable or unstable. This can be achieved by calculating the determinant and trace of the Jacobian matrix (<span class="math inline">\(\det(A)\)</span> and <span class="math inline">\(\mathrm{tr}(A)\)</span>, respectively) and referring to <a href="#fig-tdplane">Figure&nbsp;<span>4.1</span></a>.</p>
-<div id="fig-tdplane" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="TDPlane.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.1: Stability in the trace detemrinant plane.</figcaption>
+<p>Whilst a complete classification of the linear stability of a steady state can be obtained by explicitly calculating the eigenvalues, in many cases it is sufficient to deduce whether or not a steady state is stable or unstable. This can be achieved by calculating the determinant and trace of the Jacobian matrix (<span class="math inline">\(\det(A)\)</span> and <span class="math inline">\(\mathrm{tr}(A)\)</span>, respectively) and referring to <a href="#fig-tdplane" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>.</p>
+<div id="fig-tdplane" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tdplane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="TDPlane.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tdplane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Stability in the trace detemrinant plane.
+</figcaption>
 </figure>
 </div>
 <p>The different cases can be categorised as follows:</p>
@@ -385,7 +425,7 @@ A=\left(\begin{array}{rr}
 </ul></li>
 </ul></li>
 </ul>
-<p>These different cases can be distinguished in the trace-determinant plane plotted in <a href="#fig-tdplane">Figure&nbsp;<span>4.1</span></a>.</p>
+<p>These different cases can be distinguished in the trace-determinant plane plotted in <a href="#fig-tdplane" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>.</p>
 <p>Note that it can be shown rigorously that the linear stability of the nonlinear system is equivalent to that of the linearised system in all cases except when the steady state is a centre. In this case, nonlinear stability analysis is required to determine the stability of the nonlinear system.</p>
 <p>The condition<span class="math inline">\(\det(A)&gt;0\)</span> excludes the case that the eigenvalues are real but have opposite signs (i.e.&nbsp;it cannot be a saddle point).</p>
 <p>The condition <span class="math inline">\(\mathrm{tr}(A)&gt;0\)</span> implies that the real part of both eigenvalues are positive (i.e.&nbsp;the steady state is unstable).</p>
@@ -397,7 +437,7 @@ e^{\lambda t} = e^{(\mu+i\omega) t} = e^{\mu t}e^{i\omega t}.
 </section>
 <section id="nullclines" class="level3" data-number="4.1.3">
 <h3 data-number="4.1.3" class="anchored" data-anchor-id="nullclines"><span class="header-section-number">4.1.3</span> Nullclines</h3>
-<p>Nullclines of the equations <a href="#eq-twovariablfegen">Equation&nbsp;<span>4.1</span></a> are given by the curves <span class="math display">\[
+<p>Nullclines of the equations <a href="#eq-twovariablfegen" class="quarto-xref">Equation&nbsp;<span>4.1</span></a> are given by the curves <span class="math display">\[
 f(u,v)=0
 \]</span> and <span class="math display">\[
 g(u,v)=0,
@@ -452,8 +492,8 @@ n=\frac{N}{\tilde{N}}, \ \ \ \ p=\frac{P}{\tilde{P}}  \ \ \textrm{and} \ \ \tau=
 </section>
 <section id="numerical-solutions" class="level3" data-number="4.2.2">
 <h3 data-number="4.2.2" class="anchored" data-anchor-id="numerical-solutions"><span class="header-section-number">4.2.2</span> Numerical solutions</h3>
-<div class="cell" data-execution_count="1">
-<details>
+<div id="cell-fig-lv-numsol" class="cell" data-execution_count="1">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -499,10 +539,14 @@ n=\frac{N}{\tilde{N}}, \ \ \ \ p=\frac{P}{\tilde{P}}  \ \ \textrm{and} \ \ \tau=
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-lv-numsol" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="CtsTimeMultiPop_files/figure-html/fig-lv-numsol-output-1.png" width="579" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.2: Numerical solution of Lotka-Volterra model</figcaption>
+<div id="fig-lv-numsol" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lv-numsol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="CtsTimeMultiPop_files/figure-html/fig-lv-numsol-output-1.png" width="579" height="429" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lv-numsol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: Numerical solution of Lotka-Volterra model
+</figcaption>
 </figure>
 </div>
 </div>
@@ -510,7 +554,7 @@ n=\frac{N}{\tilde{N}}, \ \ \ \ p=\frac{P}{\tilde{P}}  \ \ \textrm{and} \ \ \tau=
 </section>
 <section id="steady-states-1" class="level3" data-number="4.2.3">
 <h3 data-number="4.2.3" class="anchored" data-anchor-id="steady-states-1"><span class="header-section-number">4.2.3</span> Steady states</h3>
-<p>The steady-states of equation <a href="#eq-lotkavolterranondim">Equation&nbsp;<span>4.6</span></a> are identified by seeking solutions of</p>
+<p>The steady-states of equation <a href="#eq-lotkavolterranondim" class="quarto-xref">Equation&nbsp;<span>4.6</span></a> are identified by seeking solutions of</p>
 <p><span class="math display">\[
 f(n^*,p^*)=g(n^*,p^*)=0.
 \]</span></p>
@@ -535,7 +579,7 @@ A=\left(\begin{array}{rr}
 <p><span class="math display">\[
 A=\left(\begin{array}{rr} 1&amp;0 \\ 0 &amp;-\alpha \end{array}\right),
 \]</span></p>
-<p>Hence the eigenvalues of <span class="math inline">\(A\)</span> are <span class="math inline">\(1\)</span> and <span class="math inline">\(-\alpha\)</span>. As <span class="math inline">\(\alpha&gt;0\)</span> the origin is a saddle. The eigenvectors are <span class="math inline">\([1, 0]\)</span> and $[0,1]. $</p>
+<p>Hence the eigenvalues of <span class="math inline">\(A\)</span> are <span class="math inline">\(1\)</span> and <span class="math inline">\(-\alpha\)</span>. As <span class="math inline">\(\alpha&gt;0\)</span> the origin is a saddle. The eigenvectors are <span class="math inline">\([1, 0]\)</span> and <span class="math inline">\([0,1].\)</span></p>
 <p>At (1,1) <span class="math display">\[
 A=\left(\begin{array}{rr} 0&amp;-1 \\ \alpha &amp;0 \end{array}\right),
 \]</span></p>
@@ -543,9 +587,9 @@ A=\left(\begin{array}{rr} 0&amp;-1 \\ \alpha &amp;0 \end{array}\right),
 </section>
 <section id="solutions-in-the-phase-plane" class="level3" data-number="4.2.5">
 <h3 data-number="4.2.5" class="anchored" data-anchor-id="solutions-in-the-phase-plane"><span class="header-section-number">4.2.5</span> Solutions in the phase plane</h3>
-<p>See <a href="#fig-lv-numsol-phplane">Figure&nbsp;<span>4.3</span></a> for solution trajectories plotted in the phase plane using different initial conditions. Note the expected saddle like behaviour when trajectories that are close to the origin. Furthermore, note that the different initial conditions result in distinct closed loops and that the inner-most loop, i.e.&nbsp;that closest to the steady-state (1,1), behaves like a centre, as expected given the linear stability analysis. However, far from the steady-state the solution trajectory deviates from the linearised model.</p>
-<div class="cell" data-execution_count="2">
-<details>
+<p>See <a href="#fig-lv-numsol-phplane" class="quarto-xref">Figure&nbsp;<span>4.3</span></a> for solution trajectories plotted in the phase plane using different initial conditions. Note the expected saddle like behaviour when trajectories that are close to the origin. Furthermore, note that the different initial conditions result in distinct closed loops and that the inner-most loop, i.e.&nbsp;that closest to the steady-state (1,1), behaves like a centre, as expected given the linear stability analysis. However, far from the steady-state the solution trajectory deviates from the linearised model.</p>
+<div id="cell-fig-lv-numsol-phplane" class="cell" data-execution_count="2">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -589,10 +633,14 @@ A=\left(\begin{array}{rr} 0&amp;-1 \\ \alpha &amp;0 \end{array}\right),
 <span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-lv-numsol-phplane" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="CtsTimeMultiPop_files/figure-html/fig-lv-numsol-phplane-output-1.png" width="576" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.3: Numerical solution of Lotka-Volterra model</figcaption>
+<div id="fig-lv-numsol-phplane" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lv-numsol-phplane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="CtsTimeMultiPop_files/figure-html/fig-lv-numsol-phplane-output-1.png" width="576" height="429" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lv-numsol-phplane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: Numerical solution of Lotka-Volterra model
+</figcaption>
 </figure>
 </div>
 </div>
@@ -612,7 +660,7 @@ A=\left(\begin{array}{rr} 0&amp;-1 \\ \alpha &amp;0 \end{array}\right),
 <p><span class="math display">\[
 \ln p - p =  \alpha (n-\ln n) + H,
 \]</span></p>
-<p>where <span class="math inline">\(H\)</span> is a conserved quantity that this is determined by the initial conditions. As the equations take conservative form, the Lotka-Voltera model is said to be structurally unstable, as a small perturbation to the solution at a given point in the oscillatory cycle can result in large changes elsewhere in the cycle. For example, suppose the outermost limit cycle in <a href="#fig-lv-numsol-phplane">Figure&nbsp;<span>4.3</span></a> is perturbed by a small amount at the point (1,0.1) onto its nearest limit cycle. Later in the cycle these two trajectories deviate by a large amount.</p>
+<p>where <span class="math inline">\(H\)</span> is a conserved quantity that this is determined by the initial conditions. As the equations take conservative form, the Lotka-Voltera model is said to be structurally unstable, as a small perturbation to the solution at a given point in the oscillatory cycle can result in large changes elsewhere in the cycle. For example, suppose the outermost limit cycle in <a href="#fig-lv-numsol-phplane" class="quarto-xref">Figure&nbsp;<span>4.3</span></a> is perturbed by a small amount at the point (1,0.1) onto its nearest limit cycle. Later in the cycle these two trajectories deviate by a large amount.</p>
 </section>
 </section>
 <section id="competition" class="level2" data-number="4.3">
@@ -643,7 +691,7 @@ n_1=\frac{N_1}{K_1} \ \ n_2=\frac{N_2}{K_2} \ \ \tau=\frac{t}{\frac{1}{r_1}},
 </section>
 <section id="steady-states-2" class="level3" data-number="4.3.2">
 <h3 data-number="4.3.2" class="anchored" data-anchor-id="steady-states-2"><span class="header-section-number">4.3.2</span> Steady states</h3>
-<p>The steady states of <a href="#eq-competitionnondim">Equation&nbsp;<span>4.7</span></a> are identified in the usual manner, i.e.&nbsp;by seeking <span class="math inline">\(({n_1}^*,{n_2}^*)\)</span> such that</p>
+<p>The steady states of <a href="#eq-competitionnondim" class="quarto-xref">Equation&nbsp;<span>4.7</span></a> are identified in the usual manner, i.e.&nbsp;by seeking <span class="math inline">\(({n_1}^*,{n_2}^*)\)</span> such that</p>
 <p><span class="math display">\[
 f({n_1}^*,{n_2}^*)=g({n_1}^*,{n_2}^*)=0.
 \]</span></p>
@@ -672,7 +720,7 @@ n_2^*=\frac{1-a_{21}}{1-a_{12}a_{21}}
 </section>
 <section id="nullclines-1" class="level3" data-number="4.3.3">
 <h3 data-number="4.3.3" class="anchored" data-anchor-id="nullclines-1"><span class="header-section-number">4.3.3</span> Nullclines</h3>
-<p>The nullclines for <a href="#eq-competitionnondim">Equation&nbsp;<span>4.7</span></a> are straight lines given by</p>
+<p>The nullclines for <a href="#eq-competitionnondim" class="quarto-xref">Equation&nbsp;<span>4.7</span></a> are straight lines given by</p>
 <p><span class="math display">\[
 n_1=0 \ \ \ \ \ n_2=\frac{1-n_1}{a_{12}},
 \]</span></p>
@@ -709,7 +757,7 @@ A=\left(\begin{array}{rr}
 <p><span class="math display">\[
 \det{A}=\rho  (a_{21}-1)\ \ \ \textrm{and} \ \ \ \mathrm{tr}{A}=-1+\rho(1-a_{21}).
 \]</span></p>
-<p>Hence if <span class="math inline">\(a_{21}&lt;1\)</span>, <span class="math inline">\(\det{A}&lt;0\)</span> and (1,0) is a saddle point and thus unstable (see <a href="#fig-tdplane">Figure&nbsp;<span>4.1</span></a>).</p>
+<p>Hence if <span class="math inline">\(a_{21}&lt;1\)</span>, <span class="math inline">\(\det{A}&lt;0\)</span> and (1,0) is a saddle point and thus unstable (see <a href="#fig-tdplane" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>).</p>
 <p>If <span class="math inline">\(a_{21}&gt;1\)</span>, <span class="math inline">\(\det{A}&gt;0\)</span> and <span class="math inline">\(\mathrm{tr}{A}&lt;0\)</span>. Hence (1,0) is a stable node.</p>
 <p>Hence the parameter <span class="math inline">\(a_{21}\)</span>, which describes how strongly Population 1 inhibits the growth rate of Population 2, determines whether or not the steady state representing extinction of Population 2 but not Population 1 is stable or not.</p>
 <p>At (0,1)</p>
@@ -743,7 +791,7 @@ a_{12}-1  &amp; -a_{12}(1-a_{12})\\ -\rho a_{21}(1-a_{21}) &amp;\rho(a_{21}-1)\e
 \mathrm{tr}{A}= \rho(-) + (-)&lt;0.
 \]</span></p>
 <p>Therefore the coexistence steady state is a stable node or spiral.</p>
-<p>In the case where <span class="math inline">\(a_{21}&gt;1\)</span> and $a_{12}&gt;1</p>
+<p>In the case where <span class="math inline">\(a_{21}&gt;1\)</span> and <span class="math inline">\(a_{12}&gt;1\)</span></p>
 <p><span class="math display">\[
 \det{A} = \rho(+)(+)(-)&lt;0 .
 \]</span></p>
@@ -751,9 +799,9 @@ a_{12}-1  &amp; -a_{12}(1-a_{12})\\ -\rho a_{21}(1-a_{21}) &amp;\rho(a_{21}-1)\e
 </section>
 <section id="phase-portrait" class="level3" data-number="4.3.5">
 <h3 data-number="4.3.5" class="anchored" data-anchor-id="phase-portrait"><span class="header-section-number">4.3.5</span> Phase portrait</h3>
-<p>See <a href="#fig-comp-numsol-phplane">Figure&nbsp;<span>4.5</span></a> for phase portraits of three of the four cases that we have considered. It is expected that you can sketch phase portraits. Key details to consider are the steady states and their linear stability. You should also sketch the nullclines and depict the sign of the derivatives in the phase plane on either side of the nullclines. You should also sketch one or more sample trajectories.</p>
-<div class="cell" data-execution_count="3">
-<details>
+<p>See <a href="#fig-comp-numsol-phplane" class="quarto-xref">Figure&nbsp;<span>4.5</span></a> for phase portraits of three of the four cases that we have considered. It is expected that you can sketch phase portraits. Key details to consider are the steady states and their linear stability. You should also sketch the nullclines and depict the sign of the derivatives in the phase plane on either side of the nullclines. You should also sketch one or more sample trajectories.</p>
+<div id="cell-fig-compete-numsol" class="cell" data-execution_count="3">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -798,16 +846,20 @@ a_{12}-1  &amp; -a_{12}(1-a_{12})\\ -\rho a_{21}(1-a_{21}) &amp;\rho(a_{21}-1)\e
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-compete-numsol" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="CtsTimeMultiPop_files/figure-html/fig-compete-numsol-output-1.png" width="588" height="429" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.4: Numerical solutions of competition model</figcaption>
+<div id="fig-compete-numsol" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-compete-numsol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="CtsTimeMultiPop_files/figure-html/fig-compete-numsol-output-1.png" width="588" height="429" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-compete-numsol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.4: Numerical solutions of competition model
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="4">
-<details>
+<div id="cell-fig-comp-numsol-phplane" class="cell" data-execution_count="4">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Phase plane for the competition model </span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -905,10 +957,14 @@ a_{12}-1  &amp; -a_{12}(1-a_{12})\\ -\rho a_{21}(1-a_{21}) &amp;\rho(a_{21}-1)\e
 <span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-comp-numsol-phplane" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="CtsTimeMultiPop_files/figure-html/fig-comp-numsol-phplane-output-1.png" width="661" height="468" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.5: Numerical solution of the competition model</figcaption>
+<div id="fig-comp-numsol-phplane" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-comp-numsol-phplane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="CtsTimeMultiPop_files/figure-html/fig-comp-numsol-phplane-output-1.png" width="661" height="468" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-numsol-phplane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.5: Numerical solution of the competition model
+</figcaption>
 </figure>
 </div>
 </div>
@@ -918,7 +974,7 @@ a_{12}-1  &amp; -a_{12}(1-a_{12})\\ -\rho a_{21}(1-a_{21}) &amp;\rho(a_{21}-1)\e
 <h3 data-number="4.3.6" class="anchored" data-anchor-id="insight"><span class="header-section-number">4.3.6</span> Insight</h3>
 <p>The model therefore has four qualitatively different behaviours that are described as follows: Consider the case where <span class="math inline">\(a_{21}&gt;1\)</span>. This represents the case of Population 1 strongly competing with Population 2.</p>
 <ul>
-<li>If <span class="math inline">\(a_{12}&gt;1\)</span>, Population 2 also strongly competes with Population 1. In this case, there are four biologically relevant steady states, two of which are stable (1,0) and (0,1). The coexistence steady state is a saddle and thus unstable. The model is bistable and the initial conditions determine whether solutions end up at (1,0) or (0,1) (see <a href="#fig-comp-numsol-phplane">Figure&nbsp;<span>4.5</span></a>). The biological interpretation of this solution is that one species will always win and completely outcompete the other. Even if the two populations are equal (<span class="math inline">\(K_1=K_2\)</span> and <span class="math inline">\(a_{21}=a_{12}&gt;1\)</span>), one species will always win and the other will become extinct.</li>
+<li>If <span class="math inline">\(a_{12}&gt;1\)</span>, Population 2 also strongly competes with Population 1. In this case, there are four biologically relevant steady states, two of which are stable (1,0) and (0,1). The coexistence steady state is a saddle and thus unstable. The model is bistable and the initial conditions determine whether solutions end up at (1,0) or (0,1) (see <a href="#fig-comp-numsol-phplane" class="quarto-xref">Figure&nbsp;<span>4.5</span></a>). The biological interpretation of this solution is that one species will always win and completely outcompete the other. Even if the two populations are equal (<span class="math inline">\(K_1=K_2\)</span> and <span class="math inline">\(a_{21}=a_{12}&gt;1\)</span>), one species will always win and the other will become extinct.</li>
 <li>If <span class="math inline">\(a_{12}&lt;1\)</span>, Population 2 weakly competes with Population 1. There is no coexistence steady state and the only stable steady state is (1,0). Hence Population 1 always wins and Population 2 always becomes extinct.</li>
 </ul>
 <p>Now consider the case where <span class="math inline">\(a_{21}&lt;1\)</span>. This represents the case of Population 1 weakly competing with Population 2.</p>
@@ -961,9 +1017,9 @@ n_2=0, \ \ \ n_2=1+a_{21}n_1.
 </section>
 <section id="linear-stability-2" class="level3" data-number="4.4.4">
 <h3 data-number="4.4.4" class="anchored" data-anchor-id="linear-stability-2"><span class="header-section-number">4.4.4</span> Linear stability</h3>
-<p>Using a similar analysis to the competition model, it can be shown that the steady states (0,0), (1,0) and (0,1) are unstable. When <span class="math inline">\(a_{12}a_{21}&lt;1\)</span> there is a stable coexistence steady state. See <a href="#fig-sym-numsol-phplane">Figure&nbsp;<span>4.6</span></a>.</p>
-<div class="cell" data-execution_count="5">
-<details>
+<p>Using a similar analysis to the competition model, it can be shown that the steady states (0,0), (1,0) and (0,1) are unstable. When <span class="math inline">\(a_{12}a_{21}&lt;1\)</span> there is a stable coexistence steady state. See <a href="#fig-sym-numsol-phplane" class="quarto-xref">Figure&nbsp;<span>4.6</span></a>.</p>
+<div id="cell-fig-sym-numsol-phplane" class="cell" data-execution_count="5">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1070,10 +1126,14 @@ n_2=0, \ \ \ n_2=1+a_{21}n_1.
 <span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-sym-numsol-phplane" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="CtsTimeMultiPop_files/figure-html/fig-sym-numsol-phplane-output-1.png" width="672" height="467" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.6: Numerical solution of the symbiosis model</figcaption>
+<div id="fig-sym-numsol-phplane" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sym-numsol-phplane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="CtsTimeMultiPop_files/figure-html/fig-sym-numsol-phplane-output-1.png" width="672" height="467" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sym-numsol-phplane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.6: Numerical solution of the symbiosis model
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1123,18 +1183,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1166,11 +1215,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1180,8 +1268,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1193,7 +1290,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1237,6 +1457,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1262,6 +1483,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1323,12 +1570,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./CtsTimeOnePop.html" class="pagination-link">
+      <a href="./CtsTimeOnePop.html" class="pagination-link" aria-label="Single species population dynamics">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Single species population dynamics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Biochemicalkinetics.html" class="pagination-link">
+      <a href="./Biochemicalkinetics.html" class="pagination-link" aria-label="Biochemical kinetics">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Biochemical kinetics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1337,4 +1584,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dundeemath/MA32009/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
