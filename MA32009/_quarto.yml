@@ -1,7 +1,9 @@
 project:
   type: book
   output-dir: docs
-  resources: lectureslides.pdf
+  resources: 
+    lectureslides.pdf
+    lectureslides_discrete_time.pdf
 
 
 

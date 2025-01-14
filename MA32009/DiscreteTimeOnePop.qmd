@@ -1121,7 +1121,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-::: {#fig-nonlinModel}
+::: {#fig-harvestingModel}
 
 ```{shinylive-python}
 #| standalone: true
