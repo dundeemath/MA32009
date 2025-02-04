@@ -215,6 +215,7 @@ $$
 ## Host Parasitoid infection
 
 Parasitoids are creatures that have a free living and parasitic stage. The free-living adult lays eggs in a host that later hatch and develop after eating the host. The discrete stages of the parasitoids life cycle and the dependence on its reproduction on the availability of host suggest a discrete time, multi species models. Let $N_{t}$ and $P_t$ represent the number of hosts and parasitoids at time $t$, respectively. Let $R_0$ represent the reproductive ratio of host in the absence of parasites and $C$ the average number of viable eggs laid by each parasite on a host.
+
 ###  Model  equations 
 
 We consider equations of the form

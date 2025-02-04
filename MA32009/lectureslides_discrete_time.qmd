@@ -319,7 +319,7 @@ and identify their linear stability.
 \vspace{5cm}
 
 
-## Lecture 3  - Preparation for tutorial 3
+## Lecture 3  - Preparation for tutorial 1
 
 * Curve sketching nonlinear functions in qualitatively distinct cases
 
@@ -327,12 +327,12 @@ Example:
 
 Sketch a graph of
 $$
-f(x)=xe^{-r(1-\frac{x}{K})}, \quad r,K \in \Re^+, \quad x \in \Re, x\geq 0
+f(x)=xe^{r(1-\frac{x}{K})}, \quad r,K \in \Re^+, \quad x \in \Re, x\geq 0
 $$
 
 ::: {.callout-tip}
 ## Approach
-Identify properties of H to distinguish qualitatively distinct cases
+Identify properties of $f$ to distinguish qualitatively distinct cases
 :::
 
 ## Roots
@@ -411,10 +411,12 @@ sol2=fp[2][N]
 H_p_eval_2=H_p.subs(N,sol2)
 
 print(sp.simplify(H_p_eval_2))
-
 ```
 
+<--
 ## Lecture 4 .. A model with harvesting
+
+
 
 $$
 N_{t+1}=\frac{\gamma N_t}{1+N_t^2} - h N_t, \quad \gamma>0, \quad h\geq 0
@@ -1173,3 +1175,4 @@ print(A_eval_1)
 
 
 ```
+-->
