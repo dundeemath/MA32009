@@ -288,13 +288,14 @@ window.Quarto = {
   </ul></li>
   <li><a href="#host-parasitoid-infection" id="toc-host-parasitoid-infection" class="nav-link" data-scroll-target="#host-parasitoid-infection"><span class="header-section-number">2.3</span> Host Parasitoid infection</a>
   <ul class="collapse">
-  <li><a href="#numerical-solution" id="toc-numerical-solution" class="nav-link" data-scroll-target="#numerical-solution"><span class="header-section-number">2.3.1</span> Numerical solution</a></li>
-  <li><a href="#fixed-points-1" id="toc-fixed-points-1" class="nav-link" data-scroll-target="#fixed-points-1"><span class="header-section-number">2.3.2</span> Fixed points</a></li>
-  <li><a href="#linear-stability" id="toc-linear-stability" class="nav-link" data-scroll-target="#linear-stability"><span class="header-section-number">2.3.3</span> Linear stability</a></li>
-  <li><a href="#linear-stability-of-the-trivial-fixed-point" id="toc-linear-stability-of-the-trivial-fixed-point" class="nav-link" data-scroll-target="#linear-stability-of-the-trivial-fixed-point"><span class="header-section-number">2.3.4</span> Linear stability of the trivial fixed point</a></li>
-  <li><a href="#linear-stability-of-the-nontrivial-fixed-point" id="toc-linear-stability-of-the-nontrivial-fixed-point" class="nav-link" data-scroll-target="#linear-stability-of-the-nontrivial-fixed-point"><span class="header-section-number">2.3.5</span> Linear stability of the nontrivial fixed point</a></li>
-  <li><a href="#employing-the-jury-conditions" id="toc-employing-the-jury-conditions" class="nav-link" data-scroll-target="#employing-the-jury-conditions"><span class="header-section-number">2.3.6</span> Employing the Jury conditions</a></li>
-  <li><a href="#symbolic-calculations-in-python" id="toc-symbolic-calculations-in-python" class="nav-link" data-scroll-target="#symbolic-calculations-in-python"><span class="header-section-number">2.3.7</span> Symbolic calculations in Python</a></li>
+  <li><a href="#model-equations" id="toc-model-equations" class="nav-link" data-scroll-target="#model-equations"><span class="header-section-number">2.3.1</span> Model equations</a></li>
+  <li><a href="#numerical-solution" id="toc-numerical-solution" class="nav-link" data-scroll-target="#numerical-solution"><span class="header-section-number">2.3.2</span> Numerical solution</a></li>
+  <li><a href="#fixed-points-1" id="toc-fixed-points-1" class="nav-link" data-scroll-target="#fixed-points-1"><span class="header-section-number">2.3.3</span> Fixed points</a></li>
+  <li><a href="#linear-stability" id="toc-linear-stability" class="nav-link" data-scroll-target="#linear-stability"><span class="header-section-number">2.3.4</span> Linear stability</a></li>
+  <li><a href="#linear-stability-of-the-trivial-fixed-point" id="toc-linear-stability-of-the-trivial-fixed-point" class="nav-link" data-scroll-target="#linear-stability-of-the-trivial-fixed-point"><span class="header-section-number">2.3.5</span> Linear stability of the trivial fixed point</a></li>
+  <li><a href="#linear-stability-of-the-nontrivial-fixed-point" id="toc-linear-stability-of-the-nontrivial-fixed-point" class="nav-link" data-scroll-target="#linear-stability-of-the-nontrivial-fixed-point"><span class="header-section-number">2.3.6</span> Linear stability of the nontrivial fixed point</a></li>
+  <li><a href="#employing-the-jury-conditions" id="toc-employing-the-jury-conditions" class="nav-link" data-scroll-target="#employing-the-jury-conditions"><span class="header-section-number">2.3.7</span> Employing the Jury conditions</a></li>
+  <li><a href="#symbolic-calculations-in-python" id="toc-symbolic-calculations-in-python" class="nav-link" data-scroll-target="#symbolic-calculations-in-python"><span class="header-section-number">2.3.8</span> Symbolic calculations in Python</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dundeemath/MA32009/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -475,7 +476,9 @@ $$
 </section>
 <section id="host-parasitoid-infection" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="host-parasitoid-infection"><span class="header-section-number">2.3</span> Host Parasitoid infection</h2>
-<p>Parasitoids are creatures that have a free living and parasitic stage. The free-living adult lays eggs in a host that later hatch and develop after eating the host. The discrete stages of the parasitoids life cycle and the dependence on its reproduction on the availability of host suggest a discrete time, multi species models. Let <span class="math inline">\(N_{t}\)</span> and <span class="math inline">\(P_t\)</span> represent the number of hosts and parasitoids at time <span class="math inline">\(t\)</span>, respectively. Let <span class="math inline">\(R_0\)</span> represent the reproductive ratio of host in the absence of parasites and <span class="math inline">\(C\)</span> the average number of viable eggs laid by each parasite on a host. ### Model equations</p>
+<p>Parasitoids are creatures that have a free living and parasitic stage. The free-living adult lays eggs in a host that later hatch and develop after eating the host. The discrete stages of the parasitoids life cycle and the dependence on its reproduction on the availability of host suggest a discrete time, multi species models. Let <span class="math inline">\(N_{t}\)</span> and <span class="math inline">\(P_t\)</span> represent the number of hosts and parasitoids at time <span class="math inline">\(t\)</span>, respectively. Let <span class="math inline">\(R_0\)</span> represent the reproductive ratio of host in the absence of parasites and <span class="math inline">\(C\)</span> the average number of viable eggs laid by each parasite on a host.</p>
+<section id="model-equations" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="model-equations"><span class="header-section-number">2.3.1</span> Model equations</h3>
 <p>We consider equations of the form <span id="eq-discretetimetwovar"><span class="math display">\[
 \begin{aligned}
 N_{t+1}&amp;=R_0N_t f(N_t,P_t), \nonumber \\
@@ -515,8 +518,9 @@ $$
 The population dynamics are approximately independent of parasite population.
 
 -->
-<section id="numerical-solution" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">2.3.1</span> Numerical solution</h3>
+</section>
+<section id="numerical-solution" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">2.3.2</span> Numerical solution</h3>
 <div id="cell-fig-plotNicolsonBailey" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
@@ -723,8 +727,8 @@ Figure&nbsp;2.3: An app to explore behaviour in the Nicholson Bailey model.
 </figure>
 </div>
 </section>
-<section id="fixed-points-1" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="fixed-points-1"><span class="header-section-number">2.3.2</span> Fixed points</h3>
+<section id="fixed-points-1" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="fixed-points-1"><span class="header-section-number">2.3.3</span> Fixed points</h3>
 <p>The fixed points satisfy <span class="math display">\[
 \begin{aligned}
 N^*=R_0N^*e^{-aP^*}, \nonumber \\
@@ -763,22 +767,22 @@ e^{-aP^*}=\frac{1}{R_0}.
 \tag{2.5}\]</span></span></p>
 <p>Cancellation shows that both equations hold. Hence the fixed point is a valid fixed point. To be biologically relevant we require that both components of the solution are real and positive. In this case this leads to the condition <span class="math inline">\(R_0&gt;1\)</span>}.</p>
 </section>
-<section id="linear-stability" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="linear-stability"><span class="header-section-number">2.3.3</span> Linear stability</h3>
+<section id="linear-stability" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="linear-stability"><span class="header-section-number">2.3.4</span> Linear stability</h3>
 <p>The Jacobian matrix is given by <span class="math display">\[
 A_{(N_t,P_t)}= \left(\begin{array}{cc}
 R_0e^{-aP_t}&amp;-R_0aN_te^{-aP_t} \\ c(1-e^{-aP_t})&amp;aCN_te^{-aP_t} \end{array}\right).
 \]</span></p>
 </section>
-<section id="linear-stability-of-the-trivial-fixed-point" class="level3" data-number="2.3.4">
-<h3 data-number="2.3.4" class="anchored" data-anchor-id="linear-stability-of-the-trivial-fixed-point"><span class="header-section-number">2.3.4</span> Linear stability of the trivial fixed point</h3>
+<section id="linear-stability-of-the-trivial-fixed-point" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="linear-stability-of-the-trivial-fixed-point"><span class="header-section-number">2.3.5</span> Linear stability of the trivial fixed point</h3>
 <p>Evaluating at (0,0) yields <span class="math display">\[
 A= \left(\begin{array}{cc}
 R_0 &amp; 0 \\ 0 &amp; 0 \end{array}\right).
 \]</span> Hence the eigenvalues are <span class="math inline">\(R_0\)</span> and 0. If <span class="math inline">\(0&lt;R_0&lt;1\)</span> (0,0) is stable whilst if <span class="math inline">\(R_0&gt;1\)</span> (0,0) is unstable.</p>
 </section>
-<section id="linear-stability-of-the-nontrivial-fixed-point" class="level3" data-number="2.3.5">
-<h3 data-number="2.3.5" class="anchored" data-anchor-id="linear-stability-of-the-nontrivial-fixed-point"><span class="header-section-number">2.3.5</span> Linear stability of the nontrivial fixed point</h3>
+<section id="linear-stability-of-the-nontrivial-fixed-point" class="level3" data-number="2.3.6">
+<h3 data-number="2.3.6" class="anchored" data-anchor-id="linear-stability-of-the-nontrivial-fixed-point"><span class="header-section-number">2.3.6</span> Linear stability of the nontrivial fixed point</h3>
 <p>We can show that the Jacobian matrix evaluated at the nontrivial fixed point can be written as <span class="math display">\[
 A= \left(\begin{array}{cc}
 1&amp;-\frac{R_0 \ln R_0}{c(R_0-1)} \\ c(1-\frac{1}{R_0})&amp;\frac{\ln R_0}{R_0-1} \end{array}\right) .
@@ -786,8 +790,8 @@ A= \left(\begin{array}{cc}
 \lambda^2 - \lambda\left(1+\frac{\ln R_0}{R_0-1}\right)+ \frac{R_0\ln(R_0)}{R_0-1}=0.
 \]</span></p>
 </section>
-<section id="employing-the-jury-conditions" class="level3" data-number="2.3.6">
-<h3 data-number="2.3.6" class="anchored" data-anchor-id="employing-the-jury-conditions"><span class="header-section-number">2.3.6</span> Employing the Jury conditions</h3>
+<section id="employing-the-jury-conditions" class="level3" data-number="2.3.7">
+<h3 data-number="2.3.7" class="anchored" data-anchor-id="employing-the-jury-conditions"><span class="header-section-number">2.3.7</span> Employing the Jury conditions</h3>
 <p>To proceed with linear stability analysis we employ the Jury conditions. Consider the polynomial <span class="math display">\[
 \lambda^2+a\lambda+b=0,
 \]</span> In our case <span class="math display">\[
@@ -805,8 +809,8 @@ f_1'&gt;f_2'  \ \ \forall \ R_0&gt;1.
 \ln R_0 &gt; 1-\frac{1}{R_0}.
 \]</span> Hence the fixed point is unstable if <span class="math inline">\(R_0&gt;1\)</span>.</p>
 </section>
-<section id="symbolic-calculations-in-python" class="level3" data-number="2.3.7">
-<h3 data-number="2.3.7" class="anchored" data-anchor-id="symbolic-calculations-in-python"><span class="header-section-number">2.3.7</span> Symbolic calculations in Python</h3>
+<section id="symbolic-calculations-in-python" class="level3" data-number="2.3.8">
+<h3 data-number="2.3.8" class="anchored" data-anchor-id="symbolic-calculations-in-python"><span class="header-section-number">2.3.8</span> Symbolic calculations in Python</h3>
 <p>Below sympy is used to identify the fixed points. The Jacobian matrix is then computed and evaluated at the fixed points.</p>
 <div id="code-nich_bailery" class="cell" data-caption="none" data-execution_count="2">
 <details class="code-fold">
